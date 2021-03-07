@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<infos>
+    <exercises id="1">
+        <subject>1.下列选项中，不属于 Handler 机制中的关键对象的是（）。</subject>
+        <a>Content</a>
+        <b>Handler</b>
+        <c>MessageQueue</c>
+        <d>Looper</d>
+        <answer>1</answer>
+    </exercises>
+    <exercises id="2">
+        <subject>2.下列通讯方式中，不是 Android 系统提供的是（）。</subject>
+        <a>Socket 通信</a>
+        <b>HTTP 通信</b>
+        <c>URL 通信</c>
+        <d>以太网通信</d>
+        <answer>4</answer>
+    </exercises>
+    <exercises id="3">
+        <subject>3.关于 HttpURLConnection 访问网络的基本用法，描述错误的是（）。</subject>
+        <a>HttpURLConnection 对象需要设置请求网络的方式</a>
+        <b>HttpURLConnection 对象需要设置超时时间</b>
+        <c>需要通过 new 关键字来创建 HttpURLConnection 对象</c>
+        <d>访问网络完毕需要关闭 http 链接</d>
+        <answer>3</answer>
+    </exercises>
+    <exercises id="4">
+        <subject>4.下列选项中，不属于 AsyncHttpClient 特点的是（）。</subject>
+        <a>发送异步 HTTP 请求</a>
+        <b>HTTP 请求发生在 UI 线程之外</b>
+        <c>内部采用了线程池来处理并发请求</c>
+        <d>自动垃圾回收</d>
+        <answer>4</answer>
+    </exercises>
+    <exercises id="5">
+        <subject>5.下列选项中，关于 GET 和 POST 请求方式，描述错误的是（）。</subject>
+        <a>使用 GET 方式访问网络 URL 的长度是有限制的</a>
+        <b>HTTP 协议规定 GET 方式请求 URL 的长度是没有限制的</b>
+        <c>POST 方式对 URL 的长度是没有限制的</c>
+        <d>GET 请求方式向服务器提交的参数跟在请求 URL 后面</d>
+        <answer>2</answer>
+    </exercises>
+</infos>
