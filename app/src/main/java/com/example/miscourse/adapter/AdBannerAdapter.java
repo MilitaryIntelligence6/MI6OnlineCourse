@@ -49,7 +49,7 @@ public class AdBannerAdapter extends FragmentStatePagerAdapter implements View.O
     public Fragment getItem(int position) {
         Bundle args = new Bundle();
         if (cad1.size() > 0) {
-            args.putString("ad", cad1.get(position % cad1.size()).icon);
+            args.putString("ad", cad1.get(position % cad1.size()).getIcon());
         }
         return AdBannerFragment.newInstance(args);
     }

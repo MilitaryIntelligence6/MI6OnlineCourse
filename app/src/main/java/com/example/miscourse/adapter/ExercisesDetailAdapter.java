@@ -70,11 +70,11 @@ public class ExercisesDetailAdapter extends BaseAdapter {
 
         final ExercisesBean bean = getItem(position);
         if (bean != null) {
-            vh.subject.setText(bean.subject);
-            vh.tv_a.setText(bean.a);
-            vh.tv_b.setText(bean.b);
-            vh.tv_c.setText(bean.c);
-            vh.tv_d.setText(bean.d);
+            vh.subject.setText(bean.getSubject());
+            vh.tv_a.setText(bean.getA());
+            vh.tv_b.setText(bean.getB());
+            vh.tv_c.setText(bean.getC());
+            vh.tv_d.setText(bean.getD());
         }
 
         if (!selectedPosition.contains("" + position)){
@@ -84,25 +84,25 @@ public class ExercisesDetailAdapter extends BaseAdapter {
             vh.iv_d.setImageResource(R.drawable.exercises_d);
         }else{
             AnalysisUtils.setABCDEnable(false, vh.iv_a, vh.iv_b, vh.iv_c, vh.iv_d);
-            switch (bean.select){
+            switch (bean.getSelect()){
                 case 0:
                     // 用户所选项是正确的
-                    if (bean.answer == 1){
+                    if (bean.getAnswer() == 1){
                         vh.iv_a.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
                         vh.iv_c.setImageResource(R.drawable.exercises_c);
                         vh.iv_d.setImageResource(R.drawable.exercises_d);
-                    }else if (bean.answer == 2){
+                    }else if (bean.getAnswer() == 2){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_b.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_c.setImageResource(R.drawable.exercises_c);
                         vh.iv_d.setImageResource(R.drawable.exercises_d);
-                    }else if (bean.answer == 3){
+                    }else if (bean.getAnswer() == 3){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
                         vh.iv_c.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_d.setImageResource(R.drawable.exercises_d);
-                    }else if (bean.answer == 4){
+                    }else if (bean.getAnswer() == 4){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
                         vh.iv_c.setImageResource(R.drawable.exercises_c);
@@ -112,15 +112,15 @@ public class ExercisesDetailAdapter extends BaseAdapter {
                 case 1:
                     // 用户所选 A 是错误的
                     vh.iv_a.setImageResource(R.drawable.exercises_error_icon);
-                    if (bean.answer == 2){
+                    if (bean.getAnswer() == 2){
                         vh.iv_b.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_c.setImageResource(R.drawable.exercises_c);
                         vh.iv_d.setImageResource(R.drawable.exercises_d);
-                    }else if (bean.answer == 3){
+                    }else if (bean.getAnswer() == 3){
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
                         vh.iv_c.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_d.setImageResource(R.drawable.exercises_d);
-                    }else if (bean.answer == 4){
+                    }else if (bean.getAnswer() == 4){
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
                         vh.iv_c.setImageResource(R.drawable.exercises_c);
                         vh.iv_d.setImageResource(R.drawable.exercises_right_icon);
@@ -129,15 +129,15 @@ public class ExercisesDetailAdapter extends BaseAdapter {
                 case 2:
                     // 用户所选 B 是错误的
                     vh.iv_b.setImageResource(R.drawable.exercises_error_icon);
-                    if (bean.answer == 1){
+                    if (bean.getAnswer() == 1){
                         vh.iv_a.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_c.setImageResource(R.drawable.exercises_c);
                         vh.iv_d.setImageResource(R.drawable.exercises_d);
-                    }else if (bean.answer == 3){
+                    }else if (bean.getAnswer() == 3){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_c.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_d.setImageResource(R.drawable.exercises_d);
-                    }else if (bean.answer == 4){
+                    }else if (bean.getAnswer() == 4){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_c.setImageResource(R.drawable.exercises_c);
                         vh.iv_d.setImageResource(R.drawable.exercises_right_icon);
@@ -146,15 +146,15 @@ public class ExercisesDetailAdapter extends BaseAdapter {
                 case 3:
                     // 用户所选 C 是错误的
                     vh.iv_c.setImageResource(R.drawable.exercises_error_icon);
-                    if (bean.answer == 1){
+                    if (bean.getAnswer() == 1){
                         vh.iv_a.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
                         vh.iv_d.setImageResource(R.drawable.exercises_d);
-                    }else if (bean.answer == 3){
+                    }else if (bean.getAnswer() == 3){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_b.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_d.setImageResource(R.drawable.exercises_d);
-                    }else if (bean.answer == 4){
+                    }else if (bean.getAnswer() == 4){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
                         vh.iv_d.setImageResource(R.drawable.exercises_right_icon);
@@ -163,15 +163,15 @@ public class ExercisesDetailAdapter extends BaseAdapter {
                 case 4:
                     // 用户所选 D 是错误的
                     vh.iv_d.setImageResource(R.drawable.exercises_error_icon);
-                    if (bean.answer == 1){
+                    if (bean.getAnswer() == 1){
                         vh.iv_a.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
                         vh.iv_d.setImageResource(R.drawable.exercises_c);
-                    }else if (bean.answer == 2){
+                    }else if (bean.getAnswer() == 2){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_b.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_c.setImageResource(R.drawable.exercises_c);
-                    }else if (bean.answer == 3){
+                    }else if (bean.getAnswer() == 3){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
                         vh.iv_c.setImageResource(R.drawable.exercises_right_icon);

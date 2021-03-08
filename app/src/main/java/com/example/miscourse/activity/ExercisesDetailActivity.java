@@ -70,12 +70,12 @@ public class ExercisesDetailActivity extends AppCompatActivity {
             @Override
             public void onSelectA(int position, ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d) {
                 // 判断如果答案不是 1 即 A 选项
-                if (eb1.get(position).answer != 1) {
-                    eb1.get(position).select = 1;
+                if (eb1.get(position).getAnswer() != 1) {
+                    eb1.get(position).setSelect(1);
                 } else {
-                    eb1.get(position).select = 0;
+                    eb1.get(position).setSelect(0);
                 }
-                switch (eb1.get(position).answer) {
+                switch (eb1.get(position).getAnswer()) {
                     case 1:
                         iv_a.setImageResource(R.drawable.exercises_right_icon);
                         break;
@@ -98,12 +98,12 @@ public class ExercisesDetailActivity extends AppCompatActivity {
             @Override
             public void onSelectB(int position, ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d) {
                 // 判断如果答案不是 2 即 B 选项
-                if (eb1.get(position).answer != 2) {
-                    eb1.get(position).select = 2;
+                if (eb1.get(position).getAnswer() != 2) {
+                    eb1.get(position).setSelect(2);
                 } else {
-                    eb1.get(position).select = 0;
+                    eb1.get(position).setSelect(0);
                 }
-                switch (eb1.get(position).answer) {
+                switch (eb1.get(position).getAnswer()) {
                     case 1:
                         iv_a.setImageResource(R.drawable.exercises_right_icon);
                         iv_b.setImageResource(R.drawable.exercises_error_icon);
@@ -126,12 +126,12 @@ public class ExercisesDetailActivity extends AppCompatActivity {
             @Override
             public void onSelectC(int position, ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d) {
                 // 判断如果答案不是 3 即 C 选项
-                if (eb1.get(position).answer != 3) {
-                    eb1.get(position).select = 3;
+                if (eb1.get(position).getAnswer() != 3) {
+                    eb1.get(position).setSelect(3);
                 } else {
-                    eb1.get(position).select = 0;
+                    eb1.get(position).setSelect(0);
                 }
-                switch (eb1.get(position).answer) {
+                switch (eb1.get(position).getAnswer()) {
                     case 1:
                         iv_a.setImageResource(R.drawable.exercises_right_icon);
                         iv_c.setImageResource(R.drawable.exercises_error_icon);
@@ -154,12 +154,12 @@ public class ExercisesDetailActivity extends AppCompatActivity {
             @Override
             public void onSelectD(int position, ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d) {
                 // 判断如果答案不是 4 即 D 选项
-                if (eb1.get(position).answer != 4) {
-                    eb1.get(position).select = 4;
+                if (eb1.get(position).getAnswer() != 4) {
+                    eb1.get(position).setSelect(4);
                 } else {
-                    eb1.get(position).select = 0;
+                    eb1.get(position).setSelect(0);
                 }
-                switch (eb1.get(position).answer) {
+                switch (eb1.get(position).getAnswer()) {
                     case 1:
                         iv_a.setImageResource(R.drawable.exercises_right_icon);
                         iv_d.setImageResource(R.drawable.exercises_error_icon);

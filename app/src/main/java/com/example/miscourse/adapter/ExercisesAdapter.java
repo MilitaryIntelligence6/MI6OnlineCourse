@@ -66,9 +66,9 @@ public class ExercisesAdapter extends BaseAdapter {
         final ExercisesBean bean = getItem(position);
         if (bean != null) {
             vh.order.setText(position + 1 + "");
-            vh.title.setText(bean.title);
-            vh.content.setText(bean.content);
-            vh.order.setBackgroundResource(bean.background);
+            vh.title.setText(bean.getTitle());
+            vh.content.setText(bean.getContent());
+            vh.order.setBackgroundResource(bean.getBackground());
         }
         // 每个 Item 的点击事件
         convertView.setOnClickListener(new View.OnClickListener() {
@@ -80,9 +80,9 @@ public class ExercisesAdapter extends BaseAdapter {
                 // 跳转到习题详情页面
                 Intent intent = new Intent(context, ExercisesDetailActivity.class);
                 // 把章节 ID 传递到习题详情页面
-                intent.putExtra("id", bean.id);
+                intent.putExtra("id", bean.getId());
                 // 把标题传递到习题详情页面
-                intent.putExtra("title", bean.title);
+                intent.putExtra("title", bean.getTitle());
                 context.startActivity(intent);
             }
         });

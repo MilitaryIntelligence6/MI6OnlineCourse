@@ -27,7 +27,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseView {
+public class CourseView
+{
     private ListView listView;
     private CourseAdapter adapter;
     private FragmentActivity context;
@@ -42,13 +43,47 @@ public class CourseView {
     private MHandler handler;  // 事件捕获
     private List<CourseBean> cad1;
 
-    public CourseView(FragmentActivity context) {
+    private CourseView(FragmentActivity context)
+    {
+        initContextAndInflater(context);
+    }
+
+    private volatile static CourseView instance = null;
+
+    public static CourseView requireInstance(FragmentActivity context)
+    {
+        if (instance == null)
+        {
+            synchronized (CourseView.class)
+            {
+                if (instance == null)
+                {
+                    instance = new CourseView(context);
+                }
+            }
+        }
+        // 单一职责, 但是代码有点丑;
+        if (!instance.context.equals(context))
+        {
+            instance.initContextAndInflater(context);
+        }
+        return instance;
+    }
+
+    private void initContextAndInflater(FragmentActivity context)
+    {
         this.context = context;
         // 为之后将 Layout 转化为 view 时用
+        putInflater(context);
+    }
+
+    private void putInflater(FragmentActivity context)
+    {
         this.inflater = LayoutInflater.from(context);
     }
 
-    private void createView() {
+    private void createView()
+    {
         this.handler = new MHandler();
         initAdData();
         getCourseData();
@@ -57,13 +92,17 @@ public class CourseView {
     }
 
     // 事件捕获
-    class MHandler extends Handler {
+    private class MHandler extends Handler
+    {
         @Override
-        public void dispatchMessage(@NonNull Message msg) {
+        public void dispatchMessage(@NonNull Message msg)
+        {
             super.dispatchMessage(msg);
-            switch (msg.what) {
+            switch (msg.what)
+            {
                 case MSG_AD_SLID:
-                    if (ada.getCount() > 0) {
+                    if (ada.getCount() > 0)
+                    {
                         adPager.setCurrentItem(adPager.getCurrentItem() + 1);
                     }
                     break;
@@ -72,17 +111,24 @@ public class CourseView {
     }
 
     // 广告自动滑动
-    class AdAutoSlidThread extends Thread {
+    private class AdAutoSlidThread extends Thread
+    {
         @Override
-        public void run() {
+        public void run()
+        {
             super.run();
-            while (true) {
-                try {
+            while (true)
+            {
+                try
+                {
                     sleep(5000);
-                } catch (InterruptedException e) {
+                }
+                catch (InterruptedException e)
+                {
                     e.printStackTrace();
                 }
-                if (handler != null) {
+                if (handler != null)
+                {
                     handler.sendEmptyMessage(MSG_AD_SLID);
                 }
             }
@@ -90,7 +136,8 @@ public class CourseView {
     }
 
     // 初始化控件
-    private void initView() {
+    private void initView()
+    {
         currentView = inflater.inflate(R.layout.main_view_course, null);
         listView = currentView.findViewById(R.id.lv_list);
         adapter = new CourseAdapter(context);
@@ -104,15 +151,19 @@ public class CourseView {
         vpi = currentView.findViewById(R.id.vpi_advert_indicator);
         vpi.setCount(ada.getSize());  // 设置小圆点的个数
         adBannerLay = currentView.findViewById(R.id.rl_addBanner);
-        adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
 
             }
 
             @Override
-            public void onPageSelected(int position) {
-                if (ada.getSize() > 0) {
+            public void onPageSelected(int position)
+            {
+                if (ada.getSize() > 0)
+                {
                     // 由于 index 数据在滑动时是累加的
                     // 因此用 index % ada.getSize() 来标记滑动到的当前位置
                     vpi.setCurrentPosition(position % ada.getSize());
@@ -120,13 +171,16 @@ public class CourseView {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
+            public void onPageScrollStateChanged(int state)
+            {
 
             }
         });
         resetSize();
-        if (cad1 != null) {
-            if (cad1.size() > 0) {
+        if (cad1 != null)
+        {
+            if (cad1.size() > 0)
+            {
                 vpi.setCount(cad1.size());
                 vpi.setCurrentPosition(0);
             }
@@ -135,7 +189,8 @@ public class CourseView {
     }
 
     // 计算控件大小
-    private void resetSize() {
+    private void resetSize()
+    {
         int sw = getScreenWidth(context);
         int adLheight = sw / 2;
         ViewGroup.LayoutParams adlp = adBannerLay.getLayoutParams();
@@ -145,7 +200,8 @@ public class CourseView {
     }
 
     // 读取屏幕宽
-    public static int getScreenWidth(Activity context) {
+    public static int getScreenWidth(Activity context)
+    {
         DisplayMetrics metrics = new DisplayMetrics();
         Display display = context.getWindowManager().getDefaultDisplay();
         display.getMetrics(metrics);
@@ -153,20 +209,23 @@ public class CourseView {
     }
 
     // 初始化广告中的数据
-    private void initAdData() {
+    private void initAdData()
+    {
         cad1 = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++)
+        {
             CourseBean bean = new CourseBean();
-            bean.id = i + 1;
-            switch (i) {
+            bean.setId(i + 1);
+            switch (i)
+            {
                 case 0:
-                    bean.icon = "banner_1";
+                    bean.setIcon("banner_1");
                     break;
                 case 1:
-                    bean.icon = "banner_2";
+                    bean.setIcon("banner_2");
                     break;
                 case 2:
-                    bean.icon = "banner_3";
+                    bean.setIcon("banner_3");
                     break;
                 default:
                     break;
@@ -176,28 +235,44 @@ public class CourseView {
     }
 
     // 获取课程信息
-    private void getCourseData() {
-        try {
+    private void getCourseData()
+    {
+        try
+        {
             InputStream is = context.getResources().getAssets().open("chaptertitle.xml");
             cb1 = AnalysisUtils.getCourseInfos(is);
-        } catch (IOException | XmlPullParserException e) {
+        }
+        catch (IOException | XmlPullParserException e)
+        {
             e.printStackTrace();
         }
     }
 
     // 获取当前在导航栏上方显示对应的 View
-    public View getView() {
-        if (currentView == null) {
-            createView();
-        }
+    public View getView()
+    {
+        initViewInstance();
         return currentView;
     }
 
     // 显示当前导航栏上方所对应的 view 界面
-    public void showView() {
-        if (currentView == null) {
-            createView();
-        }
+    public void showView()
+    {
+        initViewInstance();
         currentView.setVisibility(View.VISIBLE);
+    }
+
+    private void initViewInstance()
+    {
+        if (currentView == null)
+        {
+            synchronized (CourseView.class)
+            {
+                if (currentView == null)
+                {
+                    createView();
+                }
+            }
+        }
     }
 }

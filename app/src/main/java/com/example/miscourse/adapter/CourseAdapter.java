@@ -69,31 +69,31 @@ public class CourseAdapter extends BaseAdapter {
                 final CourseBean bean = list.get(i);
                 switch (i) {
                     case 0: // 设置左边图片与标题信息
-                        vh.tv_left_img_title.setText(bean.imgTitle);
-                        vh.tv_left_title.setText(bean.title);
-                        setLeftImg(bean.id, vh.iv_left_img);
+                        vh.tv_left_img_title.setText(bean.getImgTitle());
+                        vh.tv_left_title.setText(bean.getTitle());
+                        setLeftImg(bean.getId(), vh.iv_left_img);
                         vh.iv_left_img.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 // 跳转到课程详情界面
                                 Intent intent = new Intent(context, VideoListActivity.class);
-                                intent.putExtra("id", bean.id);
-                                intent.putExtra("intro", bean.intro);
+                                intent.putExtra("id", bean.getId());
+                                intent.putExtra("intro", bean.getIntro());
                                 context.startActivity(intent);
                             }
                         });
                         break;
                     case 1: // 设置右边图片与标题信息
-                        vh.tv_right_img_title.setText(bean.imgTitle);
-                        vh.tv_right_title.setText(bean.title);
-                        setRightImg(bean.id, vh.iv_right_img);
+                        vh.tv_right_img_title.setText(bean.getImgTitle());
+                        vh.tv_right_title.setText(bean.getTitle());
+                        setRightImg(bean.getId(), vh.iv_right_img);
                         vh.iv_right_img.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 // 跳转到课程详情界面
                                 Intent intent = new Intent(context, VideoListActivity.class);
-                                intent.putExtra("id", bean.id);
-                                intent.putExtra("intro", bean.intro);
+                                intent.putExtra("id", bean.getId());
+                                intent.putExtra("intro", bean.getIntro());
                                 context.startActivity(intent);
                             }
                         });

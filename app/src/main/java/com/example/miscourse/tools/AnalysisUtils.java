@@ -29,25 +29,25 @@ public class AnalysisUtils {
                     } else if ("exercises".equals(parser.getName())) {
                         exercisesInfo = new ExercisesBean();
                         String ids = parser.getAttributeValue(0);
-                        exercisesInfo.subjectId = Integer.parseInt(ids);
+                        exercisesInfo.setSubjectId(Integer.parseInt(ids));
                     } else if ("subject".equals(parser.getName())) {
                         String subject = parser.nextText();
-                        exercisesInfo.subject = subject;
+                        exercisesInfo.setSubject(subject);
                     } else if ("a".equals(parser.getName())) {
                         String a = parser.nextText();
-                        exercisesInfo.a = a;
+                        exercisesInfo.setA(a);
                     } else if ("b".equals(parser.getName())) {
                         String b = parser.nextText();
-                        exercisesInfo.b = b;
+                        exercisesInfo.setB(b);
                     } else if ("c".equals(parser.getName())) {
                         String c = parser.nextText();
-                        exercisesInfo.c = c;
+                        exercisesInfo.setC(c);
                     } else if ("d".equals(parser.getName())) {
                         String d = parser.nextText();
-                        exercisesInfo.d = d;
+                        exercisesInfo.setD(d);
                     } else if ("answer".equals(parser.getName())) {
                         String answer = parser.nextText();
-                        exercisesInfo.answer = Integer.parseInt(answer);
+                        exercisesInfo.setAnswer(Integer.parseInt(answer));
                     }
                     break;
                 case XmlPullParser.END_TAG:
@@ -86,16 +86,16 @@ public class AnalysisUtils {
                     } else if ("course".equals(parser.getName())) {
                         courseInfo = new CourseBean();
                         String ids = parser.getAttributeValue(0);
-                        courseInfo.id = Integer.parseInt(ids);
+                        courseInfo.setId(Integer.parseInt(ids));
                     } else if ("imgtitle".equals(parser.getName())) {
                         String imgtitle = parser.nextText();
-                        courseInfo.imgTitle = imgtitle;
+                        courseInfo.setImgTitle(imgtitle);
                     } else if ("title".equals(parser.getName())) {
                         String title = parser.nextText();
-                        courseInfo.title = title;
+                        courseInfo.setTitle(title);
                     } else if ("intro".equals(parser.getName())) {
                         String intro = parser.nextText();
-                        courseInfo.intro = intro;
+                        courseInfo.setIntro(intro);
                     }
                     break;
                 case XmlPullParser.END_TAG:
