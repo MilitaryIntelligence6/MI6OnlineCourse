@@ -32,16 +32,18 @@ public class CourseView
     private ListView listView;
     private CourseAdapter adapter;
     private FragmentActivity context;
-    private List<List<CourseBean>> cb1;
-    private View currentView;
+    private List<List<CourseBean>> courseBeanListList;
+
+    private View viewInstance;
+
     private LayoutInflater inflater;
     private ViewPager adPager;  // 广告
     private View adBannerLay;  // 广告条容器
-    private AdBannerAdapter ada;  // 适配器
+    private AdBannerAdapter adBannerAdapter;  // 适配器
     public static final int MSG_AD_SLID = 002;  // 广告自动滑动
     private ViewPagerIndicator vpi;  // 小圆点
     private MHandler handler;  // 事件捕获
-    private List<CourseBean> cad1;
+    private List<CourseBean> courseBeanList;
 
     private CourseView(FragmentActivity context)
     {
@@ -101,11 +103,17 @@ public class CourseView
             switch (msg.what)
             {
                 case MSG_AD_SLID:
-                    if (ada.getCount() > 0)
+                {
+                    if (adBannerAdapter.getCount() > 0)
                     {
                         adPager.setCurrentItem(adPager.getCurrentItem() + 1);
                     }
                     break;
+                }
+                default:
+                {
+                    break;
+                }
             }
         }
     }
@@ -138,19 +146,19 @@ public class CourseView
     // 初始化控件
     private void initView()
     {
-        currentView = inflater.inflate(R.layout.main_view_course, null);
-        listView = currentView.findViewById(R.id.lv_list);
+        viewInstance = inflater.inflate(R.layout.main_view_course, null);
+        listView = viewInstance.findViewById(R.id.lv_list);
         adapter = new CourseAdapter(context);
-        adapter.setData(cb1);
+        adapter.setData(courseBeanListList);
         listView.setAdapter(adapter);
-        adPager = currentView.findViewById(R.id.vp_advertBanner);
+        adPager = viewInstance.findViewById(R.id.vp_advertBanner);
         adPager.setLongClickable(false);
-        ada = new AdBannerAdapter(context.getSupportFragmentManager(), handler);
-        adPager.setAdapter(ada);  // 给 ViewPager 设置适配器
-        adPager.setOnTouchListener(ada);
-        vpi = currentView.findViewById(R.id.vpi_advert_indicator);
-        vpi.setCount(ada.getSize());  // 设置小圆点的个数
-        adBannerLay = currentView.findViewById(R.id.rl_addBanner);
+        adBannerAdapter = new AdBannerAdapter(context.getSupportFragmentManager(), handler);
+        adPager.setAdapter(adBannerAdapter);  // 给 ViewPager 设置适配器
+        adPager.setOnTouchListener(adBannerAdapter);
+        vpi = viewInstance.findViewById(R.id.vpi_advert_indicator);
+        vpi.setCount(adBannerAdapter.getSize());  // 设置小圆点的个数
+        adBannerLay = viewInstance.findViewById(R.id.rl_addBanner);
         adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
         {
             @Override
@@ -162,11 +170,11 @@ public class CourseView
             @Override
             public void onPageSelected(int position)
             {
-                if (ada.getSize() > 0)
+                if (adBannerAdapter.getSize() > 0)
                 {
                     // 由于 index 数据在滑动时是累加的
                     // 因此用 index % ada.getSize() 来标记滑动到的当前位置
-                    vpi.setCurrentPosition(position % ada.getSize());
+                    vpi.setCurrentPosition(position % adBannerAdapter.getSize());
                 }
             }
 
@@ -177,18 +185,20 @@ public class CourseView
             }
         });
         resetSize();
-        if (cad1 != null)
+        if (courseBeanList != null)
         {
-            if (cad1.size() > 0)
+            if (courseBeanList.size() > 0)
             {
-                vpi.setCount(cad1.size());
+                vpi.setCount(courseBeanList.size());
                 vpi.setCurrentPosition(0);
             }
-            ada.setDatas(cad1);
+            adBannerAdapter.setDatas(courseBeanList);
         }
     }
 
-    // 计算控件大小
+    /**
+     * 计算控件大小;
+     */
     private void resetSize()
     {
         int sw = getScreenWidth(context);
@@ -199,7 +209,11 @@ public class CourseView
         adBannerLay.setLayoutParams(adlp);
     }
 
-    // 读取屏幕宽
+    /**
+     * 读取屏幕宽;
+     * @param context
+     * @return
+     */
     public static int getScreenWidth(Activity context)
     {
         DisplayMetrics metrics = new DisplayMetrics();
@@ -208,10 +222,12 @@ public class CourseView
         return metrics.widthPixels;
     }
 
-    // 初始化广告中的数据
+    /**
+     * 初始化广告中的数据;
+     */
     private void initAdData()
     {
-        cad1 = new ArrayList<>();
+        courseBeanList = new ArrayList<>();
         for (int i = 0; i < 3; i++)
         {
             CourseBean bean = new CourseBean();
@@ -230,17 +246,19 @@ public class CourseView
                 default:
                     break;
             }
-            cad1.add(bean);
+            courseBeanList.add(bean);
         }
     }
 
-    // 获取课程信息
+    /**
+     * 获取课程信息;
+     */
     private void getCourseData()
     {
         try
         {
             InputStream is = context.getResources().getAssets().open("chaptertitle.xml");
-            cb1 = AnalysisUtils.getCourseInfos(is);
+            courseBeanListList = AnalysisUtils.getCourseInfos(is);
         }
         catch (IOException | XmlPullParserException e)
         {
@@ -248,27 +266,32 @@ public class CourseView
         }
     }
 
-    // 获取当前在导航栏上方显示对应的 View
+    /**
+     * 获取当前在导航栏上方显示对应的 View;
+     * @return
+     */
     public View getView()
     {
         initViewInstance();
-        return currentView;
+        return viewInstance;
     }
 
-    // 显示当前导航栏上方所对应的 view 界面
+    /**
+     * 显示当前导航栏上方所对应的 view 界面;
+     */
     public void showView()
     {
         initViewInstance();
-        currentView.setVisibility(View.VISIBLE);
+        viewInstance.setVisibility(View.VISIBLE);
     }
 
     private void initViewInstance()
     {
-        if (currentView == null)
+        if (viewInstance == null)
         {
             synchronized (CourseView.class)
             {
-                if (currentView == null)
+                if (viewInstance == null)
                 {
                     createView();
                 }
