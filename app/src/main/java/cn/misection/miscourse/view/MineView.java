@@ -27,7 +27,7 @@ public class MineView implements View.OnClickListener
     private RelativeLayout rlSetting;
     private LinearLayout llLogin;
     private Intent intent;
-    SharedPreferLoginInfo spLoginInfo;
+    private SharedPreferLoginInfo spLoginInfo;
 
     private volatile static MineView instance = null;
 
