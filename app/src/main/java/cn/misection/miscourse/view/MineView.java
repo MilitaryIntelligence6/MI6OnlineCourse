@@ -3,7 +3,6 @@ package cn.misection.miscourse.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -70,11 +69,30 @@ public class MineView implements View.OnClickListener
 
     private void createView()
     {
-        init();
+        initView();
     }
 
+    public void showView()
+    {
+        initViewInstance();
+        view.setVisibility(View.VISIBLE);
+    }
 
-    private void init()
+    private void initViewInstance()
+    {
+        if (view == null)
+        {
+            synchronized (MineView.class)
+            {
+                if (view == null)
+                {
+                    createView();
+                }
+            }
+        }
+    }
+
+    private void initView()
     {
         view = inflater.inflate(R.layout.main_view_mine, null);
         tvUsername = view.findViewById(R.id.tv_username);
@@ -134,26 +152,6 @@ public class MineView implements View.OnClickListener
                     Toast.makeText(context, "你还未登陆，请先登陆", Toast.LENGTH_SHORT).show();
                 }
                 break;
-        }
-    }
-
-    public void showView()
-    {
-        initViewInstance();
-        view.setVisibility(View.VISIBLE);
-    }
-
-    private void initViewInstance()
-    {
-        if (view == null)
-        {
-            synchronized (MineView.class)
-            {
-                if (view == null)
-                {
-                    createView();
-                }
-            }
         }
     }
 }
