@@ -3,6 +3,7 @@ package cn.misection.miscourse.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -15,7 +16,7 @@ import cn.misection.miscourse.activity.LoginActivity;
 import cn.misection.miscourse.activity.PlayHistoryActivity;
 import cn.misection.miscourse.activity.SettingActivity;
 import cn.misection.miscourse.activity.UserInfoActivity;
-import cn.misection.miscourse.util.SPLoginInfo;
+import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class MineView implements View.OnClickListener
 {
@@ -26,7 +27,7 @@ public class MineView implements View.OnClickListener
     private RelativeLayout rlPlayHistory, rlSetting;
     private LinearLayout llLogin;
     private Intent intent;
-    SPLoginInfo spLoginInfo;
+    SharedPreferLoginInfo spLoginInfo;
 
     private volatile static MineView instance = null;
 
@@ -61,7 +62,7 @@ public class MineView implements View.OnClickListener
         inflater = LayoutInflater.from(context);
     }
 
-    public View getView()
+    public View requireViewSingleton()
     {
         initViewInstance();
         return view;
@@ -85,7 +86,7 @@ public class MineView implements View.OnClickListener
         llLogin.setOnClickListener(this);
         view.setVisibility(View.VISIBLE);
 
-        spLoginInfo = new SPLoginInfo(context);
+        spLoginInfo = new SharedPreferLoginInfo(context);
         setLoginParams(spLoginInfo.getLoginStatus());
     }
 

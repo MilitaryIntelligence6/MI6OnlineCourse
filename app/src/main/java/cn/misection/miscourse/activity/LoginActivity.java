@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.MD5Utils;
-import cn.misection.miscourse.util.SPLoginInfo;
+import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView ivHead;
@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView tvMainTitle, tvBack, tvRegister, tvFindPassword;
     private Intent intent;
     private String username, password;
-    SPLoginInfo spLoginInfo;
+    SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -63,13 +63,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             toastShow("请输入用户名");
         } else if (password.isEmpty()) {
             toastShow("请输入密码");
-        } else if (spLoginInfo.getPwd(username).isEmpty()) {
+        } else if (sharedPreferLoginInfo.getPwd(username).isEmpty()) {
             toastShow("用户名不存在");
         } else if (!loginCheck(username, password)) {
             toastShow("用户名或密码错误");
         } else {
             toastShow("用户登陆成功！");
-            spLoginInfo.saveLoginStatus(true, username);
+            sharedPreferLoginInfo.saveLoginStatus(true, username);
             jumpActivity();
         }
     }
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // 登录账号密码验证
     private boolean loginCheck(String username, String password) {
         String md5Pwd = MD5Utils.md5(password);
-        return spLoginInfo.getPwd(username).equals(md5Pwd);
+        return sharedPreferLoginInfo.getPwd(username).equals(md5Pwd);
     }
 
     private void toastShow(String message) {
@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvFindPassword = findViewById(R.id.tv_find_password);
         tvFindPassword.setOnClickListener(this);
 
-        spLoginInfo = new SPLoginInfo(LoginActivity.this);
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(LoginActivity.this);
     }
 
     // 接受注册返回参数

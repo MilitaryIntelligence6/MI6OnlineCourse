@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.util.SPLoginInfo;
+import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
     private RelativeLayout rlUpdatePassword, rlSecuritySetting, rlLogout, rlTitleBar;
@@ -62,7 +62,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.rl_logout:
                 toastShow("已退出登录");
                 // 清空用户登录状态
-                new SPLoginInfo(SettingActivity.this).saveLoginStatus(false, "");
+                new SharedPreferLoginInfo(SettingActivity.this).saveLoginStatus(false, "");
                 Intent data = new Intent();
                 data.putExtra("isLogin", false);
                 setResult(RESULT_OK, data);

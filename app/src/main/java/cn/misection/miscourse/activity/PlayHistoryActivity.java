@@ -15,7 +15,7 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.PlayHistoryAdapter;
 import cn.misection.miscourse.bean.VideoBean;
 import cn.misection.miscourse.util.DBHelper;
-import cn.misection.miscourse.util.SPLoginInfo;
+import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class PlayHistoryActivity extends AppCompatActivity {
     private PlayHistoryAdapter adapter;
     private List<VideoBean> vb1;
     private DBHelper db;
-    SPLoginInfo spLoginInfo;
+    SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -39,8 +39,8 @@ public class PlayHistoryActivity extends AppCompatActivity {
         db = DBHelper.getInstance(this);
         vb1 = new ArrayList<>();
         // 从数据库中获取播放记录信息
-        spLoginInfo = new SPLoginInfo(this);
-        vb1 = db.getVideoHistory(spLoginInfo.getLoginUsername());
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(this);
+        vb1 = db.getVideoHistory(sharedPreferLoginInfo.getLoginUsername());
         init();
     }
 

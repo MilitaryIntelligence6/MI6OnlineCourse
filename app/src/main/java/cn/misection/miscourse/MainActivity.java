@@ -18,7 +18,7 @@ import android.widget.Toast;
 import cn.misection.miscourse.R;
 
 import cn.misection.miscourse.opcode.EnumViewCode;
-import cn.misection.miscourse.util.SPLoginInfo;
+import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import cn.misection.miscourse.view.CourseView;
 import cn.misection.miscourse.view.ExercisesView;
 import cn.misection.miscourse.view.MineView;
@@ -56,7 +56,7 @@ public class MainActivity
     private ExercisesView exercisesView;
     private CourseView courseView;
 
-    private SPLoginInfo spLoginInfo;
+    private SharedPreferLoginInfo sharedPreferLoginInfo;
 
     /**
      * 上次按下退出键时间;
@@ -100,7 +100,7 @@ public class MainActivity
         bottomMineImageView = findViewById(R.id.bottom_bar_image_mine);
         bottomMineTextView = findViewById(R.id.bottom_bar_text_mine);
 
-        spLoginInfo = new SPLoginInfo(MainActivity.this);
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
     }
 
     @Override
@@ -235,7 +235,7 @@ public class MainActivity
         if (mineView == null)
         {
             mineView = MineView.requireInstance(this);
-            View view = mineView.getView();
+            View view = mineView.requireViewSingleton();
             BodyFrameLayout.addView(view);
         }
         mineView.showView();
@@ -280,9 +280,9 @@ public class MainActivity
             else
             {
                 MainActivity.this.finish();
-                if (spLoginInfo.getLoginStatus())
+                if (sharedPreferLoginInfo.getLoginStatus())
                 {
-                    spLoginInfo.saveLoginStatus(false, "");
+                    sharedPreferLoginInfo.saveLoginStatus(false, "");
                 }
                 System.exit(0);
             }

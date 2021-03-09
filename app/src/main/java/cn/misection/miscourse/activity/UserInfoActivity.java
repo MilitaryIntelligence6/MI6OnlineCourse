@@ -16,7 +16,7 @@ import android.widget.Toast;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.bean.UserBean;
 import cn.misection.miscourse.util.DBHelper;
-import cn.misection.miscourse.util.SPLoginInfo;
+import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tvBack, tvMainTitle;
@@ -34,8 +34,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
-        SPLoginInfo spLoginInfo = new SPLoginInfo(UserInfoActivity.this);
-        spUsername = spLoginInfo.getLoginUsername();
+        SharedPreferLoginInfo sharedPreferLoginInfo = new SharedPreferLoginInfo(UserInfoActivity.this);
+        spUsername = sharedPreferLoginInfo.getLoginUsername();
 
         init();
         initData();

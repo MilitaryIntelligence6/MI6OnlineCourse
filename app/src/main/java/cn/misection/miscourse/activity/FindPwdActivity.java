@@ -11,14 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.util.SPLoginInfo;
+import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class FindPwdActivity extends AppCompatActivity {
     private TextView tvBack, tvMainTitle, tvUsername, tvResetPassword;
     private EditText etUsername, etValidateName;
     private Button btnValidate;
     private String from, validateName;
-    SPLoginInfo spLoginInfo;
+    SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class FindPwdActivity extends AppCompatActivity {
                     String resultSecurity = readSecurity(username);
                     if (username.isEmpty()){
                         Toast.makeText(FindPwdActivity.this, "请输入你的用户名", Toast.LENGTH_SHORT).show();
-                    }else if (spLoginInfo.getPwd(username).isEmpty()){
+                    }else if (sharedPreferLoginInfo.getPwd(username).isEmpty()){
                         Toast.makeText(FindPwdActivity.this, "你输入的用户名不存在", Toast.LENGTH_SHORT).show();
                     }else if (validateName.isEmpty()){
                         Toast.makeText(FindPwdActivity.this, "请输入要验证的姓名", Toast.LENGTH_SHORT).show();
@@ -61,7 +61,7 @@ public class FindPwdActivity extends AppCompatActivity {
                         tvResetPassword.setVisibility(View.VISIBLE);
                         tvResetPassword.setText("初始密码：123456");
                         // 重置密码
-                        spLoginInfo.saveInfo(username, "123456");
+                        sharedPreferLoginInfo.saveInfo(username, "123456");
                     }
                 }
             }
@@ -76,7 +76,7 @@ public class FindPwdActivity extends AppCompatActivity {
     private void saveSecurity(String validateName) {
         SharedPreferences sp = getSharedPreferences("loginInfo", MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(spLoginInfo.getLoginUsername() + "_security", validateName);
+        editor.putString(sharedPreferLoginInfo.getLoginUsername() + "_security", validateName);
         editor.commit();
     }
 
@@ -96,6 +96,6 @@ public class FindPwdActivity extends AppCompatActivity {
             etUsername.setVisibility(View.VISIBLE);
         }
 
-        spLoginInfo = new SPLoginInfo(FindPwdActivity.this);
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(FindPwdActivity.this);
     }
 }

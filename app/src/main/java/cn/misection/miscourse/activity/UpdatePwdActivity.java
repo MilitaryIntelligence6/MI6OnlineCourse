@@ -11,14 +11,14 @@ import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.MD5Utils;
-import cn.misection.miscourse.util.SPLoginInfo;
+import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class UpdatePwdActivity extends AppCompatActivity {
     private TextView tvBack, tvMainTitle;
     private EditText etOldPassword, etNewPassword, etNewPasswordAgain;
     private Button btnSave;
     private String oldPassword, newPassword, newPasswordAgain, username;
-    SPLoginInfo spLoginInfo;
+    SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class UpdatePwdActivity extends AppCompatActivity {
     private void logicalJudgement() {
         if (oldPassword.isEmpty()) {
             toastShow("请输入原始密码");
-        } else if (!MD5Utils.md5(oldPassword).equals(spLoginInfo.getPwd(username))) {
+        } else if (!MD5Utils.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username))) {
             toastShow("原始密码错误");
         } else if (newPassword.isEmpty()) {
             toastShow("请输入新密码");
@@ -45,12 +45,12 @@ public class UpdatePwdActivity extends AppCompatActivity {
             toastShow("请再次输入新密码");
         } else if (!newPassword.equals(newPasswordAgain)) {
             toastShow("两次输入的密码不一致");
-        } else if (MD5Utils.md5(newPassword).equals(spLoginInfo.getPwd(username))) {
+        } else if (MD5Utils.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username))) {
             toastShow("新密码不能与原始密码一直");
         } else {
             toastShow("新密码设置成功");
             // 更新密码
-            spLoginInfo.saveInfo(username, newPassword);
+            sharedPreferLoginInfo.saveInfo(username, newPassword);
             SettingActivity.instance.finish();
             UpdatePwdActivity.this.finish();
         }
@@ -82,7 +82,7 @@ public class UpdatePwdActivity extends AppCompatActivity {
         etNewPasswordAgain = findViewById(R.id.et_new_password_again);
         btnSave = findViewById(R.id.btn_save);
 
-        spLoginInfo = new SPLoginInfo(UpdatePwdActivity.this);
-        username = spLoginInfo.getLoginUsername();
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(UpdatePwdActivity.this);
+        username = sharedPreferLoginInfo.getLoginUsername();
     }
 }

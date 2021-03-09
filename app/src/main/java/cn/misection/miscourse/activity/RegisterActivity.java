@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.util.SPLoginInfo;
+import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextView tvMainTitle, tvBack;
@@ -19,7 +19,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnRegister;
     private Intent intent;
     private String username, password, passwordAgain;
-    SPLoginInfo spLoginInfo;
+    SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spLoginInfo = new SPLoginInfo(RegisterActivity.this);
+                sharedPreferLoginInfo = new SharedPreferLoginInfo(RegisterActivity.this);
                 getEditString();
                 logicalJudgement();
             }
@@ -43,13 +43,13 @@ public class RegisterActivity extends AppCompatActivity {
             toastShow("请输入密码");
         } else if (passwordAgain.isEmpty()) {
             toastShow("请再次输入密码");
-        } else if (!spLoginInfo.getPwd(username).isEmpty()) {
+        } else if (!sharedPreferLoginInfo.getPwd(username).isEmpty()) {
             toastShow("用户名已存在");
         } else if (!password.equals(passwordAgain)) {
             toastShow("两次输入的密码不一致");
         } else {
             toastShow("用户注册成功！");
-            spLoginInfo.saveInfo(username, password);
+            sharedPreferLoginInfo.saveInfo(username, password);
             jumpActivity();
         }
     }

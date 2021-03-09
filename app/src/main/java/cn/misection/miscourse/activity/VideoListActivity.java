@@ -20,7 +20,7 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.VideoListAdapter;
 import cn.misection.miscourse.bean.VideoBean;
 import cn.misection.miscourse.util.DBHelper;
-import cn.misection.miscourse.util.SPLoginInfo;
+import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +42,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
     private int chapterId;
     private String intro;
     private DBHelper db;
-    SPLoginInfo spLoginInfo;
+    SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -56,7 +56,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         intro = getIntent().getStringExtra("intro");
         // 创建数据库工具类的对象
         db = DBHelper.getInstance(VideoListActivity.this);
-        spLoginInfo = new SPLoginInfo(this);
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(this);
         initData();
         init();
     }
@@ -79,8 +79,8 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
                     return;
                 } else {
                     // 判断用户是否登录，若登录则把此视频添加到数据库
-                    if (spLoginInfo.getLoginStatus()) {
-                        String username = spLoginInfo.getLoginUsername();
+                    if (sharedPreferLoginInfo.getLoginStatus()) {
+                        String username = sharedPreferLoginInfo.getLoginUsername();
                         db.saveVideoPlayList(videoList.get(position), username);
                     }
                     // 跳转到视频播放界面
