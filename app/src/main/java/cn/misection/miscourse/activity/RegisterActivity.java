@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void init() {
         tvMainTitle = findViewById(R.id.tv_main_title);
         tvMainTitle.setText("注册");
-        tvBack = findViewById(R.id.tV_back);
+        tvBack = findViewById(R.id.text_view_back);
         tvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

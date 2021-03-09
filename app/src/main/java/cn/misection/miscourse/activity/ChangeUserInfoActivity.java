@@ -44,7 +44,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         tvSave = findViewById(R.id.tv_save);
         tvSave.setVisibility(View.VISIBLE);
         tvSave.setOnClickListener(this);
-        tvBack = findViewById(R.id.tV_back);
+        tvBack = findViewById(R.id.text_view_back);
         tvBack.setOnClickListener(this);
 
         etContent = findViewById(R.id.et_content);
@@ -118,7 +118,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tV_back:
+            case R.id.text_view_back:
                 ChangeUserInfoActivity.this.finish();
                 break;
             case R.id.iv_delete:

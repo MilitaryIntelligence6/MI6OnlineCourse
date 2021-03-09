@@ -76,8 +76,8 @@ public class MainActivity
     {
         tvMainTitle = findViewById(R.id.tv_main_title);
         // TODO 放 string.xml 资源里;
-        tvMainTitle.setText("MI6 线上课堂");
-        tvBack = findViewById(R.id.tV_back);
+        tvMainTitle.setText(R.string.course_name);
+        tvBack = findViewById(R.id.text_view_back);
         tvBack.setVisibility(View.GONE);
         rlTitleBar = findViewById(R.id.title_bar);
         rlTitleBar.setBackgroundColor(Color.parseColor("#30B4FF"));
@@ -151,7 +151,7 @@ public class MainActivity
                 tvBottomCourse.setTextColor(Color.parseColor("#0097f7"));
                 rlTitleBar.setVisibility(View.VISIBLE);
                 // FIXME;
-                tvMainTitle.setText("MI6 在线课堂");
+                tvMainTitle.setText(R.string.course_name);
                 break;
             }
             case EXERCISES:
@@ -160,7 +160,7 @@ public class MainActivity
                 ivBottomExercises.setImageResource(R.drawable.main_exercises_icon_selected);
                 tvBottomExercises.setTextColor(Color.parseColor("#0097f7"));
                 rlTitleBar.setVisibility(View.VISIBLE);
-                tvMainTitle.setText("MI6 习题");
+                tvMainTitle.setText(R.string.exercise_name);
                 break;
             }
             case MINE:

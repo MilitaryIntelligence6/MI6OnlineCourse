@@ -49,7 +49,7 @@ public class ExercisesDetailActivity extends AppCompatActivity {
 
     private void init() {
         tv_main_title = findViewById(R.id.tv_main_title);
-        tv_back = findViewById(R.id.tV_back);
+        tv_back = findViewById(R.id.text_view_back);
         rl_title_bar = findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         lv_list = findViewById(R.id.lv_list);

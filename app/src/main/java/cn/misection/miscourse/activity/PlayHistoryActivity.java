@@ -49,7 +49,7 @@ public class PlayHistoryActivity extends AppCompatActivity {
         tvMainTitle.setText("播放记录");
         rlTitleBar = findViewById(R.id.title_bar);
         rlTitleBar.setBackgroundColor(Color.parseColor("#30b4ff"));
-        tvBack = findViewById(R.id.tV_back);
+        tvBack = findViewById(R.id.text_view_back);
         lvList = findViewById(R.id.lv_list);
         tvNone = findViewById(R.id.tv_none);
         if (vb1.size() == 0) {

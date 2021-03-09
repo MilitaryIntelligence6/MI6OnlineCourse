@@ -73,7 +73,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         rlTitleBar.setBackgroundColor(Color.parseColor("#30b4ff"));
         tvMainTitle = findViewById(R.id.tv_main_title);
         tvMainTitle.setText("个人资料");
-        tvBack = findViewById(R.id.tV_back);
+        tvBack = findViewById(R.id.text_view_back);
         tvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

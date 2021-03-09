@@ -82,7 +82,7 @@ public class FindPwdActivity extends AppCompatActivity {
 
     private void init() {
         tvMainTitle = findViewById(R.id.tv_main_title);
-        tvBack = findViewById(R.id.tV_back);
+        tvBack = findViewById(R.id.text_view_back);
         tvUsername = findViewById(R.id.tv_username);
         tvResetPassword = findViewById(R.id.tv_reset_password);
         etUsername = findViewById(R.id.et_username);
