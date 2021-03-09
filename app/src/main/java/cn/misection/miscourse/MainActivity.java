@@ -215,7 +215,6 @@ public class MainActivity
 //                flBody.addView(view);
 //            }
             flBody.addView(view);
-
         }
         courseView.showView();
     }
