@@ -35,22 +35,22 @@ public class ExercisesBean
     /**
      * 每道题的 A 选项
      */
-    private String a;
+    private String aOptionText;
 
     /**
      * 每道题的 B 选项
      */
-    private String b;
+    private String bOptionText;
 
     /**
      * 每道题的 C 选项
      */
-    private String c;
+    private String cOptionText;
 
     /**
      * 每道题的 D 选项
      */
-    private String d;
+    private String dOptionText;
 
     /**
      * 每道题的正确答案
@@ -126,44 +126,44 @@ public class ExercisesBean
         this.subject = subject;
     }
 
-    public String getA()
+    public String getaOptionText()
     {
-        return a;
+        return aOptionText;
     }
 
-    public void setA(String a)
+    public void setaOptionText(String aOptionText)
     {
-        this.a = a;
+        this.aOptionText = aOptionText;
     }
 
-    public String getB()
+    public String getbOptionText()
     {
-        return b;
+        return bOptionText;
     }
 
-    public void setB(String b)
+    public void setbOptionText(String bOptionText)
     {
-        this.b = b;
+        this.bOptionText = bOptionText;
     }
 
-    public String getC()
+    public String getcOptionText()
     {
-        return c;
+        return cOptionText;
     }
 
-    public void setC(String c)
+    public void setcOptionText(String cOptionText)
     {
-        this.c = c;
+        this.cOptionText = cOptionText;
     }
 
-    public String getD()
+    public String getdOptionText()
     {
-        return d;
+        return dOptionText;
     }
 
-    public void setD(String d)
+    public void setdOptionText(String dOptionText)
     {
-        this.d = d;
+        this.dOptionText = dOptionText;
     }
 
     public int getAnswer()
