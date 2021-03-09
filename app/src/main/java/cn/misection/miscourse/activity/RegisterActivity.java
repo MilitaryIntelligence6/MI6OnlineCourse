@@ -13,73 +13,96 @@ import android.widget.Toast;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity
+{
     private TextView tvMainTitle, tvBack;
     private EditText etUsername, etPassword, etPasswordAgain;
     private Button btnRegister;
     private Intent intent;
     private String username, password, passwordAgain;
-    SharedPreferLoginInfo sharedPreferLoginInfo;
+    SharedPreferLoginInfo sharedPrefLoginInfo;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         init();
         // 注册按钮点击事件
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                sharedPreferLoginInfo = new SharedPreferLoginInfo(RegisterActivity.this);
+            public void onClick(View v)
+            {
+                sharedPrefLoginInfo = new SharedPreferLoginInfo(RegisterActivity.this);
                 getEditString();
                 logicalJudgement();
             }
         });
     }
-    private void logicalJudgement() {
-        if (username.isEmpty()) {
+
+    private void logicalJudgement()
+    {
+        if (username.isEmpty())
+        {
             toastShow("请输入用户名");
-        } else if (password.isEmpty()) {
+        }
+        else if (password.isEmpty())
+        {
             toastShow("请输入密码");
-        } else if (passwordAgain.isEmpty()) {
+        }
+        else if (passwordAgain.isEmpty())
+        {
             toastShow("请再次输入密码");
-        } else if (!sharedPreferLoginInfo.getPwd(username).isEmpty()) {
+        }
+        else if (!sharedPrefLoginInfo.getPwd(username).isEmpty())
+        {
             toastShow("用户名已存在");
-        } else if (!password.equals(passwordAgain)) {
+        }
+        else if (!password.equals(passwordAgain))
+        {
             toastShow("两次输入的密码不一致");
-        } else {
+        }
+        else
+        {
             toastShow("用户注册成功！");
-            sharedPreferLoginInfo.saveInfo(username, password);
+            sharedPrefLoginInfo.saveInfo(username, password);
             jumpActivity();
         }
     }
 
     // 带参数返回
-    private void jumpActivity() {
+    private void jumpActivity()
+    {
         intent = new Intent();
         intent.putExtra("username", username);
         setResult(RESULT_OK, intent);
         RegisterActivity.this.finish();
     }
 
-    private void toastShow(String message) {
+    private void toastShow(String message)
+    {
         Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     // 获取文本输入
-    private void getEditString() {
+    private void getEditString()
+    {
         username = etUsername.getText().toString().trim();
         password = etPassword.getText().toString().trim();
         passwordAgain = etPasswordAgain.getText().toString().trim();
     }
 
-    private void init() {
+    private void init()
+    {
         tvMainTitle = findViewById(R.id.tv_main_title);
         tvMainTitle.setText("注册");
         tvBack = findViewById(R.id.text_view_back);
-        tvBack.setOnClickListener(new View.OnClickListener() {
+        tvBack.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 RegisterActivity.this.finish();
             }
         });

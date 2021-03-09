@@ -39,7 +39,7 @@ public class SharedPreferLoginInfo
     }
 
     // 获取登录状态
-    public boolean getLoginStatus()
+    public boolean hasLogin()
     {
         return preferences.getBoolean("isLogin", false);
     }

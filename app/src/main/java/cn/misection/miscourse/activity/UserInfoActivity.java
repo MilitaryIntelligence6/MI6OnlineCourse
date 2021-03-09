@@ -18,7 +18,8 @@ import cn.misection.miscourse.bean.UserBean;
 import cn.misection.miscourse.util.DBHelper;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
-public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
+public class UserInfoActivity extends AppCompatActivity
+        implements View.OnClickListener {
     private TextView tvBack, tvMainTitle;
     private RelativeLayout rlTitleBar;
     private RelativeLayout rlNickname, rlSex, rlSignature;

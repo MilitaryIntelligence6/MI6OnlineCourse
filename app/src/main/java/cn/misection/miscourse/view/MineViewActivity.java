@@ -3,12 +3,16 @@ package cn.misection.miscourse.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.activity.LoginActivity;
@@ -17,7 +21,8 @@ import cn.misection.miscourse.activity.SettingActivity;
 import cn.misection.miscourse.activity.UserInfoActivity;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
-public class MineView implements View.OnClickListener
+public class MineViewActivity extends AppCompatActivity
+        implements View.OnClickListener
 {
     private Context context;
     private LayoutInflater inflater;
@@ -29,22 +34,29 @@ public class MineView implements View.OnClickListener
     private Intent intent;
     private SharedPreferLoginInfo spLoginInfo;
 
-    private volatile static MineView instance = null;
+    private volatile static MineViewActivity instance = null;
 
-    public MineView(Context context)
+    public MineViewActivity(Context context)
     {
         initContextAndInflater(context);
     }
 
-    public static MineView requireInstance(Context context)
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    public static MineViewActivity requireInstance(Context context)
     {
         if (instance == null)
         {
-            synchronized (MineView.class)
+            synchronized (MineViewActivity.class)
             {
                 if (instance == null)
                 {
-                    instance = new MineView(context);
+                    instance = new MineViewActivity(context);
                 }
             }
         }
@@ -83,7 +95,7 @@ public class MineView implements View.OnClickListener
     {
         if (view == null)
         {
-            synchronized (MineView.class)
+            synchronized (MineViewActivity.class)
             {
                 if (view == null)
                 {
@@ -106,7 +118,7 @@ public class MineView implements View.OnClickListener
         view.setVisibility(View.VISIBLE);
 
         spLoginInfo = new SharedPreferLoginInfo(context);
-        setLoginParams(spLoginInfo.getLoginStatus());
+        setLoginParams(spLoginInfo.hasLogin());
     }
 
     public void setLoginParams(boolean isLogin)
@@ -120,19 +132,18 @@ public class MineView implements View.OnClickListener
         switch (v.getId())
         {
             case R.id.ll_login:
-                if (spLoginInfo.getLoginStatus())
+                if (spLoginInfo.hasLogin())
                 {
                     intent = new Intent(context, UserInfoActivity.class);
-                    ((Activity) context).startActivityForResult(intent, 1);
                 }
                 else
                 {
                     intent = new Intent(context, LoginActivity.class);
-                    ((Activity) context).startActivityForResult(intent, 1);
                 }
+                ((Activity) context).startActivityForResult(intent, 1);
                 break;
             case R.id.rl_play_history:
-                if (spLoginInfo.getLoginStatus())
+                if (spLoginInfo.hasLogin())
                 {
                     intent = new Intent(context, PlayHistoryActivity.class);
                     context.startActivity(intent);
@@ -143,7 +154,7 @@ public class MineView implements View.OnClickListener
                 }
                 break;
             case R.id.rl_setting:
-                if (spLoginInfo.getLoginStatus())
+                if (spLoginInfo.hasLogin())
                 {
                     intent = new Intent(context, SettingActivity.class);
                     ((Activity) context).startActivityForResult(intent, 1);

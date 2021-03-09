@@ -21,7 +21,7 @@ import cn.misection.miscourse.opcode.EnumViewCode;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import cn.misection.miscourse.view.CourseView;
 import cn.misection.miscourse.view.ExercisesView;
-import cn.misection.miscourse.view.MineView;
+import cn.misection.miscourse.view.MineViewActivity;
 
 public class MainActivity
         extends AppCompatActivity
@@ -52,7 +52,7 @@ public class MainActivity
     /**
      * 三个子view;
      */
-    private MineView mineView;
+    private MineViewActivity mineViewActivity;
     private ExercisesView exercisesView;
     private CourseView courseView;
 
@@ -232,13 +232,13 @@ public class MainActivity
 
     private void turnToMineView()
     {
-        if (mineView == null)
+        if (mineViewActivity == null)
         {
-            mineView = MineView.requireInstance(this);
-            View view = mineView.requireViewSingleton();
+            mineViewActivity = MineViewActivity.requireInstance(this);
+            View view = mineViewActivity.requireViewSingleton();
             BodyFrameLayout.addView(view);
         }
-        mineView.showView();
+        mineViewActivity.showView();
     }
 
     private void removeAllView()
@@ -280,7 +280,7 @@ public class MainActivity
             else
             {
                 MainActivity.this.finish();
-                if (sharedPrefLoginInfo.getLoginStatus())
+                if (sharedPrefLoginInfo.hasLogin())
                 {
                     sharedPrefLoginInfo.saveLoginStatus(false, "");
                 }
@@ -303,9 +303,9 @@ public class MainActivity
                 clearBottomState();
                 updateSelectStatus(EnumViewCode.COURSE);
             }
-            if (mineView != null)
+            if (mineViewActivity != null)
             {
-                mineView.setLoginParams(loginFlag);
+                mineViewActivity.setLoginParams(loginFlag);
             }
         }
     }

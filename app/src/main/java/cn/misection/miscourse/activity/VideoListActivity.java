@@ -79,7 +79,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
                     return;
                 } else {
                     // 判断用户是否登录，若登录则把此视频添加到数据库
-                    if (sharedPreferLoginInfo.getLoginStatus()) {
+                    if (sharedPreferLoginInfo.hasLogin()) {
                         String username = sharedPreferLoginInfo.getLoginUsername();
                         db.saveVideoPlayList(videoList.get(position), username);
                     }
