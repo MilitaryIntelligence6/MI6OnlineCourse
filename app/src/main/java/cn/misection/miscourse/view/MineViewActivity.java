@@ -21,8 +21,7 @@ import cn.misection.miscourse.activity.SettingActivity;
 import cn.misection.miscourse.activity.UserInfoActivity;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
-public class MineViewActivity extends AppCompatActivity
-        implements View.OnClickListener
+public class MineViewActivity implements View.OnClickListener
 {
     private Context context;
     private LayoutInflater inflater;
@@ -39,13 +38,6 @@ public class MineViewActivity extends AppCompatActivity
     public MineViewActivity(Context context)
     {
         initContextAndInflater(context);
-    }
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-
     }
 
     public static MineViewActivity requireInstance(Context context)

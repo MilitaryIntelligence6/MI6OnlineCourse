@@ -45,7 +45,7 @@ public class MainActivity
     private ImageView bottomExercisesImageView;
     private ImageView bottomMineImageView;
 
-    private FrameLayout BodyFrameLayout;
+    private FrameLayout bodyFrameLayout;
 
     private LinearLayout bottomBarLinearLayout;
 
@@ -82,7 +82,7 @@ public class MainActivity
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30B4FF"));
 
-        BodyFrameLayout = findViewById(R.id.body_frame_layout);
+        bodyFrameLayout = findViewById(R.id.body_frame_layout);
         bottomBarLinearLayout = findViewById(R.id.bottom_bar);
 
         bottomCourseRelaLayout = findViewById(R.id.bottom_bar_course);
@@ -214,7 +214,7 @@ public class MainActivity
 //            {
 //                flBody.addView(view);
 //            }
-            BodyFrameLayout.addView(view);
+            bodyFrameLayout.addView(view);
         }
         courseView.showView();
     }
@@ -225,7 +225,7 @@ public class MainActivity
         {
             exercisesView = ExercisesView.requireInstance(this);
             View view = exercisesView.getView();
-            BodyFrameLayout.addView(view);
+            bodyFrameLayout.addView(view);
         }
         exercisesView.showView();
     }
@@ -236,16 +236,16 @@ public class MainActivity
         {
             mineViewActivity = MineViewActivity.requireInstance(this);
             View view = mineViewActivity.requireViewSingleton();
-            BodyFrameLayout.addView(view);
+            bodyFrameLayout.addView(view);
         }
         mineViewActivity.showView();
     }
 
     private void removeAllView()
     {
-        for (int i = 0; i < BodyFrameLayout.getChildCount(); i++)
+        for (int i = 0; i < bodyFrameLayout.getChildCount(); i++)
         {
-            BodyFrameLayout.getChildAt(i).setVisibility(View.GONE);
+            bodyFrameLayout.getChildAt(i).setVisibility(View.GONE);
         }
     }
 
