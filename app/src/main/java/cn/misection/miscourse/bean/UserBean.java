@@ -1,9 +1,25 @@
 package cn.misection.miscourse.bean;
 
-public class UserBean {
+public class UserBean
+{
+    /**
+     * username;
+     */
     private String username;
+
+    /**
+     * 昵称;
+     */
     private String nickname;
+
+    /**
+     * 性别;
+     */
     private String sex;
+
+    /**
+     * 签名;
+     */
     private String signature;
 
     public String getUsername()

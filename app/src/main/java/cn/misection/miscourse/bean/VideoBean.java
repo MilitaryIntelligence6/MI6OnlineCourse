@@ -1,11 +1,31 @@
 package cn.misection.miscourse.bean;
 
-public class VideoBean {
-    private int chapterId;  // 章节Id
-    private int videoId;  // 视频Id
-    private String title;  // 章节标题
-    private String secondTitle;  // 视频标题
-    private String videoPath;  // 视频播放地址
+public class VideoBean
+{
+    /**
+     * 章节Id
+     */
+    public int chapterId;
+
+    /**
+     * 视频Id
+     */
+    public int videoId;
+
+    /**
+     * 章节标题
+     */
+    public String title;
+
+    /**
+     * 视频标题
+     */
+    public String secondTitle;
+
+    /**
+     * 视频播放地址
+     */
+    public String videoPath;
 
     public int getChapterId()
     {
