@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
     android:orientation="vertical"
-    tools:context=".activity.FindPwdActivity">
+    tools:context="cn.misection.miscourse.activity.FindPwdActivity">
 
     <include layout="@layout/main_title_bar" />
 

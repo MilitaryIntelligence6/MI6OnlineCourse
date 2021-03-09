@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.miscourse">
+    package="cn.misection.miscourse">
 
     <application
         android:allowBackup="true"
@@ -9,25 +9,25 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name="com.example.miscourse.activity.PlayHistoryActivity"></activity>
-        <activity android:name="com.example.miscourse.activity.VideoPlayActivity" />
-        <activity android:name="com.example.miscourse.activity.VideoListActivity" />
-        <activity android:name="com.example.miscourse.activity.ExercisesDetailActivity" />
-        <activity android:name="com.example.miscourse.activity.ChangeUserInfoActivity" />
-        <activity android:name="com.example.miscourse.activity.UserInfoActivity" />
-        <activity android:name="com.example.miscourse.activity.FindPwdActivity" />
-        <activity android:name="com.example.miscourse.activity.UpdatePwdActivity" />
-        <activity android:name="com.example.miscourse.activity.SettingActivity" />
-        <activity android:name="com.example.miscourse.activity.LoginActivity" />
-        <activity android:name="com.example.miscourse.activity.RegisterActivity" />
-        <activity android:name="com.example.miscourse.activity.SplashActivity">
+        <activity android:name="cn.misection.miscourse.activity.PlayHistoryActivity"></activity>
+        <activity android:name="cn.misection.miscourse.activity.VideoPlayActivity" />
+        <activity android:name="cn.misection.miscourse.activity.VideoListActivity" />
+        <activity android:name="cn.misection.miscourse.activity.ExercisesDetailActivity" />
+        <activity android:name="cn.misection.miscourse.activity.ChangeUserInfoActivity" />
+        <activity android:name="cn.misection.miscourse.activity.UserInfoActivity" />
+        <activity android:name="cn.misection.miscourse.activity.FindPwdActivity" />
+        <activity android:name="cn.misection.miscourse.activity.UpdatePwdActivity" />
+        <activity android:name="cn.misection.miscourse.activity.SettingActivity" />
+        <activity android:name="cn.misection.miscourse.activity.LoginActivity" />
+        <activity android:name="cn.misection.miscourse.activity.RegisterActivity" />
+        <activity android:name="cn.misection.miscourse.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.miscourse.MainActivity"
+        <activity android:name="cn.misection.miscourse.MainActivity"
                 android:exported="true"
                 />
 <!--        为了能加载export-->

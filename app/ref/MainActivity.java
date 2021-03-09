@@ -1,4 +1,4 @@
-package com.example.miscourse;
+package com.misection.miscourse;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +15,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.miscourse.tools.SPLoginInfo;
-import com.example.miscourse.view.CourseView;
-import com.example.miscourse.view.ExercisesView;
-import com.example.miscourse.view.MineView;
+import com.misection.miscourse.tools.SPLoginInfo;
+import com.misection.miscourse.view.CourseView;
+import com.misection.miscourse.view.ExercisesView;
+import com.misection.miscourse.view.MineView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tvBack, tvMainTitle, tvBottomCourse, tvBottomExercises, tvBottomMine;
