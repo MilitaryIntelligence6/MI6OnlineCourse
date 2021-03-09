@@ -58,9 +58,9 @@ public class PlayHistoryAdapter extends BaseAdapter {
         }
         final VideoBean bean = getItem(position);
         if (bean != null) {
-            vh.tvTitle.setText(bean.title);
-            vh.tvVideoTitle.setText(bean.secondTitle);
-            switch (bean.chapterId){
+            vh.tvTitle.setText(bean.getTitle());
+            vh.tvVideoTitle.setText(bean.getSecondTitle());
+            switch (bean.getChapterId()){
                 case 1:
                     vh.ivIcon.setImageResource(R.drawable.video_play_icon1);
                     break;
@@ -104,7 +104,7 @@ public class PlayHistoryAdapter extends BaseAdapter {
                 }
                 // 跳转到播放视频界面
                 Intent intent = new Intent(context, VideoPlayActivity.class);
-                intent.putExtra("videoPath", bean.videoPath);
+                intent.putExtra("videoPath", bean.getVideoPath());
                 context.startActivity(intent);
             }
         });

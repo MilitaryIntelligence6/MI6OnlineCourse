@@ -2,11 +2,30 @@ package com.example.miscourse.bean;
 
 public class CourseBean
 {
-    private int id;  // 每章 Id
-    private String imgTitle;  // 图片上的标题
-    private String title;  // 章标题
-    private String intro;  //章视频简介
-    private String icon;  // 广告栏上的图片
+    /**
+     * 每章 Id
+     */
+    private int id;
+
+    /**
+     * 图片上的标题
+     */
+    private String imgTitle;
+
+    /**
+     * 章标题
+     */
+    private String title;
+
+    /**
+     * 章视频简介
+     */
+    private String intro;
+
+    /**
+     * 广告栏上的图片
+     */
+    private String icon;
 
     public int getId()
     {

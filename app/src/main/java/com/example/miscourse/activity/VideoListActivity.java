@@ -72,7 +72,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
             public void onSelect(int position, ImageView iv) {
                 adapter.setSelectedPosition(position);
                 VideoBean bean = videoList.get(position);
-                String videoPath = bean.videoPath;
+                String videoPath = bean.getVideoPath();
                 adapter.notifyDataSetChanged();  // 更新列表框
                 if (TextUtils.isEmpty(videoPath)) {
                     Toast.makeText(VideoListActivity.this, "本地没有此视频，暂无法播放", Toast.LENGTH_SHORT).show();
@@ -113,11 +113,11 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
                 VideoBean bean = new VideoBean();
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 if (jsonObject.getInt("chapterId") == chapterId) {
-                    bean.chapterId = jsonObject.getInt("chapterId");
-                    bean.videoId = Integer.parseInt(jsonObject.getString("videoId"));
-                    bean.title = jsonObject.getString("title");
-                    bean.secondTitle = jsonObject.getString("secondTitle");
-                    bean.videoPath = jsonObject.getString("videoPath");
+                    bean.setChapterId(jsonObject.getInt("chapterId"));
+                    bean.setVideoId(Integer.parseInt(jsonObject.getString("videoId")));
+                    bean.setTitle(jsonObject.getString("title"));
+                    bean.setSecondTitle(jsonObject.getString("secondTitle"));
+                    bean.setVideoPath(jsonObject.getString("videoPath"));
                     videoList.add(bean);
                 }
                 bean = null;

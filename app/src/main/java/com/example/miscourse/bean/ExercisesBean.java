@@ -1,17 +1,61 @@
 package com.example.miscourse.bean;
 
 public class ExercisesBean {
-    private int id;  // 每章习题 ID
-    private String title;  // 每章习题标题
-    private String content;  // 每章习题的数目
-    private int background;  // 每章习题前边的序号背景
-    private int subjectId;  // 每道题的 ID
-    private String subject;  // 每道题的题干
-    private String a;  // 每道题的 A 选项
-    private String b;  // 每道题的 B 选项
-    private String c;  // 每道题的 C 选项
-    private String d;  // 每道题的 D 选项
-    private int answer; // 每道题的正确答案
+    /**
+     * 每章习题 ID
+     */
+    private int id;
+
+    /**
+     * 每章习题标题
+     */
+    private String title;
+
+    /**
+     * 每章习题的数目
+     */
+    private String content;
+
+    /**
+     * 每章习题前边的序号背景
+     */
+    private int background;
+
+    /**
+     * 每道题的 ID
+     */
+    private int subjectId;
+
+    /**
+     * 每道题的题干
+     */
+    private String subject;
+
+    /**
+     * 每道题的 A 选项
+     */
+    private String a;
+
+    /**
+     * 每道题的 B 选项
+     */
+    private String b;
+
+    /**
+     * 每道题的 C 选项
+     */
+    private String c;
+
+    /**
+     * 每道题的 D 选项
+     */
+    private String d;
+
+    /**
+     * 每道题的正确答案
+     */
+    private int answer;
+
     /* select 为 0 表示所选是对的，
     1 表示选中的 A 选项是错的，2 表示选中的 B 选项是错的，
     3 表示选中的 C 选项是错的，4 表示选中的 D 选项是错的 */

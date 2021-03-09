@@ -52,20 +52,20 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         bean = DBHelper.getInstance(UserInfoActivity.this).getUserInfo(spUsername);
         if (bean == null) {
             bean = new UserBean();
-            bean.username = spUsername;
-            bean.nickname = "问答精灵";
-            bean.sex = "男";
-            bean.signature = "问答精灵";
+            bean.setUsername(spUsername);
+            bean.setNickname("问答精灵");
+            bean.setSex("男");
+            bean.setSignature("问答精灵");
             DBHelper.getInstance(UserInfoActivity.this).saveUserInfo(bean);
         }
         setValue(bean);
     }
 
     private void setValue(UserBean bean) {
-        tvUsername.setText(bean.username);
-        tvNickname.setText(bean.nickname);
-        tvSex.setText(bean.sex);
-        tvSignature.setText(bean.signature);
+        tvUsername.setText(bean.getUsername());
+        tvNickname.setText(bean.getNickname());
+        tvSex.setText(bean.getSex());
+        tvSignature.setText(bean.getSignature());
     }
 
     private void init() {

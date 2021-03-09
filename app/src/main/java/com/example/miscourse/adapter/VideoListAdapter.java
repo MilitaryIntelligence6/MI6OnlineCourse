@@ -66,7 +66,7 @@ public class VideoListAdapter extends BaseAdapter {
         vh.iv_icon.setImageResource(R.drawable.course_bar_icon);
         vh.tv_title.setTextColor(Color.parseColor("#333333"));
         if (bean != null) {
-            vh.tv_title.setText(bean.secondTitle);
+            vh.tv_title.setText(bean.getSecondTitle());
             // 设置选中效果
             if (selectedPosition == position) {
                 vh.iv_icon.setImageResource(R.drawable.course_intro_icon);

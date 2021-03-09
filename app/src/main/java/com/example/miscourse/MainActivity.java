@@ -48,7 +48,7 @@ public class MainActivity
     private LinearLayout llBottomBar;
 
     /**
-     * 三个view;
+     * 三个子view;
      */
     private MineView mineView;
     private ExercisesView exercisesView;

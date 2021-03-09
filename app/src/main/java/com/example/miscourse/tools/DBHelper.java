@@ -33,10 +33,10 @@ public class DBHelper {
     // 保存个人资料
     public void saveUserInfo(UserBean bean) {
         ContentValues cv = new ContentValues();
-        cv.put("username", bean.username);
-        cv.put("nickname", bean.nickname);
-        cv.put("sex", bean.sex);
-        cv.put("signature", bean.signature);
+        cv.put("username", bean.getUsername());
+        cv.put("nickname", bean.getNickname());
+        cv.put("sex", bean.getSex());
+        cv.put("signature", bean.getSignature());
         db.insert(SQLiteHelper.TB_USERINFO, null, cv);
     }
 
@@ -47,10 +47,10 @@ public class DBHelper {
         UserBean bean = null;
         while (cursor.moveToNext()) {
             bean = new UserBean();
-            bean.username = cursor.getString(cursor.getColumnIndex("username"));
-            bean.nickname = cursor.getString(cursor.getColumnIndex("nickname"));
-            bean.sex = cursor.getString(cursor.getColumnIndex("sex"));
-            bean.signature = cursor.getString(cursor.getColumnIndex("signature"));
+            bean.setUsername(cursor.getString(cursor.getColumnIndex("username")));
+            bean.setNickname(cursor.getString(cursor.getColumnIndex("nickname")));
+            bean.setSex(cursor.getString(cursor.getColumnIndex("sex")));
+            bean.setSignature(cursor.getString(cursor.getColumnIndex("signature")));
         }
         cursor.close();
         return bean;
@@ -65,9 +65,9 @@ public class DBHelper {
 
     public void saveVideoPlayList(VideoBean videoBean, String username) {
         // 判断如果里面有此播放记录则需删除重新存放
-        if (hasVideoPlay(videoBean.chapterId, videoBean.videoId, username)) {
+        if (hasVideoPlay(videoBean.getChapterId(), videoBean.getVideoId(), username)) {
             // 删除之前存入的播放记录
-            boolean isDelete = delVideoPlay(videoBean.chapterId, videoBean.videoId, username);
+            boolean isDelete = delVideoPlay(videoBean.getChapterId(), videoBean.getVideoId(), username);
             if (!isDelete) {
                 // 没有删除成功时，则需跳出此方法不再执行下面的语句
                 return;
@@ -75,11 +75,11 @@ public class DBHelper {
         }
         ContentValues cv = new ContentValues();
         cv.put("username", username);
-        cv.put("chapterId", videoBean.chapterId);
-        cv.put("videoId", videoBean.videoId);
-        cv.put("videoPath", videoBean.videoPath);
-        cv.put("title", videoBean.title);
-        cv.put("secondTitle", videoBean.secondTitle);
+        cv.put("chapterId", videoBean.getChapterId());
+        cv.put("videoId", videoBean.getVideoId());
+        cv.put("videoPath", videoBean.getVideoPath());
+        cv.put("title", videoBean.getTitle());
+        cv.put("secondTitle", videoBean.getSecondTitle());
         db.insert(SQLiteHelper.U_VIDEO_PLAY_LIST, null, cv);
     }
 
@@ -112,11 +112,11 @@ public class DBHelper {
         VideoBean bean = null;
         while (cursor.moveToNext()) {
             bean = new VideoBean();
-            bean.chapterId = cursor.getInt(cursor.getColumnIndex("chapterId"));
-            bean.videoId = cursor.getInt(cursor.getColumnIndex("videoId"));
-            bean.videoPath = cursor.getString(cursor.getColumnIndex("videoPath"));
-            bean.title = cursor.getString(cursor.getColumnIndex("title"));
-            bean.secondTitle = cursor.getString(cursor.getColumnIndex("secondTitle"));
+            bean.setChapterId(cursor.getInt(cursor.getColumnIndex("chapterId")));
+            bean.setVideoId(cursor.getInt(cursor.getColumnIndex("videoId")));
+            bean.setVideoPath(cursor.getString(cursor.getColumnIndex("videoPath")));
+            bean.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+            bean.setSecondTitle(cursor.getString(cursor.getColumnIndex("secondTitle")));
             vb1.add(bean);
             bean = null;
         }
