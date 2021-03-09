@@ -23,7 +23,8 @@ public class MineView implements View.OnClickListener
     private LayoutInflater inflater;
     private View view;
     private TextView tvUsername;
-    private RelativeLayout rlPlayHistory, rlSetting;
+    private RelativeLayout rlPlayHistory;
+    private RelativeLayout rlSetting;
     private LinearLayout llLogin;
     private Intent intent;
     SharedPreferLoginInfo spLoginInfo;
