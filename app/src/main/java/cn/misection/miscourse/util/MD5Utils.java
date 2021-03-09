@@ -1,4 +1,4 @@
-package cn.misection.miscourse.tools;
+package cn.misection.miscourse.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

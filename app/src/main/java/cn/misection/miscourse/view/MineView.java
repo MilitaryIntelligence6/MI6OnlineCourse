@@ -10,14 +10,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentActivity;
-
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.activity.LoginActivity;
 import cn.misection.miscourse.activity.PlayHistoryActivity;
 import cn.misection.miscourse.activity.SettingActivity;
 import cn.misection.miscourse.activity.UserInfoActivity;
-import cn.misection.miscourse.tools.SPLoginInfo;
+import cn.misection.miscourse.util.SPLoginInfo;
 
 public class MineView implements View.OnClickListener
 {

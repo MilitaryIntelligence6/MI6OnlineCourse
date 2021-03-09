@@ -18,7 +18,7 @@ import android.widget.Toast;
 import cn.misection.miscourse.R;
 
 import cn.misection.miscourse.opcode.EnumViewCode;
-import cn.misection.miscourse.tools.SPLoginInfo;
+import cn.misection.miscourse.util.SPLoginInfo;
 import cn.misection.miscourse.view.CourseView;
 import cn.misection.miscourse.view.ExercisesView;
 import cn.misection.miscourse.view.MineView;

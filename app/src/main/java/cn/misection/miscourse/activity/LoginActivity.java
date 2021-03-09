@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.tools.MD5Utils;
-import cn.misection.miscourse.tools.SPLoginInfo;
+import cn.misection.miscourse.util.MD5Utils;
+import cn.misection.miscourse.util.SPLoginInfo;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView ivHead;

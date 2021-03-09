@@ -10,8 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.tools.MD5Utils;
-import cn.misection.miscourse.tools.SPLoginInfo;
+import cn.misection.miscourse.util.MD5Utils;
+import cn.misection.miscourse.util.SPLoginInfo;
 
 public class UpdatePwdActivity extends AppCompatActivity {
     private TextView tvBack, tvMainTitle;

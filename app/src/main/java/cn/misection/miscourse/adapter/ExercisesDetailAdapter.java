@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.bean.ExercisesBean;
-import cn.misection.miscourse.tools.AnalysisUtils;
+import cn.misection.miscourse.util.AnalysisUtils;
 
 import java.util.ArrayList;
 import java.util.List;

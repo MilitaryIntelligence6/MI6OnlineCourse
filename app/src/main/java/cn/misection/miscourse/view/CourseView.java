@@ -18,7 +18,7 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.AdBannerAdapter;
 import cn.misection.miscourse.adapter.CourseAdapter;
 import cn.misection.miscourse.bean.CourseBean;
-import cn.misection.miscourse.tools.AnalysisUtils;
+import cn.misection.miscourse.util.AnalysisUtils;
 
 import org.xmlpull.v1.XmlPullParserException;
 

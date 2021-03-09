@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.tools.SPLoginInfo;
+import cn.misection.miscourse.util.SPLoginInfo;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
     private RelativeLayout rlUpdatePassword, rlSecuritySetting, rlLogout, rlTitleBar;

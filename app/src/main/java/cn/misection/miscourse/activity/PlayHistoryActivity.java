@@ -14,8 +14,8 @@ import android.widget.TextView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.PlayHistoryAdapter;
 import cn.misection.miscourse.bean.VideoBean;
-import cn.misection.miscourse.tools.DBHelper;
-import cn.misection.miscourse.tools.SPLoginInfo;
+import cn.misection.miscourse.util.DBHelper;
+import cn.misection.miscourse.util.SPLoginInfo;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -19,8 +19,8 @@ import android.widget.Toast;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.VideoListAdapter;
 import cn.misection.miscourse.bean.VideoBean;
-import cn.misection.miscourse.tools.DBHelper;
-import cn.misection.miscourse.tools.SPLoginInfo;
+import cn.misection.miscourse.util.DBHelper;
+import cn.misection.miscourse.util.SPLoginInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;

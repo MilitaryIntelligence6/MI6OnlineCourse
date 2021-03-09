@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.bean.UserBean;
-import cn.misection.miscourse.tools.DBHelper;
-import cn.misection.miscourse.tools.SPLoginInfo;
+import cn.misection.miscourse.util.DBHelper;
+import cn.misection.miscourse.util.SPLoginInfo;
 
 public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tvBack, tvMainTitle;
