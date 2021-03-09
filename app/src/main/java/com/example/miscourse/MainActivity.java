@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.miscourse.constant.EnumViewCode;
+import com.example.miscourse.opcode.EnumViewCode;
 import com.example.miscourse.tools.SPLoginInfo;
 import com.example.miscourse.view.CourseView;
 import com.example.miscourse.view.ExercisesView;

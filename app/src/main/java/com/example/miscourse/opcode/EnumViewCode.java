@@ -1,4 +1,4 @@
-package com.example.miscourse.constant;
+package com.example.miscourse.opcode;
 
 /**
  * @author Military Intelligence 6 root
