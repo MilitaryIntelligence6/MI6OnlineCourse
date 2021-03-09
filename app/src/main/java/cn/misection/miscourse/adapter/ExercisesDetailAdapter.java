@@ -71,10 +71,10 @@ public class ExercisesDetailAdapter extends BaseAdapter {
         final ExercisesBean bean = getItem(position);
         if (bean != null) {
             vh.subject.setText(bean.getSubject());
-            vh.tv_a.setText(bean.getaOptionText());
-            vh.tv_b.setText(bean.getbOptionText());
-            vh.tv_c.setText(bean.getcOptionText());
-            vh.tv_d.setText(bean.getdOptionText());
+            vh.tv_a.setText(bean.getOptionTextA());
+            vh.tv_b.setText(bean.getOptionTextB());
+            vh.tv_c.setText(bean.getOptionTextC());
+            vh.tv_d.setText(bean.getOptionTextD());
         }
 
         if (!selectedPosition.contains("" + position)){

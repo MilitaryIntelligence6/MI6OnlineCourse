@@ -14,7 +14,7 @@
         <include layout="@layout/main_title_bar" />
 
         <FrameLayout
-            android:id="@+id/fl_body"
+            android:id="@+id/body_frame_layout"
             android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

@@ -35,16 +35,16 @@ public class AnalysisUtils {
                         exercisesInfo.setSubject(subject);
                     } else if ("a".equals(parser.getName())) {
                         String a = parser.nextText();
-                        exercisesInfo.setaOptionText(a);
+                        exercisesInfo.setOptionTextA(a);
                     } else if ("b".equals(parser.getName())) {
                         String b = parser.nextText();
-                        exercisesInfo.setbOptionText(b);
+                        exercisesInfo.setOptionTextB(b);
                     } else if ("c".equals(parser.getName())) {
                         String c = parser.nextText();
-                        exercisesInfo.setcOptionText(c);
+                        exercisesInfo.setOptionTextC(c);
                     } else if ("d".equals(parser.getName())) {
                         String d = parser.nextText();
-                        exercisesInfo.setdOptionText(d);
+                        exercisesInfo.setOptionTextD(d);
                     } else if ("answer".equals(parser.getName())) {
                         String answer = parser.nextText();
                         exercisesInfo.setAnswer(Integer.parseInt(answer));

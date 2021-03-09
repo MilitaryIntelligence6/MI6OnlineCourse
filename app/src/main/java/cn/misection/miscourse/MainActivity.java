@@ -30,24 +30,24 @@ public class MainActivity
     /**
      * 页面元素;
      */
-    private TextView tvBack;
-    private TextView tvMainTitle;
-    private TextView tvBottomCourse;
-    private TextView tvBottomExercises;
-    private TextView tvBottomMine;
+    private TextView backTextView;
+    private TextView mainTitleTextView;
+    private TextView bottomCourseTextView;
+    private TextView bottomExercisesTextView;
+    private TextView bottomMineTextView;
 
-    private RelativeLayout rlTitleBar;
-    private RelativeLayout rlBottomCourse;
-    private RelativeLayout rlBottomExercises;
-    private RelativeLayout rlBottomMine;
+    private RelativeLayout titleBarRelaLayout;
+    private RelativeLayout bottomCourseRelaLayout;
+    private RelativeLayout bottomExercisesRelaLayout;
+    private RelativeLayout bottomMineRelaLayout;
 
-    private ImageView ivBottomCourse;
-    private ImageView ivBottomExercises;
-    private ImageView ivBottomMine;
+    private ImageView bottomCourseImageView;
+    private ImageView bottomExercisesImageView;
+    private ImageView bottomMineImageView;
 
-    private FrameLayout flBody;
+    private FrameLayout BodyFrameLayout;
 
-    private LinearLayout llBottomBar;
+    private LinearLayout bottomBarLinearLayout;
 
     /**
      * 三个子view;
@@ -61,7 +61,7 @@ public class MainActivity
     /**
      * 上次按下退出键时间;
      */
-    protected long lastRecentlyExitPressTime;
+    protected long lastRecentlyPressExitTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -74,39 +74,39 @@ public class MainActivity
 
     private void init()
     {
-        tvMainTitle = findViewById(R.id.tv_main_title);
+        mainTitleTextView = findViewById(R.id.tv_main_title);
         // TODO 放 string.xml 资源里;
-        tvMainTitle.setText(R.string.course_name);
-        tvBack = findViewById(R.id.text_view_back);
-        tvBack.setVisibility(View.GONE);
-        rlTitleBar = findViewById(R.id.title_bar);
-        rlTitleBar.setBackgroundColor(Color.parseColor("#30B4FF"));
+        mainTitleTextView.setText(R.string.course_name);
+        backTextView = findViewById(R.id.text_view_back);
+        backTextView.setVisibility(View.GONE);
+        titleBarRelaLayout = findViewById(R.id.title_bar);
+        titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30B4FF"));
 
-        flBody = findViewById(R.id.fl_body);
-        llBottomBar = findViewById(R.id.bottom_bar);
+        BodyFrameLayout = findViewById(R.id.body_frame_layout);
+        bottomBarLinearLayout = findViewById(R.id.bottom_bar);
 
-        rlBottomCourse = findViewById(R.id.bottom_bar_course);
-        rlBottomCourse.setOnClickListener(this);
-        ivBottomCourse = findViewById(R.id.bottom_bar_image_course);
-        tvBottomCourse = findViewById(R.id.bottom_bar_text_course);
+        bottomCourseRelaLayout = findViewById(R.id.bottom_bar_course);
+        bottomCourseRelaLayout.setOnClickListener(this);
+        bottomCourseImageView = findViewById(R.id.bottom_bar_image_course);
+        bottomCourseTextView = findViewById(R.id.bottom_bar_text_course);
 
-        rlBottomExercises = findViewById(R.id.bottom_bar_exercises);
-        rlBottomExercises.setOnClickListener(this);
-        ivBottomExercises = findViewById(R.id.bottom_bar_image_exercises);
-        tvBottomExercises = findViewById(R.id.bottom_bar_text_exercises);
+        bottomExercisesRelaLayout = findViewById(R.id.bottom_bar_exercises);
+        bottomExercisesRelaLayout.setOnClickListener(this);
+        bottomExercisesImageView = findViewById(R.id.bottom_bar_image_exercises);
+        bottomExercisesTextView = findViewById(R.id.bottom_bar_text_exercises);
 
-        rlBottomMine = findViewById(R.id.bottom_bar_mine);
-        rlBottomMine.setOnClickListener(this);
-        ivBottomMine = findViewById(R.id.bottom_bar_image_mine);
-        tvBottomMine = findViewById(R.id.bottom_bar_text_mine);
+        bottomMineRelaLayout = findViewById(R.id.bottom_bar_mine);
+        bottomMineRelaLayout.setOnClickListener(this);
+        bottomMineImageView = findViewById(R.id.bottom_bar_image_mine);
+        bottomMineTextView = findViewById(R.id.bottom_bar_text_mine);
 
         spLoginInfo = new SPLoginInfo(MainActivity.this);
     }
 
     @Override
-    public void onClick(View v)
+    public void onClick(View view)
     {
-        switch (v.getId())
+        switch (view.getId())
         {
             case R.id.bottom_bar_course:
             {
@@ -146,29 +146,29 @@ public class MainActivity
         {
             case COURSE:
             {
-                rlBottomCourse.setSelected(true);
-                ivBottomCourse.setImageResource(R.drawable.main_course_icon_selected);
-                tvBottomCourse.setTextColor(Color.parseColor("#0097f7"));
-                rlTitleBar.setVisibility(View.VISIBLE);
+                bottomCourseRelaLayout.setSelected(true);
+                bottomCourseImageView.setImageResource(R.drawable.main_course_icon_selected);
+                bottomCourseTextView.setTextColor(Color.parseColor("#0097f7"));
+                titleBarRelaLayout.setVisibility(View.VISIBLE);
                 // FIXME;
-                tvMainTitle.setText(R.string.course_name);
+                mainTitleTextView.setText(R.string.course_name);
                 break;
             }
             case EXERCISES:
             {
-                rlBottomExercises.setSelected(true);
-                ivBottomExercises.setImageResource(R.drawable.main_exercises_icon_selected);
-                tvBottomExercises.setTextColor(Color.parseColor("#0097f7"));
-                rlTitleBar.setVisibility(View.VISIBLE);
-                tvMainTitle.setText(R.string.exercise_name);
+                bottomExercisesRelaLayout.setSelected(true);
+                bottomExercisesImageView.setImageResource(R.drawable.main_exercises_icon_selected);
+                bottomExercisesTextView.setTextColor(Color.parseColor("#0097f7"));
+                titleBarRelaLayout.setVisibility(View.VISIBLE);
+                mainTitleTextView.setText(R.string.exercise_name);
                 break;
             }
             case MINE:
             {
-                rlBottomMine.setSelected(true);
-                ivBottomMine.setImageResource(R.drawable.main_my_icon_selected);
-                tvBottomMine.setTextColor(Color.parseColor("#0097f7"));
-                rlTitleBar.setVisibility(View.GONE);
+                bottomMineRelaLayout.setSelected(true);
+                bottomMineImageView.setImageResource(R.drawable.main_my_icon_selected);
+                bottomMineTextView.setTextColor(Color.parseColor("#0097f7"));
+                titleBarRelaLayout.setVisibility(View.GONE);
                 break;
             }
             default:
@@ -214,7 +214,7 @@ public class MainActivity
 //            {
 //                flBody.addView(view);
 //            }
-            flBody.addView(view);
+            BodyFrameLayout.addView(view);
         }
         courseView.showView();
     }
@@ -225,7 +225,7 @@ public class MainActivity
         {
             exercisesView = ExercisesView.requireInstance(this);
             View view = exercisesView.getView();
-            flBody.addView(view);
+            BodyFrameLayout.addView(view);
         }
         exercisesView.showView();
     }
@@ -236,32 +236,32 @@ public class MainActivity
         {
             mineView = MineView.requireInstance(this);
             View view = mineView.getView();
-            flBody.addView(view);
+            BodyFrameLayout.addView(view);
         }
         mineView.showView();
     }
 
     private void removeAllView()
     {
-        for (int i = 0; i < flBody.getChildCount(); i++)
+        for (int i = 0; i < BodyFrameLayout.getChildCount(); i++)
         {
-            flBody.getChildAt(i).setVisibility(View.GONE);
+            BodyFrameLayout.getChildAt(i).setVisibility(View.GONE);
         }
     }
 
     private void clearBottomState()
     {
-        ivBottomCourse.setImageResource(R.drawable.main_course_icon);
-        ivBottomExercises.setImageResource(R.drawable.main_exercises_icon);
-        ivBottomMine.setImageResource(R.drawable.main_my_icon);
+        bottomCourseImageView.setImageResource(R.drawable.main_course_icon);
+        bottomExercisesImageView.setImageResource(R.drawable.main_exercises_icon);
+        bottomMineImageView.setImageResource(R.drawable.main_my_icon);
 
-        tvBottomCourse.setTextColor(Color.parseColor("#666666"));
-        tvBottomExercises.setTextColor(Color.parseColor("#666666"));
-        tvBottomMine.setTextColor(Color.parseColor("#666666"));
+        bottomCourseTextView.setTextColor(Color.parseColor("#666666"));
+        bottomExercisesTextView.setTextColor(Color.parseColor("#666666"));
+        bottomMineTextView.setTextColor(Color.parseColor("#666666"));
 
-        for (int i = 0; i < llBottomBar.getChildCount(); i++)
+        for (int i = 0; i < bottomBarLinearLayout.getChildCount(); i++)
         {
-            llBottomBar.getChildAt(i).setSelected(false);
+            bottomBarLinearLayout.getChildAt(i).setSelected(false);
         }
     }
 
@@ -272,10 +272,10 @@ public class MainActivity
                 && event.getAction() == KeyEvent.ACTION_DOWN)
         {
             long timeMillis = System.currentTimeMillis();
-            if (timeMillis - lastRecentlyExitPressTime > 2000)
+            if (timeMillis - lastRecentlyPressExitTime > 2000)
             {
-                Toast.makeText(this, "再按一次退出博学谷", Toast.LENGTH_SHORT).show();
-                lastRecentlyExitPressTime = timeMillis;
+                Toast.makeText(this, R.string.exit_again, Toast.LENGTH_SHORT).show();
+                lastRecentlyPressExitTime = timeMillis;
             }
             else
             {

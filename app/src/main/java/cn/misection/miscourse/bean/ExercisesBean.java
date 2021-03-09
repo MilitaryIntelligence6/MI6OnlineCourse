@@ -35,22 +35,22 @@ public class ExercisesBean
     /**
      * 每道题的 A 选项
      */
-    private String aOptionText;
+    private String optionTextA;
 
     /**
      * 每道题的 B 选项
      */
-    private String bOptionText;
+    private String optionTextB;
 
     /**
      * 每道题的 C 选项
      */
-    private String cOptionText;
+    private String optionTextC;
 
     /**
      * 每道题的 D 选项
      */
-    private String dOptionText;
+    private String optionTextD;
 
     /**
      * 每道题的正确答案
@@ -126,44 +126,44 @@ public class ExercisesBean
         this.subject = subject;
     }
 
-    public String getaOptionText()
+    public String getOptionTextA()
     {
-        return aOptionText;
+        return optionTextA;
     }
 
-    public void setaOptionText(String aOptionText)
+    public void setOptionTextA(String optionTextA)
     {
-        this.aOptionText = aOptionText;
+        this.optionTextA = optionTextA;
     }
 
-    public String getbOptionText()
+    public String getOptionTextB()
     {
-        return bOptionText;
+        return optionTextB;
     }
 
-    public void setbOptionText(String bOptionText)
+    public void setOptionTextB(String optionTextB)
     {
-        this.bOptionText = bOptionText;
+        this.optionTextB = optionTextB;
     }
 
-    public String getcOptionText()
+    public String getOptionTextC()
     {
-        return cOptionText;
+        return optionTextC;
     }
 
-    public void setcOptionText(String cOptionText)
+    public void setOptionTextC(String optionTextC)
     {
-        this.cOptionText = cOptionText;
+        this.optionTextC = optionTextC;
     }
 
-    public String getdOptionText()
+    public String getOptionTextD()
     {
-        return dOptionText;
+        return optionTextD;
     }
 
-    public void setdOptionText(String dOptionText)
+    public void setOptionTextD(String optionTextD)
     {
-        this.dOptionText = dOptionText;
+        this.optionTextD = optionTextD;
     }
 
     public int getAnswer()
