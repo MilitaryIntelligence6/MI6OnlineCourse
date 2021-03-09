@@ -56,7 +56,7 @@ public class MainActivity
     private ExercisesView exercisesView;
     private CourseView courseView;
 
-    private SharedPreferLoginInfo sharedPreferLoginInfo;
+    private SharedPreferLoginInfo sharedPrefLoginInfo;
 
     /**
      * 上次按下退出键时间;
@@ -100,7 +100,7 @@ public class MainActivity
         bottomMineImageView = findViewById(R.id.bottom_bar_image_mine);
         bottomMineTextView = findViewById(R.id.bottom_bar_text_mine);
 
-        sharedPreferLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
+        sharedPrefLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
     }
 
     @Override
@@ -280,9 +280,9 @@ public class MainActivity
             else
             {
                 MainActivity.this.finish();
-                if (sharedPreferLoginInfo.getLoginStatus())
+                if (sharedPrefLoginInfo.getLoginStatus())
                 {
-                    sharedPreferLoginInfo.saveLoginStatus(false, "");
+                    sharedPrefLoginInfo.saveLoginStatus(false, "");
                 }
                 System.exit(0);
             }
