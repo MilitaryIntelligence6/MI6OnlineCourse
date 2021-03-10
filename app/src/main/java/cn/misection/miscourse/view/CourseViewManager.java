@@ -275,13 +275,13 @@ public class CourseViewManager extends AbstractView
 
     /**
      * 获取当前在导航栏上方显示对应的 View;
-     * @return
+     * @return view;
      */
     @Override
     public View view()
     {
         initView();
-        return view;
+        return super.view();
     }
 
     /**
@@ -291,7 +291,7 @@ public class CourseViewManager extends AbstractView
     public void show()
     {
         initView();
-        view.setVisibility(View.VISIBLE);
+        super.show();
     }
 
     private void initView()

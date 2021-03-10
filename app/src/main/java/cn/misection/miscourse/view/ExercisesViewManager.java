@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * TODO 一个抽象类的view;
+ * @author Administrator
  */
 public class ExercisesViewManager extends AbstractView
 {
@@ -136,7 +137,7 @@ public class ExercisesViewManager extends AbstractView
     public View view()
     {
         initViewInstance();
-        return view;
+        return super.view();
     }
 
     // 显示当前导航栏上方所对应的 view 界面
@@ -144,7 +145,7 @@ public class ExercisesViewManager extends AbstractView
     public void show()
     {
         initViewInstance();
-        view.setVisibility(View.VISIBLE);
+        super.show();
     }
 
     private void initViewInstance()
