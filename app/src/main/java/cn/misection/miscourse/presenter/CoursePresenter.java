@@ -13,10 +13,8 @@ import cn.misection.miscourse.view.CourseViewManager;
  * @Description TODO
  * @CreateTime 2021年03月10日 18:44:00
  */
-public class CoursePresenter implements IPresenter
+public class CoursePresenter extends AbstractPresenter
 {
-    private CourseViewManager viewManager;
-
     private FragmentActivity context;
 
     private volatile static CoursePresenter instance = null;
@@ -44,17 +42,11 @@ public class CoursePresenter implements IPresenter
 
     private void init()
     {
-        this.viewManager = CourseViewManager.requireInstance(context);
+        this.view = CourseViewManager.requireInstance(context);
     }
 
     public View requireView()
     {
-        return viewManager.requireView();
-    }
-
-    @Override
-    public void showView()
-    {
-        viewManager.show();
+        return this.view.view();
     }
 }

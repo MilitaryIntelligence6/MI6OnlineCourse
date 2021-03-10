@@ -1,5 +1,7 @@
 package cn.misection.miscourse.view;
 
+import android.view.View;
+
 /**
  * @author Military Intelligence 6 root
  * @version 1.0.0
@@ -9,5 +11,14 @@ package cn.misection.miscourse.view;
  */
 public interface IView
 {
+    /**
+     * 展示窗口;
+     */
     void show();
+
+    /**
+     * 获得 view;
+     * @return view;
+     */
+    View view();
 }

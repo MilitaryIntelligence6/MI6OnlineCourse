@@ -19,8 +19,7 @@ import cn.misection.miscourse.opcode.EnumViewCode;
 import cn.misection.miscourse.presenter.CoursePresenter;
 import cn.misection.miscourse.presenter.MinePresenter;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
-import cn.misection.miscourse.view.CourseViewManager;
-import cn.misection.miscourse.view.ExercisesView;
+import cn.misection.miscourse.view.ExercisesViewManager;
 
 public class MainActivity
         extends AppCompatActivity
@@ -52,7 +51,7 @@ public class MainActivity
      * 三个子view;
      */
     private MinePresenter minePresenter;
-    private ExercisesView exercisesView;
+    private ExercisesViewManager exercisesViewManager;
 //    private CourseViewManager courseViewManager;
     private CoursePresenter coursePresenter;
 
@@ -217,13 +216,13 @@ public class MainActivity
 
     private void turnToExerciseView()
     {
-        if (exercisesView == null)
+        if (exercisesViewManager == null)
         {
-            exercisesView = ExercisesView.requireInstance(this);
-            View view = exercisesView.getView();
+            exercisesViewManager = ExercisesViewManager.requireInstance(this);
+            View view = exercisesViewManager.getView();
             bodyFrameLayout.addView(view);
         }
-        exercisesView.showView();
+        exercisesViewManager.showView();
     }
 
     private void turnToMineView()

@@ -277,7 +277,7 @@ public class CourseViewManager implements IView
      * 获取当前在导航栏上方显示对应的 View;
      * @return
      */
-    public View requireView()
+    public View view()
     {
         initView();
         return view;

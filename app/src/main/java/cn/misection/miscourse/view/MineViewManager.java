@@ -86,6 +86,12 @@ public class MineViewManager implements View.OnClickListener, IView
     }
 
     @Override
+    public View view()
+    {
+        return view;
+    }
+
+    @Override
     public void onClick(View v)
     {
         Intent intent;
@@ -130,10 +136,5 @@ public class MineViewManager implements View.OnClickListener, IView
     public void putLoginParams(boolean isLogin)
     {
         usernameTextView.setText(isLogin ? sharePrefLoginInfo.getLoginUsername() : "点击登陆");
-    }
-
-    public View getView()
-    {
-        return view;
     }
 }

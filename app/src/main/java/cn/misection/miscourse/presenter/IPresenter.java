@@ -1,5 +1,7 @@
 package cn.misection.miscourse.presenter;
 
+import android.view.View;
+
 /**
  * @author Military Intelligence 6 root
  * @version 1.0.0
@@ -10,4 +12,6 @@ package cn.misection.miscourse.presenter;
 public interface IPresenter
 {
     void showView();
+
+    View requireView();
 }

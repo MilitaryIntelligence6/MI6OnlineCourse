@@ -17,31 +17,31 @@ import java.util.List;
 /**
  * TODO 一个抽象类的view;
  */
-public class ExercisesView
+public class ExercisesViewManager
 {
-    private ListView lv_list;
+    private ListView listView;
     private ExercisesAdapter adapter;
-    private List<ExercisesBean> eb1;
+    private List<ExercisesBean> exercisesBeanList;
     private Activity context;
     private LayoutInflater inflater;
     private View currentView;
 
-    private volatile static ExercisesView instance = null;
+    private volatile static ExercisesViewManager instance = null;
 
-    public ExercisesView(Activity context)
+    public ExercisesViewManager(Activity context)
     {
         initContextAndInflater(context);
     }
 
-    public static ExercisesView requireInstance(FragmentActivity context)
+    public static ExercisesViewManager requireInstance(FragmentActivity context)
     {
         if (instance == null)
         {
-            synchronized (ExercisesView.class)
+            synchronized (ExercisesViewManager.class)
             {
                 if (instance == null)
                 {
-                    instance = new ExercisesView(context);
+                    instance = new ExercisesViewManager(context);
                 }
             }
         }
@@ -68,16 +68,16 @@ public class ExercisesView
     private void initView()
     {
         currentView = inflater.inflate(R.layout.main_view_exercises, null);
-        lv_list = currentView.findViewById(R.id.lv_list);
+        listView = currentView.findViewById(R.id.lv_list);
         adapter = new ExercisesAdapter(context);
         initData();
-        adapter.setData(eb1);
-        lv_list.setAdapter(adapter);
+        adapter.setData(exercisesBeanList);
+        listView.setAdapter(adapter);
     }
 
     private void initData()
     {
-        eb1 = new ArrayList<>();
+        exercisesBeanList = new ArrayList<>();
         for (int i = 0; i < 10; i++)
         {
             ExercisesBean bean = new ExercisesBean();
@@ -137,7 +137,7 @@ public class ExercisesView
                 default:
                     break;
             }
-            eb1.add(bean);
+            exercisesBeanList.add(bean);
         }
     }
 
@@ -159,7 +159,7 @@ public class ExercisesView
     {
         if (currentView == null)
         {
-            synchronized (ExercisesView.class)
+            synchronized (ExercisesViewManager.class)
             {
                 if (currentView == null)
                 {
