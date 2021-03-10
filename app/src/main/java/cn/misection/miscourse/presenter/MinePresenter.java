@@ -28,7 +28,7 @@ public class MinePresenter extends AbstractPresenter
     private MinePresenter(Context context)
     {
         this.context = context;
-        this.view = MineViewManager.requireInstance(context);
+        this.view = new MineViewManager(context);
     }
 
     public void putLoginParams(boolean loginFlag)

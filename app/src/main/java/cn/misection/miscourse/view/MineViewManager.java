@@ -47,26 +47,6 @@ public class MineViewManager extends AbstractView
         initView();
     }
 
-    public static MineViewManager requireInstance(Context context)
-    {
-        if (instance == null)
-        {
-            synchronized (MineViewManager.class)
-            {
-                if (instance == null)
-                {
-                    instance = new MineViewManager(context);
-                }
-            }
-        }
-        // 单一职责, 但是代码有点丑;
-        if (!instance.context.equals(context))
-        {
-            instance.context = context;
-        }
-        return instance;
-    }
-
     private void initView()
     {
         this.view = View.inflate(context, R.layout.main_view_mine, null);
@@ -86,28 +66,33 @@ public class MineViewManager extends AbstractView
     @Override
     public void onClick(View v)
     {
-        Intent intent;
         switch (v.getId())
         {
             case R.id.ll_login:
             {
                 if (sharePrefLoginInfo.hasLogin())
                 {
-                    intent = new Intent(context, UserInfoActivity.class);
+                    ((Activity) context).startActivityForResult(
+                            new Intent(context, UserInfoActivity.class),
+                            1
+                    );
                 }
                 else
                 {
-                    intent = new Intent(context, LoginActivity.class);
+                    ((Activity) context).startActivityForResult(
+                            new Intent(context, LoginActivity.class),
+                            1
+                    );
                 }
-                ((Activity) context).startActivityForResult(intent, 1);
                 break;
             }
             case R.id.rl_play_history:
             {
                 if (sharePrefLoginInfo.hasLogin())
                 {
-                    intent = new Intent(context, PlayHistoryActivity.class);
-                    context.startActivity(intent);
+                    context.startActivity(
+                            new Intent(context, PlayHistoryActivity.class)
+                    );
                 }
                 else
                 {
@@ -119,8 +104,10 @@ public class MineViewManager extends AbstractView
             {
                 if (sharePrefLoginInfo.hasLogin())
                 {
-                    intent = new Intent(context, SettingActivity.class);
-                    ((Activity) context).startActivityForResult(intent, 1);
+                    ((Activity) context).startActivityForResult(
+                            new Intent(context, SettingActivity.class),
+                            1
+                    );
                 }
                 else
                 {
