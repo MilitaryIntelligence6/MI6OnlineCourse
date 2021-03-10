@@ -15,7 +15,7 @@ import android.widget.TextView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.ExercisesDetailAdapter;
 import cn.misection.miscourse.bean.ExercisesBean;
-import cn.misection.miscourse.util.AnalysisUtils;
+import cn.misection.miscourse.util.AnalysisUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -92,7 +92,7 @@ public class ExercisesDetailActivity extends AppCompatActivity {
                         iv_a.setImageResource(R.drawable.exercises_error_icon);
                         break;
                 }
-                AnalysisUtils.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
+                AnalysisUtil.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
             }
 
             @Override
@@ -120,7 +120,7 @@ public class ExercisesDetailActivity extends AppCompatActivity {
                         iv_b.setImageResource(R.drawable.exercises_error_icon);
                         break;
                 }
-                AnalysisUtils.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
+                AnalysisUtil.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
             }
 
             @Override
@@ -148,7 +148,7 @@ public class ExercisesDetailActivity extends AppCompatActivity {
                         iv_c.setImageResource(R.drawable.exercises_error_icon);
                         break;
                 }
-                AnalysisUtils.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
+                AnalysisUtil.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
             }
 
             @Override
@@ -176,7 +176,7 @@ public class ExercisesDetailActivity extends AppCompatActivity {
                         iv_d.setImageResource(R.drawable.exercises_right_icon);
                         break;
                 }
-                AnalysisUtils.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
+                AnalysisUtil.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
             }
         });
         adapter.setData(eb1);
@@ -186,7 +186,7 @@ public class ExercisesDetailActivity extends AppCompatActivity {
     private void initData() {
         try {
             InputStream is = getResources().getAssets().open("chapter" + id + ".xml");
-            eb1 = AnalysisUtils.getExercisesInfos(is);
+            eb1 = AnalysisUtil.getExercisesInfos(is);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {

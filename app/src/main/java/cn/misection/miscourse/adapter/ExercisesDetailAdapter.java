@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.bean.ExercisesBean;
-import cn.misection.miscourse.util.AnalysisUtils;
+import cn.misection.miscourse.util.AnalysisUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +83,7 @@ public class ExercisesDetailAdapter extends BaseAdapter {
             vh.iv_c.setImageResource(R.drawable.exercises_c);
             vh.iv_d.setImageResource(R.drawable.exercises_d);
         }else{
-            AnalysisUtils.setABCDEnable(false, vh.iv_a, vh.iv_b, vh.iv_c, vh.iv_d);
+            AnalysisUtil.setABCDEnable(false, vh.iv_a, vh.iv_b, vh.iv_c, vh.iv_d);
             switch (bean.getSelect()){
                 case 0:
                     // 用户所选项是正确的

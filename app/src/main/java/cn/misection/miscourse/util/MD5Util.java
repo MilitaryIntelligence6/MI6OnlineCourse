@@ -3,7 +3,8 @@ package cn.misection.miscourse.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MD5Utils {
+public class MD5Util
+{
     // md5 加密方法
     public static String md5(String text) {
         try {

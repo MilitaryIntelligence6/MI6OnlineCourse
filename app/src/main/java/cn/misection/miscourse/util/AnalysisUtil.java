@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnalysisUtils
+public class AnalysisUtil
 {
     public static List<ExercisesBean> getExercisesInfos(InputStream is) throws Exception
     {

@@ -17,7 +17,7 @@ public class SharedPreferLoginInfo
     // 保存用户信息
     public void saveInfo(String username, String password)
     {
-        String md5Pwd = MD5Utils.md5(password);
+        String md5Pwd = MD5Util.md5(password);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(username, md5Pwd);
         editor.commit();

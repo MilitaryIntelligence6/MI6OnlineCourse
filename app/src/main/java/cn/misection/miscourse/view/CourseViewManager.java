@@ -1,10 +1,7 @@
 package cn.misection.miscourse.view;
 
-import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -17,7 +14,8 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.AdBannerAdapter;
 import cn.misection.miscourse.adapter.CourseAdapter;
 import cn.misection.miscourse.bean.CourseBean;
-import cn.misection.miscourse.util.AnalysisUtils;
+import cn.misection.miscourse.util.AnalysisUtil;
+import cn.misection.miscourse.util.ScreenUtil;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -34,7 +32,7 @@ public class CourseViewManager extends AbstractView
 
     private FragmentActivity context;
 
-    private List<List<CourseBean>> courseBeanListList;
+    private List<List<CourseBean>> beanListList;
 
     private static final int AD_COUNT = 3;
 
@@ -68,9 +66,7 @@ public class CourseViewManager extends AbstractView
      */
     private MHandler handler;
 
-    private List<CourseBean> courseBeanList;
-
-    private volatile static CourseViewManager instance = null;
+    private List<CourseBean> beanList;
 
     public CourseViewManager(FragmentActivity context)
     {
@@ -86,7 +82,7 @@ public class CourseViewManager extends AbstractView
     private void initView()
     {
         this.handler = new MHandler();
-        initAdData();
+        initSlideData();
         accessCourseData();
         initComponent();
         new AdAutoSlidThread().start();
@@ -150,15 +146,17 @@ public class CourseViewManager extends AbstractView
         view = View.inflate(context, R.layout.main_view_course, null);
         listView = view.findViewById(R.id.lv_list);
         adapter = new CourseAdapter(context);
-        adapter.setData(courseBeanListList);
+        adapter.setData(beanListList);
         listView.setAdapter(adapter);
         adPager = view.findViewById(R.id.vp_advertBanner);
         adPager.setLongClickable(false);
         adBannerAdapter = new AdBannerAdapter(context.getSupportFragmentManager(), handler);
-        adPager.setAdapter(adBannerAdapter);  // 给 ViewPager 设置适配器
+        // 给 ViewPager 设置适配器;
+        adPager.setAdapter(adBannerAdapter);
         adPager.setOnTouchListener(adBannerAdapter);
         viewPagerIndicator = view.findViewById(R.id.vpi_advert_indicator);
-        viewPagerIndicator.setCount(adBannerAdapter.getSize());  // 设置小圆点的个数
+        // 设置小圆点的个数;
+        viewPagerIndicator.setCount(adBannerAdapter.getSize());
         adBannerLay = view.findViewById(R.id.rl_addBanner);
         adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
         {
@@ -175,19 +173,18 @@ public class CourseViewManager extends AbstractView
                     viewPagerIndicator.setCurrentPosition(position % adBannerAdapter.getSize());
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {}
         });
         resetSize();
-        if (courseBeanList != null)
+        if (beanList != null)
         {
-            if (courseBeanList.size() > 0)
+            if (beanList.size() > 0)
             {
-                viewPagerIndicator.setCount(courseBeanList.size());
+                viewPagerIndicator.setCount(beanList.size());
                 viewPagerIndicator.setCurrentPosition(0);
             }
-            adBannerAdapter.setDatas(courseBeanList);
+            adBannerAdapter.setDatas(beanList);
         }
     }
 
@@ -196,7 +193,7 @@ public class CourseViewManager extends AbstractView
      */
     private void resetSize()
     {
-        int sw = getScreenWidth(context);
+        int sw = ScreenUtil.screenWidth(context);
         int adLheight = sw / 2;
         ViewGroup.LayoutParams adlp = adBannerLay.getLayoutParams();
         adlp.width = sw;
@@ -205,31 +202,18 @@ public class CourseViewManager extends AbstractView
     }
 
     /**
-     * 读取屏幕宽;
-     * @param context
-     * @return
-     */
-    public static int getScreenWidth(Activity context)
-    {
-        DisplayMetrics metrics = new DisplayMetrics();
-        Display display = context.getWindowManager().getDefaultDisplay();
-        display.getMetrics(metrics);
-        return metrics.widthPixels;
-    }
-
-    /**
      * 初始化广告中的数据;
      */
-    private void initAdData()
+    private void initSlideData()
     {
-        courseBeanList = new ArrayList<>();
+        beanList = new ArrayList<>();
         for (int i = 0; i < AD_COUNT; i++)
         {
             CourseBean bean = new CourseBean();
             int id = i + 1;
             bean.setId(id);
             bean.setIcon(String.format("banner_%d", id));
-            courseBeanList.add(bean);
+            beanList.add(bean);
         }
     }
 
@@ -241,7 +225,7 @@ public class CourseViewManager extends AbstractView
         try
         {
             InputStream is = context.getResources().getAssets().open("chaptertitle.xml");
-            courseBeanListList = AnalysisUtils.getCourseInfos(is);
+            beanListList = AnalysisUtil.getCourseInfos(is);
         }
         catch (IOException | XmlPullParserException e)
         {

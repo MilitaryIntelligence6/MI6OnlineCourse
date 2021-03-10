@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.util.MD5Utils;
+import cn.misection.miscourse.util.MD5Util;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class UpdatePwdActivity extends AppCompatActivity {
@@ -37,7 +37,7 @@ public class UpdatePwdActivity extends AppCompatActivity {
     private void logicalJudgement() {
         if (oldPassword.isEmpty()) {
             toastShow("请输入原始密码");
-        } else if (!MD5Utils.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username))) {
+        } else if (!MD5Util.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username))) {
             toastShow("原始密码错误");
         } else if (newPassword.isEmpty()) {
             toastShow("请输入新密码");
@@ -45,7 +45,7 @@ public class UpdatePwdActivity extends AppCompatActivity {
             toastShow("请再次输入新密码");
         } else if (!newPassword.equals(newPasswordAgain)) {
             toastShow("两次输入的密码不一致");
-        } else if (MD5Utils.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username))) {
+        } else if (MD5Util.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username))) {
             toastShow("新密码不能与原始密码一直");
         } else {
             toastShow("新密码设置成功");

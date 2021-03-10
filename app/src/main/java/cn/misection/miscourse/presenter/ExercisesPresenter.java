@@ -18,7 +18,7 @@ import cn.misection.miscourse.view.ExercisesViewManager;
  */
 public class ExercisesPresenter extends AbstractPresenter
 {
-    private Activity context;
+    private final Activity context;
 
     private volatile static ExercisesPresenter instance = null;
 
@@ -46,6 +46,7 @@ public class ExercisesPresenter extends AbstractPresenter
     private void init()
     {
         this.model = new ExerciseModel();
-        this.view = new ExercisesViewManager(context, this.model.requireData());
+        this.view = new ExercisesViewManager(context,
+                this.model.requireData());
     }
 }

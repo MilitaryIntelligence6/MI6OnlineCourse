@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.util.MD5Utils;
+import cn.misection.miscourse.util.MD5Util;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     // 登录账号密码验证
     private boolean loginCheck(String username, String password) {
-        String md5Pwd = MD5Utils.md5(password);
+        String md5Pwd = MD5Util.md5(password);
         return sharedPreferLoginInfo.getPwd(username).equals(md5Pwd);
     }
 
