@@ -111,31 +111,33 @@ public class AnalysisUtils
             switch (type)
             {
                 case XmlPullParser.START_TAG:
-                    if ("infos".equals(parser.getName()))
+                    switch (parser.getName())
                     {
-                        courseInfos = new ArrayList<List<CourseBean>>();
-                        courseList = new ArrayList<>();
-                    }
-                    else if ("course".equals(parser.getName()))
-                    {
-                        courseInfo = new CourseBean();
-                        String ids = parser.getAttributeValue(0);
-                        courseInfo.setId(Integer.parseInt(ids));
-                    }
-                    else if ("imgtitle".equals(parser.getName()))
-                    {
-                        String imgtitle = parser.nextText();
-                        courseInfo.setImgTitle(imgtitle);
-                    }
-                    else if ("title".equals(parser.getName()))
-                    {
-                        String title = parser.nextText();
-                        courseInfo.setTitle(title);
-                    }
-                    else if ("intro".equals(parser.getName()))
-                    {
-                        String intro = parser.nextText();
-                        courseInfo.setIntro(intro);
+                        case "infos":
+                            courseInfos = new ArrayList<List<CourseBean>>();
+                            courseList = new ArrayList<>();
+                            break;
+                        case "course":
+                            courseInfo = new CourseBean();
+                            String ids = parser.getAttributeValue(0);
+                            courseInfo.setId(Integer.parseInt(ids));
+                            break;
+                        case "imgtitle":
+                            String imgtitle = parser.nextText();
+                            courseInfo.setImgTitle(imgtitle);
+                            break;
+                        case "title":
+                            String title = parser.nextText();
+                            courseInfo.setTitle(title);
+                            break;
+                        case "intro":
+                            String intro = parser.nextText();
+                            courseInfo.setIntro(intro);
+                            break;
+                        default:
+                        {
+                            break;
+                        }
                     }
                     break;
                 case XmlPullParser.END_TAG:
