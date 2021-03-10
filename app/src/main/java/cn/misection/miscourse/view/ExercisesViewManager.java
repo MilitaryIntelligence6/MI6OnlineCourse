@@ -1,7 +1,6 @@
 package cn.misection.miscourse.view;
 
 import android.app.Activity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 
@@ -17,20 +16,18 @@ import java.util.List;
 /**
  * TODO 一个抽象类的view;
  */
-public class ExercisesViewManager
+public class ExercisesViewManager extends AbstractView
 {
     private ListView listView;
     private ExercisesAdapter adapter;
     private List<ExercisesBean> exercisesBeanList;
     private Activity context;
-    private LayoutInflater inflater;
-    private View currentView;
 
     private volatile static ExercisesViewManager instance = null;
 
     public ExercisesViewManager(Activity context)
     {
-        initContextAndInflater(context);
+        this.context = context;
     }
 
     public static ExercisesViewManager requireInstance(FragmentActivity context)
@@ -48,16 +45,9 @@ public class ExercisesViewManager
         // 单一职责, 但是代码有点丑;
         if (!instance.context.equals(context))
         {
-            instance.initContextAndInflater(context);
+            instance.context = context;
         }
         return instance;
-    }
-
-    private void initContextAndInflater(Activity context)
-    {
-        this.context = context;
-        // 为之后将 Layout 转化为 view 时用
-        inflater = LayoutInflater.from(context);
     }
 
     private void createView()
@@ -67,8 +57,8 @@ public class ExercisesViewManager
 
     private void initView()
     {
-        currentView = inflater.inflate(R.layout.main_view_exercises, null);
-        listView = currentView.findViewById(R.id.lv_list);
+        view = View.inflate(context, R.layout.main_view_exercises, null);
+        listView = view.findViewById(R.id.lv_list);
         adapter = new ExercisesAdapter(context);
         initData();
         adapter.setData(exercisesBeanList);
@@ -142,26 +132,28 @@ public class ExercisesViewManager
     }
 
     // 获取当前在导航栏上方显示对应的 View
-    public View getView()
+    @Override
+    public View view()
     {
         initViewInstance();
-        return currentView;
+        return view;
     }
 
     // 显示当前导航栏上方所对应的 view 界面
-    public void showView()
+    @Override
+    public void show()
     {
         initViewInstance();
-        currentView.setVisibility(View.VISIBLE);
+        view.setVisibility(View.VISIBLE);
     }
 
     private void initViewInstance()
     {
-        if (currentView == null)
+        if (view == null)
         {
             synchronized (ExercisesViewManager.class)
             {
-                if (currentView == null)
+                if (view == null)
                 {
                     createView();
                 }

@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.activity.LoginActivity;
@@ -25,10 +24,10 @@ import cn.misection.miscourse.util.SharedPreferLoginInfo;
  * @Description TODO
  * @CreateTime 2021年03月10日 14:14:00
  */
-public class MineViewManager implements View.OnClickListener, IView
+public class MineViewManager extends AbstractView
+        implements View.OnClickListener, IView
 {
     private Context context;
-    private View view;
     private TextView usernameTextView;
     private RelativeLayout playHistoryRelaLayout;
     private RelativeLayout settingRelaLayout;
@@ -65,30 +64,18 @@ public class MineViewManager implements View.OnClickListener, IView
 
     private void initView()
     {
-        view = View.inflate(context, R.layout.main_view_mine, null);
-        usernameTextView = view.findViewById(R.id.tv_username);
-        playHistoryRelaLayout = view.findViewById(R.id.rl_play_history);
+        this.view = View.inflate(context, R.layout.main_view_mine, null);
+        usernameTextView = this.view.findViewById(R.id.tv_username);
+        playHistoryRelaLayout = this.view.findViewById(R.id.rl_play_history);
         playHistoryRelaLayout.setOnClickListener(this);
-        settingRelaLayout = view.findViewById(R.id.rl_setting);
+        settingRelaLayout = this.view.findViewById(R.id.rl_setting);
         settingRelaLayout.setOnClickListener(this);
-        loginLinearLayout = view.findViewById(R.id.ll_login);
+        loginLinearLayout = this.view.findViewById(R.id.ll_login);
         loginLinearLayout.setOnClickListener(this);
-        view.setVisibility(View.VISIBLE);
+        this.view.setVisibility(View.VISIBLE);
 
         sharePrefLoginInfo = new SharedPreferLoginInfo(context);
         putLoginParams(sharePrefLoginInfo.hasLogin());
-    }
-
-    @Override
-    public void show()
-    {
-        view.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public View view()
-    {
-        return view;
     }
 
     @Override
@@ -129,6 +116,9 @@ public class MineViewManager implements View.OnClickListener, IView
                 {
                     Toast.makeText(context, "你还未登陆，请先登陆", Toast.LENGTH_SHORT).show();
                 }
+                break;
+
+            default:
                 break;
         }
     }

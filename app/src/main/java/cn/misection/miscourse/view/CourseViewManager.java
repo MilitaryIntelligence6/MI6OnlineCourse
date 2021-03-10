@@ -26,7 +26,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseViewManager implements IView
+public class CourseViewManager extends AbstractView
 {
     private ListView listView;
 
@@ -35,8 +35,6 @@ public class CourseViewManager implements IView
     private FragmentActivity context;
 
     private List<List<CourseBean>> courseBeanListList;
-
-    private View view;
 
     /**
      * 广告
@@ -131,7 +129,9 @@ public class CourseViewManager implements IView
         }
     }
 
-    // 广告自动滑动
+    /**
+     * 广告自动滑动;
+     */
     private class AdAutoSlidThread extends Thread
     {
         @Override
@@ -277,6 +277,7 @@ public class CourseViewManager implements IView
      * 获取当前在导航栏上方显示对应的 View;
      * @return
      */
+    @Override
     public View view()
     {
         initView();

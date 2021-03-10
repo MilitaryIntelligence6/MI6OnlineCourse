@@ -219,10 +219,10 @@ public class MainActivity
         if (exercisesViewManager == null)
         {
             exercisesViewManager = ExercisesViewManager.requireInstance(this);
-            View view = exercisesViewManager.getView();
+            View view = exercisesViewManager.view();
             bodyFrameLayout.addView(view);
         }
-        exercisesViewManager.showView();
+        exercisesViewManager.show();
     }
 
     private void turnToMineView()

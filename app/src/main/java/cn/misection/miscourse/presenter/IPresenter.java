@@ -11,7 +11,14 @@ import android.view.View;
  */
 public interface IPresenter
 {
+    /**
+     * 展示;
+     */
     void showView();
 
+    /**
+     * get view;
+     * @return view;
+     */
     View requireView();
 }
