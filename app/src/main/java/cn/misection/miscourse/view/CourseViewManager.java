@@ -76,20 +76,15 @@ public class CourseViewManager extends AbstractView
 
     private void init()
     {
-        initView();
-    }
-
-    private void initView()
-    {
         this.handler = new MHandler();
-        initComponent();
+        initView();
         new AutoSlidThread().start();
     }
 
     /**
      * 初始化控件;
      */
-    private void initComponent()
+    private void initView()
     {
         initMainView();
         initSlideAdapter();
