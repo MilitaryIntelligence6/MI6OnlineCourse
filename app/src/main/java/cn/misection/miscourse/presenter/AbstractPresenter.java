@@ -2,6 +2,7 @@ package cn.misection.miscourse.presenter;
 
 import android.view.View;
 
+import cn.misection.miscourse.model.IModel;
 import cn.misection.miscourse.view.IView;
 
 /**
@@ -14,6 +15,8 @@ import cn.misection.miscourse.view.IView;
 public abstract class AbstractPresenter implements IPresenter
 {
     protected IView view;
+
+    protected IModel model;
 
     @Override
     public void showView()

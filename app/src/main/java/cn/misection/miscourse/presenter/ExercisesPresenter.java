@@ -4,6 +4,9 @@ import android.app.Activity;
 
 import androidx.fragment.app.FragmentActivity;
 
+import java.util.List;
+
+import cn.misection.miscourse.model.ExerciseModel;
 import cn.misection.miscourse.view.ExercisesViewManager;
 
 /**
@@ -42,6 +45,7 @@ public class ExercisesPresenter extends AbstractPresenter
 
     private void init()
     {
-        this.view = ExercisesViewManager.requireInstance(context);
+        this.model = new ExerciseModel();
+        this.view = new ExercisesViewManager(context, this.model.requireData());
     }
 }
