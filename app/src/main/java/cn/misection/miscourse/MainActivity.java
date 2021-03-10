@@ -20,7 +20,6 @@ import cn.misection.miscourse.presenter.CoursePresenter;
 import cn.misection.miscourse.presenter.ExercisesPresenter;
 import cn.misection.miscourse.presenter.MinePresenter;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
-import cn.misection.miscourse.view.ExercisesViewManager;
 
 /**
  * 目前为了代码整洁, 去除了 == null 判断, 都是饿加载,
@@ -78,8 +77,17 @@ public class MainActivity
 
     private void init()
     {
+        initIndex();
+        initBottomCourse();
+        initBottomExercises();
+        initBottomMine();
+        initPresenter();
+        sharedPrefLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
+    }
+
+    private void initIndex()
+    {
         mainTitleTextView = findViewById(R.id.tv_main_title);
-        // TODO 放 string.xml 资源里;
         mainTitleTextView.setText(R.string.course_name);
         backTextView = findViewById(R.id.text_view_back);
         backTextView.setVisibility(View.GONE);
@@ -88,25 +96,6 @@ public class MainActivity
 
         bodyFrameLayout = findViewById(R.id.body_frame_layout);
         bottomBarLinearLayout = findViewById(R.id.bottom_bar);
-
-        bottomCourseRelaLayout = findViewById(R.id.bottom_bar_course);
-        bottomCourseRelaLayout.setOnClickListener(this);
-        bottomCourseImageView = findViewById(R.id.bottom_bar_image_course);
-        bottomCourseTextView = findViewById(R.id.bottom_bar_text_course);
-
-        bottomExercisesRelaLayout = findViewById(R.id.bottom_bar_exercises);
-        bottomExercisesRelaLayout.setOnClickListener(this);
-        bottomExercisesImageView = findViewById(R.id.bottom_bar_image_exercises);
-        bottomExercisesTextView = findViewById(R.id.bottom_bar_text_exercises);
-
-        bottomMineRelaLayout = findViewById(R.id.bottom_bar_mine);
-        bottomMineRelaLayout.setOnClickListener(this);
-        bottomMineImageView = findViewById(R.id.bottom_bar_image_mine);
-        bottomMineTextView = findViewById(R.id.bottom_bar_text_mine);
-
-        initPresenter();
-
-        sharedPrefLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
     }
 
     private void initPresenter()
@@ -118,6 +107,30 @@ public class MainActivity
         bodyFrameLayout.addView(minePresenter.requireView());
         bodyFrameLayout.addView(coursePresenter.requireView());
         bodyFrameLayout.addView(exercisesPresenter.requireView());
+    }
+
+    private void initBottomCourse()
+    {
+        bottomCourseRelaLayout = findViewById(R.id.bottom_bar_course);
+        bottomCourseRelaLayout.setOnClickListener(this);
+        bottomCourseImageView = findViewById(R.id.bottom_bar_image_course);
+        bottomCourseTextView = findViewById(R.id.bottom_bar_text_course);
+    }
+
+    private void initBottomExercises()
+    {
+        bottomExercisesRelaLayout = findViewById(R.id.bottom_bar_exercises);
+        bottomExercisesRelaLayout.setOnClickListener(this);
+        bottomExercisesImageView = findViewById(R.id.bottom_bar_image_exercises);
+        bottomExercisesTextView = findViewById(R.id.bottom_bar_text_exercises);
+    }
+
+    private void initBottomMine()
+    {
+        bottomMineRelaLayout = findViewById(R.id.bottom_bar_mine);
+        bottomMineRelaLayout.setOnClickListener(this);
+        bottomMineImageView = findViewById(R.id.bottom_bar_image_mine);
+        bottomMineTextView = findViewById(R.id.bottom_bar_text_mine);
     }
 
     @Override
