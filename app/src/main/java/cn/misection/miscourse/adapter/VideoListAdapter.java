@@ -147,6 +147,11 @@ public class VideoListAdapter extends BaseAdapter
 
     public interface OnSelectListener
     {
-        void onSelect(int position, ImageView iv);
+        /**
+         * 被选中时;
+         * @param position
+         * @param imageView
+         */
+        void onSelect(int position, ImageView imageView);
     }
 }

@@ -7,12 +7,14 @@ import android.widget.ListView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.ExercisesAdapter;
 import cn.misection.miscourse.bean.ExercisesBean;
+import cn.misection.miscourse.constant.EnumExerciseProp;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * TODO 一个抽象类的view;
+ *
  * @author Administrator
  */
 public class ExercisesViewManager extends AbstractView
@@ -71,65 +73,23 @@ public class ExercisesViewManager extends AbstractView
     private void initData()
     {
         exercisesBeanList = new ArrayList<>();
-        for (int i = 0; i < 10; i++)
+        int[] backgroundArray = new int[]{
+                R.drawable.exercises_bg_1,
+                R.drawable.exercises_bg_2,
+                R.drawable.exercises_bg_3,
+                R.drawable.exercises_bg_4,
+        };
+        int exerciseCount = EnumExerciseProp.values().length;
+        for (int i = 0; i < exerciseCount; i++)
         {
             ExercisesBean bean = new ExercisesBean();
-            bean.setId((i + 1));
-            switch (i)
-            {
-                case 0:
-                    bean.setTitle("第 1 章 Android 基础入门");
-                    bean.setContent("共计 5 题");
-                    bean.setBackground((R.drawable.exercises_bg_1));
-                    break;
-                case 1:
-                    bean.setTitle("第 2 章 Android UI 开发");
-                    bean.setContent("共计 5 题");
-                    bean.setBackground((R.drawable.exercises_bg_2));
-                    break;
-                case 2:
-                    bean.setTitle("第 3 章 Activity");
-                    bean.setContent("共计 5 题");
-                    bean.setBackground((R.drawable.exercises_bg_3));
-                    break;
-                case 3:
-                    bean.setTitle("第 4 章 数据存储");
-                    bean.setContent("共计 5 题");
-                    bean.setBackground((R.drawable.exercises_bg_4));
-                    break;
-                case 4:
-                    bean.setTitle("第 5 章 SQLite 数据库");
-                    bean.setContent("共计 5 题");
-                    bean.setBackground((R.drawable.exercises_bg_1));
-                    break;
-                case 5:
-                    bean.setTitle("第 6 章 广播接收者");
-                    bean.setContent("共计 5 题");
-                    bean.setBackground((R.drawable.exercises_bg_2));
-                    break;
-                case 6:
-                    bean.setTitle("第 7 章 服务");
-                    bean.setContent("共计 5 题");
-                    bean.setBackground((R.drawable.exercises_bg_3));
-                    break;
-                case 7:
-                    bean.setTitle("第 8 章 内容提供者");
-                    bean.setContent("共计 5 题");
-                    bean.setBackground((R.drawable.exercises_bg_4));
-                    break;
-                case 8:
-                    bean.setTitle("第 9 章 网络编程");
-                    bean.setContent("共计 5 题");
-                    bean.setBackground((R.drawable.exercises_bg_1));
-                    break;
-                case 9:
-                    bean.setTitle("第 10 章 高级编程");
-                    bean.setContent("共计 5 题");
-                    bean.setBackground((R.drawable.exercises_bg_2));
-                    break;
-                default:
-                    break;
-            }
+            int id = i + 1;
+            int color = i % backgroundArray.length;
+            EnumExerciseProp prop = EnumExerciseProp.valueOf(i);
+            bean.setId(id);
+            bean.setTitle(String.format("第 %d 章 %s", i, prop.getChapterName()));
+            bean.setContent(String.format("共计 %d 题", prop.getTopicCount()));
+            bean.setBackground(backgroundArray[color]);
             exercisesBeanList.add(bean);
         }
     }

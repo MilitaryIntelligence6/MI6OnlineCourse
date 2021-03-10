@@ -36,6 +36,8 @@ public class CourseViewManager extends AbstractView
 
     private List<List<CourseBean>> courseBeanListList;
 
+    private static final int AD_COUNT = 3;
+
     /**
      * 广告
      */
@@ -241,24 +243,12 @@ public class CourseViewManager extends AbstractView
     private void initAdData()
     {
         courseBeanList = new ArrayList<>();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < AD_COUNT; i++)
         {
             CourseBean bean = new CourseBean();
-            bean.setId(i + 1);
-            switch (i)
-            {
-                case 0:
-                    bean.setIcon("banner_1");
-                    break;
-                case 1:
-                    bean.setIcon("banner_2");
-                    break;
-                case 2:
-                    bean.setIcon("banner_3");
-                    break;
-                default:
-                    break;
-            }
+            int id = i + 1;
+            bean.setId(id);
+            bean.setIcon(String.format("banner_%d", id));
             courseBeanList.add(bean);
         }
     }

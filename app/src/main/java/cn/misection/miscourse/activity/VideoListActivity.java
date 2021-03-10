@@ -69,7 +69,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         svChapterIntro = findViewById(R.id.sv_chapter_intro);
         adapter = new VideoListAdapter(this, new VideoListAdapter.OnSelectListener() {
             @Override
-            public void onSelect(int position, ImageView iv) {
+            public void onSelect(int position, ImageView imageView) {
                 adapter.setSelectedPosition(position);
                 VideoBean bean = videoList.get(position);
                 String videoPath = bean.getVideoPath();
