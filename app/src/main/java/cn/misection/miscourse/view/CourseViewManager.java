@@ -14,14 +14,8 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.AdBannerAdapter;
 import cn.misection.miscourse.adapter.CourseAdapter;
 import cn.misection.miscourse.bean.CourseBean;
-import cn.misection.miscourse.util.AnalysisUtil;
 import cn.misection.miscourse.util.ScreenUtil;
 
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CourseViewManager extends AbstractView
@@ -34,7 +28,6 @@ public class CourseViewManager extends AbstractView
 
     private List<List<CourseBean>> beanListList;
 
-    private static final int AD_COUNT = 3;
 
     /**
      * 广告
@@ -68,9 +61,14 @@ public class CourseViewManager extends AbstractView
 
     private List<CourseBean> beanList;
 
-    public CourseViewManager(FragmentActivity context)
+    public CourseViewManager(FragmentActivity context,
+                             List<CourseBean> beanList,
+                             List<List<CourseBean>> beanListList
+    )
     {
         this.context = context;
+        this.beanList = beanList;
+        this.beanListList = beanListList;
         init();
     }
 
@@ -82,10 +80,8 @@ public class CourseViewManager extends AbstractView
     private void initView()
     {
         this.handler = new MHandler();
-        initSlideData();
-        accessCourseData();
         initComponent();
-        new AdAutoSlidThread().start();
+        new AutoSlidThread().start();
     }
 
     /**
@@ -118,7 +114,7 @@ public class CourseViewManager extends AbstractView
     /**
      * 广告自动滑动;
      */
-    private class AdAutoSlidThread extends Thread
+    private class AutoSlidThread extends Thread
     {
         @Override
         public void run()
@@ -197,43 +193,11 @@ public class CourseViewManager extends AbstractView
      */
     private void resetSize()
     {
-        int sw = ScreenUtil.screenWidth(context);
-        int adLheight = sw / 2;
-        ViewGroup.LayoutParams adlp = adBannerLay.getLayoutParams();
-        adlp.width = sw;
-        adlp.height = adLheight;
-        adBannerLay.setLayoutParams(adlp);
-    }
-
-    /**
-     * 初始化广告中的数据;
-     */
-    private void initSlideData()
-    {
-        beanList = new ArrayList<>();
-        for (int i = 0; i < AD_COUNT; i++)
-        {
-            CourseBean bean = new CourseBean();
-            int id = i + 1;
-            bean.setId(id);
-            bean.setIcon(String.format("banner_%d", id));
-            beanList.add(bean);
-        }
-    }
-
-    /**
-     * 获取课程信息;
-     */
-    private void accessCourseData()
-    {
-        try
-        {
-            InputStream is = context.getResources().getAssets().open("chaptertitle.xml");
-            beanListList = AnalysisUtil.getCourseInfos(is);
-        }
-        catch (IOException | XmlPullParserException e)
-        {
-            e.printStackTrace();
-        }
+        int screenWidth = ScreenUtil.screenWidth(context);
+        int adLheight = screenWidth / 2;
+        ViewGroup.LayoutParams slideLayoutParams = adBannerLay.getLayoutParams();
+        slideLayoutParams.width = screenWidth;
+        slideLayoutParams.height = adLheight;
+        adBannerLay.setLayoutParams(slideLayoutParams);
     }
 }

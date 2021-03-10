@@ -4,6 +4,7 @@ import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
 
+import cn.misection.miscourse.model.CourseModel;
 import cn.misection.miscourse.view.CourseViewManager;
 
 /**
@@ -42,6 +43,11 @@ public class CoursePresenter extends AbstractPresenter
 
     private void init()
     {
-        this.view = new CourseViewManager(context);
+        this.model = new CourseModel();
+        CourseModel courseModel = (CourseModel) this.model;
+        this.view = new CourseViewManager(context,
+                courseModel.requireData(),
+                courseModel.requireBeanListList(context)
+        );
     }
 }

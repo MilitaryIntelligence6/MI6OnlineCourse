@@ -97,7 +97,7 @@ public class AnalysisUtil
         iv_d.setEnabled(value);
     }
 
-    public static List<List<CourseBean>> getCourseInfos(InputStream is) throws XmlPullParserException, IOException
+    public static List<List<CourseBean>> requireCourseInfo(InputStream is) throws XmlPullParserException, IOException
     {
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(is, "utf-8");
