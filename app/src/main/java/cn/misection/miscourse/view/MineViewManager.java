@@ -3,7 +3,6 @@ package cn.misection.miscourse.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -26,7 +25,8 @@ import cn.misection.miscourse.util.SharedPreferLoginInfo;
  * @Description TODO
  * @CreateTime 2021年03月10日 14:14:00
  */
-public class MineViewManager extends AppCompatActivity implements View.OnClickListener
+public class MineViewManager extends AppCompatActivity
+        implements View.OnClickListener, IView
 {
     private Context context;
     private TextView usernameTextView;
@@ -37,12 +37,13 @@ public class MineViewManager extends AppCompatActivity implements View.OnClickLi
 
     private volatile static MineViewManager instance = null;
 
-    private volatile View view;
+    private View view;
 
 
     public MineViewManager(Context context)
     {
-        initContext(context);
+        this.context = context;
+        initView();
     }
 
     public static MineViewManager requireInstance(Context context)
@@ -60,41 +61,9 @@ public class MineViewManager extends AppCompatActivity implements View.OnClickLi
         // 单一职责, 但是代码有点丑;
         if (!instance.context.equals(context))
         {
-            instance.initContext(context);
+            instance.context = context;
         }
         return instance;
-    }
-
-    private void initViewInstance()
-    {
-        if (view == null)
-        {
-            synchronized (MineViewManager.class)
-            {
-                if (view == null)
-                {
-                    initView();
-                }
-            }
-        }
-    }
-
-    private void initContext(Context context)
-    {
-        this.context = context;
-        LayoutInflater inflater = LayoutInflater.from(context);
-    }
-
-    public View requireViewSingleton()
-    {
-        initViewInstance();
-        return view;
-    }
-
-    public void showView()
-    {
-        initViewInstance();
-        view.setVisibility(View.VISIBLE);
     }
 
     private void initView()
@@ -113,9 +82,10 @@ public class MineViewManager extends AppCompatActivity implements View.OnClickLi
         putLoginParams(sharePrefLoginInfo.hasLogin());
     }
 
-    public void putLoginParams(boolean isLogin)
+    @Override
+    public void showView()
     {
-        usernameTextView.setText(isLogin ? sharePrefLoginInfo.getLoginUsername() : "点击登陆");
+        view.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -158,5 +128,16 @@ public class MineViewManager extends AppCompatActivity implements View.OnClickLi
                 }
                 break;
         }
+    }
+
+    public void putLoginParams(boolean isLogin)
+    {
+        usernameTextView.setText(isLogin ? sharePrefLoginInfo.getLoginUsername() : "点击登陆");
+    }
+
+
+    public View getView()
+    {
+        return view;
     }
 }

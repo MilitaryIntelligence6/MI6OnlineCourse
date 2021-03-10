@@ -7,7 +7,7 @@ package cn.misection.miscourse.view;
  * @Description TODO
  * @CreateTime 2021年03月10日 13:23:00
  */
-public interface IMineView
+public interface IView
 {
-
+    void showView();
 }

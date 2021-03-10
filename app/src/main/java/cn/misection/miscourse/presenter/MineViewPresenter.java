@@ -36,7 +36,7 @@ public class MineViewPresenter implements IPresenter
 
     public View requireView()
     {
-        return manager.requireViewSingleton();
+        return manager.getView();
     }
 
     public void showView()
