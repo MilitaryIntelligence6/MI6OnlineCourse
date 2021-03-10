@@ -28,10 +28,15 @@ public class MineViewManager extends AbstractView
         implements View.OnClickListener, IView
 {
     private Context context;
+
     private TextView usernameTextView;
+
     private RelativeLayout playHistoryRelaLayout;
+
     private RelativeLayout settingRelaLayout;
+
     private LinearLayout loginLinearLayout;
+
     private SharedPreferLoginInfo sharePrefLoginInfo;
 
     private volatile static MineViewManager instance = null;

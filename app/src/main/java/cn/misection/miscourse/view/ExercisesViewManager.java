@@ -67,6 +67,41 @@ public class ExercisesViewManager extends AbstractView
         listView.setAdapter(adapter);
     }
 
+    /**
+     * 获取当前在导航栏上方显示对应的 View;
+     * @return
+     */
+    @Override
+    public View view()
+    {
+        initViewInstance();
+        return super.view();
+    }
+
+    /**
+     * 显示当前导航栏上方所对应的 view 界面;
+     */
+    @Override
+    public void show()
+    {
+        initViewInstance();
+        super.show();
+    }
+
+    private void initViewInstance()
+    {
+        if (view == null)
+        {
+            synchronized (ExercisesViewManager.class)
+            {
+                if (view == null)
+                {
+                    createView();
+                }
+            }
+        }
+    }
+
     private void initData()
     {
         exercisesBeanList = new ArrayList<>();
@@ -130,41 +165,6 @@ public class ExercisesViewManager extends AbstractView
                     break;
             }
             exercisesBeanList.add(bean);
-        }
-    }
-
-    /**
-     * 获取当前在导航栏上方显示对应的 View;
-     * @return
-     */
-    @Override
-    public View view()
-    {
-        initViewInstance();
-        return super.view();
-    }
-
-    /**
-     * 显示当前导航栏上方所对应的 view 界面;
-     */
-    @Override
-    public void show()
-    {
-        initViewInstance();
-        super.show();
-    }
-
-    private void initViewInstance()
-    {
-        if (view == null)
-        {
-            synchronized (ExercisesViewManager.class)
-            {
-                if (view == null)
-                {
-                    createView();
-                }
-            }
         }
     }
 }

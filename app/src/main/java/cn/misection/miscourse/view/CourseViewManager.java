@@ -59,7 +59,7 @@ public class CourseViewManager extends AbstractView
     /**
      * 小圆点
      */
-    private ViewPagerIndicator vpi;
+    private ViewPagerIndicator viewPagerIndicator;
 
     /**
      * 事件捕获
@@ -169,8 +169,8 @@ public class CourseViewManager extends AbstractView
         adBannerAdapter = new AdBannerAdapter(context.getSupportFragmentManager(), handler);
         adPager.setAdapter(adBannerAdapter);  // 给 ViewPager 设置适配器
         adPager.setOnTouchListener(adBannerAdapter);
-        vpi = view.findViewById(R.id.vpi_advert_indicator);
-        vpi.setCount(adBannerAdapter.getSize());  // 设置小圆点的个数
+        viewPagerIndicator = view.findViewById(R.id.vpi_advert_indicator);
+        viewPagerIndicator.setCount(adBannerAdapter.getSize());  // 设置小圆点的个数
         adBannerLay = view.findViewById(R.id.rl_addBanner);
         adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
         {
@@ -184,7 +184,7 @@ public class CourseViewManager extends AbstractView
                 {
                     // 由于 index 数据在滑动时是累加的
                     // 因此用 index % ada.getSize() 来标记滑动到的当前位置
-                    vpi.setCurrentPosition(position % adBannerAdapter.getSize());
+                    viewPagerIndicator.setCurrentPosition(position % adBannerAdapter.getSize());
                 }
             }
 
@@ -196,10 +196,45 @@ public class CourseViewManager extends AbstractView
         {
             if (courseBeanList.size() > 0)
             {
-                vpi.setCount(courseBeanList.size());
-                vpi.setCurrentPosition(0);
+                viewPagerIndicator.setCount(courseBeanList.size());
+                viewPagerIndicator.setCurrentPosition(0);
             }
             adBannerAdapter.setDatas(courseBeanList);
+        }
+    }
+
+    /**
+     * 获取当前在导航栏上方显示对应的 View;
+     * @return view;
+     */
+    @Override
+    public View view()
+    {
+        initView();
+        return super.view();
+    }
+
+    /**
+     * 显示当前导航栏上方所对应的 view 界面;
+     */
+    @Override
+    public void show()
+    {
+        initView();
+        super.show();
+    }
+
+    private void initView()
+    {
+        if (view == null)
+        {
+            synchronized (CourseViewManager.class)
+            {
+                if (view == null)
+                {
+                    createView();
+                }
+            }
         }
     }
 
@@ -270,41 +305,6 @@ public class CourseViewManager extends AbstractView
         catch (IOException | XmlPullParserException e)
         {
             e.printStackTrace();
-        }
-    }
-
-    /**
-     * 获取当前在导航栏上方显示对应的 View;
-     * @return view;
-     */
-    @Override
-    public View view()
-    {
-        initView();
-        return super.view();
-    }
-
-    /**
-     * 显示当前导航栏上方所对应的 view 界面;
-     */
-    @Override
-    public void show()
-    {
-        initView();
-        super.show();
-    }
-
-    private void initView()
-    {
-        if (view == null)
-        {
-            synchronized (CourseViewManager.class)
-            {
-                if (view == null)
-                {
-                    createView();
-                }
-            }
         }
     }
 }
