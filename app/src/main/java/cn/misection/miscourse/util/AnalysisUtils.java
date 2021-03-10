@@ -29,45 +29,44 @@ public class AnalysisUtils
             {
                 case XmlPullParser.START_TAG:
                 {
-                    if ("infos".equals(parser.getName()))
+                    switch (parser.getName())
                     {
-                        exercisesInfos = new ArrayList<>();
-                    }
-                    else if ("exercises".equals(parser.getName()))
-                    {
-                        exercisesInfo = new ExercisesBean();
-                        String ids = parser.getAttributeValue(0);
-                        exercisesInfo.setSubjectId(Integer.parseInt(ids));
-                    }
-                    else if ("subject".equals(parser.getName()))
-                    {
-                        String subject = parser.nextText();
-                        exercisesInfo.setSubject(subject);
-                    }
-                    else if ("a".equals(parser.getName()))
-                    {
-                        String a = parser.nextText();
-                        exercisesInfo.setOptionTextA(a);
-                    }
-                    else if ("b".equals(parser.getName()))
-                    {
-                        String b = parser.nextText();
-                        exercisesInfo.setOptionTextB(b);
-                    }
-                    else if ("c".equals(parser.getName()))
-                    {
-                        String c = parser.nextText();
-                        exercisesInfo.setOptionTextC(c);
-                    }
-                    else if ("d".equals(parser.getName()))
-                    {
-                        String d = parser.nextText();
-                        exercisesInfo.setOptionTextD(d);
-                    }
-                    else if ("answer".equals(parser.getName()))
-                    {
-                        String answer = parser.nextText();
-                        exercisesInfo.setAnswer(Integer.parseInt(answer));
+                        case "infos":
+                            exercisesInfos = new ArrayList<>();
+                            break;
+                        case "exercises":
+                            exercisesInfo = new ExercisesBean();
+                            String ids = parser.getAttributeValue(0);
+                            exercisesInfo.setSubjectId(Integer.parseInt(ids));
+                            break;
+                        case "subject":
+                            String subject = parser.nextText();
+                            exercisesInfo.setSubject(subject);
+                            break;
+                        case "a":
+                            String a = parser.nextText();
+                            exercisesInfo.setOptionTextA(a);
+                            break;
+                        case "b":
+                            String b = parser.nextText();
+                            exercisesInfo.setOptionTextB(b);
+                            break;
+                        case "c":
+                            String c = parser.nextText();
+                            exercisesInfo.setOptionTextC(c);
+                            break;
+                        case "d":
+                            String d = parser.nextText();
+                            exercisesInfo.setOptionTextD(d);
+                            break;
+                        case "answer":
+                            String answer = parser.nextText();
+                            exercisesInfo.setAnswer(Integer.parseInt(answer));
+                            break;
+                        default:
+                        {
+                            break;
+                        }
                     }
                     break;
                 }
