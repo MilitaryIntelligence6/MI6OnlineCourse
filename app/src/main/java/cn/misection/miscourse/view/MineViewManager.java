@@ -44,23 +44,36 @@ public class MineViewManager extends AbstractView
     public MineViewManager(Context context)
     {
         this.context = context;
+        init();
+    }
+
+    private void init()
+    {
         initView();
     }
 
     private void initView()
     {
         this.view = View.inflate(context, R.layout.main_view_mine, null);
-        usernameTextView = this.view.findViewById(R.id.tv_username);
-        playHistoryRelaLayout = this.view.findViewById(R.id.rl_play_history);
-        playHistoryRelaLayout.setOnClickListener(this);
-        settingRelaLayout = this.view.findViewById(R.id.rl_setting);
-        settingRelaLayout.setOnClickListener(this);
-        loginLinearLayout = this.view.findViewById(R.id.ll_login);
-        loginLinearLayout.setOnClickListener(this);
+        initComponent();
         this.view.setVisibility(View.VISIBLE);
 
         sharePrefLoginInfo = new SharedPreferLoginInfo(context);
         putLoginParams(sharePrefLoginInfo.hasLogin());
+    }
+
+    private void initComponent()
+    {
+        usernameTextView = this.view.findViewById(R.id.tv_username);
+
+        playHistoryRelaLayout = this.view.findViewById(R.id.rl_play_history);
+        playHistoryRelaLayout.setOnClickListener(this);
+
+        settingRelaLayout = this.view.findViewById(R.id.rl_setting);
+        settingRelaLayout.setOnClickListener(this);
+
+        loginLinearLayout = this.view.findViewById(R.id.ll_login);
+        loginLinearLayout.setOnClickListener(this);
     }
 
     @Override
