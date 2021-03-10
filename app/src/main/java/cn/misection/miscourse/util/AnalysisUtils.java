@@ -28,6 +28,7 @@ public class AnalysisUtils
             switch (type)
             {
                 case XmlPullParser.START_TAG:
+                {
                     if ("infos".equals(parser.getName()))
                     {
                         exercisesInfos = new ArrayList<>();
@@ -69,13 +70,20 @@ public class AnalysisUtils
                         exercisesInfo.setAnswer(Integer.parseInt(answer));
                     }
                     break;
+                }
                 case XmlPullParser.END_TAG:
+                {
                     if ("exercises".equals(parser.getName()))
                     {
                         exercisesInfos.add(exercisesInfo);
                         exercisesInfo = null;
                     }
                     break;
+                }
+                default:
+                {
+                    break;
+                }
             }
             type = parser.next();
         }

@@ -17,7 +17,11 @@ import cn.misection.miscourse.view.CourseViewManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdBannerAdapter extends FragmentStatePagerAdapter implements View.OnTouchListener
+/**
+ * @author Administrator
+ */
+public class AdBannerAdapter extends FragmentStatePagerAdapter
+        implements View.OnTouchListener
 {
     private Handler handler;
     private List<CourseBean> courseBeanList;
