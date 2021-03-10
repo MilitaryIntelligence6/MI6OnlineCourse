@@ -15,13 +15,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.misection.miscourse.R;
-
 import cn.misection.miscourse.opcode.EnumViewCode;
+import cn.misection.miscourse.presenter.MineViewPresenter;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import cn.misection.miscourse.view.CourseView;
 import cn.misection.miscourse.view.ExercisesView;
-import cn.misection.miscourse.view.MineViewActivity;
 
 public class MainActivity
         extends AppCompatActivity
@@ -52,7 +50,7 @@ public class MainActivity
     /**
      * 三个子view;
      */
-    private MineViewActivity mineViewActivity;
+    private MineViewPresenter mineViewPresenter;
     private ExercisesView exercisesView;
     private CourseView courseView;
 
@@ -99,6 +97,8 @@ public class MainActivity
         bottomMineRelaLayout.setOnClickListener(this);
         bottomMineImageView = findViewById(R.id.bottom_bar_image_mine);
         bottomMineTextView = findViewById(R.id.bottom_bar_text_mine);
+
+        mineViewPresenter = MineViewPresenter.requireInstance(this);
 
         sharedPrefLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
     }
@@ -232,13 +232,12 @@ public class MainActivity
 
     private void turnToMineView()
     {
-        if (mineViewActivity == null)
+        View view = mineViewPresenter.requireView();
+        if (bodyFrameLayout.indexOfChild(view) == -1)
         {
-            mineViewActivity = MineViewActivity.requireInstance(this);
-            View view = mineViewActivity.requireViewSingleton();
             bodyFrameLayout.addView(view);
         }
-        mineViewActivity.showView();
+        mineViewPresenter.getManager().showView();
     }
 
     private void removeAllView()
@@ -303,9 +302,9 @@ public class MainActivity
                 clearBottomState();
                 updateSelectStatus(EnumViewCode.COURSE);
             }
-            if (mineViewActivity != null)
+            if (mineViewPresenter != null)
             {
-                mineViewActivity.setLoginParams(loginFlag);
+                mineViewPresenter.getManager().setLoginParams(loginFlag);
             }
         }
     }
