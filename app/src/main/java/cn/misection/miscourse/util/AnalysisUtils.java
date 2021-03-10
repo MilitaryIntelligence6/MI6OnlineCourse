@@ -163,6 +163,11 @@ public class AnalysisUtils
                     }
                     break;
 
+                default:
+                {
+                    break;
+                }
+
             }
             type = parser.next();
         }
