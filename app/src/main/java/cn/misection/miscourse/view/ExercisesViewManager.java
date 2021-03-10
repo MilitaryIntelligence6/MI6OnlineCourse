@@ -19,11 +19,9 @@ public class ExercisesViewManager extends AbstractView
 {
     private ListView listView;
 
-    private ExercisesAdapter adapter;
+    private final List<ExercisesBean> beanList;
 
-    private List<ExercisesBean> beanList;
-
-    private Activity context;
+    private final Activity context;
 
     public ExercisesViewManager(Activity context,
                                 List<ExercisesBean> beanList)
@@ -47,7 +45,7 @@ public class ExercisesViewManager extends AbstractView
 
     private void initShowData()
     {
-        adapter = new ExercisesAdapter(context);
+        ExercisesAdapter adapter = new ExercisesAdapter(context);
         adapter.setData(beanList);
         listView.setAdapter(adapter);
     }

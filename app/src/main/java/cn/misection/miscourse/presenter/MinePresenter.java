@@ -4,9 +4,12 @@ import android.content.Context;
 
 import cn.misection.miscourse.view.MineViewManager;
 
+/**
+ * @author Administrator
+ */
 public class MinePresenter extends AbstractPresenter
 {
-    private Context context;
+    private final Context context;
 
     private volatile static MinePresenter instance = null;
 

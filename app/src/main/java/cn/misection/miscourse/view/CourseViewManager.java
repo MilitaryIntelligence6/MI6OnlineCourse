@@ -72,30 +72,10 @@ public class CourseViewManager extends AbstractView
 
     private volatile static CourseViewManager instance = null;
 
-    private CourseViewManager(FragmentActivity context)
+    public CourseViewManager(FragmentActivity context)
     {
         this.context = context;
         init();
-    }
-
-    public static CourseViewManager requireInstance(FragmentActivity context)
-    {
-        if (instance == null)
-        {
-            synchronized (CourseViewManager.class)
-            {
-                if (instance == null)
-                {
-                    instance = new CourseViewManager(context);
-                }
-            }
-        }
-        // 单一职责, 但是代码有点丑;
-        if (!instance.context.equals(context))
-        {
-            instance.context = context;
-        }
-        return instance;
     }
 
     private void init()

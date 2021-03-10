@@ -15,7 +15,7 @@ import cn.misection.miscourse.view.CourseViewManager;
  */
 public class CoursePresenter extends AbstractPresenter
 {
-    private FragmentActivity context;
+    private final FragmentActivity context;
 
     private volatile static CoursePresenter instance = null;
 
@@ -42,6 +42,6 @@ public class CoursePresenter extends AbstractPresenter
 
     private void init()
     {
-        this.view = CourseViewManager.requireInstance(context);
+        this.view = new CourseViewManager(context);
     }
 }
