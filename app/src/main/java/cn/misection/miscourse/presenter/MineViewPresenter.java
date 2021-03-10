@@ -48,9 +48,4 @@ public class MineViewPresenter implements IPresenter
     {
         manager.putLoginParams(loginFlag);
     }
-
-    public MineViewManager getManager()
-    {
-        return manager;
-    }
 }
