@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -27,69 +26,83 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseView
+public class CourseViewManager implements IView
 {
     private ListView listView;
+
     private CourseAdapter adapter;
+
     private FragmentActivity context;
+
     private List<List<CourseBean>> courseBeanListList;
 
     private View view;
 
-    private LayoutInflater inflater;
-    private ViewPager adPager;  // 广告
-    private View adBannerLay;  // 广告条容器
-    private AdBannerAdapter adBannerAdapter;  // 适配器
-    public static final int MSG_AD_SLID = 002;  // 广告自动滑动
-    private ViewPagerIndicator vpi;  // 小圆点
-    private MHandler handler;  // 事件捕获
+    /**
+     * 广告
+     */
+    private ViewPager adPager;
+
+    /**
+     * 广告条容器
+     */
+    private View adBannerLay;
+
+    /**
+     * 适配器
+     */
+    private AdBannerAdapter adBannerAdapter;
+
+    /**
+     * 广告自动滑动
+     */
+    public static final int MSG_AD_SLID = 002;
+
+    /**
+     * 小圆点
+     */
+    private ViewPagerIndicator vpi;
+
+    /**
+     * 事件捕获
+     */
+    private MHandler handler;
+
     private List<CourseBean> courseBeanList;
 
-    private CourseView(FragmentActivity context)
+    private volatile static CourseViewManager instance = null;
+
+    private CourseViewManager(FragmentActivity context)
     {
-        initContextAndInflater(context);
+        this.context = context;
     }
 
-    private volatile static CourseView instance = null;
-
-    public static CourseView requireInstance(FragmentActivity context)
+    public static CourseViewManager requireInstance(FragmentActivity context)
     {
         if (instance == null)
         {
-            synchronized (CourseView.class)
+            synchronized (CourseViewManager.class)
             {
                 if (instance == null)
                 {
-                    instance = new CourseView(context);
+                    instance = new CourseViewManager(context);
                 }
             }
         }
         // 单一职责, 但是代码有点丑;
         if (!instance.context.equals(context))
         {
-            instance.initContextAndInflater(context);
+            instance.context = context;
         }
         return instance;
-    }
-
-    private void initContextAndInflater(FragmentActivity context)
-    {
-        this.context = context;
-        // 为之后将 Layout 转化为 view 时用
-        putInflater(context);
-    }
-
-    private void putInflater(FragmentActivity context)
-    {
-        this.inflater = LayoutInflater.from(context);
     }
 
     private void createView()
     {
         this.handler = new MHandler();
         initAdData();
-        getCourseData();
-        initView();
+        accessCourseData();
+        initComponent();
         new AdAutoSlidThread().start();
     }
 
@@ -144,9 +157,9 @@ public class CourseView
     }
 
     // 初始化控件
-    private void initView()
+    private void initComponent()
     {
-        view = inflater.inflate(R.layout.main_view_course, null);
+        view = View.inflate(context, R.layout.main_view_course, null);
         listView = view.findViewById(R.id.lv_list);
         adapter = new CourseAdapter(context);
         adapter.setData(courseBeanListList);
@@ -162,10 +175,7 @@ public class CourseView
         adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
         {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-            {
-
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
             @Override
             public void onPageSelected(int position)
@@ -179,10 +189,7 @@ public class CourseView
             }
 
             @Override
-            public void onPageScrollStateChanged(int state)
-            {
-
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
         resetSize();
         if (courseBeanList != null)
@@ -253,7 +260,7 @@ public class CourseView
     /**
      * 获取课程信息;
      */
-    private void getCourseData()
+    private void accessCourseData()
     {
         try
         {
@@ -270,26 +277,27 @@ public class CourseView
      * 获取当前在导航栏上方显示对应的 View;
      * @return
      */
-    public View getView()
+    public View requireView()
     {
-        initViewInstance();
+        initView();
         return view;
     }
 
     /**
      * 显示当前导航栏上方所对应的 view 界面;
      */
-    public void showView()
+    @Override
+    public void show()
     {
-        initViewInstance();
+        initView();
         view.setVisibility(View.VISIBLE);
     }
 
-    private void initViewInstance()
+    private void initView()
     {
         if (view == null)
         {
-            synchronized (CourseView.class)
+            synchronized (CourseViewManager.class)
             {
                 if (view == null)
                 {

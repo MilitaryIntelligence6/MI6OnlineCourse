@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import cn.misection.miscourse.bean.CourseBean;
 import cn.misection.miscourse.fragment.AdBannerFragment;
-import cn.misection.miscourse.view.CourseView;
+import cn.misection.miscourse.view.CourseViewManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public class AdBannerAdapter extends FragmentStatePagerAdapter implements View.O
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        handler.removeMessages(CourseView.MSG_AD_SLID);
+        handler.removeMessages(CourseViewManager.MSG_AD_SLID);
         return false;
     }
 
