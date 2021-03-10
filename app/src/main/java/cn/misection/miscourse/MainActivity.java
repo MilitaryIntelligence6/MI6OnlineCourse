@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import cn.misection.miscourse.opcode.EnumViewCode;
 import cn.misection.miscourse.presenter.CoursePresenter;
+import cn.misection.miscourse.presenter.ExercisesPresenter;
 import cn.misection.miscourse.presenter.MinePresenter;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import cn.misection.miscourse.view.ExercisesViewManager;
@@ -51,8 +52,7 @@ public class MainActivity
      * 三个子view;
      */
     private MinePresenter minePresenter;
-    private ExercisesViewManager exercisesViewManager;
-//    private CourseViewManager courseViewManager;
+    private ExercisesPresenter exercisesPresenter;
     private CoursePresenter coursePresenter;
 
     private SharedPreferLoginInfo sharedPrefLoginInfo;
@@ -99,13 +99,20 @@ public class MainActivity
         bottomMineImageView = findViewById(R.id.bottom_bar_image_mine);
         bottomMineTextView = findViewById(R.id.bottom_bar_text_mine);
 
+        initPresenter();
+
+        sharedPrefLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
+    }
+
+    private void initPresenter()
+    {
         minePresenter = MinePresenter.requireInstance(this);
         coursePresenter = CoursePresenter.requireInstance(this);
+        exercisesPresenter = ExercisesPresenter.requireInstance(this);
 
         bodyFrameLayout.addView(minePresenter.requireView());
         bodyFrameLayout.addView(coursePresenter.requireView());
-
-        sharedPrefLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
+        bodyFrameLayout.addView(exercisesPresenter.requireView());
     }
 
     @Override
@@ -216,13 +223,7 @@ public class MainActivity
 
     private void turnToExerciseView()
     {
-        if (exercisesViewManager == null)
-        {
-            exercisesViewManager = ExercisesViewManager.requireInstance(this);
-            View view = exercisesViewManager.view();
-            bodyFrameLayout.addView(view);
-        }
-        exercisesViewManager.show();
+        exercisesPresenter.showView();
     }
 
     private void turnToMineView()
