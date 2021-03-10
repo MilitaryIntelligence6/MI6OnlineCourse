@@ -20,8 +20,11 @@ import java.util.List;
 public class ExercisesViewManager extends AbstractView
 {
     private ListView listView;
+
     private ExercisesAdapter adapter;
+
     private List<ExercisesBean> exercisesBeanList;
+
     private Activity context;
 
     private volatile static ExercisesViewManager instance = null;
@@ -132,7 +135,10 @@ public class ExercisesViewManager extends AbstractView
         }
     }
 
-    // 获取当前在导航栏上方显示对应的 View
+    /**
+     * 获取当前在导航栏上方显示对应的 View;
+     * @return
+     */
     @Override
     public View view()
     {
@@ -140,7 +146,9 @@ public class ExercisesViewManager extends AbstractView
         return super.view();
     }
 
-    // 显示当前导航栏上方所对应的 view 界面
+    /**
+     * 显示当前导航栏上方所对应的 view 界面;
+     */
     @Override
     public void show()
     {
