@@ -74,7 +74,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
         adapter = new ExercisesDetailAdapter(ExercisesDetailActivity.this, new ExercisesDetailAdapter.OnSelectListener()
         {
             @Override
-            public void onSelectA(int position, ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d)
+            public void onSelectA(int position, ImageView imageViewA, ImageView imageViewB, ImageView imageViewC, ImageView imageViewD)
             {
                 // 判断如果答案不是 1 即 A 选项
                 if (beanList.get(position).getAnswer() != 1)
@@ -85,25 +85,30 @@ public class ExercisesDetailActivity extends AppCompatActivity
                 {
                     beanList.get(position).setSelect(0);
                 }
+                // hash 表;
                 switch (beanList.get(position).getAnswer())
                 {
                     case 1:
-                        iv_a.setImageResource(R.drawable.exercises_right_icon);
+                        imageViewA.setImageResource(R.drawable.exercises_right_icon);
                         break;
                     case 2:
-                        iv_b.setImageResource(R.drawable.exercises_right_icon);
-                        iv_a.setImageResource(R.drawable.exercises_error_icon);
+                        imageViewB.setImageResource(R.drawable.exercises_right_icon);
+                        imageViewA.setImageResource(R.drawable.exercises_error_icon);
                         break;
                     case 3:
-                        iv_c.setImageResource(R.drawable.exercises_right_icon);
-                        iv_a.setImageResource(R.drawable.exercises_error_icon);
+                        imageViewC.setImageResource(R.drawable.exercises_right_icon);
+                        imageViewA.setImageResource(R.drawable.exercises_error_icon);
                         break;
                     case 4:
-                        iv_d.setImageResource(R.drawable.exercises_right_icon);
-                        iv_a.setImageResource(R.drawable.exercises_error_icon);
+                        imageViewD.setImageResource(R.drawable.exercises_right_icon);
+                        imageViewA.setImageResource(R.drawable.exercises_error_icon);
                         break;
+                    default:
+                    {
+                        break;
+                    }
                 }
-                AnalysisUtil.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
+                AnalysisUtil.setABCDEnable(false, imageViewA, imageViewB, imageViewC, imageViewD);
             }
 
             @Override
