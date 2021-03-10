@@ -30,6 +30,7 @@ public class ExercisesViewManager extends AbstractView
     public ExercisesViewManager(Activity context)
     {
         this.context = context;
+        init();
     }
 
     public static ExercisesViewManager requireInstance(Activity context)
@@ -52,7 +53,7 @@ public class ExercisesViewManager extends AbstractView
         return instance;
     }
 
-    private void createView()
+    private void init()
     {
         initView();
     }
@@ -65,41 +66,6 @@ public class ExercisesViewManager extends AbstractView
         initData();
         adapter.setData(exercisesBeanList);
         listView.setAdapter(adapter);
-    }
-
-    /**
-     * 获取当前在导航栏上方显示对应的 View;
-     * @return
-     */
-    @Override
-    public View view()
-    {
-        initViewInstance();
-        return super.view();
-    }
-
-    /**
-     * 显示当前导航栏上方所对应的 view 界面;
-     */
-    @Override
-    public void show()
-    {
-        initViewInstance();
-        super.show();
-    }
-
-    private void initViewInstance()
-    {
-        if (view == null)
-        {
-            synchronized (ExercisesViewManager.class)
-            {
-                if (view == null)
-                {
-                    createView();
-                }
-            }
-        }
     }
 
     private void initData()

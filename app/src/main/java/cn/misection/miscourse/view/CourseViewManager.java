@@ -73,6 +73,7 @@ public class CourseViewManager extends AbstractView
     private CourseViewManager(FragmentActivity context)
     {
         this.context = context;
+        init();
     }
 
     public static CourseViewManager requireInstance(FragmentActivity context)
@@ -95,7 +96,12 @@ public class CourseViewManager extends AbstractView
         return instance;
     }
 
-    private void createView()
+    private void init()
+    {
+        initView();
+    }
+
+    private void initView()
     {
         this.handler = new MHandler();
         initAdData();
@@ -200,41 +206,6 @@ public class CourseViewManager extends AbstractView
                 viewPagerIndicator.setCurrentPosition(0);
             }
             adBannerAdapter.setDatas(courseBeanList);
-        }
-    }
-
-    /**
-     * 获取当前在导航栏上方显示对应的 View;
-     * @return view;
-     */
-    @Override
-    public View view()
-    {
-        initView();
-        return super.view();
-    }
-
-    /**
-     * 显示当前导航栏上方所对应的 view 界面;
-     */
-    @Override
-    public void show()
-    {
-        initView();
-        super.show();
-    }
-
-    private void initView()
-    {
-        if (view == null)
-        {
-            synchronized (CourseViewManager.class)
-            {
-                if (view == null)
-                {
-                    createView();
-                }
-            }
         }
     }
 
