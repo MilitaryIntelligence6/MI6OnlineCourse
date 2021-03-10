@@ -141,18 +141,25 @@ public class AnalysisUtils
                     }
                     break;
                 case XmlPullParser.END_TAG:
-                    if ("course".equals(parser.getName()))
+                    switch (parser.getName())
                     {
-                        count++;
-                        courseList.add(courseInfo);
-                        if (count % 2 == 0)
+                        case "course":
+                            count++;
+                            courseList.add(courseInfo);
+                            if (count % 2 == 0)
+                            {
+                                // 课程界面每两个数据是一组放在 List 集合中
+                                courseInfos.add(courseList);
+                                courseList = null;
+                                courseList = new ArrayList<>();
+                            }
+                            courseInfo = null;
+                            break;
+
+                        default:
                         {
-                            // 课程界面每两个数据是一组放在 List 集合中
-                            courseInfos.add(courseList);
-                            courseList = null;
-                            courseList = new ArrayList<>();
+                            break;
                         }
-                        courseInfo = null;
                     }
                     break;
 
