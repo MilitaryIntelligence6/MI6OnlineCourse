@@ -20,9 +20,12 @@ import java.util.List;
 
 public class CourseViewManager extends AbstractView
 {
+    /*
+    TODO 线程改线程池;
+     */
     private ListView listView;
 
-    private CourseAdapter adapter;
+    private CourseAdapter slideApter;
 
     private FragmentActivity context;
 
@@ -32,17 +35,17 @@ public class CourseViewManager extends AbstractView
     /**
      * 广告
      */
-    private ViewPager adPager;
+    private ViewPager slidePager;
 
     /**
      * 广告条容器
      */
-    private View adBannerLay;
+    private View slideBannerLay;
 
     /**
      * 适配器
      */
-    private AdBannerAdapter adBannerAdapter;
+    private AdBannerAdapter slideBannerAdapter;
 
     /**
      * 广告自动滑动
@@ -63,8 +66,7 @@ public class CourseViewManager extends AbstractView
 
     public CourseViewManager(FragmentActivity context,
                              List<CourseBean> beanList,
-                             List<List<CourseBean>> beanListList
-    )
+                             List<List<CourseBean>> beanListList)
     {
         this.context = context;
         this.beanList = beanList;
@@ -85,8 +87,103 @@ public class CourseViewManager extends AbstractView
     }
 
     /**
+     * 初始化控件;
+     */
+    private void initComponent()
+    {
+        initMainView();
+        initSlideAdapter();
+        initSlidePager();
+        initPagerIndicatorAndSlideBanner();
+        initPageChangeListener();
+        resetSize();
+        bannerPutData();
+    }
+
+    private void initMainView()
+    {
+        view = View.inflate(context, R.layout.main_view_course, null);
+        listView = view.findViewById(R.id.lv_list);
+    }
+
+    private void initSlideAdapter()
+    {
+        slideApter = new CourseAdapter(context);
+        slideApter.setData(beanListList);
+        listView.setAdapter(slideApter);
+    }
+
+    private void initSlidePager()
+    {
+        slidePager = view.findViewById(R.id.vp_advertBanner);
+        slidePager.setLongClickable(false);
+        slideBannerAdapter = new AdBannerAdapter(context.getSupportFragmentManager(), handler);
+
+        // 给 ViewPager 设置适配器;
+        slidePager.setAdapter(slideBannerAdapter);
+        slidePager.setOnTouchListener(slideBannerAdapter);
+    }
+
+    private void initPagerIndicatorAndSlideBanner()
+    {
+        viewPagerIndicator = view.findViewById(R.id.vpi_advert_indicator);
+        // 设置小圆点的个数;
+        viewPagerIndicator.setCount(slideBannerAdapter.getSize());
+        slideBannerLay = view.findViewById(R.id.rl_addBanner);
+    }
+
+    private void initPageChangeListener()
+    {
+        slidePager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            @Override
+            public void onPageSelected(int position)
+            {
+                if (slideBannerAdapter.getSize() > 0)
+                {
+                    // 由于 index 数据在滑动时是累加的
+                    // 因此用 index % ada.getSize() 来标记滑动到的当前位置
+                    viewPagerIndicator.setCurrentPosition(position % slideBannerAdapter.getSize());
+                }
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
+    }
+
+    private void bannerPutData()
+    {
+        if (beanList != null)
+        {
+            if (beanList.size() > 0)
+            {
+                viewPagerIndicator.setCount(beanList.size());
+                viewPagerIndicator.setCurrentPosition(0);
+            }
+            slideBannerAdapter.setDatas(beanList);
+        }
+    }
+
+    /**
+     * 计算控件大小;
+     */
+    private void resetSize()
+    {
+        int screenWidth = ScreenUtil.screenWidth(context);
+        int adLheight = screenWidth / 2;
+        ViewGroup.LayoutParams slideLayoutParams = slideBannerLay.getLayoutParams();
+        slideLayoutParams.width = screenWidth;
+        slideLayoutParams.height = adLheight;
+        slideBannerLay.setLayoutParams(slideLayoutParams);
+    }
+
+
+    /**
      * 事件捕获;
-      */
+     */
     private class MHandler extends Handler
     {
         @Override
@@ -97,9 +194,9 @@ public class CourseViewManager extends AbstractView
             {
                 case MSG_AD_SLID:
                 {
-                    if (adBannerAdapter.getCount() > 0)
+                    if (slideBannerAdapter.getCount() > 0)
                     {
-                        adPager.setCurrentItem(adPager.getCurrentItem() + 1);
+                        slidePager.setCurrentItem(slidePager.getCurrentItem() + 1);
                     }
                     break;
                 }
@@ -136,68 +233,5 @@ public class CourseViewManager extends AbstractView
                 }
             }
         }
-    }
-
-    /**
-     * 初始化控件;
-     */
-    private void initComponent()
-    {
-        view = View.inflate(context, R.layout.main_view_course, null);
-        listView = view.findViewById(R.id.lv_list);
-        adapter = new CourseAdapter(context);
-        adapter.setData(beanListList);
-        listView.setAdapter(adapter);
-        adPager = view.findViewById(R.id.vp_advertBanner);
-        adPager.setLongClickable(false);
-        adBannerAdapter = new AdBannerAdapter(context.getSupportFragmentManager(), handler);
-        // 给 ViewPager 设置适配器;
-        adPager.setAdapter(adBannerAdapter);
-        adPager.setOnTouchListener(adBannerAdapter);
-        viewPagerIndicator = view.findViewById(R.id.vpi_advert_indicator);
-        // 设置小圆点的个数;
-        viewPagerIndicator.setCount(adBannerAdapter.getSize());
-        adBannerLay = view.findViewById(R.id.rl_addBanner);
-        adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
-        {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
-
-            @Override
-            public void onPageSelected(int position)
-            {
-                if (adBannerAdapter.getSize() > 0)
-                {
-                    // 由于 index 数据在滑动时是累加的
-                    // 因此用 index % ada.getSize() 来标记滑动到的当前位置
-                    viewPagerIndicator.setCurrentPosition(position % adBannerAdapter.getSize());
-                }
-            }
-            @Override
-            public void onPageScrollStateChanged(int state) {}
-        });
-        resetSize();
-        if (beanList != null)
-        {
-            if (beanList.size() > 0)
-            {
-                viewPagerIndicator.setCount(beanList.size());
-                viewPagerIndicator.setCurrentPosition(0);
-            }
-            adBannerAdapter.setDatas(beanList);
-        }
-    }
-
-    /**
-     * 计算控件大小;
-     */
-    private void resetSize()
-    {
-        int screenWidth = ScreenUtil.screenWidth(context);
-        int adLheight = screenWidth / 2;
-        ViewGroup.LayoutParams slideLayoutParams = adBannerLay.getLayoutParams();
-        slideLayoutParams.width = screenWidth;
-        slideLayoutParams.height = adLheight;
-        adBannerLay.setLayoutParams(slideLayoutParams);
     }
 }
