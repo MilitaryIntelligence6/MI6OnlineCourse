@@ -22,6 +22,11 @@ import cn.misection.miscourse.presenter.MinePresenter;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import cn.misection.miscourse.view.ExercisesViewManager;
 
+/**
+ * 目前为了代码整洁, 去除了 == null 判断, 都是饿加载,
+ * 这样有不好的地方, 但是毕竟是首页;
+ * @author Administrator
+ */
 public class MainActivity
         extends AppCompatActivity
         implements View.OnClickListener
