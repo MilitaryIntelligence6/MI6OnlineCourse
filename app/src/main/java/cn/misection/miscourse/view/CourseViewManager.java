@@ -88,7 +88,9 @@ public class CourseViewManager extends AbstractView
         new AdAutoSlidThread().start();
     }
 
-    // 事件捕获
+    /**
+     * 事件捕获;
+      */
     private class MHandler extends Handler
     {
         @Override
@@ -140,7 +142,9 @@ public class CourseViewManager extends AbstractView
         }
     }
 
-    // 初始化控件
+    /**
+     * 初始化控件;
+     */
     private void initComponent()
     {
         view = View.inflate(context, R.layout.main_view_course, null);

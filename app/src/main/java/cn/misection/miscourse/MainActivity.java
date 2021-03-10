@@ -30,6 +30,15 @@ public class MainActivity
         extends AppCompatActivity
         implements View.OnClickListener
 {
+    /*
+    TODO
+     bottomCourseRelaLayout = findViewById(R.id.bottom_bar_course);
+        bottomCourseRelaLayout.setOnClickListener(this);
+        bottomCourseImageView = findViewById(R.id.bottom_bar_image_course);
+        bottomCourseTextView = findViewById(R.id.bottom_bar_text_course);
+
+    把这些元素直接放入枚举或者一个类中, 用类似策略模式去写统一的调用;
+     */
     /**
      * 页面元素;
      */
@@ -166,7 +175,7 @@ public class MainActivity
     private void selectDisplayView(EnumViewCode viewCode)
     {
         removeAllView();
-        createView(viewCode);
+        showView(viewCode);
         updateSelectStatus(viewCode);
     }
 
@@ -180,7 +189,6 @@ public class MainActivity
                 bottomCourseImageView.setImageResource(R.drawable.main_course_icon_selected);
                 bottomCourseTextView.setTextColor(Color.parseColor("#0097f7"));
                 titleBarRelaLayout.setVisibility(View.VISIBLE);
-                // FIXME;
                 mainTitleTextView.setText(R.string.course_name);
                 break;
             }
@@ -208,23 +216,23 @@ public class MainActivity
         }
     }
 
-    private void createView(EnumViewCode viewCode)
+    private void showView(EnumViewCode viewCode)
     {
         switch (viewCode)
         {
             case COURSE:
             {
-                turnToCourseView();
+                coursePresenter.showView();
                 break;
             }
             case EXERCISES:
             {
-                turnToExerciseView();
+                exercisesPresenter.showView();
                 break;
             }
             case MINE:
             {
-                turnToMineView();
+                minePresenter.showView();
                 break;
             }
             default:
@@ -232,21 +240,6 @@ public class MainActivity
                 throw new IllegalArgumentException("illegal arg");
             }
         }
-    }
-
-    private void turnToCourseView()
-    {
-        coursePresenter.showView();
-    }
-
-    private void turnToExerciseView()
-    {
-        exercisesPresenter.showView();
-    }
-
-    private void turnToMineView()
-    {
-        minePresenter.showView();
     }
 
     private void removeAllView()
