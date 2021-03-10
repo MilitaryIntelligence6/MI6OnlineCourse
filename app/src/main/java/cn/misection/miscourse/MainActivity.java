@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.opcode.EnumViewCode;
-import cn.misection.miscourse.presenter.MineViewPresenter;
+import cn.misection.miscourse.presenter.MinePresenter;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import cn.misection.miscourse.view.CourseView;
 import cn.misection.miscourse.view.ExercisesView;
@@ -50,7 +50,7 @@ public class MainActivity
     /**
      * 三个子view;
      */
-    private MineViewPresenter mineViewPresenter;
+    private MinePresenter minePresenter;
     private ExercisesView exercisesView;
     private CourseView courseView;
 
@@ -98,7 +98,8 @@ public class MainActivity
         bottomMineImageView = findViewById(R.id.bottom_bar_image_mine);
         bottomMineTextView = findViewById(R.id.bottom_bar_text_mine);
 
-        mineViewPresenter = MineViewPresenter.requireInstance(this);
+        minePresenter = MinePresenter.requireInstance(this);
+        bodyFrameLayout.addView(minePresenter.requireView());
 
         sharedPrefLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
     }
@@ -232,12 +233,7 @@ public class MainActivity
 
     private void turnToMineView()
     {
-        View view = mineViewPresenter.requireView();
-        if (bodyFrameLayout.indexOfChild(view) == -1)
-        {
-            bodyFrameLayout.addView(view);
-        }
-        mineViewPresenter.showView();
+        minePresenter.showView();
     }
 
     private void removeAllView()
@@ -302,9 +298,9 @@ public class MainActivity
                 clearBottomState();
                 updateSelectStatus(EnumViewCode.COURSE);
             }
-            if (mineViewPresenter != null)
+            if (minePresenter != null)
             {
-                mineViewPresenter.putLoginParams(loginFlag);
+                minePresenter.putLoginParams(loginFlag);
             }
         }
     }

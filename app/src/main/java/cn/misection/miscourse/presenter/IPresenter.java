@@ -9,5 +9,5 @@ package cn.misection.miscourse.presenter;
  */
 public interface IPresenter
 {
-
+    void showView();
 }

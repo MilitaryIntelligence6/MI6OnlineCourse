@@ -9,5 +9,5 @@ package cn.misection.miscourse.view;
  */
 public interface IView
 {
-    void showView();
+    void show();
 }

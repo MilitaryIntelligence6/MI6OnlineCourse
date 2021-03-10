@@ -25,10 +25,10 @@ import cn.misection.miscourse.util.SharedPreferLoginInfo;
  * @Description TODO
  * @CreateTime 2021年03月10日 14:14:00
  */
-public class MineViewManager extends AppCompatActivity
-        implements View.OnClickListener, IView
+public class MineViewManager implements View.OnClickListener, IView
 {
     private Context context;
+    private View view;
     private TextView usernameTextView;
     private RelativeLayout playHistoryRelaLayout;
     private RelativeLayout settingRelaLayout;
@@ -36,9 +36,6 @@ public class MineViewManager extends AppCompatActivity
     private SharedPreferLoginInfo sharePrefLoginInfo;
 
     private volatile static MineViewManager instance = null;
-
-    private View view;
-
 
     public MineViewManager(Context context)
     {
@@ -83,7 +80,7 @@ public class MineViewManager extends AppCompatActivity
     }
 
     @Override
-    public void showView()
+    public void show()
     {
         view.setVisibility(View.VISIBLE);
     }
@@ -134,7 +131,6 @@ public class MineViewManager extends AppCompatActivity
     {
         usernameTextView.setText(isLogin ? sharePrefLoginInfo.getLoginUsername() : "点击登陆");
     }
-
 
     public View getView()
     {

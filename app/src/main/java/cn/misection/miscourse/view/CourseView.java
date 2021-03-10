@@ -34,7 +34,7 @@ public class CourseView
     private FragmentActivity context;
     private List<List<CourseBean>> courseBeanListList;
 
-    private View viewInstance;
+    private View view;
 
     private LayoutInflater inflater;
     private ViewPager adPager;  // 广告
@@ -146,19 +146,19 @@ public class CourseView
     // 初始化控件
     private void initView()
     {
-        viewInstance = inflater.inflate(R.layout.main_view_course, null);
-        listView = viewInstance.findViewById(R.id.lv_list);
+        view = inflater.inflate(R.layout.main_view_course, null);
+        listView = view.findViewById(R.id.lv_list);
         adapter = new CourseAdapter(context);
         adapter.setData(courseBeanListList);
         listView.setAdapter(adapter);
-        adPager = viewInstance.findViewById(R.id.vp_advertBanner);
+        adPager = view.findViewById(R.id.vp_advertBanner);
         adPager.setLongClickable(false);
         adBannerAdapter = new AdBannerAdapter(context.getSupportFragmentManager(), handler);
         adPager.setAdapter(adBannerAdapter);  // 给 ViewPager 设置适配器
         adPager.setOnTouchListener(adBannerAdapter);
-        vpi = viewInstance.findViewById(R.id.vpi_advert_indicator);
+        vpi = view.findViewById(R.id.vpi_advert_indicator);
         vpi.setCount(adBannerAdapter.getSize());  // 设置小圆点的个数
-        adBannerLay = viewInstance.findViewById(R.id.rl_addBanner);
+        adBannerLay = view.findViewById(R.id.rl_addBanner);
         adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
         {
             @Override
@@ -273,7 +273,7 @@ public class CourseView
     public View getView()
     {
         initViewInstance();
-        return viewInstance;
+        return view;
     }
 
     /**
@@ -282,16 +282,16 @@ public class CourseView
     public void showView()
     {
         initViewInstance();
-        viewInstance.setVisibility(View.VISIBLE);
+        view.setVisibility(View.VISIBLE);
     }
 
     private void initViewInstance()
     {
-        if (viewInstance == null)
+        if (view == null)
         {
             synchronized (CourseView.class)
             {
-                if (viewInstance == null)
+                if (view == null)
                 {
                     createView();
                 }
