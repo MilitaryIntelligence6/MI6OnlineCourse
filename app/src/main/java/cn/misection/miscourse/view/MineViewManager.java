@@ -90,6 +90,7 @@ public class MineViewManager extends AbstractView
         switch (v.getId())
         {
             case R.id.ll_login:
+            {
                 if (sharePrefLoginInfo.hasLogin())
                 {
                     intent = new Intent(context, UserInfoActivity.class);
@@ -100,7 +101,9 @@ public class MineViewManager extends AbstractView
                 }
                 ((Activity) context).startActivityForResult(intent, 1);
                 break;
+            }
             case R.id.rl_play_history:
+            {
                 if (sharePrefLoginInfo.hasLogin())
                 {
                     intent = new Intent(context, PlayHistoryActivity.class);
@@ -111,7 +114,9 @@ public class MineViewManager extends AbstractView
                     Toast.makeText(context, "你还未登陆，请先登陆", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            }
             case R.id.rl_setting:
+            {
                 if (sharePrefLoginInfo.hasLogin())
                 {
                     intent = new Intent(context, SettingActivity.class);
@@ -122,9 +127,11 @@ public class MineViewManager extends AbstractView
                     Toast.makeText(context, "你还未登陆，请先登陆", Toast.LENGTH_SHORT).show();
                 }
                 break;
-
+            }
             default:
+            {
                 break;
+            }
         }
     }
 
