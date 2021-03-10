@@ -237,7 +237,7 @@ public class MainActivity
         {
             bodyFrameLayout.addView(view);
         }
-        mineViewPresenter.getManager().showView();
+        mineViewPresenter.showView();
     }
 
     private void removeAllView()
@@ -304,7 +304,7 @@ public class MainActivity
             }
             if (mineViewPresenter != null)
             {
-                mineViewPresenter.getManager().setLoginParams(loginFlag);
+                mineViewPresenter.putLoginParams(loginFlag);
             }
         }
     }

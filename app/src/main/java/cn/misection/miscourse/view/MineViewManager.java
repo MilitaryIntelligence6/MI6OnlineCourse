@@ -10,6 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.activity.LoginActivity;
 import cn.misection.miscourse.activity.PlayHistoryActivity;
@@ -24,21 +26,23 @@ import cn.misection.miscourse.util.SharedPreferLoginInfo;
  * @Description TODO
  * @CreateTime 2021年03月10日 14:14:00
  */
-public class MineViewManager implements View.OnClickListener
+public class MineViewManager extends AppCompatActivity implements View.OnClickListener
 {
     private Context context;
-    private View view;
-    private TextView tvUsername;
-    private RelativeLayout rlPlayHistory;
-    private RelativeLayout rlSetting;
-    private LinearLayout llLogin;
-    private SharedPreferLoginInfo spLoginInfo;
+    private TextView usernameTextView;
+    private RelativeLayout playHistoryRelaLayout;
+    private RelativeLayout settingRelaLayout;
+    private LinearLayout loginLinearLayout;
+    private SharedPreferLoginInfo sharePrefLoginInfo;
 
     private volatile static MineViewManager instance = null;
 
+    private volatile View view;
+
+
     public MineViewManager(Context context)
     {
-        initContextAndInflater(context);
+        initContext(context);
     }
 
     public static MineViewManager requireInstance(Context context)
@@ -56,12 +60,26 @@ public class MineViewManager implements View.OnClickListener
         // 单一职责, 但是代码有点丑;
         if (!instance.context.equals(context))
         {
-            instance.initContextAndInflater(context);
+            instance.initContext(context);
         }
         return instance;
     }
 
-    private void initContextAndInflater(Context context)
+    private void initViewInstance()
+    {
+        if (view == null)
+        {
+            synchronized (MineViewManager.class)
+            {
+                if (view == null)
+                {
+                    initView();
+                }
+            }
+        }
+    }
+
+    private void initContext(Context context)
     {
         this.context = context;
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -73,50 +91,31 @@ public class MineViewManager implements View.OnClickListener
         return view;
     }
 
-    private void createView()
-    {
-        initView();
-    }
-
     public void showView()
     {
         initViewInstance();
         view.setVisibility(View.VISIBLE);
     }
 
-    private void initViewInstance()
-    {
-        if (view == null)
-        {
-            synchronized (MineViewManager.class)
-            {
-                if (view == null)
-                {
-                    createView();
-                }
-            }
-        }
-    }
-
     private void initView()
     {
-        view = MineView.requireInstance(context);
-        tvUsername = view.findViewById(R.id.tv_username);
-        rlPlayHistory = view.findViewById(R.id.rl_play_history);
-        rlPlayHistory.setOnClickListener(this);
-        rlSetting = view.findViewById(R.id.rl_setting);
-        rlSetting.setOnClickListener(this);
-        llLogin = view.findViewById(R.id.ll_login);
-        llLogin.setOnClickListener(this);
+        view = View.inflate(context, R.layout.main_view_mine, null);
+        usernameTextView = view.findViewById(R.id.tv_username);
+        playHistoryRelaLayout = view.findViewById(R.id.rl_play_history);
+        playHistoryRelaLayout.setOnClickListener(this);
+        settingRelaLayout = view.findViewById(R.id.rl_setting);
+        settingRelaLayout.setOnClickListener(this);
+        loginLinearLayout = view.findViewById(R.id.ll_login);
+        loginLinearLayout.setOnClickListener(this);
         view.setVisibility(View.VISIBLE);
 
-        spLoginInfo = new SharedPreferLoginInfo(context);
-        setLoginParams(spLoginInfo.hasLogin());
+        sharePrefLoginInfo = new SharedPreferLoginInfo(context);
+        putLoginParams(sharePrefLoginInfo.hasLogin());
     }
 
-    public void setLoginParams(boolean isLogin)
+    public void putLoginParams(boolean isLogin)
     {
-        tvUsername.setText(isLogin ? spLoginInfo.getLoginUsername() : "点击登陆");
+        usernameTextView.setText(isLogin ? sharePrefLoginInfo.getLoginUsername() : "点击登陆");
     }
 
     @Override
@@ -126,7 +125,7 @@ public class MineViewManager implements View.OnClickListener
         switch (v.getId())
         {
             case R.id.ll_login:
-                if (spLoginInfo.hasLogin())
+                if (sharePrefLoginInfo.hasLogin())
                 {
                     intent = new Intent(context, UserInfoActivity.class);
                 }
@@ -137,7 +136,7 @@ public class MineViewManager implements View.OnClickListener
                 ((Activity) context).startActivityForResult(intent, 1);
                 break;
             case R.id.rl_play_history:
-                if (spLoginInfo.hasLogin())
+                if (sharePrefLoginInfo.hasLogin())
                 {
                     intent = new Intent(context, PlayHistoryActivity.class);
                     context.startActivity(intent);
@@ -148,7 +147,7 @@ public class MineViewManager implements View.OnClickListener
                 }
                 break;
             case R.id.rl_setting:
-                if (spLoginInfo.hasLogin())
+                if (sharePrefLoginInfo.hasLogin())
                 {
                     intent = new Intent(context, SettingActivity.class);
                     ((Activity) context).startActivityForResult(intent, 1);
