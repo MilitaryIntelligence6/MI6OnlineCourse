@@ -44,9 +44,4 @@ public class CoursePresenter extends AbstractPresenter
     {
         this.view = CourseViewManager.requireInstance(context);
     }
-
-    public View requireView()
-    {
-        return this.view.view();
-    }
 }

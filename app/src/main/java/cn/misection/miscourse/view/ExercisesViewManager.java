@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.ListView;
 
-import androidx.fragment.app.FragmentActivity;
-
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.ExercisesAdapter;
 import cn.misection.miscourse.bean.ExercisesBean;
@@ -34,7 +32,7 @@ public class ExercisesViewManager extends AbstractView
         this.context = context;
     }
 
-    public static ExercisesViewManager requireInstance(FragmentActivity context)
+    public static ExercisesViewManager requireInstance(Activity context)
     {
         if (instance == null)
         {

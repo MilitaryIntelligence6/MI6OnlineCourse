@@ -1,5 +1,9 @@
 package cn.misection.miscourse.presenter;
 
+import android.app.Activity;
+
+import androidx.fragment.app.FragmentActivity;
+
 import cn.misection.miscourse.view.ExercisesViewManager;
 
 /**
@@ -11,6 +15,33 @@ import cn.misection.miscourse.view.ExercisesViewManager;
  */
 public class ExercisesPresenter extends AbstractPresenter
 {
-    private ExercisesViewManager viewManager;
+    private Activity context;
 
+    private volatile static ExercisesPresenter instance = null;
+
+    private ExercisesPresenter(Activity context)
+    {
+        this.context = context;
+        init();
+    }
+
+    public static ExercisesPresenter requireInstance(Activity context)
+    {
+        if (instance == null)
+        {
+            synchronized (ExercisesPresenter.class)
+            {
+                if (instance == null)
+                {
+                    instance = new ExercisesPresenter(context);
+                }
+            }
+        }
+        return instance;
+    }
+
+    private void init()
+    {
+        this.view = ExercisesViewManager.requireInstance(context);
+    }
 }
