@@ -14,7 +14,6 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.AdBannerAdapter;
 import cn.misection.miscourse.adapter.CourseAdapter;
 import cn.misection.miscourse.bean.CourseBean;
-import cn.misection.miscourse.presenter.CoursePresenter;
 import cn.misection.miscourse.util.ScreenUtil;
 
 import java.util.List;
@@ -34,7 +33,6 @@ public class CourseViewManager extends AbstractView
     private FragmentActivity context;
 
     private List<List<CourseBean>> beanListList;
-
 
     /**
      * 广告

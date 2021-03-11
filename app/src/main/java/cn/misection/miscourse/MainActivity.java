@@ -16,9 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.opcode.EnumViewCode;
-import cn.misection.miscourse.presenter.CoursePresenter;
-import cn.misection.miscourse.presenter.ExercisesPresenter;
-import cn.misection.miscourse.presenter.MinePresenter;
+import cn.misection.miscourse.presenter.impl.CoursePresenter;
+import cn.misection.miscourse.presenter.impl.ExercisesPresenter;
+import cn.misection.miscourse.presenter.impl.MinePresenter;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 /**
@@ -304,10 +304,8 @@ public class MainActivity
                 clearBottomState();
                 updateSelectStatus(EnumViewCode.COURSE);
             }
-            if (minePresenter != null)
-            {
-                minePresenter.putLoginParams(loginFlag);
-            }
+            // FIXME 这里逻辑没弄清楚, 到底会不会改变其;, 原来是传入该loginFlag;
+            minePresenter.putLoginParams();
         }
     }
 }

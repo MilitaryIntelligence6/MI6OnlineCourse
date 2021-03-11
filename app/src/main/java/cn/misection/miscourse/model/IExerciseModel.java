@@ -9,7 +9,7 @@ import java.util.List;
  * @Description TODO
  * @CreateTime 2021年03月10日 22:51:00
  */
-public interface IModel
+public interface IExerciseModel
 {
     /**
      * 获取数据;

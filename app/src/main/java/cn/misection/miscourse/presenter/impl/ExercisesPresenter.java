@@ -1,12 +1,9 @@
-package cn.misection.miscourse.presenter;
+package cn.misection.miscourse.presenter.impl;
 
 import android.app.Activity;
 
-import androidx.fragment.app.FragmentActivity;
-
-import java.util.List;
-
-import cn.misection.miscourse.model.ExerciseModel;
+import cn.misection.miscourse.model.impl.ExerciseModel;
+import cn.misection.miscourse.presenter.AbstractPresenter;
 import cn.misection.miscourse.view.ExercisesViewManager;
 
 /**
@@ -45,7 +42,7 @@ public class ExercisesPresenter extends AbstractPresenter
 
     private void init()
     {
-        this.model = new ExerciseModel();
+        this.model = new ExerciseModel(this);
         this.view = new ExercisesViewManager(context,
                 this.model.requireData());
     }

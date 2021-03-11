@@ -1,6 +1,4 @@
-package cn.misection.miscourse.model;
-
-import android.content.Context;
+package cn.misection.miscourse.model.impl;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -10,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.misection.miscourse.bean.CourseBean;
-import cn.misection.miscourse.presenter.CoursePresenter;
+import cn.misection.miscourse.model.IExerciseModel;
+import cn.misection.miscourse.presenter.impl.CoursePresenter;
 import cn.misection.miscourse.util.AnalysisUtil;
 
 /**
@@ -20,7 +19,7 @@ import cn.misection.miscourse.util.AnalysisUtil;
  * @Description TODO
  * @CreateTime 2021年03月11日 00:05:00
  */
-public class CourseModel implements IModel
+public class CourseModel implements IExerciseModel
 {
     private final CoursePresenter presenter;
 

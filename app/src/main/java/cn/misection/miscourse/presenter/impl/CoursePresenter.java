@@ -1,10 +1,9 @@
-package cn.misection.miscourse.presenter;
-
-import android.view.View;
+package cn.misection.miscourse.presenter.impl;
 
 import androidx.fragment.app.FragmentActivity;
 
-import cn.misection.miscourse.model.CourseModel;
+import cn.misection.miscourse.model.impl.CourseModel;
+import cn.misection.miscourse.presenter.AbstractPresenter;
 import cn.misection.miscourse.view.CourseViewManager;
 
 /**

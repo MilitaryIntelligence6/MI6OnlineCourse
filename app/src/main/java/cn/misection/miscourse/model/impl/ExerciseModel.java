@@ -1,4 +1,4 @@
-package cn.misection.miscourse.model;
+package cn.misection.miscourse.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,8 @@ import java.util.List;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.bean.ExercisesBean;
 import cn.misection.miscourse.constant.EnumExerciseProp;
-import cn.misection.miscourse.presenter.ExercisesPresenter;
+import cn.misection.miscourse.model.IExerciseModel;
+import cn.misection.miscourse.presenter.impl.ExercisesPresenter;
 
 /**
  * @author Military Intelligence 6 root
@@ -15,7 +16,7 @@ import cn.misection.miscourse.presenter.ExercisesPresenter;
  * @Description TODO
  * @CreateTime 2021年03月10日 22:57:00
  */
-public class ExerciseModel implements IModel
+public class ExerciseModel implements IExerciseModel
 {
     private final ExercisesPresenter presenter;
 

@@ -15,8 +15,7 @@ import cn.misection.miscourse.activity.LoginActivity;
 import cn.misection.miscourse.activity.PlayHistoryActivity;
 import cn.misection.miscourse.activity.SettingActivity;
 import cn.misection.miscourse.activity.UserInfoActivity;
-import cn.misection.miscourse.presenter.ExercisesPresenter;
-import cn.misection.miscourse.util.SharedPreferLoginInfo;
+import cn.misection.miscourse.presenter.impl.MinePresenter;
 
 /**
  * @author Military Intelligence 6 root
@@ -28,7 +27,9 @@ import cn.misection.miscourse.util.SharedPreferLoginInfo;
 public class MineViewManager extends AbstractView
         implements View.OnClickListener, IView
 {
-    private Context context;
+    private MinePresenter presenter;
+
+    private Activity context;
 
     private TextView usernameTextView;
 
@@ -38,18 +39,17 @@ public class MineViewManager extends AbstractView
 
     private LinearLayout loginLinearLayout;
 
-    private SharedPreferLoginInfo sharePrefLoginInfo;
-
     private volatile static MineViewManager instance = null;
 
-    public MineViewManager(Context context)
+    public MineViewManager(MinePresenter presenter)
     {
-        this.context = context;
+        this.presenter = presenter;
         init();
     }
 
     private void init()
     {
+        this.context = presenter.getContext();
         initView();
     }
 
@@ -58,9 +58,6 @@ public class MineViewManager extends AbstractView
         this.view = View.inflate(context, R.layout.main_view_mine, null);
         initComponent();
         this.view.setVisibility(View.VISIBLE);
-
-        sharePrefLoginInfo = new SharedPreferLoginInfo(context);
-        putLoginParams(sharePrefLoginInfo.hasLogin());
     }
 
     private void initComponent()
@@ -84,7 +81,7 @@ public class MineViewManager extends AbstractView
         {
             case R.id.ll_login:
             {
-                if (sharePrefLoginInfo.hasLogin())
+                if (presenter.hasLogin())
                 {
                     ((Activity) context).startActivityForResult(
                             new Intent(context, UserInfoActivity.class),
@@ -102,7 +99,7 @@ public class MineViewManager extends AbstractView
             }
             case R.id.rl_play_history:
             {
-                if (sharePrefLoginInfo.hasLogin())
+                if (presenter.hasLogin())
                 {
                     context.startActivity(
                             new Intent(context, PlayHistoryActivity.class)
@@ -116,7 +113,7 @@ public class MineViewManager extends AbstractView
             }
             case R.id.rl_setting:
             {
-                if (sharePrefLoginInfo.hasLogin())
+                if (presenter.hasLogin())
                 {
                     ((Activity) context).startActivityForResult(
                             new Intent(context, SettingActivity.class),
@@ -136,8 +133,8 @@ public class MineViewManager extends AbstractView
         }
     }
 
-    public void putLoginParams(boolean isLogin)
+    public void showLoginState(String msg)
     {
-        usernameTextView.setText(isLogin ? sharePrefLoginInfo.getLoginUsername() : "点击登陆");
+        usernameTextView.setText(msg);
     }
 }
