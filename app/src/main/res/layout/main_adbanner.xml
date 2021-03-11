@@ -23,7 +23,7 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/transparent">
 
-        <cn.misection.miscourse.view.ViewPagerIndicator
+        <cn.misection.miscourse.mvp.view.ViewPagerIndicator
             android:id="@+id/vpi_advert_indicator"
             android:layout_width="0dp"
             android:layout_height="match_parent"

@@ -11,8 +11,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import cn.misection.miscourse.bean.CourseBean;
-import cn.misection.miscourse.fragment.AdBannerFragment;
-import cn.misection.miscourse.view.impl.CourseViewManager;
+import cn.misection.miscourse.fragment.SlideBannerFragment;
+import cn.misection.miscourse.mvp.view.impl.CourseViewManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +66,7 @@ public class AdBannerAdapter extends FragmentStatePagerAdapter
         {
             args.putString("ad", courseBeanList.get(position % courseBeanList.size()).getIcon());
         }
-        return AdBannerFragment.newInstance(args);
+        return SlideBannerFragment.newInstance(args);
     }
 
     @Override

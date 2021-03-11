@@ -15,13 +15,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.misection.miscourse.opcode.EnumViewCode;
-import cn.misection.miscourse.presenter.ICoursePresenter;
-import cn.misection.miscourse.presenter.IExercisesPresenter;
-import cn.misection.miscourse.presenter.IMinePresenter;
-import cn.misection.miscourse.presenter.impl.CoursePresenterImpl;
-import cn.misection.miscourse.presenter.impl.ExercisesPresenterImpl;
-import cn.misection.miscourse.presenter.impl.MinePresenterImpl;
+import cn.misection.miscourse.mvp.opcode.EnumViewCode;
+import cn.misection.miscourse.mvp.presenter.ICoursePresenter;
+import cn.misection.miscourse.mvp.presenter.IExercisesPresenter;
+import cn.misection.miscourse.mvp.presenter.IMinePresenter;
+import cn.misection.miscourse.mvp.presenter.impl.CoursePresenterImpl;
+import cn.misection.miscourse.mvp.presenter.impl.ExercisesPresenterImpl;
+import cn.misection.miscourse.mvp.presenter.impl.MinePresenterImpl;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 /**
@@ -30,8 +30,7 @@ import cn.misection.miscourse.util.SharedPreferLoginInfo;
  * @author Administrator
  */
 public class MainActivity
-        extends AppCompatActivity
-        implements View.OnClickListener
+        extends AppCompatActivity implements View.OnClickListener
 {
     /*
     TODO
@@ -77,6 +76,8 @@ public class MainActivity
      * 上次按下退出键时间;
      */
     protected long lastRecentlyPressExitTime;
+
+    private static final long EXIT_AGAIN_DELAY = 2000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -177,7 +178,7 @@ public class MainActivity
 
     private void selectDisplayView(EnumViewCode viewCode)
     {
-        removeAllView();
+        hideAllView();
         showView(viewCode);
         updateSelectStatus(viewCode);
     }
@@ -245,7 +246,7 @@ public class MainActivity
         }
     }
 
-    private void removeAllView()
+    private void hideAllView()
     {
         for (int i = 0; i < bodyFrameLayout.getChildCount(); i++)
         {
@@ -276,7 +277,7 @@ public class MainActivity
                 && event.getAction() == KeyEvent.ACTION_DOWN)
         {
             long timeMillis = System.currentTimeMillis();
-            if (timeMillis - lastRecentlyPressExitTime > 2000)
+            if (timeMillis - lastRecentlyPressExitTime > EXIT_AGAIN_DELAY)
             {
                 Toast.makeText(this, R.string.exit_again, Toast.LENGTH_SHORT).show();
                 lastRecentlyPressExitTime = timeMillis;
