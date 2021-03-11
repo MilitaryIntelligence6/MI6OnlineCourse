@@ -6,6 +6,7 @@ import android.view.View;
 import cn.misection.miscourse.model.IExerciseModel;
 import cn.misection.miscourse.model.impl.ExerciseModel;
 import cn.misection.miscourse.presenter.IExercisesPresenter;
+import cn.misection.miscourse.view.IExerciseView;
 import cn.misection.miscourse.view.impl.ExercisesViewManager;
 import cn.misection.miscourse.view.IView;
 
@@ -24,7 +25,7 @@ public class ExercisesPresenter implements IExercisesPresenter
 
     private IExerciseModel model;
 
-    private IView view;
+    private IExerciseView view;
 
     private ExercisesPresenter(Activity context)
     {
@@ -64,5 +65,11 @@ public class ExercisesPresenter implements IExercisesPresenter
     public View requireView()
     {
         return view.view();
+    }
+
+    @Override
+    public Activity context()
+    {
+        return context;
     }
 }

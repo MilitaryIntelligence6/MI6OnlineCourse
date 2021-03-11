@@ -58,7 +58,7 @@ public class ExerciseModel implements IExerciseModel
     }
 
     @Override
-    public List exerciseList()
+    public List<ExercisesBean> exerciseList()
     {
         return beanList;
     }

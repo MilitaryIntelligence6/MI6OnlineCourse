@@ -28,7 +28,7 @@ public class MineModel implements IMineModel
 
     private void init()
     {
-        sharePrefLoginInfo = new SharedPreferLoginInfo(presenter.getContext());
+        sharePrefLoginInfo = new SharedPreferLoginInfo(presenter.context());
     }
 
     @Override

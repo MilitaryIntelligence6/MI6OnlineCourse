@@ -2,6 +2,8 @@ package cn.misection.miscourse.model;
 
 import java.util.List;
 
+import cn.misection.miscourse.bean.ExercisesBean;
+
 /**
  * @author Military Intelligence 6 root
  * @version 1.0.0
@@ -15,5 +17,5 @@ public interface IExerciseModel
      * 获取数据;
      * @return 获取数据;
      */
-    List exerciseList();
+    List<ExercisesBean> exerciseList();
 }

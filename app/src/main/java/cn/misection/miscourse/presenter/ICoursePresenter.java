@@ -1,5 +1,9 @@
 package cn.misection.miscourse.presenter;
 
+import android.app.Activity;
+
+import androidx.fragment.app.FragmentActivity;
+
 /**
  * @author Military Intelligence 6 root
  * @version 1.0.0
@@ -9,4 +13,9 @@ package cn.misection.miscourse.presenter;
  */
 public interface ICoursePresenter extends IPresenter
 {
+    /**
+     * 获得 context;
+     * @return context;
+     */
+    FragmentActivity context();
 }

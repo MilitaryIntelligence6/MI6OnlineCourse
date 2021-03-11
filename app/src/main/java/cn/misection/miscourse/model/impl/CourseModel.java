@@ -68,7 +68,7 @@ public class CourseModel implements ICourseModel
         try
         {
             InputStream is = presenter
-                    .getContext()
+                    .context()
                     .getResources()
                     .getAssets()
                     .open("chaptertitle.xml");

@@ -53,11 +53,6 @@ public class MinePresenter implements IMinePresenter
         view.showLoginState(model.loginInfo());
     }
 
-    public Activity getContext()
-    {
-        return context;
-    }
-
     @Override
     public boolean hasLogin()
     {
@@ -68,6 +63,12 @@ public class MinePresenter implements IMinePresenter
     public void updateLoginState(boolean loginFlag)
     {
         model.updateLoginState(loginFlag);
+    }
+
+    @Override
+    public Activity context()
+    {
+        return context;
     }
 
     @Override

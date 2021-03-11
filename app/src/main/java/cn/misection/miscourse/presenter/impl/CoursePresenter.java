@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import cn.misection.miscourse.model.ICourseModel;
 import cn.misection.miscourse.model.impl.CourseModel;
 import cn.misection.miscourse.presenter.ICoursePresenter;
+import cn.misection.miscourse.view.ICourseView;
 import cn.misection.miscourse.view.impl.CourseViewManager;
 import cn.misection.miscourse.view.IView;
 
@@ -23,7 +24,7 @@ public class CoursePresenter implements ICoursePresenter
 
     private ICourseModel model;
 
-    private IView view;
+    private ICourseView view;
 
     private final FragmentActivity context;
 
@@ -50,16 +51,11 @@ public class CoursePresenter implements ICoursePresenter
 
     private void init()
     {
-        this.model = new CourseModel(this);
-        this.view = new CourseViewManager(context,
+        model = new CourseModel(this);
+        view = new CourseViewManager(context,
                 model.slideList(),
                 model.courseListList()
         );
-    }
-
-    public FragmentActivity getContext()
-    {
-        return context;
     }
 
     @Override
@@ -72,5 +68,11 @@ public class CoursePresenter implements ICoursePresenter
     public View requireView()
     {
         return view.view();
+    }
+
+    @Override
+    public FragmentActivity context()
+    {
+        return context;
     }
 }

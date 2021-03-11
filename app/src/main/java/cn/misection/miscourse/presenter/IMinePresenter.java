@@ -1,5 +1,7 @@
 package cn.misection.miscourse.presenter;
 
+import android.app.Activity;
+
 /**
  * @author Military Intelligence 6 root
  * @version 1.0.0
@@ -20,4 +22,10 @@ public interface IMinePresenter extends IPresenter
      * @param loginFlag 是否登录;
      */
     void updateLoginState(boolean loginFlag);
+
+    /**
+     * 获得context;
+     * @return context;
+     */
+    Activity context();
 }
