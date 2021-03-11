@@ -11,7 +11,7 @@ import cn.misection.miscourse.bean.ExercisesBean;
  * @Description TODO
  * @CreateTime 2021年03月10日 22:51:00
  */
-public interface IExerciseModel
+public interface IExerciseModel extends IModel
 {
     /**
      * 获取数据;

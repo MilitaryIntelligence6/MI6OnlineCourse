@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.adapter.AdBannerAdapter;
+import cn.misection.miscourse.adapter.SlideBannerAdapter;
 import cn.misection.miscourse.adapter.CourseAdapter;
 import cn.misection.miscourse.bean.CourseBean;
 import cn.misection.miscourse.util.ScreenUtil;
@@ -51,7 +51,7 @@ public class CourseViewManager implements ICourseView
     /**
      * 适配器
      */
-    private AdBannerAdapter slideBannerAdapter;
+    private SlideBannerAdapter slideBannerAdapter;
 
     /**
      * 广告自动滑动
@@ -119,7 +119,7 @@ public class CourseViewManager implements ICourseView
     {
         slidePager = view.findViewById(R.id.vp_advertBanner);
         slidePager.setLongClickable(false);
-        slideBannerAdapter = new AdBannerAdapter(context.getSupportFragmentManager(), handler);
+        slideBannerAdapter = new SlideBannerAdapter(context.getSupportFragmentManager(), handler);
 
         // 给 ViewPager 设置适配器;
         slidePager.setAdapter(slideBannerAdapter);

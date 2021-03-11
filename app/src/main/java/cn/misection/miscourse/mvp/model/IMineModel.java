@@ -7,7 +7,7 @@ package cn.misection.miscourse.mvp.model;
  * @Description TODO
  * @CreateTime 2021年03月11日 15:12:00
  */
-public interface IMineModel
+public interface IMineModel extends IModel
 {
     /**
      * 登录信息;

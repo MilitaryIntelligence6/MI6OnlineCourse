@@ -20,19 +20,19 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public class AdBannerAdapter extends FragmentStatePagerAdapter
+public class SlideBannerAdapter extends FragmentStatePagerAdapter
         implements View.OnTouchListener
 {
     private Handler handler;
     private List<CourseBean> courseBeanList;
 
-    public AdBannerAdapter(@NonNull FragmentManager fragmentManager)
+    public SlideBannerAdapter(@NonNull FragmentManager fragmentManager)
     {
         super(fragmentManager);
         courseBeanList = new ArrayList<>();
     }
 
-    public AdBannerAdapter(@NonNull FragmentManager fragmentManager, Handler handler)
+    public SlideBannerAdapter(@NonNull FragmentManager fragmentManager, Handler handler)
     {
         super(fragmentManager);
         this.handler = handler;

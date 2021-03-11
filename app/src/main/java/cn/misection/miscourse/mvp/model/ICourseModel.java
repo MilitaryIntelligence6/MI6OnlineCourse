@@ -11,7 +11,7 @@ import cn.misection.miscourse.bean.CourseBean;
  * @Description TODO
  * @CreateTime 2021年03月11日 15:12:00
  */
-public interface ICourseModel
+public interface ICourseModel extends IModel
 {
     /**
      * 获取滑动;
