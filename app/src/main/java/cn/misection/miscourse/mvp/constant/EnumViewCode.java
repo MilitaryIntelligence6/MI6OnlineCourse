@@ -7,7 +7,7 @@ package cn.misection.miscourse.mvp.constant;
  * @Description 操作MainActivity的枚举;
  * @CreateTime 2021年03月08日 15:11:00
  */
-public enum EnumViewOpCode
+public enum EnumViewCode
 {
     /**
      * 操作MainActivity的枚举;

@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.misection.miscourse.mvp.constant.EnumViewOpCode;
+import cn.misection.miscourse.mvp.constant.EnumViewCode;
 import cn.misection.miscourse.mvp.presenter.ICoursePresenter;
 import cn.misection.miscourse.mvp.presenter.IExercisesPresenter;
 import cn.misection.miscourse.mvp.presenter.IMinePresenter;
@@ -38,6 +38,8 @@ public class MainActivity
         bottomCourseRelaLayout.setOnClickListener(this);
         bottomCourseImageView = findViewById(R.id.bottom_bar_image_course);
         bottomCourseTextView = findViewById(R.id.bottom_bar_text_course);
+
+        用建造者模式创建之group;
 
     把这些元素直接放入枚举或者一个类中, 用类似策略模式去写统一的调用;
      */
@@ -83,9 +85,9 @@ public class MainActivity
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        this.setContentView(R.layout.activity_main);
         init();
-        selectDisplayView(EnumViewOpCode.COURSE);
+        selectDisplayView(EnumViewCode.COURSE);
     }
 
     private void init()
@@ -154,19 +156,19 @@ public class MainActivity
             case R.id.bottom_bar_course:
             {
                 clearBottomState();
-                selectDisplayView(EnumViewOpCode.COURSE);
+                selectDisplayView(EnumViewCode.COURSE);
                 break;
             }
             case R.id.bottom_bar_exercises:
             {
                 clearBottomState();
-                selectDisplayView(EnumViewOpCode.EXERCISES);
+                selectDisplayView(EnumViewCode.EXERCISES);
                 break;
             }
             case R.id.bottom_bar_mine:
             {
                 clearBottomState();
-                selectDisplayView(EnumViewOpCode.MINE);
+                selectDisplayView(EnumViewCode.MINE);
                 break;
             }
             default:
@@ -176,16 +178,16 @@ public class MainActivity
         }
     }
 
-    private void selectDisplayView(EnumViewOpCode viewCode)
+    private void selectDisplayView(EnumViewCode viewCode)
     {
         hideAllView();
         showView(viewCode);
         updateSelectStatus(viewCode);
     }
 
-    private void updateSelectStatus(EnumViewOpCode index)
+    private void updateSelectStatus(EnumViewCode viewCode)
     {
-        switch (index)
+        switch (viewCode)
         {
             case COURSE:
             {
@@ -210,6 +212,7 @@ public class MainActivity
                 bottomMineRelaLayout.setSelected(true);
                 bottomMineImageView.setImageResource(R.drawable.main_my_icon_selected);
                 bottomMineTextView.setTextColor(Color.parseColor("#0097f7"));
+
                 titleBarRelaLayout.setVisibility(View.GONE);
                 break;
             }
@@ -220,7 +223,7 @@ public class MainActivity
         }
     }
 
-    private void showView(EnumViewOpCode viewCode)
+    private void showView(EnumViewCode viewCode)
     {
         switch (viewCode)
         {
@@ -306,7 +309,7 @@ public class MainActivity
             if (loginFlag)
             {
                 clearBottomState();
-                updateSelectStatus(EnumViewOpCode.COURSE);
+                updateSelectStatus(EnumViewCode.COURSE);
             }
             // FIXME 这里逻辑没弄清楚, 到底会不会改变其;, 原来是传入该loginFlag;
             minePresenter.showLoginState();
