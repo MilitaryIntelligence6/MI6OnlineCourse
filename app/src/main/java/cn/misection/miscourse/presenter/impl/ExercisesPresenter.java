@@ -1,10 +1,14 @@
 package cn.misection.miscourse.presenter.impl;
 
 import android.app.Activity;
+import android.view.View;
 
+import cn.misection.miscourse.model.IExerciseModel;
 import cn.misection.miscourse.model.impl.ExerciseModel;
 import cn.misection.miscourse.presenter.AbstractPresenter;
+import cn.misection.miscourse.presenter.IExercisesPresenter;
 import cn.misection.miscourse.view.ExercisesViewManager;
+import cn.misection.miscourse.view.IView;
 
 /**
  * @author Military Intelligence 6 root
@@ -13,11 +17,15 @@ import cn.misection.miscourse.view.ExercisesViewManager;
  * @Description TODO
  * @CreateTime 2021年03月10日 19:09:00
  */
-public class ExercisesPresenter extends AbstractPresenter
+public class ExercisesPresenter implements IExercisesPresenter
 {
+    private volatile static ExercisesPresenter instance = null;
+
     private final Activity context;
 
-    private volatile static ExercisesPresenter instance = null;
+    private IExerciseModel model;
+
+    private IView view;
 
     private ExercisesPresenter(Activity context)
     {
@@ -45,5 +53,17 @@ public class ExercisesPresenter extends AbstractPresenter
         this.model = new ExerciseModel(this);
         this.view = new ExercisesViewManager(context,
                 this.model.requireData());
+    }
+
+    @Override
+    public void showView()
+    {
+        view.show();
+    }
+
+    @Override
+    public View requireView()
+    {
+        return view.view();
     }
 }

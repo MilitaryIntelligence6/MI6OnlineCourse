@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.misection.miscourse.bean.CourseBean;
+import cn.misection.miscourse.model.ICourseModel;
 import cn.misection.miscourse.model.IExerciseModel;
 import cn.misection.miscourse.presenter.impl.CoursePresenter;
 import cn.misection.miscourse.util.AnalysisUtil;
@@ -19,7 +20,7 @@ import cn.misection.miscourse.util.AnalysisUtil;
  * @Description TODO
  * @CreateTime 2021年03月11日 00:05:00
  */
-public class CourseModel implements IExerciseModel
+public class CourseModel implements ICourseModel
 {
     private final CoursePresenter presenter;
 
@@ -62,21 +63,6 @@ public class CourseModel implements IExerciseModel
         }
     }
 
-    /**
-     * 初始化课程数据;
-     * @return list;
-     */
-    public List<List<CourseBean>> requireBeanListList()
-    {
-        return beanListList;
-    }
-
-    @Override
-    public List requireData()
-    {
-        return slideBeanList;
-    }
-
     private void initCourseListList()
     {
         try
@@ -92,5 +78,15 @@ public class CourseModel implements IExerciseModel
         {
             e.printStackTrace();
         }
+    }
+
+    public List<CourseBean> getSlideBeanList()
+    {
+        return slideBeanList;
+    }
+
+    public List<List<CourseBean>> getBeanListList()
+    {
+        return beanListList;
     }
 }

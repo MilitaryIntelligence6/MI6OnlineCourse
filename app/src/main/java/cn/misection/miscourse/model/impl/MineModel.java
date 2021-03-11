@@ -48,6 +48,6 @@ public class MineModel implements IMineModel
     @Override
     public void updateLoginState(boolean loginFlag)
     {
-        // FIXME;
+        // FIXME; 但是好像没影响;
     }
 }

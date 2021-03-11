@@ -14,13 +14,13 @@ import cn.misection.miscourse.view.MineViewManager;
  */
 public class MinePresenter implements IMinePresenter
 {
+    private volatile static MinePresenter instance = null;
+
     private IMineModel model;
 
     private MineViewManager view;
 
     private final Activity context;
-
-    private volatile static MinePresenter instance = null;
 
     private MinePresenter(Activity context)
     {
