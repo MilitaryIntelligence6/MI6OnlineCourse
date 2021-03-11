@@ -15,8 +15,7 @@ import cn.misection.miscourse.activity.PlayHistoryActivity;
 import cn.misection.miscourse.activity.SettingActivity;
 import cn.misection.miscourse.activity.UserInfoActivity;
 import cn.misection.miscourse.presenter.impl.MinePresenter;
-import cn.misection.miscourse.view.AbstractView;
-import cn.misection.miscourse.view.IView;
+import cn.misection.miscourse.view.IMineView;
 
 /**
  * @author Military Intelligence 6 root
@@ -25,10 +24,11 @@ import cn.misection.miscourse.view.IView;
  * @Description TODO
  * @CreateTime 2021年03月10日 14:14:00
  */
-public class MineViewManager extends AbstractView
-        implements View.OnClickListener, IView
+public class MineViewManager implements IMineView, View.OnClickListener
 {
     private MinePresenter presenter;
+
+    private View view;
 
     private Activity context;
 
@@ -137,5 +137,17 @@ public class MineViewManager extends AbstractView
     public void showLoginState(String msg)
     {
         usernameTextView.setText(msg);
+    }
+
+    @Override
+    public void show()
+    {
+        view.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public View view()
+    {
+        return view;
     }
 }

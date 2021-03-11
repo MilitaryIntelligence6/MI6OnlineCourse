@@ -7,7 +7,7 @@ import android.widget.ListView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.ExercisesAdapter;
 import cn.misection.miscourse.bean.ExercisesBean;
-import cn.misection.miscourse.view.AbstractView;
+import cn.misection.miscourse.view.IView;
 
 import java.util.List;
 
@@ -16,8 +16,10 @@ import java.util.List;
  *
  * @author Administrator
  */
-public class ExercisesViewManager extends AbstractView
+public class ExercisesViewManager implements IView
 {
+    private View view;
+
     private ListView listView;
 
     private final List<ExercisesBean> beanList;
@@ -49,5 +51,17 @@ public class ExercisesViewManager extends AbstractView
         ExercisesAdapter adapter = new ExercisesAdapter(context);
         adapter.setData(beanList);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void show()
+    {
+        view.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public View view()
+    {
+        return view;
     }
 }

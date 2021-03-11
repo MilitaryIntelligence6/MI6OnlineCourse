@@ -15,7 +15,7 @@ import cn.misection.miscourse.adapter.AdBannerAdapter;
 import cn.misection.miscourse.adapter.CourseAdapter;
 import cn.misection.miscourse.bean.CourseBean;
 import cn.misection.miscourse.util.ScreenUtil;
-import cn.misection.miscourse.view.AbstractView;
+import cn.misection.miscourse.view.ICourseView;
 import cn.misection.miscourse.view.ViewPagerIndicator;
 
 import java.util.List;
@@ -23,11 +23,13 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public class CourseViewManager extends AbstractView
+public class CourseViewManager implements ICourseView
 {
-    /*
-    TODO 线程改线程池;
+    /**
+     * TODO 线程改线程池;
      */
+    private View view;
+
     private ListView listView;
 
     private CourseAdapter slideApter;
@@ -178,6 +180,18 @@ public class CourseViewManager extends AbstractView
         slideLayoutParams.width = screenWidth;
         slideLayoutParams.height = adLheight;
         slideBannerLay.setLayoutParams(slideLayoutParams);
+    }
+
+    @Override
+    public void show()
+    {
+        view.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public View view()
+    {
+        return view;
     }
 
 
