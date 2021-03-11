@@ -1,13 +1,12 @@
 package cn.misection.miscourse.presenter.impl;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 
 import cn.misection.miscourse.model.IMineModel;
 import cn.misection.miscourse.model.impl.MineModel;
 import cn.misection.miscourse.presenter.IMinePresenter;
-import cn.misection.miscourse.view.MineViewManager;
+import cn.misection.miscourse.view.impl.MineViewManager;
 
 /**
  * @author Administrator

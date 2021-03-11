@@ -1,4 +1,4 @@
-package cn.misection.miscourse.view;
+package cn.misection.miscourse.view.impl;
 
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +15,8 @@ import cn.misection.miscourse.adapter.AdBannerAdapter;
 import cn.misection.miscourse.adapter.CourseAdapter;
 import cn.misection.miscourse.bean.CourseBean;
 import cn.misection.miscourse.util.ScreenUtil;
+import cn.misection.miscourse.view.AbstractView;
+import cn.misection.miscourse.view.ViewPagerIndicator;
 
 import java.util.List;
 

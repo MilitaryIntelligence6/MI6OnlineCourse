@@ -6,9 +6,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import cn.misection.miscourse.model.ICourseModel;
 import cn.misection.miscourse.model.impl.CourseModel;
-import cn.misection.miscourse.presenter.AbstractPresenter;
 import cn.misection.miscourse.presenter.ICoursePresenter;
-import cn.misection.miscourse.view.CourseViewManager;
+import cn.misection.miscourse.view.impl.CourseViewManager;
 import cn.misection.miscourse.view.IView;
 
 /**

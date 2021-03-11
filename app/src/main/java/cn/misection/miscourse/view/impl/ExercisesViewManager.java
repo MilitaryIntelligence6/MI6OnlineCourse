@@ -1,4 +1,4 @@
-package cn.misection.miscourse.view;
+package cn.misection.miscourse.view.impl;
 
 import android.app.Activity;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.ListView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.ExercisesAdapter;
 import cn.misection.miscourse.bean.ExercisesBean;
+import cn.misection.miscourse.view.AbstractView;
 
 import java.util.List;
 

@@ -5,9 +5,8 @@ import android.view.View;
 
 import cn.misection.miscourse.model.IExerciseModel;
 import cn.misection.miscourse.model.impl.ExerciseModel;
-import cn.misection.miscourse.presenter.AbstractPresenter;
 import cn.misection.miscourse.presenter.IExercisesPresenter;
-import cn.misection.miscourse.view.ExercisesViewManager;
+import cn.misection.miscourse.view.impl.ExercisesViewManager;
 import cn.misection.miscourse.view.IView;
 
 /**

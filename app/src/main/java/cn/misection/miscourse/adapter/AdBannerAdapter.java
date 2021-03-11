@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import cn.misection.miscourse.bean.CourseBean;
 import cn.misection.miscourse.fragment.AdBannerFragment;
-import cn.misection.miscourse.view.CourseViewManager;
+import cn.misection.miscourse.view.impl.CourseViewManager;
 
 import java.util.ArrayList;
 import java.util.List;

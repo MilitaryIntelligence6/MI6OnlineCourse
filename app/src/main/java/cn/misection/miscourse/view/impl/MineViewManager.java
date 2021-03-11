@@ -1,7 +1,6 @@
-package cn.misection.miscourse.view;
+package cn.misection.miscourse.view.impl;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,6 +15,8 @@ import cn.misection.miscourse.activity.PlayHistoryActivity;
 import cn.misection.miscourse.activity.SettingActivity;
 import cn.misection.miscourse.activity.UserInfoActivity;
 import cn.misection.miscourse.presenter.impl.MinePresenter;
+import cn.misection.miscourse.view.AbstractView;
+import cn.misection.miscourse.view.IView;
 
 /**
  * @author Military Intelligence 6 root
