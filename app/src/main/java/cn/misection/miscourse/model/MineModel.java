@@ -13,7 +13,18 @@ import cn.misection.miscourse.presenter.MinePresenter;
  */
 public class MineModel implements IModel
 {
-    private MinePresenter presenter;
+    private final MinePresenter presenter;
+
+    public MineModel(MinePresenter presenter)
+    {
+        this.presenter = presenter;
+        init();
+    }
+
+    private void init()
+    {
+
+    }
 
     @Override
     public List requireData()

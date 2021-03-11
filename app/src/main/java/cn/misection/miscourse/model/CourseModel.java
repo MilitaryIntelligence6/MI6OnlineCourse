@@ -22,7 +22,7 @@ import cn.misection.miscourse.util.AnalysisUtil;
  */
 public class CourseModel implements IModel
 {
-    private CoursePresenter presenter;
+    private final CoursePresenter presenter;
 
     private static final int AD_COUNT = 3;
 

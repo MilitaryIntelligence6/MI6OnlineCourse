@@ -17,12 +17,13 @@ import cn.misection.miscourse.presenter.ExercisesPresenter;
  */
 public class ExerciseModel implements IModel
 {
-    private ExercisesPresenter presenter;
+    private final ExercisesPresenter presenter;
 
     private List<ExercisesBean> beanList;
 
-    public ExerciseModel()
+    public ExerciseModel(ExercisesPresenter presenter)
     {
+        this.presenter = presenter;
         init();
     }
 
