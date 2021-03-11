@@ -51,7 +51,7 @@ public class ExercisesPresenter implements IExercisesPresenter
     {
         this.model = new ExerciseModel(this);
         this.view = new ExercisesViewManager(context,
-                this.model.requireData());
+                this.model.exerciseList());
     }
 
     @Override

@@ -15,5 +15,5 @@ public interface IExerciseModel
      * 获取数据;
      * @return 获取数据;
      */
-    List requireData();
+    List exerciseList();
 }

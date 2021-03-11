@@ -80,12 +80,14 @@ public class CourseModel implements ICourseModel
         }
     }
 
-    public List<CourseBean> getSlideBeanList()
+    @Override
+    public List<CourseBean> slideList()
     {
         return slideBeanList;
     }
 
-    public List<List<CourseBean>> getBeanListList()
+    @Override
+    public List<List<CourseBean>> courseListList()
     {
         return beanListList;
     }

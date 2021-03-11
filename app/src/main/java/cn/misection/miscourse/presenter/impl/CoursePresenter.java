@@ -51,10 +51,9 @@ public class CoursePresenter implements ICoursePresenter
     private void init()
     {
         this.model = new CourseModel(this);
-        CourseModel courseModel = (CourseModel) this.model;
         this.view = new CourseViewManager(context,
-                courseModel.getSlideBeanList(),
-                courseModel.getBeanListList()
+                model.slideList(),
+                model.courseListList()
         );
     }
 
