@@ -2,6 +2,8 @@ package cn.misection.miscourse.model;
 
 import java.util.List;
 
+import cn.misection.miscourse.presenter.MinePresenter;
+
 /**
  * @author Military Intelligence 6 root
  * @version 1.0.0
@@ -11,6 +13,8 @@ import java.util.List;
  */
 public class MineModel implements IModel
 {
+    private MinePresenter presenter;
+
     @Override
     public List requireData()
     {

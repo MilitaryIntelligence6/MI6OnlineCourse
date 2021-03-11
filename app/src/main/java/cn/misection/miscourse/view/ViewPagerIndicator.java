@@ -21,6 +21,7 @@ public class ViewPagerIndicator extends LinearLayout
      * 当前小圆点的位置;
      */
     private int index;
+
     private Context context;
 
     public ViewPagerIndicator(Context context)

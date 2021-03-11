@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.misection.miscourse.bean.CourseBean;
+import cn.misection.miscourse.presenter.CoursePresenter;
 import cn.misection.miscourse.util.AnalysisUtil;
 
 /**
@@ -21,14 +22,17 @@ import cn.misection.miscourse.util.AnalysisUtil;
  */
 public class CourseModel implements IModel
 {
+    private CoursePresenter presenter;
+
     private static final int AD_COUNT = 3;
 
     private List<CourseBean> slideBeanList;
 
     private List<List<CourseBean>> beanListList;
 
-    public CourseModel()
+    public CourseModel(CoursePresenter presenter)
     {
+        this.presenter = presenter;
         init();
     }
 
@@ -40,6 +44,7 @@ public class CourseModel implements IModel
     private void initData()
     {
         initSlide();
+        initCourseListList();
     }
 
     /**
@@ -60,12 +65,10 @@ public class CourseModel implements IModel
 
     /**
      * 初始化课程数据;
-     * @param context c;
      * @return list;
      */
-    public List<List<CourseBean>> requireBeanListList(Context context)
+    public List<List<CourseBean>> requireBeanListList()
     {
-        applyCourseListList(context);
         return beanListList;
     }
 
@@ -75,11 +78,15 @@ public class CourseModel implements IModel
         return slideBeanList;
     }
 
-    private void applyCourseListList(Context context)
+    private void initCourseListList()
     {
         try
         {
-            InputStream is = context.getResources().getAssets().open("chaptertitle.xml");
+            InputStream is = presenter
+                    .getContext()
+                    .getResources()
+                    .getAssets()
+                    .open("chaptertitle.xml");
             beanListList = AnalysisUtil.requireCourseInfo(is);
         }
         catch (IOException | XmlPullParserException e)

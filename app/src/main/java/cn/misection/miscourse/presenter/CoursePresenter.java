@@ -43,11 +43,16 @@ public class CoursePresenter extends AbstractPresenter
 
     private void init()
     {
-        this.model = new CourseModel();
+        this.model = new CourseModel(this);
         CourseModel courseModel = (CourseModel) this.model;
         this.view = new CourseViewManager(context,
                 courseModel.requireData(),
-                courseModel.requireBeanListList(context)
+                courseModel.requireBeanListList()
         );
+    }
+
+    public FragmentActivity getContext()
+    {
+        return context;
     }
 }

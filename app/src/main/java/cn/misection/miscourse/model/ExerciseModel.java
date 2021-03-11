@@ -6,6 +6,7 @@ import java.util.List;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.bean.ExercisesBean;
 import cn.misection.miscourse.constant.EnumExerciseProp;
+import cn.misection.miscourse.presenter.ExercisesPresenter;
 
 /**
  * @author Military Intelligence 6 root
@@ -16,6 +17,8 @@ import cn.misection.miscourse.constant.EnumExerciseProp;
  */
 public class ExerciseModel implements IModel
 {
+    private ExercisesPresenter presenter;
+
     private List<ExercisesBean> beanList;
 
     public ExerciseModel()

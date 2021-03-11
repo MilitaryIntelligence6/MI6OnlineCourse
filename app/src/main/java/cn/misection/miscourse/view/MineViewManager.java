@@ -15,6 +15,7 @@ import cn.misection.miscourse.activity.LoginActivity;
 import cn.misection.miscourse.activity.PlayHistoryActivity;
 import cn.misection.miscourse.activity.SettingActivity;
 import cn.misection.miscourse.activity.UserInfoActivity;
+import cn.misection.miscourse.presenter.ExercisesPresenter;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 /**
