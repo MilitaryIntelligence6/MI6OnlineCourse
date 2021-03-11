@@ -1,10 +1,7 @@
 package cn.misection.miscourse.model.impl;
 
-import java.util.List;
-
-import cn.misection.miscourse.model.ICourseModel;
 import cn.misection.miscourse.model.IMineModel;
-import cn.misection.miscourse.presenter.impl.MinePresenter;
+import cn.misection.miscourse.presenter.impl.MinePresenterImpl;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 /**
@@ -14,13 +11,13 @@ import cn.misection.miscourse.util.SharedPreferLoginInfo;
  * @Description TODO
  * @CreateTime 2021年03月11日 00:45:00
  */
-public class MineModel implements IMineModel
+public class MineModelImpl implements IMineModel
 {
-    private final MinePresenter presenter;
+    private final MinePresenterImpl presenter;
 
     private SharedPreferLoginInfo sharePrefLoginInfo;
 
-    public MineModel(MinePresenter presenter)
+    public MineModelImpl(MinePresenterImpl presenter)
     {
         this.presenter = presenter;
         init();

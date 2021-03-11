@@ -9,8 +9,7 @@ import java.util.List;
 
 import cn.misection.miscourse.bean.CourseBean;
 import cn.misection.miscourse.model.ICourseModel;
-import cn.misection.miscourse.model.IExerciseModel;
-import cn.misection.miscourse.presenter.impl.CoursePresenter;
+import cn.misection.miscourse.presenter.impl.CoursePresenterImpl;
 import cn.misection.miscourse.util.AnalysisUtil;
 
 /**
@@ -20,9 +19,9 @@ import cn.misection.miscourse.util.AnalysisUtil;
  * @Description TODO
  * @CreateTime 2021年03月11日 00:05:00
  */
-public class CourseModel implements ICourseModel
+public class CourseModelImpl implements ICourseModel
 {
-    private final CoursePresenter presenter;
+    private final CoursePresenterImpl presenter;
 
     private static final int AD_COUNT = 3;
 
@@ -30,7 +29,7 @@ public class CourseModel implements ICourseModel
 
     private List<List<CourseBean>> beanListList;
 
-    public CourseModel(CoursePresenter presenter)
+    public CourseModelImpl(CoursePresenterImpl presenter)
     {
         this.presenter = presenter;
         init();

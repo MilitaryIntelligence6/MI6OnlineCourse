@@ -15,7 +15,7 @@ import cn.misection.miscourse.activity.PlayHistoryActivity;
 import cn.misection.miscourse.activity.SettingActivity;
 import cn.misection.miscourse.activity.UserInfoActivity;
 import cn.misection.miscourse.presenter.IMinePresenter;
-import cn.misection.miscourse.presenter.impl.MinePresenter;
+import cn.misection.miscourse.presenter.impl.MinePresenterImpl;
 import cn.misection.miscourse.view.IMineView;
 
 /**
@@ -43,7 +43,7 @@ public class MineViewManager implements IMineView, View.OnClickListener
 
     private volatile static MineViewManager instance = null;
 
-    public MineViewManager(MinePresenter presenter)
+    public MineViewManager(MinePresenterImpl presenter)
     {
         this.presenter = presenter;
         init();

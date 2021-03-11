@@ -5,11 +5,10 @@ import android.view.View;
 import androidx.fragment.app.FragmentActivity;
 
 import cn.misection.miscourse.model.ICourseModel;
-import cn.misection.miscourse.model.impl.CourseModel;
+import cn.misection.miscourse.model.impl.CourseModelImpl;
 import cn.misection.miscourse.presenter.ICoursePresenter;
 import cn.misection.miscourse.view.ICourseView;
 import cn.misection.miscourse.view.impl.CourseViewManager;
-import cn.misection.miscourse.view.IView;
 
 /**
  * @author Military Intelligence 6 root
@@ -18,9 +17,9 @@ import cn.misection.miscourse.view.IView;
  * @Description TODO
  * @CreateTime 2021年03月10日 18:44:00
  */
-public class CoursePresenter implements ICoursePresenter
+public class CoursePresenterImpl implements ICoursePresenter
 {
-    private volatile static CoursePresenter instance = null;
+    private volatile static CoursePresenterImpl instance = null;
 
     private ICourseModel model;
 
@@ -28,21 +27,21 @@ public class CoursePresenter implements ICoursePresenter
 
     private final FragmentActivity context;
 
-    private CoursePresenter(FragmentActivity context)
+    private CoursePresenterImpl(FragmentActivity context)
     {
         this.context = context;
         init();
     }
 
-    public static CoursePresenter requireInstance(FragmentActivity context)
+    public static CoursePresenterImpl requireInstance(FragmentActivity context)
     {
         if (instance == null)
         {
-            synchronized (CoursePresenter.class)
+            synchronized (CoursePresenterImpl.class)
             {
                 if (instance == null)
                 {
-                    instance = new CoursePresenter(context);
+                    instance = new CoursePresenterImpl(context);
                 }
             }
         }
@@ -51,7 +50,7 @@ public class CoursePresenter implements ICoursePresenter
 
     private void init()
     {
-        model = new CourseModel(this);
+        model = new CourseModelImpl(this);
         view = new CourseViewManager(context,
                 model.slideList(),
                 model.courseListList()

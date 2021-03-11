@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.view.View;
 
 import cn.misection.miscourse.model.IExerciseModel;
-import cn.misection.miscourse.model.impl.ExerciseModel;
+import cn.misection.miscourse.model.impl.ExerciseModelImpl;
 import cn.misection.miscourse.presenter.IExercisesPresenter;
 import cn.misection.miscourse.view.IExerciseView;
 import cn.misection.miscourse.view.impl.ExercisesViewManager;
-import cn.misection.miscourse.view.IView;
 
 /**
  * @author Military Intelligence 6 root
@@ -17,9 +16,9 @@ import cn.misection.miscourse.view.IView;
  * @Description TODO
  * @CreateTime 2021年03月10日 19:09:00
  */
-public class ExercisesPresenter implements IExercisesPresenter
+public class ExercisesPresenterImpl implements IExercisesPresenter
 {
-    private volatile static ExercisesPresenter instance = null;
+    private volatile static ExercisesPresenterImpl instance = null;
 
     private final Activity context;
 
@@ -27,21 +26,21 @@ public class ExercisesPresenter implements IExercisesPresenter
 
     private IExerciseView view;
 
-    private ExercisesPresenter(Activity context)
+    private ExercisesPresenterImpl(Activity context)
     {
         this.context = context;
         init();
     }
 
-    public static ExercisesPresenter requireInstance(Activity context)
+    public static ExercisesPresenterImpl requireInstance(Activity context)
     {
         if (instance == null)
         {
-            synchronized (ExercisesPresenter.class)
+            synchronized (ExercisesPresenterImpl.class)
             {
                 if (instance == null)
                 {
-                    instance = new ExercisesPresenter(context);
+                    instance = new ExercisesPresenterImpl(context);
                 }
             }
         }
@@ -50,7 +49,7 @@ public class ExercisesPresenter implements IExercisesPresenter
 
     private void init()
     {
-        this.model = new ExerciseModel(this);
+        this.model = new ExerciseModelImpl(this);
         this.view = new ExercisesViewManager(context,
                 this.model.exerciseList());
     }

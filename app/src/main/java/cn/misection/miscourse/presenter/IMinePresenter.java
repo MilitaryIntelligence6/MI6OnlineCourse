@@ -28,4 +28,9 @@ public interface IMinePresenter extends IPresenter
      * @return context;
      */
     Activity context();
+
+    /**
+     * 展示是否登录;
+     */
+    void showLoginState();
 }

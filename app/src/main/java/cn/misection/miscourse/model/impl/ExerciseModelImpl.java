@@ -7,7 +7,7 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.bean.ExercisesBean;
 import cn.misection.miscourse.constant.EnumExerciseProp;
 import cn.misection.miscourse.model.IExerciseModel;
-import cn.misection.miscourse.presenter.impl.ExercisesPresenter;
+import cn.misection.miscourse.presenter.impl.ExercisesPresenterImpl;
 
 /**
  * @author Military Intelligence 6 root
@@ -16,13 +16,13 @@ import cn.misection.miscourse.presenter.impl.ExercisesPresenter;
  * @Description TODO
  * @CreateTime 2021年03月10日 22:57:00
  */
-public class ExerciseModel implements IExerciseModel
+public class ExerciseModelImpl implements IExerciseModel
 {
-    private final ExercisesPresenter presenter;
+    private final ExercisesPresenterImpl presenter;
 
     private List<ExercisesBean> beanList;
 
-    public ExerciseModel(ExercisesPresenter presenter)
+    public ExerciseModelImpl(ExercisesPresenterImpl presenter)
     {
         this.presenter = presenter;
         init();

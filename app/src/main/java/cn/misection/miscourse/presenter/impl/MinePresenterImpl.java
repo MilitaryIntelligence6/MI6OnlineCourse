@@ -4,16 +4,16 @@ import android.app.Activity;
 import android.view.View;
 
 import cn.misection.miscourse.model.IMineModel;
-import cn.misection.miscourse.model.impl.MineModel;
+import cn.misection.miscourse.model.impl.MineModelImpl;
 import cn.misection.miscourse.presenter.IMinePresenter;
 import cn.misection.miscourse.view.impl.MineViewManager;
 
 /**
  * @author Administrator
  */
-public class MinePresenter implements IMinePresenter
+public class MinePresenterImpl implements IMinePresenter
 {
-    private volatile static MinePresenter instance = null;
+    private volatile static MinePresenterImpl instance = null;
 
     private IMineModel model;
 
@@ -21,20 +21,20 @@ public class MinePresenter implements IMinePresenter
 
     private final Activity context;
 
-    private MinePresenter(Activity context)
+    private MinePresenterImpl(Activity context)
     {
         this.context = context;
         init();
     }
-    public static MinePresenter requireInstance(Activity context)
+    public static MinePresenterImpl requireInstance(Activity context)
     {
         if (instance == null)
         {
-            synchronized (MinePresenter.class)
+            synchronized (MinePresenterImpl.class)
             {
                 if (instance == null)
                 {
-                    instance = new MinePresenter(context);
+                    instance = new MinePresenterImpl(context);
                 }
             }
         }
@@ -44,11 +44,12 @@ public class MinePresenter implements IMinePresenter
     private void init()
     {
         this.view = new MineViewManager(this);
-        this.model = new MineModel(this);
-        putLoginParams();
+        this.model = new MineModelImpl(this);
+        showLoginState();
     }
 
-    public void putLoginParams()
+    @Override
+    public void showLoginState()
     {
         view.showLoginState(model.loginInfo());
     }

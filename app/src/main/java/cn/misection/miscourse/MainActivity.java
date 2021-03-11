@@ -16,9 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.opcode.EnumViewCode;
-import cn.misection.miscourse.presenter.impl.CoursePresenter;
-import cn.misection.miscourse.presenter.impl.ExercisesPresenter;
-import cn.misection.miscourse.presenter.impl.MinePresenter;
+import cn.misection.miscourse.presenter.ICoursePresenter;
+import cn.misection.miscourse.presenter.IExercisesPresenter;
+import cn.misection.miscourse.presenter.IMinePresenter;
+import cn.misection.miscourse.presenter.impl.CoursePresenterImpl;
+import cn.misection.miscourse.presenter.impl.ExercisesPresenterImpl;
+import cn.misection.miscourse.presenter.impl.MinePresenterImpl;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 /**
@@ -64,9 +67,9 @@ public class MainActivity
     /**
      * 三个子view;
      */
-    private MinePresenter minePresenter;
-    private ExercisesPresenter exercisesPresenter;
-    private CoursePresenter coursePresenter;
+    private IMinePresenter minePresenter;
+    private IExercisesPresenter exercisesPresenter;
+    private ICoursePresenter coursePresenter;
 
     private SharedPreferLoginInfo sharedPrefLoginInfo;
 
@@ -109,9 +112,9 @@ public class MainActivity
 
     private void initPresenter()
     {
-        minePresenter = MinePresenter.requireInstance(this);
-        coursePresenter = CoursePresenter.requireInstance(this);
-        exercisesPresenter = ExercisesPresenter.requireInstance(this);
+        minePresenter = MinePresenterImpl.requireInstance(this);
+        coursePresenter = CoursePresenterImpl.requireInstance(this);
+        exercisesPresenter = ExercisesPresenterImpl.requireInstance(this);
 
         bodyFrameLayout.addView(minePresenter.requireView());
         bodyFrameLayout.addView(coursePresenter.requireView());
@@ -305,7 +308,7 @@ public class MainActivity
                 updateSelectStatus(EnumViewCode.COURSE);
             }
             // FIXME 这里逻辑没弄清楚, 到底会不会改变其;, 原来是传入该loginFlag;
-            minePresenter.putLoginParams();
+            minePresenter.showLoginState();
         }
     }
 }
