@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.misection.miscourse.mvp.opcode.EnumViewCode;
+import cn.misection.miscourse.mvp.constant.EnumViewOpCode;
 import cn.misection.miscourse.mvp.presenter.ICoursePresenter;
 import cn.misection.miscourse.mvp.presenter.IExercisesPresenter;
 import cn.misection.miscourse.mvp.presenter.IMinePresenter;
@@ -85,7 +85,7 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        selectDisplayView(EnumViewCode.COURSE);
+        selectDisplayView(EnumViewOpCode.COURSE);
     }
 
     private void init()
@@ -154,19 +154,19 @@ public class MainActivity
             case R.id.bottom_bar_course:
             {
                 clearBottomState();
-                selectDisplayView(EnumViewCode.COURSE);
+                selectDisplayView(EnumViewOpCode.COURSE);
                 break;
             }
             case R.id.bottom_bar_exercises:
             {
                 clearBottomState();
-                selectDisplayView(EnumViewCode.EXERCISES);
+                selectDisplayView(EnumViewOpCode.EXERCISES);
                 break;
             }
             case R.id.bottom_bar_mine:
             {
                 clearBottomState();
-                selectDisplayView(EnumViewCode.MINE);
+                selectDisplayView(EnumViewOpCode.MINE);
                 break;
             }
             default:
@@ -176,14 +176,14 @@ public class MainActivity
         }
     }
 
-    private void selectDisplayView(EnumViewCode viewCode)
+    private void selectDisplayView(EnumViewOpCode viewCode)
     {
         hideAllView();
         showView(viewCode);
         updateSelectStatus(viewCode);
     }
 
-    private void updateSelectStatus(EnumViewCode index)
+    private void updateSelectStatus(EnumViewOpCode index)
     {
         switch (index)
         {
@@ -220,7 +220,7 @@ public class MainActivity
         }
     }
 
-    private void showView(EnumViewCode viewCode)
+    private void showView(EnumViewOpCode viewCode)
     {
         switch (viewCode)
         {
@@ -306,7 +306,7 @@ public class MainActivity
             if (loginFlag)
             {
                 clearBottomState();
-                updateSelectStatus(EnumViewCode.COURSE);
+                updateSelectStatus(EnumViewOpCode.COURSE);
             }
             // FIXME 这里逻辑没弄清楚, 到底会不会改变其;, 原来是传入该loginFlag;
             minePresenter.showLoginState();
