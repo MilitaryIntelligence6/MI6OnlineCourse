@@ -1,6 +1,5 @@
 package cn.misection.miscourse.entity;
 
-import cn.misection.miscourse.constant.EnumExerciseChoice;
 import cn.misection.miscourse.constant.EnumExercise;
 
 /**

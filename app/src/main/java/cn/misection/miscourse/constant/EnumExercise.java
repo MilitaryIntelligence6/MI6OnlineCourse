@@ -1,5 +1,9 @@
 package cn.misection.miscourse.constant;
 
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.misection.miscourse.R;
 
 /**
@@ -14,14 +18,16 @@ public enum EnumExercise
     /**
      * 选项;
      */
-    A(R.id.a_image_view, R.id.a_text_view, R.drawable.a_exercise),
+    CHOICE_A("a", R.id.a_image_view, R.id.a_text_view, R.drawable.a_exercise),
 
-    B(R.id.b_image_view, R.id.b_text_view, R.drawable.b_exercise),
+    CHOICE_B("b", R.id.b_image_view, R.id.b_text_view, R.drawable.b_exercise),
 
-    C(R.id.c_image_view, R.id.c_text_view, R.drawable.c_exercise),
+    CHOICE_C("c", R.id.c_image_view, R.id.c_text_view, R.drawable.c_exercise),
 
-    D(R.id.d_image_view, R.id.d_text_view, R.drawable.d_exercise),
+    CHOICE_D("d", R.id.d_image_view, R.id.d_text_view, R.drawable.d_exercise),
     ;
+
+    private String lowerCase;
 
     private int imageView;
 
@@ -29,11 +35,22 @@ public enum EnumExercise
 
     private int imageResource;
 
-    EnumExercise(int imageView, int textView, int imageResource)
+    EnumExercise(String lowerCase, int imageView, int textView, int imageResource)
     {
+        this.lowerCase = lowerCase;
         this.imageView = imageView;
         this.textView = textView;
         this.imageResource = imageResource;
+    }
+
+    public String getLowerCase()
+    {
+        return lowerCase;
+    }
+
+    public void setLowerCase(String lowerCase)
+    {
+        this.lowerCase = lowerCase;
     }
 
     public int getImageView()
@@ -66,6 +83,16 @@ public enum EnumExercise
         this.imageResource = imageResource;
     }
 
+    private static final Map<String, EnumExercise> lowerCaseLookup = new HashMap<>();
+
+    static
+    {
+        for (EnumExercise enumExercise : EnumSet.allOf(EnumExercise.class))
+        {
+            lowerCaseLookup.put(enumExercise.lowerCase, enumExercise);
+        }
+    }
+
     public static EnumExercise valueOf(int ordinal)
     {
         if (ordinal < 0 || ordinal > values().length - 1)
@@ -78,5 +105,15 @@ public enum EnumExercise
     public static int count()
     {
         return values().length;
+    }
+
+    public static EnumExercise selectEnumByLowerCase(String lowerCase)
+    {
+        return lowerCaseLookup.get(lowerCase);
+    }
+
+    public static boolean containsChoice(String lowerCase)
+    {
+        return lowerCaseLookup.containsKey(lowerCase);
     }
 }

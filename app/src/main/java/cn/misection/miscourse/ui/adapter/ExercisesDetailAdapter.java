@@ -29,10 +29,21 @@ public class ExercisesDetailAdapter extends BaseAdapter
 
     private OnSelectListener onSelectListener;
 
+    /**
+     * 记录点击的位置;
+     */
+    private List<String> selectedPosition;
+
     public ExercisesDetailAdapter(Context context, OnSelectListener onSelectListener)
     {
         this.context = context;
         this.onSelectListener = onSelectListener;
+        init();
+    }
+
+    private void init()
+    {
+        selectedPosition = new ArrayList<>();
     }
 
     public void putExerciseList(List<ExerciseBean> exerciseList)
@@ -60,11 +71,6 @@ public class ExercisesDetailAdapter extends BaseAdapter
     {
         return position;
     }
-
-    /**
-     * 记录点击的位置;
-     */
-    private List<String> selectedPosition = new ArrayList<>();
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent)
@@ -96,7 +102,6 @@ public class ExercisesDetailAdapter extends BaseAdapter
             }
             viewHolder.setChoiceImageArray(choiceImageArray);
             viewHolder.setChoiceTextArray(choiceTextArray);
-            // 这里原来有一坨;
             convertView.setTag(viewHolder);
         }
         else
@@ -131,16 +136,13 @@ public class ExercisesDetailAdapter extends BaseAdapter
 
                 }
             }
-
         }
-        // 当用户点击 A 选项的点击事件
+        // 点击选项事件;
         ImageView[] choiceImageArray = viewHolder.getChoiceImageArray();
         for (int i = 0; i < choiceImageArray.length; i++)
         {
-            // 用lambda 不创建;
             int finalI = i;
-            choiceImageArray[i].setOnClickListener(
-                    v ->
+            choiceImageArray[i].setOnClickListener(v ->
                     {
                         // 判断 selectedPosition 中是否包含此时点击的 position
                         if (selectedPosition.contains(String.valueOf(position)))

@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * @author Administrator
+ * @FIXME
  */
 public class AnalysisUtil
 {
@@ -33,7 +34,8 @@ public class AnalysisUtil
             {
                 case XmlPullParser.START_TAG:
                 {
-                    switch (parser.getName())
+                    String name = parser.getName();
+                    switch (name)
                     {
                         case "infos":
                             exercisesInfoList = new ArrayList<>();
@@ -48,30 +50,8 @@ public class AnalysisUtil
                             String subject = parser.nextText();
                             exercisesInfo.setSubject(subject);
                             break;
-                        case "a":
-                            String a = parser.nextText();
-                            exercisesInfo.getOptionTextArray()[
-                                    EnumExercise.A.ordinal()] = a;
-                            break;
-                        case "b":
-                            String b = parser.nextText();
-                            exercisesInfo.getOptionTextArray()[
-                                    EnumExercise.B.ordinal()] = b;
-                            break;
-                        case "c":
-                            String c = parser.nextText();
-                            exercisesInfo.getOptionTextArray()[
-                                    EnumExercise.C.ordinal()] = c;
-                            break;
-                        case "d":
-                            String d = parser.nextText();
-                            exercisesInfo.getOptionTextArray()[
-                                    EnumExercise.D.ordinal()] = d;
-                            break;
                         case "answer":
                             String answer = parser.nextText();
-//                            exercisesInfo.setCorrectAnswer(
-//                                    EnumExerciseResource.valueOf(Integer.parseInt(answer) - 1));
                             // FIXME, 对了, 尽量更优雅;
                             exercisesInfo.setCorrectAnswer(
                                     EnumExercise.valueOf(Integer.parseInt(answer) - 1)
@@ -79,6 +59,12 @@ public class AnalysisUtil
                             break;
                         default:
                         {
+                            if (EnumExercise.containsChoice(name))
+                            {
+                                exercisesInfo.getOptionTextArray()[
+                                        EnumExercise.selectEnumByLowerCase(name).ordinal()]
+                                        = parser.nextText();
+                            }
                             break;
                         }
                     }
