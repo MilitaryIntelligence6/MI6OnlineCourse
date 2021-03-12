@@ -12,20 +12,24 @@ import cn.misection.miscourse.sqlite.SQLiteHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBHelper {
+/**
+ * @author Administrator
+ */
+public class DataBaseHelper
+{
 
     private static SQLiteHelper helper;
     private static SQLiteDatabase db;
-    private static DBHelper instance = null;
+    private static DataBaseHelper instance = null;
 
-    private DBHelper(Context context) {
+    private DataBaseHelper(Context context) {
         helper = new SQLiteHelper(context);
         db = helper.getWritableDatabase();
     }
 
-    public static DBHelper getInstance(Context context) {
+    public static DataBaseHelper getInstance(Context context) {
         if (instance == null) {
-            instance = new DBHelper(context);
+            instance = new DataBaseHelper(context);
         }
         return instance;
     }

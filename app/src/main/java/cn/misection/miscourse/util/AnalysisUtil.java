@@ -89,12 +89,13 @@ public class AnalysisUtil
         return exercisesInfos;
     }
 
-    public static void setABCDEnable(boolean value, ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d)
+    public static void setABCDEnable(boolean value,
+                                     ImageView... imageViewArray)
     {
-        iv_a.setEnabled(value);
-        iv_b.setEnabled(value);
-        iv_c.setEnabled(value);
-        iv_d.setEnabled(value);
+        for (ImageView imageView : imageViewArray)
+        {
+            imageView.setEnabled(value);
+        }
     }
 
     public static List<List<CourseBean>> requireCourseInfo(InputStream is) throws XmlPullParserException, IOException

@@ -17,7 +17,8 @@ import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 
-public class ChangeUserInfoActivity extends AppCompatActivity implements View.OnClickListener {
+public class ChangeUserInfoActivity extends AppCompatActivity implements View.OnClickListener
+{
     private RelativeLayout rlTitleBar;
     private TextView tvBack, tvMainTitle, tvSave;
     private EditText etContent;
@@ -26,13 +27,15 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
     private int flag;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_user_info);
         init();
     }
 
-    private void init() {
+    private void init()
+    {
         title = getIntent().getStringExtra("title");
         content = getIntent().getStringExtra("content");
         flag = getIntent().getIntExtra("flag", 0);
@@ -51,28 +54,35 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         ivDel = findViewById(R.id.iv_delete);
         ivDel.setOnClickListener(this);
 
-        if (!content.isEmpty()) {
+        if (!content.isEmpty())
+        {
             etContent.setText(content);
             etContent.setSelection(content.length());
         }
         contentListener();
     }
 
-    private void contentListener() {
-        etContent.addTextChangedListener(new TextWatcher() {
+    private void contentListener()
+    {
+        etContent.addTextChangedListener(new TextWatcher()
+        {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
                 Editable editable = etContent.getText();
                 int len = editable.length();
                 ivDel.setVisibility(len > 0 ? View.VISIBLE : View.GONE);
-                switch (flag) {
+                switch (flag)
+                {
                     case 1:  // 昵称
-                        if (len > 8) {
+                        if (len > 8)
+                        {
                             int selEndIndex = Selection.getSelectionEnd(editable);
                             String string = editable.toString();
 
@@ -82,14 +92,16 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
 
                             int newLen = editable.length();
 
-                            if (selEndIndex > newLen) {
+                            if (selEndIndex > newLen)
+                            {
                                 selEndIndex = editable.length();
                             }
                             Selection.setSelection(editable, selEndIndex);
                         }
                         break;
                     case 2:  // 签名
-                        if (len > 16) {
+                        if (len > 16)
+                        {
                             int selEndIndex = Selection.getSelectionEnd(editable);
                             String string = editable.toString();
 
@@ -99,25 +111,33 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
 
                             int newLen = editable.length();
 
-                            if (selEndIndex > newLen) {
+                            if (selEndIndex > newLen)
+                            {
                                 selEndIndex = editable.length();
                             }
                             Selection.setSelection(editable, selEndIndex);
                         }
                         break;
+                    default:
+                    {
+                        break;
+                    }
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable s)
+            {
 
             }
         });
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
             case R.id.text_view_back:
                 ChangeUserInfoActivity.this.finish();
                 break;
@@ -130,27 +150,35 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         }
     }
 
-    private void saveUserInfo() {
+    private void saveUserInfo()
+    {
         Intent data = new Intent();
         String value = etContent.getText().toString().trim();
-        switch (flag) {
+        switch (flag)
+        {
             case 1:
-                if (!value.isEmpty()) {
+                if (!value.isEmpty())
+                {
                     data.putExtra("nickname", value);
                     setResult(RESULT_OK, data);
                     Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
                     ChangeUserInfoActivity.this.finish();
-                } else {
+                }
+                else
+                {
                     Toast.makeText(this, "昵称不能为空", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case 2:
-                if (!value.isEmpty()) {
+                if (!value.isEmpty())
+                {
                     data.putExtra("signature", value);
                     setResult(RESULT_OK, data);
                     Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
                     ChangeUserInfoActivity.this.finish();
-                } else {
+                }
+                else
+                {
                     Toast.makeText(this, "签名不能为空", Toast.LENGTH_SHORT).show();
                 }
                 break;

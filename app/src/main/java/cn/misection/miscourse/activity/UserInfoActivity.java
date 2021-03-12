@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.bean.UserBean;
-import cn.misection.miscourse.util.DBHelper;
+import cn.misection.miscourse.util.DataBaseHelper;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class UserInfoActivity extends AppCompatActivity
@@ -50,14 +50,14 @@ public class UserInfoActivity extends AppCompatActivity
 
     private void initData() {
         UserBean bean = null;
-        bean = DBHelper.getInstance(UserInfoActivity.this).getUserInfo(spUsername);
+        bean = DataBaseHelper.getInstance(UserInfoActivity.this).getUserInfo(spUsername);
         if (bean == null) {
             bean = new UserBean();
             bean.setUsername(spUsername);
             bean.setNickname("问答精灵");
             bean.setSex("男");
             bean.setSignature("问答精灵");
-            DBHelper.getInstance(UserInfoActivity.this).saveUserInfo(bean);
+            DataBaseHelper.getInstance(UserInfoActivity.this).saveUserInfo(bean);
         }
         setValue(bean);
     }
@@ -133,7 +133,7 @@ public class UserInfoActivity extends AppCompatActivity
                 Toast.makeText(UserInfoActivity.this, items[which], Toast.LENGTH_SHORT).show();
                 // 修改数据库
                 tvSex.setText(items[which]);
-                DBHelper.getInstance(UserInfoActivity.this).updateUserInfo("sex", items[which], spUsername);
+                DataBaseHelper.getInstance(UserInfoActivity.this).updateUserInfo("sex", items[which], spUsername);
             }
         });
         dialog.show();
@@ -150,7 +150,7 @@ public class UserInfoActivity extends AppCompatActivity
                         return;
                     }
                     tvNickname.setText(newInfo);
-                    DBHelper.getInstance(UserInfoActivity.this).updateUserInfo("nickname", newInfo, spUsername);
+                    DataBaseHelper.getInstance(UserInfoActivity.this).updateUserInfo("nickname", newInfo, spUsername);
                 }
                 break;
             case CHANGE_SIGNATURE:
@@ -160,7 +160,7 @@ public class UserInfoActivity extends AppCompatActivity
                         return;
                     }
                     tvSignature.setText(newInfo);
-                    DBHelper.getInstance(UserInfoActivity.this).updateUserInfo("signature", newInfo, spUsername);
+                    DataBaseHelper.getInstance(UserInfoActivity.this).updateUserInfo("signature", newInfo, spUsername);
                 }
                 break;
         }

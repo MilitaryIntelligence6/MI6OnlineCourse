@@ -14,7 +14,7 @@ import android.widget.TextView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.PlayHistoryAdapter;
 import cn.misection.miscourse.bean.VideoBean;
-import cn.misection.miscourse.util.DBHelper;
+import cn.misection.miscourse.util.DataBaseHelper;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class PlayHistoryActivity extends AppCompatActivity {
     private ListView lvList;
     private PlayHistoryAdapter adapter;
     private List<VideoBean> vb1;
-    private DBHelper db;
+    private DataBaseHelper db;
     SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -36,7 +36,7 @@ public class PlayHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_history);
         // 设置此界面为竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        db = DBHelper.getInstance(this);
+        db = DataBaseHelper.getInstance(this);
         vb1 = new ArrayList<>();
         // 从数据库中获取播放记录信息
         sharedPreferLoginInfo = new SharedPreferLoginInfo(this);

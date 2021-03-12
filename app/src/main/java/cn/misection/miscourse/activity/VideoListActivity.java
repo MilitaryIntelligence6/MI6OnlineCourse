@@ -19,7 +19,7 @@ import android.widget.Toast;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.VideoListAdapter;
 import cn.misection.miscourse.bean.VideoBean;
-import cn.misection.miscourse.util.DBHelper;
+import cn.misection.miscourse.util.DataBaseHelper;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 import org.json.JSONArray;
@@ -41,7 +41,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
     private List<VideoBean> videoList;
     private int chapterId;
     private String intro;
-    private DBHelper db;
+    private DataBaseHelper db;
     SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -55,7 +55,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         // 从课程界面传递过来的章简介
         intro = getIntent().getStringExtra("intro");
         // 创建数据库工具类的对象
-        db = DBHelper.getInstance(VideoListActivity.this);
+        db = DataBaseHelper.getInstance(VideoListActivity.this);
         sharedPreferLoginInfo = new SharedPreferLoginInfo(this);
         initData();
         init();
