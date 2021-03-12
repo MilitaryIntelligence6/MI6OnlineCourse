@@ -17,10 +17,15 @@ import cn.misection.miscourse.util.AnalysisUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class ExercisesDetailAdapter extends BaseAdapter
 {
     private Context context;
+
     private List<ExerciseBean> exerciseList;
+
     private OnSelectListener onSelectListener;
 
     public ExercisesDetailAdapter(Context context, OnSelectListener onSelectListener)
@@ -29,7 +34,7 @@ public class ExercisesDetailAdapter extends BaseAdapter
         this.onSelectListener = onSelectListener;
     }
 
-    public void setData(List<ExerciseBean> exerciseList)
+    public void putExerciseList(List<ExerciseBean> exerciseList)
     {
         this.exerciseList = exerciseList;
         notifyDataSetChanged();
@@ -44,7 +49,8 @@ public class ExercisesDetailAdapter extends BaseAdapter
     @Override
     public ExerciseBean getItem(int position)
     {
-        return exerciseList == null ? null : exerciseList.get(position);
+        return exerciseList == null ? null
+                : exerciseList.get(position);
     }
 
     @Override
@@ -76,8 +82,10 @@ public class ExercisesDetailAdapter extends BaseAdapter
             for (int i = 0; i < choiceTextArray.length; i++)
             {
                 EnumExerciseResource enumExercise = EnumExerciseResource.valueOf(i);
+
                 choiceTextArray[i] = convertView.findViewById(
                         enumExercise.getTextView());
+
                 choiceImageArray[i] = convertView.findViewById(
                         enumExercise.getImageView());
 
@@ -95,24 +103,24 @@ public class ExercisesDetailAdapter extends BaseAdapter
             viewHolder = ((ViewHolder) convertView.getTag());
         }
 
-        final ExerciseBean bean = getItem(position);
-        if (bean != null)
+        final ExerciseBean exercise = getItem(position);
+        if (exercise != null)
         {
-            viewHolder.getSubject().setText(bean.getSubject());
-            viewHolder.getChoiceTextArray()[0].setText(bean.getOptionTextA());
-            viewHolder.getChoiceTextArray()[1].setText(bean.getOptionTextB());
-            viewHolder.getChoiceTextArray()[2].setText(bean.getOptionTextC());
-            viewHolder.getChoiceTextArray()[3].setText(bean.getOptionTextD());
+            viewHolder.getSubject().setText(exercise.getSubject());
+            for (int i = 0; i < EnumExerciseResource.count(); i++)
+            {
+                viewHolder.getChoiceTextArray()[i].setText(exercise.getOptionTextArray()[i]);
+            }
         }
 
         if (selectedPosition.contains(String.valueOf(position)))
         {
             AnalysisUtil.setChoiceEnable(false, viewHolder.getChoiceImageArray());
             // 先把用户选择置为错, 这么快用户发现不了;
-            viewHolder.getChoiceImageArray()[bean.getUserSelect().ordinal()]
+            viewHolder.getChoiceImageArray()[exercise.getUserSelect().ordinal()]
                     .setImageResource(R.drawable.exercises_error_icon);
 
-            viewHolder.getChoiceImageArray()[bean.getCorrectAnswer().ordinal()]
+            viewHolder.getChoiceImageArray()[exercise.getCorrectAnswer().ordinal()]
                     .setImageResource(R.drawable.exercises_right_icon);
 
         }

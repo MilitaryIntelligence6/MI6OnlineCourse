@@ -29,12 +29,20 @@ import java.util.List;
  */
 public class ExercisesDetailActivity extends AppCompatActivity
 {
-    private TextView MainTitleTextView, backTextView;
+    private TextView mainTitleTextView;
+
+    private TextView backTextView;
+
     private RelativeLayout titleBarRelaLayout;
+
     private ListView listView;
+
     private String title;
+
     private int id;
-    private List<ExerciseBean> beanList;
+
+    private List<ExerciseBean> exerciseList;
+
     private ExercisesDetailAdapter adapter;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -49,14 +57,14 @@ public class ExercisesDetailActivity extends AppCompatActivity
         id = getIntent().getIntExtra("id", 0);
         // 获取从习题界面传递过来的章节标题
         title = getIntent().getStringExtra("title");
-        beanList = new ArrayList<>();
+        exerciseList = new ArrayList<>();
         initData();
         init();
     }
 
     private void init()
     {
-        MainTitleTextView = findViewById(R.id.tv_main_title);
+        mainTitleTextView = findViewById(R.id.tv_main_title);
         backTextView = findViewById(R.id.text_view_back);
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30B4FF"));
@@ -67,7 +75,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
         textView.setText("一、选择题");
         textView.setPadding(10, 15, 0, 0);
         listView.addHeaderView(textView);
-        MainTitleTextView.setText(title);
+        mainTitleTextView.setText(title);
         backTextView.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -82,16 +90,16 @@ public class ExercisesDetailActivity extends AppCompatActivity
             public void onSelectA(int position, ImageView... imageViewArray)
             {
                 // 判断如果答案不是 1 即 A 选项
-                if (beanList.get(position).getCorrectAnswer() != EnumExerciseResource.A)
+                if (exerciseList.get(position).getCorrectAnswer() != EnumExerciseResource.A)
                 {
-                    beanList.get(position).setUserSelect(EnumExerciseChoice.A_WRONG);
+                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.A_WRONG);
                 }
                 else
                 {
-                    beanList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
+                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
                 }
                 // hash 表;
-                switch (beanList.get(position).getCorrectAnswer())
+                switch (exerciseList.get(position).getCorrectAnswer())
                 {
                     case A:
                         imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
@@ -120,15 +128,15 @@ public class ExercisesDetailActivity extends AppCompatActivity
             public void onSelectB(int position, ImageView... imageViewArray)
             {
                 // 判断如果答案不是 2 即 B 选项
-                if (beanList.get(position).getCorrectAnswer() != EnumExerciseResource.B)
+                if (exerciseList.get(position).getCorrectAnswer() != EnumExerciseResource.B)
                 {
-                    beanList.get(position).setUserSelect(EnumExerciseChoice.B_WRONG);
+                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.B_WRONG);
                 }
                 else
                 {
-                    beanList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
+                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
                 }
-                switch (beanList.get(position).getCorrectAnswer())
+                switch (exerciseList.get(position).getCorrectAnswer())
                 {
                     case A:
                         imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
@@ -157,15 +165,15 @@ public class ExercisesDetailActivity extends AppCompatActivity
             public void onSelectC(int position, ImageView... imageViewArray)
             {
                 // 判断如果答案不是 3 即 C 选项
-                if (beanList.get(position).getCorrectAnswer() != EnumExerciseResource.C)
+                if (exerciseList.get(position).getCorrectAnswer() != EnumExerciseResource.C)
                 {
-                    beanList.get(position).setUserSelect(EnumExerciseChoice.C_WRONG);
+                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.C_WRONG);
                 }
                 else
                 {
-                    beanList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
+                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
                 }
-                switch (beanList.get(position).getCorrectAnswer())
+                switch (exerciseList.get(position).getCorrectAnswer())
                 {
                     case A:
                         imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
@@ -195,15 +203,15 @@ public class ExercisesDetailActivity extends AppCompatActivity
                                   ImageView... imageViewArray)
             {
                 // 判断如果答案不是 4 即 D 选项
-                if (beanList.get(position).getCorrectAnswer() != EnumExerciseResource.D)
+                if (exerciseList.get(position).getCorrectAnswer() != EnumExerciseResource.D)
                 {
-                    beanList.get(position).setUserSelect(EnumExerciseChoice.D_WRONG);
+                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.D_WRONG);
                 }
                 else
                 {
-                    beanList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
+                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
                 }
-                switch (beanList.get(position).getCorrectAnswer())
+                switch (exerciseList.get(position).getCorrectAnswer())
                 {
                     case A:
                         imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
@@ -228,7 +236,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
                 AnalysisUtil.setChoiceEnable(false, imageViewArray);
             }
         });
-        adapter.setData(beanList);
+        adapter.putExerciseList(exerciseList);
         listView.setAdapter(adapter);
     }
 
@@ -237,7 +245,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
         try
         {
             InputStream is = getResources().getAssets().open(String.format("chapter%d.xml", id));
-            beanList = AnalysisUtil.getExercisesInfos(is);
+            exerciseList = AnalysisUtil.requireExerciseListInfo(is);
         }
         catch (IOException e)
         {

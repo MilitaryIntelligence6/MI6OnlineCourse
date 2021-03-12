@@ -14,82 +14,154 @@ import cn.misection.miscourse.entity.ExerciseBean;
 
 import java.util.List;
 
-public class ExercisesAdapter extends BaseAdapter {
+public class ExercisesAdapter extends BaseAdapter
+{
     private Context context;
     private List<ExerciseBean> eb1;
 
-    public ExercisesAdapter(Context context) {
+    public ExercisesAdapter(Context context)
+    {
         this.context = context;
     }
 
-    // 设置数据更新界面
-    public void setData(List<ExerciseBean> eb1) {
+    /**
+     * 设置数据更新界面;
+     *
+     * @param eb1
+     */
+    public void setData(List<ExerciseBean> eb1)
+    {
         this.eb1 = eb1;
         notifyDataSetChanged();
     }
 
-    // 获取 Item 的总数
+    /**
+     * 获取 Item 的总数;
+     *
+     * @return
+     */
     @Override
-    public int getCount() {
+    public int getCount()
+    {
         return eb1 == null ? 0 : eb1.size();
     }
 
-    // 根据 position 的到对应 Item 的对象
+    /**
+     * 根据 position 的到对应 Item 的对象;
+     *
+     * @param position
+     * @return
+     */
     @Override
-    public ExerciseBean getItem(int position) {
+    public ExerciseBean getItem(int position)
+    {
         return eb1 == null ? null : eb1.get(position);
     }
 
-    // 根据 position 得到对应 Item 的 id
+    /**
+     * 根据 position 得到对应 Item 的 id;
+     *
+     * @param position
+     * @return
+     */
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int position)
+    {
         return position;
     }
 
-    // 得到相应 position 对应的 Item 视图，position 是当前 Item 的位置，
-    // convertView 参数就是滑出屏幕的 Item 的 View
+    /**
+     * 得到相应 position 对应的 Item 视图，position 是当前 Item 的位置，
+     * convertView 参数就是滑出屏幕的 Item 的 View
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        final ViewHolder vh;
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        final ViewHolder viewHolder;
         // 复用 convertView
-        if (convertView == null) {
-            vh = new ViewHolder();
+        if (convertView == null)
+        {
+            viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.exercises_list_item, null);
-            vh.title = convertView.findViewById(R.id.tv_title);
-            vh.content = convertView.findViewById(R.id.tv_content);
-            vh.order = convertView.findViewById(R.id.tv_order);
-            convertView.setTag(vh);
-        } else {
-            vh = ((ViewHolder) convertView.getTag());
+            viewHolder.setTitle((TextView) convertView.findViewById(R.id.tv_title));
+            viewHolder.setContent((TextView) convertView.findViewById(R.id.tv_content));
+            viewHolder.setOrder((TextView) convertView.findViewById(R.id.tv_order));
+            convertView.setTag(viewHolder);
+        }
+        else
+        {
+            viewHolder = ((ViewHolder) convertView.getTag());
         }
         // 获取 position 对应的 Item 的数据对象
-        final ExerciseBean bean = getItem(position);
-        if (bean != null) {
-            vh.order.setText(position + 1 + "");
-            vh.title.setText(bean.getTitle());
-            vh.content.setText(bean.getContent());
-            vh.order.setBackgroundResource(bean.getBackground());
+        final ExerciseBean exercise = getItem(position);
+        if (exercise != null)
+        {
+            viewHolder.getOrder().setText(String.valueOf(position + 1));
+            viewHolder.getTitle().setText(exercise.getTitle());
+            viewHolder.getContent().setText(exercise.getContent());
+            viewHolder.getOrder().setBackgroundResource(exercise.getBackground());
         }
         // 每个 Item 的点击事件
-        convertView.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                if (bean == null) {
+            public void onClick(View v)
+            {
+                if (exercise == null)
+                {
                     return;
                 }
                 // 跳转到习题详情页面
                 Intent intent = new Intent(context, ExercisesDetailActivity.class);
                 // 把章节 ID 传递到习题详情页面
-                intent.putExtra("id", bean.getId());
+                intent.putExtra("id", exercise.getId());
                 // 把标题传递到习题详情页面
-                intent.putExtra("title", bean.getTitle());
+                intent.putExtra("title", exercise.getTitle());
                 context.startActivity(intent);
             }
         });
         return convertView;
     }
 
-    class ViewHolder {
-        public TextView title, content, order;
+    class ViewHolder
+    {
+        private TextView title;
+        private TextView content;
+        private TextView order;
+
+        public TextView getTitle()
+        {
+            return title;
+        }
+
+        public void setTitle(TextView title)
+        {
+            this.title = title;
+        }
+
+        public TextView getContent()
+        {
+            return content;
+        }
+
+        public void setContent(TextView content)
+        {
+            this.content = content;
+        }
+
+        public TextView getOrder()
+        {
+            return order;
+        }
+
+        public void setOrder(TextView order)
+        {
+            this.order = order;
+        }
     }
 }

@@ -15,13 +15,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class AnalysisUtil
 {
-    public static List<ExerciseBean> getExercisesInfos(InputStream is) throws Exception
+    public static List<ExerciseBean> requireExerciseListInfo(InputStream is) throws Exception
     {
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(is, "utf-8");
-        List<ExerciseBean> exercisesInfos = null;
+        List<ExerciseBean> exercisesInfoList = null;
         ExerciseBean exercisesInfo = null;
         int type = parser.getEventType();
         while (type != XmlPullParser.END_DOCUMENT)
@@ -33,10 +36,11 @@ public class AnalysisUtil
                     switch (parser.getName())
                     {
                         case "infos":
-                            exercisesInfos = new ArrayList<>();
+                            exercisesInfoList = new ArrayList<>();
                             break;
                         case "exercises":
                             exercisesInfo = new ExerciseBean();
+                            exercisesInfo.setOptionTextArray(new String[4]);
                             String ids = parser.getAttributeValue(0);
                             exercisesInfo.setSubjectId(Integer.parseInt(ids));
                             break;
@@ -46,19 +50,23 @@ public class AnalysisUtil
                             break;
                         case "a":
                             String a = parser.nextText();
-                            exercisesInfo.setOptionTextA(a);
+                            exercisesInfo.getOptionTextArray()[
+                                    EnumExerciseResource.A.ordinal()] = a;
                             break;
                         case "b":
                             String b = parser.nextText();
-                            exercisesInfo.setOptionTextB(b);
+                            exercisesInfo.getOptionTextArray()[
+                                    EnumExerciseResource.B.ordinal()] = b;
                             break;
                         case "c":
                             String c = parser.nextText();
-                            exercisesInfo.setOptionTextC(c);
+                            exercisesInfo.getOptionTextArray()[
+                                    EnumExerciseResource.C.ordinal()] = c;
                             break;
                         case "d":
                             String d = parser.nextText();
-                            exercisesInfo.setOptionTextD(d);
+                            exercisesInfo.getOptionTextArray()[
+                                    EnumExerciseResource.D.ordinal()] = d;
                             break;
                         case "answer":
                             String answer = parser.nextText();
@@ -80,7 +88,7 @@ public class AnalysisUtil
                 {
                     if ("exercises".equals(parser.getName()))
                     {
-                        exercisesInfos.add(exercisesInfo);
+                        exercisesInfoList.add(exercisesInfo);
                         exercisesInfo = null;
                     }
                     break;
@@ -92,7 +100,7 @@ public class AnalysisUtil
             }
             type = parser.next();
         }
-        return exercisesInfos;
+        return exercisesInfoList;
     }
 
     public static void setChoiceEnable(boolean value,

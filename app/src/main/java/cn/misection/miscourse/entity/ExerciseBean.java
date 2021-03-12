@@ -40,25 +40,25 @@ public class ExerciseBean
      */
     private String[] optionTextArray;
 
-    /**
-     * 每道题的 A 选项
-     */
-    private String optionTextA;
-
-    /**
-     * 每道题的 B 选项
-     */
-    private String optionTextB;
-
-    /**
-     * 每道题的 C 选项
-     */
-    private String optionTextC;
-
-    /**
-     * 每道题的 D 选项
-     */
-    private String optionTextD;
+//    /**
+//     * 每道题的 A 选项
+//     */
+//    private String optionTextA;
+//
+//    /**
+//     * 每道题的 B 选项
+//     */
+//    private String optionTextB;
+//
+//    /**
+//     * 每道题的 C 选项
+//     */
+//    private String optionTextC;
+//
+//    /**
+//     * 每道题的 D 选项
+//     */
+//    private String optionTextD;
 
     /**
      * 每道题的正确答案
@@ -144,45 +144,45 @@ public class ExerciseBean
         this.optionTextArray = optionTextArray;
     }
 
-    public String getOptionTextA()
-    {
-        return optionTextA;
-    }
+//    public String getOptionTextA()
+//    {
+//        return optionTextA;
+//    }
+//
+//    public void setOptionTextA(String optionTextA)
+//    {
+//        this.optionTextA = optionTextA;
+//    }
+//
+//    public String getOptionTextB()
+//    {
+//        return optionTextB;
+//    }
+//
+//    public void setOptionTextB(String optionTextB)
+//    {
+//        this.optionTextB = optionTextB;
+//    }
+//
+//    public String getOptionTextC()
+//    {
+//        return optionTextC;
+//    }
+//
+//    public void setOptionTextC(String optionTextC)
+//    {
+//        this.optionTextC = optionTextC;
+//    }
 
-    public void setOptionTextA(String optionTextA)
-    {
-        this.optionTextA = optionTextA;
-    }
-
-    public String getOptionTextB()
-    {
-        return optionTextB;
-    }
-
-    public void setOptionTextB(String optionTextB)
-    {
-        this.optionTextB = optionTextB;
-    }
-
-    public String getOptionTextC()
-    {
-        return optionTextC;
-    }
-
-    public void setOptionTextC(String optionTextC)
-    {
-        this.optionTextC = optionTextC;
-    }
-
-    public String getOptionTextD()
-    {
-        return optionTextD;
-    }
-
-    public void setOptionTextD(String optionTextD)
-    {
-        this.optionTextD = optionTextD;
-    }
+//    public String getOptionTextD()
+//    {
+//        return optionTextD;
+//    }
+//
+//    public void setOptionTextD(String optionTextD)
+//    {
+//        this.optionTextD = optionTextD;
+//    }
 
     public EnumExerciseResource getCorrectAnswer()
     {
