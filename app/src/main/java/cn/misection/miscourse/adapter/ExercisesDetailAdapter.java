@@ -90,7 +90,7 @@ public class ExercisesDetailAdapter extends BaseAdapter
             viewHolder.getTextViewD().setText(bean.getOptionTextD());
         }
 
-        if (!selectedPosition.contains("" + position))
+        if (!selectedPosition.contains(String.valueOf(position)))
         {
             viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
             viewHolder.getImageViewB().setImageResource(R.drawable.exercises_b);
@@ -161,67 +161,79 @@ public class ExercisesDetailAdapter extends BaseAdapter
                 case 2:
                     // 用户所选 B 是错误的
                     viewHolder.getImageViewB().setImageResource(R.drawable.exercises_error_icon);
-                    if (bean.getAnswer() == 1)
+                    switch (bean.getAnswer())
                     {
-                        viewHolder.getImageViewA().setImageResource(R.drawable.exercises_right_icon);
-                        viewHolder.getImageViewC().setImageResource(R.drawable.exercises_c);
-                        viewHolder.getImageViewD().setImageResource(R.drawable.exercises_d);
-                    }
-                    else if (bean.getAnswer() == 3)
-                    {
-                        viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
-                        viewHolder.getImageViewC().setImageResource(R.drawable.exercises_right_icon);
-                        viewHolder.getImageViewD().setImageResource(R.drawable.exercises_d);
-                    }
-                    else if (bean.getAnswer() == 4)
-                    {
-                        viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
-                        viewHolder.getImageViewC().setImageResource(R.drawable.exercises_c);
-                        viewHolder.getImageViewD().setImageResource(R.drawable.exercises_right_icon);
+                        case 1:
+                            viewHolder.getImageViewA().setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.getImageViewC().setImageResource(R.drawable.exercises_c);
+                            viewHolder.getImageViewD().setImageResource(R.drawable.exercises_d);
+                            break;
+                        case 3:
+                            viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
+                            viewHolder.getImageViewC().setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.getImageViewD().setImageResource(R.drawable.exercises_d);
+                            break;
+                        case 4:
+                            viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
+                            viewHolder.getImageViewC().setImageResource(R.drawable.exercises_c);
+                            viewHolder.getImageViewD().setImageResource(R.drawable.exercises_right_icon);
+                            break;
+                        default:
+                        {
+                            break;
+                        }
                     }
                     break;
                 case 3:
                     // 用户所选 C 是错误的
                     viewHolder.getImageViewC().setImageResource(R.drawable.exercises_error_icon);
-                    if (bean.getAnswer() == 1)
+                    switch (bean.getAnswer())
                     {
-                        viewHolder.getImageViewA().setImageResource(R.drawable.exercises_right_icon);
-                        viewHolder.getImageViewB().setImageResource(R.drawable.exercises_b);
-                        viewHolder.getImageViewD().setImageResource(R.drawable.exercises_d);
-                    }
-                    else if (bean.getAnswer() == 3)
-                    {
-                        viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
-                        viewHolder.getImageViewB().setImageResource(R.drawable.exercises_right_icon);
-                        viewHolder.getImageViewD().setImageResource(R.drawable.exercises_d);
-                    }
-                    else if (bean.getAnswer() == 4)
-                    {
-                        viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
-                        viewHolder.getImageViewB().setImageResource(R.drawable.exercises_b);
-                        viewHolder.getImageViewD().setImageResource(R.drawable.exercises_right_icon);
+                        case 1:
+                            viewHolder.getImageViewA().setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.getImageViewB().setImageResource(R.drawable.exercises_b);
+                            viewHolder.getImageViewD().setImageResource(R.drawable.exercises_d);
+                            break;
+                        case 3:
+                            viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
+                            viewHolder.getImageViewB().setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.getImageViewD().setImageResource(R.drawable.exercises_d);
+                            break;
+                        case 4:
+                            viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
+                            viewHolder.getImageViewB().setImageResource(R.drawable.exercises_b);
+                            viewHolder.getImageViewD().setImageResource(R.drawable.exercises_right_icon);
+                            break;
+                        default:
+                        {
+                            break;
+                        }
                     }
                     break;
                 case 4:
                     // 用户所选 D 是错误的
                     viewHolder.getImageViewD().setImageResource(R.drawable.exercises_error_icon);
-                    if (bean.getAnswer() == 1)
+                    switch (bean.getAnswer())
                     {
-                        viewHolder.getImageViewA().setImageResource(R.drawable.exercises_right_icon);
-                        viewHolder.getImageViewB().setImageResource(R.drawable.exercises_b);
-                        viewHolder.getImageViewD().setImageResource(R.drawable.exercises_c);
-                    }
-                    else if (bean.getAnswer() == 2)
-                    {
-                        viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
-                        viewHolder.getImageViewB().setImageResource(R.drawable.exercises_right_icon);
-                        viewHolder.getImageViewC().setImageResource(R.drawable.exercises_c);
-                    }
-                    else if (bean.getAnswer() == 3)
-                    {
-                        viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
-                        viewHolder.getImageViewB().setImageResource(R.drawable.exercises_b);
-                        viewHolder.getImageViewC().setImageResource(R.drawable.exercises_right_icon);
+                        case 1:
+                            viewHolder.getImageViewA().setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.getImageViewB().setImageResource(R.drawable.exercises_b);
+                            viewHolder.getImageViewD().setImageResource(R.drawable.exercises_c);
+                            break;
+                        case 2:
+                            viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
+                            viewHolder.getImageViewB().setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.getImageViewC().setImageResource(R.drawable.exercises_c);
+                            break;
+                        case 3:
+                            viewHolder.getImageViewA().setImageResource(R.drawable.exercises_a);
+                            viewHolder.getImageViewB().setImageResource(R.drawable.exercises_b);
+                            viewHolder.getImageViewC().setImageResource(R.drawable.exercises_right_icon);
+                            break;
+                        default:
+                        {
+                            break;
+                        }
                     }
                     break;
                 default:
@@ -235,13 +247,13 @@ public class ExercisesDetailAdapter extends BaseAdapter
             public void onClick(View v)
             {
                 // 判断 selectedPosition 中是否包含此时点击的 position
-                if (selectedPosition.contains("" + position))
+                if (selectedPosition.contains(String.valueOf(position)))
                 {
-                    selectedPosition.remove("" + position);
+                    selectedPosition.remove(String.valueOf(position));
                 }
                 else
                 {
-                    selectedPosition.add(position + "");
+                    selectedPosition.add(String.valueOf(position));
                 }
                 onSelectListener.onSelectA(position, viewHolder.getImageViewA(), viewHolder.getImageViewB(), viewHolder.getImageViewC(), viewHolder.getImageViewD());
             }
@@ -253,13 +265,13 @@ public class ExercisesDetailAdapter extends BaseAdapter
             public void onClick(View v)
             {
                 // 判断 selectedPosition 中是否包含此时点击的 position
-                if (selectedPosition.contains("" + position))
+                if (selectedPosition.contains(String.valueOf(position)))
                 {
-                    selectedPosition.remove("" + position);
+                    selectedPosition.remove(String.valueOf(position));
                 }
                 else
                 {
-                    selectedPosition.add(position + "");
+                    selectedPosition.add(String.valueOf(position));
                 }
                 onSelectListener.onSelectB(position, viewHolder.getImageViewA(), viewHolder.getImageViewB(), viewHolder.getImageViewC(), viewHolder.getImageViewD());
             }
@@ -271,13 +283,13 @@ public class ExercisesDetailAdapter extends BaseAdapter
             public void onClick(View v)
             {
                 // 判断 selectedPosition 中是否包含此时点击的 position
-                if (selectedPosition.contains("" + position))
+                if (selectedPosition.contains(String.valueOf(position)))
                 {
-                    selectedPosition.remove("" + position);
+                    selectedPosition.remove(String.valueOf(position));
                 }
                 else
                 {
-                    selectedPosition.add(position + "");
+                    selectedPosition.add(String.valueOf(position));
                 }
                 onSelectListener.onSelectC(position, viewHolder.getImageViewA(), viewHolder.getImageViewB(), viewHolder.getImageViewC(), viewHolder.getImageViewD());
             }
@@ -289,13 +301,13 @@ public class ExercisesDetailAdapter extends BaseAdapter
             public void onClick(View v)
             {
                 // 判断 selectedPosition 中是否包含此时点击的 position
-                if (selectedPosition.contains("" + position))
+                if (selectedPosition.contains(String.valueOf(position)))
                 {
-                    selectedPosition.remove("" + position);
+                    selectedPosition.remove(String.valueOf(position));
                 }
                 else
                 {
-                    selectedPosition.add(position + "");
+                    selectedPosition.add(String.valueOf(position));
                 }
                 onSelectListener.onSelectD(position, viewHolder.getImageViewA(), viewHolder.getImageViewB(), viewHolder.getImageViewC(), viewHolder.getImageViewD());
             }
