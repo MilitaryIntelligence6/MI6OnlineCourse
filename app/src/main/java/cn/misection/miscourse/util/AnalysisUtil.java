@@ -4,7 +4,7 @@ import android.util.Xml;
 import android.widget.ImageView;
 
 import cn.misection.miscourse.bean.CourseBean;
-import cn.misection.miscourse.bean.ExercisesBean;
+import cn.misection.miscourse.bean.ExerciseBean;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -16,12 +16,12 @@ import java.util.List;
 
 public class AnalysisUtil
 {
-    public static List<ExercisesBean> getExercisesInfos(InputStream is) throws Exception
+    public static List<ExerciseBean> getExercisesInfos(InputStream is) throws Exception
     {
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(is, "utf-8");
-        List<ExercisesBean> exercisesInfos = null;
-        ExercisesBean exercisesInfo = null;
+        List<ExerciseBean> exercisesInfos = null;
+        ExerciseBean exercisesInfo = null;
         int type = parser.getEventType();
         while (type != XmlPullParser.END_DOCUMENT)
         {
@@ -35,7 +35,7 @@ public class AnalysisUtil
                             exercisesInfos = new ArrayList<>();
                             break;
                         case "exercises":
-                            exercisesInfo = new ExercisesBean();
+                            exercisesInfo = new ExerciseBean();
                             String ids = parser.getAttributeValue(0);
                             exercisesInfo.setSubjectId(Integer.parseInt(ids));
                             break;

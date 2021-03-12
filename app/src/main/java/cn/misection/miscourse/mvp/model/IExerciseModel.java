@@ -2,7 +2,7 @@ package cn.misection.miscourse.mvp.model;
 
 import java.util.List;
 
-import cn.misection.miscourse.bean.ExercisesBean;
+import cn.misection.miscourse.bean.ExerciseBean;
 
 /**
  * @author Military Intelligence 6 root
@@ -17,5 +17,5 @@ public interface IExerciseModel extends IModel
      * 获取数据;
      * @return 获取数据;
      */
-    List<ExercisesBean> exerciseList();
+    List<ExerciseBean> exerciseList();
 }

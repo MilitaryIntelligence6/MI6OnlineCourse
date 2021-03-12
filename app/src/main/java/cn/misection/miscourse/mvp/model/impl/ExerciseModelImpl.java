@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.bean.ExercisesBean;
+import cn.misection.miscourse.bean.ExerciseBean;
 import cn.misection.miscourse.mvp.constant.EnumExerciseProp;
 import cn.misection.miscourse.mvp.model.IExerciseModel;
 import cn.misection.miscourse.mvp.presenter.impl.ExercisesPresenterImpl;
@@ -20,7 +20,7 @@ public class ExerciseModelImpl implements IExerciseModel
 {
     private final ExercisesPresenterImpl presenter;
 
-    private List<ExercisesBean> beanList;
+    private List<ExerciseBean> exerciseList;
 
     public ExerciseModelImpl(ExercisesPresenterImpl presenter)
     {
@@ -35,7 +35,7 @@ public class ExerciseModelImpl implements IExerciseModel
 
     private void initData()
     {
-        beanList = new ArrayList<>();
+        exerciseList = new ArrayList<>();
         int[] backgroundArray = new int[]{
                 R.drawable.exercises_bg_1,
                 R.drawable.exercises_bg_2,
@@ -45,7 +45,7 @@ public class ExerciseModelImpl implements IExerciseModel
         int exerciseCount = EnumExerciseProp.values().length;
         for (int i = 0; i < exerciseCount; i++)
         {
-            ExercisesBean bean = new ExercisesBean();
+            ExerciseBean bean = new ExerciseBean();
             int id = i + 1;
             int color = i % backgroundArray.length;
             EnumExerciseProp prop = EnumExerciseProp.valueOf(i);
@@ -53,13 +53,13 @@ public class ExerciseModelImpl implements IExerciseModel
             bean.setTitle(String.format("第 %d 章 %s", i, prop.getChapterName()));
             bean.setContent(String.format("共计 %d 题", prop.getTopicCount()));
             bean.setBackground(backgroundArray[color]);
-            beanList.add(bean);
+            exerciseList.add(bean);
         }
     }
 
     @Override
-    public List<ExercisesBean> exerciseList()
+    public List<ExerciseBean> exerciseList()
     {
-        return beanList;
+        return exerciseList;
     }
 }

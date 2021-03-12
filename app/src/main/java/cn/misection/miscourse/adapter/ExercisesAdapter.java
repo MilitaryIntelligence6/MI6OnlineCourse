@@ -10,20 +10,20 @@ import android.widget.TextView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.activity.ExercisesDetailActivity;
-import cn.misection.miscourse.bean.ExercisesBean;
+import cn.misection.miscourse.bean.ExerciseBean;
 
 import java.util.List;
 
 public class ExercisesAdapter extends BaseAdapter {
     private Context context;
-    private List<ExercisesBean> eb1;
+    private List<ExerciseBean> eb1;
 
     public ExercisesAdapter(Context context) {
         this.context = context;
     }
 
     // 设置数据更新界面
-    public void setData(List<ExercisesBean> eb1) {
+    public void setData(List<ExerciseBean> eb1) {
         this.eb1 = eb1;
         notifyDataSetChanged();
     }
@@ -36,7 +36,7 @@ public class ExercisesAdapter extends BaseAdapter {
 
     // 根据 position 的到对应 Item 的对象
     @Override
-    public ExercisesBean getItem(int position) {
+    public ExerciseBean getItem(int position) {
         return eb1 == null ? null : eb1.get(position);
     }
 
@@ -63,7 +63,7 @@ public class ExercisesAdapter extends BaseAdapter {
             vh = ((ViewHolder) convertView.getTag());
         }
         // 获取 position 对应的 Item 的数据对象
-        final ExercisesBean bean = getItem(position);
+        final ExerciseBean bean = getItem(position);
         if (bean != null) {
             vh.order.setText(position + 1 + "");
             vh.title.setText(bean.getTitle());

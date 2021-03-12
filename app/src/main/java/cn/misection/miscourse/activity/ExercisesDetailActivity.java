@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.ExercisesDetailAdapter;
-import cn.misection.miscourse.bean.ExercisesBean;
+import cn.misection.miscourse.bean.ExerciseBean;
 import cn.misection.miscourse.util.AnalysisUtil;
 
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
     private ListView listView;
     private String title;
     private int id;
-    private List<ExercisesBean> beanList;
+    private List<ExerciseBean> beanList;
     private ExercisesDetailAdapter adapter;
 
     @SuppressLint("SourceLockedOrientationActivity")

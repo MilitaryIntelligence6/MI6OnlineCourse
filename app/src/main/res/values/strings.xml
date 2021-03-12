@@ -5,6 +5,7 @@
     <string name="mine_name">我</string>
 
     <string name="exit_again">再按一次退出MI6在线课堂</string>
+    <string name="click_to_login">点击登陆</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

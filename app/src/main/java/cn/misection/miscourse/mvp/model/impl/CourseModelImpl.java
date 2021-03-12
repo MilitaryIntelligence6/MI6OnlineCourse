@@ -25,9 +25,9 @@ public class CourseModelImpl implements ICourseModel
 
     private static final int AD_COUNT = 3;
 
-    private List<CourseBean> slideBeanList;
+    private List<CourseBean> slideList;
 
-    private List<List<CourseBean>> beanListList;
+    private List<List<CourseBean>> courseListList;
 
     public CourseModelImpl(CoursePresenterImpl presenter)
     {
@@ -51,14 +51,14 @@ public class CourseModelImpl implements ICourseModel
      */
     private void initSlide()
     {
-        slideBeanList = new ArrayList<>();
+        slideList = new ArrayList<>();
         for (int i = 0; i < AD_COUNT; i++)
         {
             CourseBean bean = new CourseBean();
             int id = i + 1;
             bean.setId(id);
             bean.setIcon(String.format("banner_%d", id));
-            slideBeanList.add(bean);
+            slideList.add(bean);
         }
     }
 
@@ -71,7 +71,7 @@ public class CourseModelImpl implements ICourseModel
                     .getResources()
                     .getAssets()
                     .open("chaptertitle.xml");
-            beanListList = AnalysisUtil.requireCourseInfo(is);
+            courseListList = AnalysisUtil.requireCourseInfo(is);
         }
         catch (IOException | XmlPullParserException e)
         {
@@ -82,12 +82,12 @@ public class CourseModelImpl implements ICourseModel
     @Override
     public List<CourseBean> slideList()
     {
-        return slideBeanList;
+        return slideList;
     }
 
     @Override
     public List<List<CourseBean>> courseListList()
     {
-        return beanListList;
+        return courseListList;
     }
 }

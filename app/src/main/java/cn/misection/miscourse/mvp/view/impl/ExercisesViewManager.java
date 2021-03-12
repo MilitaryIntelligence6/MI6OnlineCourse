@@ -6,9 +6,8 @@ import android.widget.ListView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.ExercisesAdapter;
-import cn.misection.miscourse.bean.ExercisesBean;
+import cn.misection.miscourse.bean.ExerciseBean;
 import cn.misection.miscourse.mvp.view.IExerciseView;
-import cn.misection.miscourse.mvp.view.IView;
 
 import java.util.List;
 
@@ -23,12 +22,12 @@ public class ExercisesViewManager implements IExerciseView
 
     private ListView listView;
 
-    private final List<ExercisesBean> beanList;
+    private final List<ExerciseBean> beanList;
 
     private final Activity context;
 
     public ExercisesViewManager(Activity context,
-                                List<ExercisesBean> beanList)
+                                List<ExerciseBean> beanList)
     {
         this.context = context;
         this.beanList = beanList;

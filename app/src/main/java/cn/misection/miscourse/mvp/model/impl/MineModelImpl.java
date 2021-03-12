@@ -1,5 +1,6 @@
 package cn.misection.miscourse.mvp.model.impl;
 
+import cn.misection.miscourse.R;
 import cn.misection.miscourse.mvp.model.IMineModel;
 import cn.misection.miscourse.mvp.presenter.impl.MinePresenterImpl;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
@@ -39,7 +40,7 @@ public class MineModelImpl implements IMineModel
     {
         // 改成资源文件中;
         return hasLogin() ? sharePrefLoginInfo.getLoginUsername()
-                : "点击登陆";
+                : presenter.context().getString(R.string.click_to_login);
     }
 
     @Override

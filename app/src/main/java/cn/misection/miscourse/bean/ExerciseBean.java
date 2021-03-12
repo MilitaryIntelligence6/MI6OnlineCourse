@@ -1,6 +1,6 @@
 package cn.misection.miscourse.bean;
 
-public class ExercisesBean
+public class ExerciseBean
 {
     /**
      * 每章习题 ID
