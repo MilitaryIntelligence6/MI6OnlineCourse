@@ -112,16 +112,16 @@ public class UserInfoActivity extends AppCompatActivity
             }
         });
 
-        usernameTextView = findViewById(R.id.tv_username);
+        usernameTextView = findViewById(R.id.username_text_view);
         nicknameRelaLayout = findViewById(R.id.rl_nickname);
         nicknameRelaLayout.setOnClickListener(this);
-        nicknameTextView = findViewById(R.id.tv_nickname);
+        nicknameTextView = findViewById(R.id.nickname_text_view);
         sexRelaLayout = findViewById(R.id.rl_sex);
         sexRelaLayout.setOnClickListener(this);
-        sexTextView = findViewById(R.id.tv_sex);
-        signatureRelaLayout = findViewById(R.id.rl_signature);
+        sexTextView = findViewById(R.id.sex_text_view);
+        signatureRelaLayout = findViewById(R.id.signature_rela_layout);
         signatureRelaLayout.setOnClickListener(this);
-        signatureTextView = findViewById(R.id.tv_signature);
+        signatureTextView = findViewById(R.id.signature_text_view);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class UserInfoActivity extends AppCompatActivity
                 String sex = sexTextView.getText().toString();
                 sexDialog(sex);
                 break;
-            case R.id.rl_signature:
+            case R.id.signature_rela_layout:
                 String signature = signatureTextView.getText().toString();
                 Bundle bdSignature = new Bundle();
                 bdSignature.putString("content", signature);

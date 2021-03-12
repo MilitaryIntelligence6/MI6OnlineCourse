@@ -122,11 +122,11 @@ public class FindPwdActivity extends AppCompatActivity
     {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
         backTextView = findViewById(R.id.back_text_view);
-        usernameTextView = findViewById(R.id.tv_username);
-        resetPasswordTextView = findViewById(R.id.tv_reset_password);
-        etUsername = findViewById(R.id.et_username);
-        etValidateName = findViewById(R.id.et_validate_name);
-        btnValidate = findViewById(R.id.btn_validate);
+        usernameTextView = findViewById(R.id.username_text_view);
+        resetPasswordTextView = findViewById(R.id.reset_password_text_view);
+        etUsername = findViewById(R.id.username_edit_text);
+        etValidateName = findViewById(R.id.validate_name_edit_text);
+        btnValidate = findViewById(R.id.validate_button);
         if ("security".equals(from))
         {
             mainTitleTextView.setText("设置密保");

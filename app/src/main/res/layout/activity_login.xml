@@ -53,7 +53,7 @@
         android:textSize="14sp" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="35dp"
@@ -68,7 +68,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_register"
+            android:id="@+id/register_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -78,7 +78,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_find_password"
+            android:id="@+id/find_password_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

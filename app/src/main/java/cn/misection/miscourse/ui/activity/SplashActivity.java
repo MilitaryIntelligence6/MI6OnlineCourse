@@ -16,13 +16,14 @@ import cn.misection.miscourse.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SplashActivity extends AppCompatActivity {
-
-    private TextView tvVersion;
+public class SplashActivity extends AppCompatActivity
+{
+    private TextView versionTextView;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         // 设置界面为竖屏
@@ -30,22 +31,29 @@ public class SplashActivity extends AppCompatActivity {
         init();
     }
 
-    private void init() {
+    private void init()
+    {
         // 显示应用版本号
-        tvVersion = findViewById(R.id.tv_version);
-        try {
+        versionTextView = findViewById(R.id.version_text_view);
+        try
+        {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            tvVersion.setText("v " + packageInfo.versionName);
-        } catch (PackageManager.NameNotFoundException e) {
+            versionTextView.setText(String.format("v %s", packageInfo.versionName));
+        }
+        catch (PackageManager.NameNotFoundException e)
+        {
             e.printStackTrace();
-            tvVersion.setText("v");
+            versionTextView.setText("v");
         }
 
+        // FIXME;
         // 三秒后跳转到主页面
         Timer timer = new Timer();
-        final TimerTask timerTask = new TimerTask() {
+        final TimerTask timerTask = new TimerTask()
+        {
             @Override
-            public void run() {
+            public void run()
+            {
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 SplashActivity.this.finish();

@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <ListView
-            android:id="@+id/lv_list"
+            android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="#e4e4e4"
@@ -23,7 +23,7 @@
             android:scrollbars="none" />
 
         <TextView
-            android:id="@+id/tv_none"
+            android:id="@+id/null_text_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

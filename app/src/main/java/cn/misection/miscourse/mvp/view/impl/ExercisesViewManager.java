@@ -43,7 +43,7 @@ public class ExercisesViewManager implements IExerciseView
     private void initView()
     {
         view = View.inflate(context, R.layout.main_view_exercises, null);
-        listView = view.findViewById(R.id.lv_list);
+        listView = view.findViewById(R.id.list_view);
     }
 
     private void initShowData()

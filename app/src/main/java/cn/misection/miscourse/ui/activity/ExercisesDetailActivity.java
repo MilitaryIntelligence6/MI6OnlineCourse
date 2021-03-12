@@ -68,7 +68,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
         backTextView = findViewById(R.id.back_text_view);
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30B4FF"));
-        listView = findViewById(R.id.lv_list);
+        listView = findViewById(R.id.list_view);
         TextView textView = new TextView(this);
         textView.setTextColor(Color.parseColor("#000000"));
         textView.setTextSize(16.0f);

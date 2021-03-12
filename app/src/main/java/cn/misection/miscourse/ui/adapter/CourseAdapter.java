@@ -63,12 +63,12 @@ public class CourseAdapter extends BaseAdapter
         {
             viewHolder = new CourseViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.course_list_item, null);
-            viewHolder.setLeftImageView((ImageView) convertView.findViewById(R.id.iv_left_img));
-            viewHolder.setRightImageView((ImageView) convertView.findViewById(R.id.iv_right_img));
-            viewHolder.setLeftImgTitleTextView((TextView) convertView.findViewById(R.id.tv_left_img_title));
-            viewHolder.setRightImgTitleTextView((TextView) convertView.findViewById(R.id.tv_right_img_title));
-            viewHolder.setLeftTitleTextView((TextView) convertView.findViewById(R.id.tv_left_title));
-            viewHolder.setRightTitleTextView((TextView) convertView.findViewById(R.id.tv_right_title));
+            viewHolder.setLeftImageView((ImageView) convertView.findViewById(R.id.left_img_image_view));
+            viewHolder.setRightImageView((ImageView) convertView.findViewById(R.id.right_img_image_view));
+            viewHolder.setLeftImgTitleTextView((TextView) convertView.findViewById(R.id.left_img_title_text_view));
+            viewHolder.setRightImgTitleTextView((TextView) convertView.findViewById(R.id.right_img_title_text_view));
+            viewHolder.setLeftTitleTextView((TextView) convertView.findViewById(R.id.left_title_text_view));
+            viewHolder.setRightTitleTextView((TextView) convertView.findViewById(R.id.right_title_text_view));
             convertView.setTag(viewHolder);
         }
         else

@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/ll_login"
+        android:id="@+id/login_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/myinfo_login_bg"
@@ -20,7 +20,7 @@
             android:src="@drawable/default_icon" />
 
         <TextView
-            android:id="@+id/tv_username"
+            android:id="@+id/username_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -37,7 +37,7 @@
         android:background="#E3E3E3" />
 
     <RelativeLayout
-        android:id="@+id/rl_setting"
+        android:id="@+id/setting_rela_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#F7F8F8"
@@ -73,7 +73,7 @@
         android:background="#E3E3E3" />
 
     <RelativeLayout
-        android:id="@+id/rl_play_history"
+        android:id="@+id/play_history_rela_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#F7F8F8"

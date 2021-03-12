@@ -64,15 +64,15 @@ public class MineViewManager implements IMineView, View.OnClickListener
 
     private void initComponent()
     {
-        usernameTextView = this.view.findViewById(R.id.tv_username);
+        usernameTextView = this.view.findViewById(R.id.username_text_view);
 
-        playHistoryRelaLayout = this.view.findViewById(R.id.rl_play_history);
+        playHistoryRelaLayout = this.view.findViewById(R.id.play_history_rela_layout);
         playHistoryRelaLayout.setOnClickListener(this);
 
-        settingRelaLayout = this.view.findViewById(R.id.rl_setting);
+        settingRelaLayout = this.view.findViewById(R.id.setting_rela_layout);
         settingRelaLayout.setOnClickListener(this);
 
-        loginLinearLayout = this.view.findViewById(R.id.ll_login);
+        loginLinearLayout = this.view.findViewById(R.id.login_linear_layout);
         loginLinearLayout.setOnClickListener(this);
     }
 
@@ -81,7 +81,7 @@ public class MineViewManager implements IMineView, View.OnClickListener
     {
         switch (v.getId())
         {
-            case R.id.ll_login:
+            case R.id.login_linear_layout:
             {
                 if (presenter.hasLogin())
                 {
@@ -99,7 +99,7 @@ public class MineViewManager implements IMineView, View.OnClickListener
                 }
                 break;
             }
-            case R.id.rl_play_history:
+            case R.id.play_history_rela_layout:
             {
                 if (presenter.hasLogin())
                 {
@@ -113,7 +113,7 @@ public class MineViewManager implements IMineView, View.OnClickListener
                 }
                 break;
             }
-            case R.id.rl_setting:
+            case R.id.setting_rela_layout:
             {
                 if (presenter.hasLogin())
                 {

@@ -8,7 +8,7 @@
     tools:context=".ui.activity.SplashActivity">
 
     <TextView
-        android:id="@+id/tv_version"
+        android:id="@+id/version_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

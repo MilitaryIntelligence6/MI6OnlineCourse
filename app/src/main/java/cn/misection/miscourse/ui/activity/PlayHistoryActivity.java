@@ -66,8 +66,8 @@ public class PlayHistoryActivity extends AppCompatActivity
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
         backTextView = findViewById(R.id.back_text_view);
-        listView = findViewById(R.id.lv_list);
-        nullTextView = findViewById(R.id.tv_none);
+        listView = findViewById(R.id.list_view);
+        nullTextView = findViewById(R.id.null_text_view);
         if (videoList.size() == 0)
         {
             nullTextView.setVisibility(View.VISIBLE);

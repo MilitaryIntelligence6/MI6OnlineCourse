@@ -62,15 +62,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.back_text_view:
                 LoginActivity.this.finish();
                 break;
-            case R.id.btn_login:
+            case R.id.login_button:
                 getEditString();
                 logicalJudgement();
                 break;
-            case R.id.tv_register:
+            case R.id.register_text_view:
                 intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivityForResult(intent, 1);
                 break;
-            case R.id.tv_find_password:
+            case R.id.find_password_text_view:
                 intent = new Intent(LoginActivity.this, FindPwdActivity.class);
                 startActivity(intent);
                 break;
@@ -145,11 +145,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         headImageView = findViewById(R.id.iv_head);
         usernameEditText = findViewById(R.id.et_login_username);
         passwordEditText = findViewById(R.id.et_login_password);
-        loginButton = findViewById(R.id.btn_login);
+        loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(this);
-        registerTextView = findViewById(R.id.tv_register);
+        registerTextView = findViewById(R.id.register_text_view);
         registerTextView.setOnClickListener(this);
-        findPasswordTextView = findViewById(R.id.tv_find_password);
+        findPasswordTextView = findViewById(R.id.find_password_text_view);
         findPasswordTextView.setOnClickListener(this);
 
         sharedPreferLoginInfo = new SharedPreferLoginInfo(LoginActivity.this);

@@ -105,7 +105,7 @@ public class CourseViewManager implements ICourseView
     private void initMainView()
     {
         view = View.inflate(context, R.layout.main_view_course, null);
-        listView = view.findViewById(R.id.lv_list);
+        listView = view.findViewById(R.id.list_view);
     }
 
     private void initSlideAdapter()
