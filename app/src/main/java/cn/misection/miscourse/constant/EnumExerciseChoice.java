@@ -12,9 +12,14 @@ public enum  EnumExerciseChoice
     /**
      * 选项;
      */
-    A,
-    B,
-    C,
-    D
+    A_WRONG,
+
+    B_WRONG,
+
+    C_WRONG,
+
+    D_WRONG,
+
+    CORRECT,
     ;
 }

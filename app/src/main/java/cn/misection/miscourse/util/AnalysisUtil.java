@@ -5,6 +5,7 @@ import android.widget.ImageView;
 
 import cn.misection.miscourse.bean.CourseBean;
 import cn.misection.miscourse.bean.ExerciseBean;
+import cn.misection.miscourse.constant.EnumExerciseResource;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -61,7 +62,10 @@ public class AnalysisUtil
                             break;
                         case "answer":
                             String answer = parser.nextText();
-                            exercisesInfo.setAnswer(Integer.parseInt(answer));
+//                            exercisesInfo.setCorrectAnswer(
+//                                    EnumExerciseResource.valueOf(Integer.parseInt(answer) - 1));
+                            exercisesInfo.setCorrectAnswer(
+                                    EnumExerciseResource.valueOf(1));
                             break;
                         default:
                         {
@@ -89,8 +93,8 @@ public class AnalysisUtil
         return exercisesInfos;
     }
 
-    public static void setABCDEnable(boolean value,
-                                     ImageView... imageViewArray)
+    public static void setChoiceEnable(boolean value,
+                                       ImageView... imageViewArray)
     {
         for (ImageView imageView : imageViewArray)
         {
@@ -98,7 +102,8 @@ public class AnalysisUtil
         }
     }
 
-    public static List<List<CourseBean>> requireCourseInfo(InputStream is) throws XmlPullParserException, IOException
+    public static List<List<CourseBean>> requireCourseInfo(InputStream is)
+            throws XmlPullParserException, IOException
     {
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(is, "utf-8");

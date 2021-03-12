@@ -15,6 +15,8 @@ import android.widget.TextView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.adapter.ExercisesDetailAdapter;
 import cn.misection.miscourse.bean.ExerciseBean;
+import cn.misection.miscourse.constant.EnumExerciseChoice;
+import cn.misection.miscourse.constant.EnumExerciseResource;
 import cn.misection.miscourse.util.AnalysisUtil;
 
 import java.io.IOException;
@@ -77,152 +79,153 @@ public class ExercisesDetailActivity extends AppCompatActivity
         adapter = new ExercisesDetailAdapter(ExercisesDetailActivity.this, new ExercisesDetailAdapter.OnSelectListener()
         {
             @Override
-            public void onSelectA(int position, ImageView imageViewA, ImageView imageViewB, ImageView imageViewC, ImageView imageViewD)
+            public void onSelectA(int position, ImageView... imageViewArray)
             {
                 // 判断如果答案不是 1 即 A 选项
-                if (beanList.get(position).getAnswer() != 1)
+                if (beanList.get(position).getCorrectAnswer() != EnumExerciseResource.A)
                 {
-                    beanList.get(position).setSelect(1);
+                    beanList.get(position).setUserSelect(EnumExerciseChoice.A_WRONG);
                 }
                 else
                 {
-                    beanList.get(position).setSelect(0);
+                    beanList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
                 }
                 // hash 表;
-                switch (beanList.get(position).getAnswer())
+                switch (beanList.get(position).getCorrectAnswer())
                 {
-                    case 1:
-                        imageViewA.setImageResource(R.drawable.exercises_right_icon);
+                    case A:
+                        imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
                         break;
-                    case 2:
-                        imageViewB.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewA.setImageResource(R.drawable.exercises_error_icon);
+                    case B:
+                        imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[0].setImageResource(R.drawable.exercises_error_icon);
                         break;
-                    case 3:
-                        imageViewC.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewA.setImageResource(R.drawable.exercises_error_icon);
+                    case C:
+                        imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[0].setImageResource(R.drawable.exercises_error_icon);
                         break;
-                    case 4:
-                        imageViewD.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewA.setImageResource(R.drawable.exercises_error_icon);
+                    case D:
+                        imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[0].setImageResource(R.drawable.exercises_error_icon);
                         break;
                     default:
                     {
                         break;
                     }
                 }
-                AnalysisUtil.setABCDEnable(false, imageViewA, imageViewB, imageViewC, imageViewD);
+                AnalysisUtil.setChoiceEnable(false, imageViewArray);
             }
 
             @Override
-            public void onSelectB(int position, ImageView imageViewA, ImageView imageViewB, ImageView imageViewC, ImageView imageViewD)
+            public void onSelectB(int position, ImageView... imageViewArray)
             {
                 // 判断如果答案不是 2 即 B 选项
-                if (beanList.get(position).getAnswer() != 2)
+                if (beanList.get(position).getCorrectAnswer() != EnumExerciseResource.B)
                 {
-                    beanList.get(position).setSelect(2);
+                    beanList.get(position).setUserSelect(EnumExerciseChoice.B_WRONG);
                 }
                 else
                 {
-                    beanList.get(position).setSelect(0);
+                    beanList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
                 }
-                switch (beanList.get(position).getAnswer())
+                switch (beanList.get(position).getCorrectAnswer())
                 {
-                    case 1:
-                        imageViewA.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewB.setImageResource(R.drawable.exercises_error_icon);
+                    case A:
+                        imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[1].setImageResource(R.drawable.exercises_error_icon);
                         break;
-                    case 2:
-                        imageViewB.setImageResource(R.drawable.exercises_right_icon);
+                    case B:
+                        imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
                         break;
-                    case 3:
-                        imageViewC.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewB.setImageResource(R.drawable.exercises_error_icon);
+                    case C:
+                        imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[1].setImageResource(R.drawable.exercises_error_icon);
                         break;
-                    case 4:
-                        imageViewD.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewB.setImageResource(R.drawable.exercises_error_icon);
+                    case D:
+                        imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[1].setImageResource(R.drawable.exercises_error_icon);
                         break;
                     default:
                     {
 
                     }
                 }
-                AnalysisUtil.setABCDEnable(false, imageViewA, imageViewB, imageViewC, imageViewD);
+                AnalysisUtil.setChoiceEnable(false, imageViewArray);
             }
 
             @Override
-            public void onSelectC(int position,
-                                  ImageView imageViewA,
-                                  ImageView imageViewB,
-                                  ImageView imageViewC,
-                                  ImageView imageViewD)
+            public void onSelectC(int position, ImageView... imageViewArray)
             {
                 // 判断如果答案不是 3 即 C 选项
-                if (beanList.get(position).getAnswer() != 3)
+                if (beanList.get(position).getCorrectAnswer() != EnumExerciseResource.C)
                 {
-                    beanList.get(position).setSelect(3);
+                    beanList.get(position).setUserSelect(EnumExerciseChoice.C_WRONG);
                 }
                 else
                 {
-                    beanList.get(position).setSelect(0);
+                    beanList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
                 }
-                switch (beanList.get(position).getAnswer())
+                switch (beanList.get(position).getCorrectAnswer())
                 {
-                    case 1:
-                        imageViewA.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewC.setImageResource(R.drawable.exercises_error_icon);
+                    case A:
+                        imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[2].setImageResource(R.drawable.exercises_error_icon);
                         break;
-                    case 2:
-                        imageViewB.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewC.setImageResource(R.drawable.exercises_error_icon);
+                    case B:
+                        imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[2].setImageResource(R.drawable.exercises_error_icon);
                         break;
-                    case 3:
-                        imageViewC.setImageResource(R.drawable.exercises_right_icon);
+                    case C:
+                        imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
                         break;
-                    case 4:
-                        imageViewD.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewC.setImageResource(R.drawable.exercises_error_icon);
+                    case D:
+                        imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[2].setImageResource(R.drawable.exercises_error_icon);
                         break;
+                    default:
+                    {
+                        break;
+                    }
                 }
-                AnalysisUtil.setABCDEnable(false, imageViewA, imageViewB, imageViewC, imageViewD);
+                AnalysisUtil.setChoiceEnable(false, imageViewArray);
             }
 
             @Override
             public void onSelectD(int position,
-                                  ImageView imageViewA,
-                                  ImageView imageViewB,
-                                  ImageView imageViewC,
-                                  ImageView imageViewD)
+                                  ImageView... imageViewArray)
             {
                 // 判断如果答案不是 4 即 D 选项
-                if (beanList.get(position).getAnswer() != 4)
+                if (beanList.get(position).getCorrectAnswer() != EnumExerciseResource.D)
                 {
-                    beanList.get(position).setSelect(4);
+                    beanList.get(position).setUserSelect(EnumExerciseChoice.D_WRONG);
                 }
                 else
                 {
-                    beanList.get(position).setSelect(0);
+                    beanList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
                 }
-                switch (beanList.get(position).getAnswer())
+                switch (beanList.get(position).getCorrectAnswer())
                 {
-                    case 1:
-                        imageViewA.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewD.setImageResource(R.drawable.exercises_error_icon);
+                    case A:
+                        imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[3].setImageResource(R.drawable.exercises_error_icon);
                         break;
-                    case 2:
-                        imageViewB.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewD.setImageResource(R.drawable.exercises_error_icon);
+                    case B:
+                        imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[3].setImageResource(R.drawable.exercises_error_icon);
                         break;
-                    case 3:
-                        imageViewC.setImageResource(R.drawable.exercises_right_icon);
-                        imageViewD.setImageResource(R.drawable.exercises_error_icon);
+                    case C:
+                        imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
+                        imageViewArray[3].setImageResource(R.drawable.exercises_error_icon);
                         break;
-                    case 4:
-                        imageViewD.setImageResource(R.drawable.exercises_right_icon);
+                    case D:
+                        imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
                         break;
+                    default:
+                    {
+                        break;
+                    }
                 }
-                AnalysisUtil.setABCDEnable(false, imageViewA, imageViewB, imageViewC, imageViewD);
+                AnalysisUtil.setChoiceEnable(false, imageViewArray);
             }
         });
         adapter.setData(beanList);
@@ -233,7 +236,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
     {
         try
         {
-            InputStream is = getResources().getAssets().open("chapter" + id + ".xml");
+            InputStream is = getResources().getAssets().open(String.format("chapter%d.xml", id));
             beanList = AnalysisUtil.getExercisesInfos(is);
         }
         catch (IOException e)
