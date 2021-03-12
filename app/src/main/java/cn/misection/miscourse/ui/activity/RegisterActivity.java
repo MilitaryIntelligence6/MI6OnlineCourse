@@ -15,12 +15,27 @@ import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 public class RegisterActivity extends AppCompatActivity
 {
-    private TextView tvMainTitle, tvBack;
-    private EditText etUsername, etPassword, etPasswordAgain;
-    private Button btnRegister;
+    private TextView mainTitleTextView;
+
+    private TextView backTextView;
+
+    private EditText usernameEditText;
+
+    private EditText passwordEditText;
+
+    private EditText passwordAgainEditText;
+
+    private Button registerButton;
+
     private Intent intent;
-    private String username, password, passwordAgain;
-    SharedPreferLoginInfo sharedPrefLoginInfo;
+
+    private String username;
+
+    private String password;
+
+    private String passwordAgain;
+
+    private SharedPreferLoginInfo sharedPrefLoginInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity
         setContentView(R.layout.activity_register);
         init();
         // 注册按钮点击事件
-        btnRegister.setOnClickListener(new View.OnClickListener()
+        registerButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -88,17 +103,17 @@ public class RegisterActivity extends AppCompatActivity
     // 获取文本输入
     private void getEditString()
     {
-        username = etUsername.getText().toString().trim();
-        password = etPassword.getText().toString().trim();
-        passwordAgain = etPasswordAgain.getText().toString().trim();
+        username = usernameEditText.getText().toString().trim();
+        password = passwordEditText.getText().toString().trim();
+        passwordAgain = passwordAgainEditText.getText().toString().trim();
     }
 
     private void init()
     {
-        tvMainTitle = findViewById(R.id.main_title_text_view);
-        tvMainTitle.setText("注册");
-        tvBack = findViewById(R.id.back_text_view);
-        tvBack.setOnClickListener(new View.OnClickListener()
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
+        mainTitleTextView.setText("注册");
+        backTextView = findViewById(R.id.back_text_view);
+        backTextView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -107,9 +122,9 @@ public class RegisterActivity extends AppCompatActivity
             }
         });
 
-        etUsername = findViewById(R.id.et_register_username);
-        etPassword = findViewById(R.id.et_register_password);
-        etPasswordAgain = findViewById(R.id.et_register_password_again);
-        btnRegister = findViewById(R.id.btn_register);
+        usernameEditText = findViewById(R.id.et_register_username);
+        passwordEditText = findViewById(R.id.et_register_password);
+        passwordAgainEditText = findViewById(R.id.et_register_password_again);
+        registerButton = findViewById(R.id.btn_register);
     }
 }

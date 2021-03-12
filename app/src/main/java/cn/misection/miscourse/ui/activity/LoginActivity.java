@@ -18,18 +18,36 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.MD5Util;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private ImageView ivHead;
-    private EditText etUsername, etPassword;
-    private Button btnLogin;
-    private TextView tvMainTitle, tvBack, tvRegister, tvFindPassword;
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener
+{
+    private ImageView headImageView;
+
+    private EditText usernameEditText;
+
+    private EditText passwordEditText;
+
+    private Button loginButton;
+
+    private TextView mainTitleTextView;
+
+    private TextView backTextView;
+
+    private TextView registerTextView;
+
+    private TextView findPasswordTextView;
+
     private Intent intent;
-    private String username, password;
-    SharedPreferLoginInfo sharedPreferLoginInfo;
+
+    private String username;
+
+    private String password;
+
+    private SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -37,8 +55,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
             case R.id.back_text_view:
                 LoginActivity.this.finish();
                 break;
@@ -54,20 +74,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 intent = new Intent(LoginActivity.this, FindPwdActivity.class);
                 startActivity(intent);
                 break;
+            default:
+            {
+                break;
+            }
         }
     }
 
     // 逻辑判断
-    private void logicalJudgement() {
-        if (username.isEmpty()) {
+    private void logicalJudgement()
+    {
+        if (username.isEmpty())
+        {
             toastShow("请输入用户名");
-        } else if (password.isEmpty()) {
+        }
+        else if (password.isEmpty())
+        {
             toastShow("请输入密码");
-        } else if (sharedPreferLoginInfo.getPwd(username).isEmpty()) {
+        }
+        else if (sharedPreferLoginInfo.getPwd(username).isEmpty())
+        {
             toastShow("用户名不存在");
-        } else if (!loginCheck(username, password)) {
+        }
+        else if (!loginCheck(username, password))
+        {
             toastShow("用户名或密码错误");
-        } else {
+        }
+        else
+        {
             toastShow("用户登陆成功！");
             sharedPreferLoginInfo.saveLoginStatus(true, username);
             jumpActivity();
@@ -75,7 +109,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     // 带参数返回
-    private void jumpActivity() {
+    private void jumpActivity()
+    {
         intent = new Intent();
         intent.putExtra("isLogin", true);
         setResult(RESULT_OK, intent);
@@ -83,48 +118,55 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     // 登录账号密码验证
-    private boolean loginCheck(String username, String password) {
+    private boolean loginCheck(String username, String password)
+    {
         String md5Pwd = MD5Util.md5(password);
         return sharedPreferLoginInfo.getPwd(username).equals(md5Pwd);
     }
 
-    private void toastShow(String message) {
+    private void toastShow(String message)
+    {
         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private void getEditString() {
-        username = etUsername.getText().toString().trim();
-        password = etPassword.getText().toString().trim();
+    private void getEditString()
+    {
+        username = usernameEditText.getText().toString().trim();
+        password = passwordEditText.getText().toString().trim();
     }
 
-    private void init() {
-        tvMainTitle = findViewById(R.id.main_title_text_view);
-        tvMainTitle.setText("登陆");
-        tvBack = findViewById(R.id.back_text_view);
-        tvBack.setOnClickListener(this);
+    private void init()
+    {
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
+        mainTitleTextView.setText("登陆");
+        backTextView = findViewById(R.id.back_text_view);
+        backTextView.setOnClickListener(this);
 
-        ivHead = findViewById(R.id.iv_head);
-        etUsername = findViewById(R.id.et_login_username);
-        etPassword = findViewById(R.id.et_login_password);
-        btnLogin = findViewById(R.id.btn_login);
-        btnLogin.setOnClickListener(this);
-        tvRegister = findViewById(R.id.tv_register);
-        tvRegister.setOnClickListener(this);
-        tvFindPassword = findViewById(R.id.tv_find_password);
-        tvFindPassword.setOnClickListener(this);
+        headImageView = findViewById(R.id.iv_head);
+        usernameEditText = findViewById(R.id.et_login_username);
+        passwordEditText = findViewById(R.id.et_login_password);
+        loginButton = findViewById(R.id.btn_login);
+        loginButton.setOnClickListener(this);
+        registerTextView = findViewById(R.id.tv_register);
+        registerTextView.setOnClickListener(this);
+        findPasswordTextView = findViewById(R.id.tv_find_password);
+        findPasswordTextView.setOnClickListener(this);
 
         sharedPreferLoginInfo = new SharedPreferLoginInfo(LoginActivity.this);
     }
 
     // 接受注册返回参数
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null) {
+        if (data != null)
+        {
             String username = data.getStringExtra("username");
-            if (!username.isEmpty()) {
-                etUsername.setText(username);
-                etUsername.setSelection(username.length());  // 设置光标位置
+            if (!username.isEmpty())
+            {
+                usernameEditText.setText(username);
+                usernameEditText.setSelection(username.length());  // 设置光标位置
             }
         }
     }

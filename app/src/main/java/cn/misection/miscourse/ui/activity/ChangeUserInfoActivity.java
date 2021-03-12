@@ -19,11 +19,22 @@ import cn.misection.miscourse.R;
 
 public class ChangeUserInfoActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private RelativeLayout rlTitleBar;
-    private TextView tvBack, tvMainTitle, tvSave;
-    private EditText etContent;
-    private ImageView ivDel;
-    private String title, content;
+    private RelativeLayout titleBarRelaLayout;
+
+    private TextView backTextView;
+
+    private TextView mainTitleTextView;
+
+    private TextView saveTextView;
+
+    private EditText contentEditText;
+
+    private ImageView delImageView;
+
+    private String title;
+
+    private String content;
+
     private int flag;
 
     @Override
@@ -40,31 +51,31 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         content = getIntent().getStringExtra("content");
         flag = getIntent().getIntExtra("flag", 0);
 
-        rlTitleBar = findViewById(R.id.title_bar);
-        rlTitleBar.setBackgroundColor(Color.parseColor("#30b4ff"));
-        tvMainTitle = findViewById(R.id.main_title_text_view);
-        tvMainTitle.setText(title);
-        tvSave = findViewById(R.id.tv_save);
-        tvSave.setVisibility(View.VISIBLE);
-        tvSave.setOnClickListener(this);
-        tvBack = findViewById(R.id.back_text_view);
-        tvBack.setOnClickListener(this);
+        titleBarRelaLayout = findViewById(R.id.title_bar);
+        titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
+        mainTitleTextView.setText(title);
+        saveTextView = findViewById(R.id.tv_save);
+        saveTextView.setVisibility(View.VISIBLE);
+        saveTextView.setOnClickListener(this);
+        backTextView = findViewById(R.id.back_text_view);
+        backTextView.setOnClickListener(this);
 
-        etContent = findViewById(R.id.et_content);
-        ivDel = findViewById(R.id.iv_delete);
-        ivDel.setOnClickListener(this);
+        contentEditText = findViewById(R.id.et_content);
+        delImageView = findViewById(R.id.iv_delete);
+        delImageView.setOnClickListener(this);
 
         if (!content.isEmpty())
         {
-            etContent.setText(content);
-            etContent.setSelection(content.length());
+            contentEditText.setText(content);
+            contentEditText.setSelection(content.length());
         }
         contentListener();
     }
 
     private void contentListener()
     {
-        etContent.addTextChangedListener(new TextWatcher()
+        contentEditText.addTextChangedListener(new TextWatcher()
         {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after)
@@ -75,9 +86,9 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                Editable editable = etContent.getText();
+                Editable editable = contentEditText.getText();
                 int len = editable.length();
-                ivDel.setVisibility(len > 0 ? View.VISIBLE : View.GONE);
+                delImageView.setVisibility(len > 0 ? View.VISIBLE : View.GONE);
                 switch (flag)
                 {
                     case 1:  // 昵称
@@ -87,8 +98,8 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
                             String string = editable.toString();
 
                             String newStr = string.substring(0, 8);
-                            etContent.setText(newStr);
-                            editable = etContent.getText();
+                            contentEditText.setText(newStr);
+                            editable = contentEditText.getText();
 
                             int newLen = editable.length();
 
@@ -106,8 +117,8 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
                             String string = editable.toString();
 
                             String newStr = string.substring(0, 16);
-                            etContent.setText(newStr);
-                            editable = etContent.getText();
+                            contentEditText.setText(newStr);
+                            editable = contentEditText.getText();
 
                             int newLen = editable.length();
 
@@ -142,7 +153,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
                 ChangeUserInfoActivity.this.finish();
                 break;
             case R.id.iv_delete:
-                etContent.setText("");
+                contentEditText.setText("");
                 break;
             case R.id.tv_save:
                 saveUserInfo();
@@ -153,7 +164,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
     private void saveUserInfo()
     {
         Intent data = new Intent();
-        String value = etContent.getText().toString().trim();
+        String value = contentEditText.getText().toString().trim();
         switch (flag)
         {
             case 1:
