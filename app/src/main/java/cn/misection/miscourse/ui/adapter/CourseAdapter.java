@@ -20,30 +20,33 @@ import java.util.List;
 public class CourseAdapter extends BaseAdapter
 {
     private Context context;
-    private List<List<CourseBean>> cb1;
+    private List<List<CourseBean>> courseListList;
 
     public CourseAdapter(Context context)
     {
         this.context = context;
     }
 
-    // 设置数据更新页面
-    public void setData(List<List<CourseBean>> cb1)
+    /**
+     * 设置数据更新页面;
+     * @param courseListList
+     */
+    public void putCourseListList(List<List<CourseBean>> courseListList)
     {
-        this.cb1 = cb1;
+        this.courseListList = courseListList;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount()
     {
-        return cb1 == null ? 0 : cb1.size();
+        return courseListList == null ? 0 : courseListList.size();
     }
 
     @Override
     public List<CourseBean> getItem(int position)
     {
-        return cb1 == null ? null : cb1.get(position);
+        return courseListList == null ? null : courseListList.get(position);
     }
 
     @Override

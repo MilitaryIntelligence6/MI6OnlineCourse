@@ -19,29 +19,29 @@ import java.util.List;
 public class PlayHistoryAdapter extends BaseAdapter
 {
     private Context context;
-    private List<VideoBean> vb1;
+    private List<VideoBean> videoList;
 
     public PlayHistoryAdapter(Context context)
     {
         this.context = context;
     }
 
-    public void setData(List<VideoBean> vb1)
+    public void putVideoList(List<VideoBean> videoList)
     {
-        this.vb1 = vb1;
+        this.videoList = videoList;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount()
     {
-        return vb1 == null ? 0 : vb1.size();
+        return videoList == null ? 0 : videoList.size();
     }
 
     @Override
     public VideoBean getItem(int position)
     {
-        return vb1 == null ? null : vb1.get(position);
+        return videoList == null ? null : videoList.get(position);
     }
 
     @Override

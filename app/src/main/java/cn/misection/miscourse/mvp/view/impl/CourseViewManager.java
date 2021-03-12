@@ -111,7 +111,7 @@ public class CourseViewManager implements ICourseView
     private void initSlideAdapter()
     {
         slideApter = new CourseAdapter(context);
-        slideApter.setData(beanListList);
+        slideApter.putCourseListList(beanListList);
         listView.setAdapter(slideApter);
     }
 

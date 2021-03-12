@@ -18,7 +18,7 @@ import java.util.List;
 public class ExercisesAdapter extends BaseAdapter
 {
     private Context context;
-    private List<ExerciseBean> eb1;
+    private List<ExerciseBean> exerciseList;
 
     public ExercisesAdapter(Context context)
     {
@@ -28,11 +28,11 @@ public class ExercisesAdapter extends BaseAdapter
     /**
      * 设置数据更新界面;
      *
-     * @param eb1
+     * @param exerciseList
      */
-    public void setData(List<ExerciseBean> eb1)
+    public void setData(List<ExerciseBean> exerciseList)
     {
-        this.eb1 = eb1;
+        this.exerciseList = exerciseList;
         notifyDataSetChanged();
     }
 
@@ -44,7 +44,7 @@ public class ExercisesAdapter extends BaseAdapter
     @Override
     public int getCount()
     {
-        return eb1 == null ? 0 : eb1.size();
+        return exerciseList == null ? 0 : exerciseList.size();
     }
 
     /**
@@ -56,7 +56,7 @@ public class ExercisesAdapter extends BaseAdapter
     @Override
     public ExerciseBean getItem(int position)
     {
-        return eb1 == null ? null : eb1.get(position);
+        return exerciseList == null ? null : exerciseList.get(position);
     }
 
     /**

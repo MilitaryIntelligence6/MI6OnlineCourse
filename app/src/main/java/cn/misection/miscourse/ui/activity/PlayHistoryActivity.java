@@ -20,48 +20,67 @@ import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayHistoryActivity extends AppCompatActivity {
-    private TextView tvMainTitle, tvBack, tvNone;
-    private RelativeLayout rlTitleBar;
-    private ListView lvList;
+/**
+ * @author Administrator
+ */
+public class PlayHistoryActivity extends AppCompatActivity
+{
+    private TextView mainTitleTextView;
+
+    private TextView backTextView;
+
+    private TextView nullTextView;
+
+    private RelativeLayout titleBarRelaLayout;
+
+    private ListView listView;
+
     private PlayHistoryAdapter adapter;
-    private List<VideoBean> vb1;
-    private DataBaseHelper db;
+
+    private List<VideoBean> videoList;
+
+    private DataBaseHelper dataBaseHelper;
+
     SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_history);
         // 设置此界面为竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        db = DataBaseHelper.getInstance(this);
-        vb1 = new ArrayList<>();
+        dataBaseHelper = DataBaseHelper.getInstance(this);
+        videoList = new ArrayList<>();
         // 从数据库中获取播放记录信息
         sharedPreferLoginInfo = new SharedPreferLoginInfo(this);
-        vb1 = db.getVideoHistory(sharedPreferLoginInfo.getLoginUsername());
+        videoList = dataBaseHelper.getVideoHistory(sharedPreferLoginInfo.getLoginUsername());
         init();
     }
 
-    private void init() {
-        tvMainTitle = findViewById(R.id.tv_main_title);
-        tvMainTitle.setText("播放记录");
-        rlTitleBar = findViewById(R.id.title_bar);
-        rlTitleBar.setBackgroundColor(Color.parseColor("#30b4ff"));
-        tvBack = findViewById(R.id.text_view_back);
-        lvList = findViewById(R.id.lv_list);
-        tvNone = findViewById(R.id.tv_none);
-        if (vb1.size() == 0) {
-            tvNone.setVisibility(View.VISIBLE);
+    private void init()
+    {
+        mainTitleTextView = findViewById(R.id.tv_main_title);
+        mainTitleTextView.setText("播放记录");
+        titleBarRelaLayout = findViewById(R.id.title_bar);
+        titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
+        backTextView = findViewById(R.id.text_view_back);
+        listView = findViewById(R.id.lv_list);
+        nullTextView = findViewById(R.id.tv_none);
+        if (videoList.size() == 0)
+        {
+            nullTextView.setVisibility(View.VISIBLE);
         }
         adapter = new PlayHistoryAdapter(this);
-        adapter.setData(vb1);
-        lvList.setAdapter(adapter);
+        adapter.putVideoList(videoList);
+        listView.setAdapter(adapter);
         // 后退按钮的点击事件
-        tvBack.setOnClickListener(new View.OnClickListener() {
+        backTextView.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 PlayHistoryActivity.this.finish();
             }
         });
