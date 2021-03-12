@@ -55,7 +55,7 @@ public enum EnumExerciseResource
 
     public static EnumExerciseResource valueOf(int ordinal)
     {
-        if (ordinal < 0 || ordinal >= values().length)
+        if (ordinal < 0 || ordinal > values().length - 1)
         {
             throw new IndexOutOfBoundsException("Invalid ordinal");
         }

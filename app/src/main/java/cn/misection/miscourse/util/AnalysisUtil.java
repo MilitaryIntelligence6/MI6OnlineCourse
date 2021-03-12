@@ -64,8 +64,10 @@ public class AnalysisUtil
                             String answer = parser.nextText();
 //                            exercisesInfo.setCorrectAnswer(
 //                                    EnumExerciseResource.valueOf(Integer.parseInt(answer) - 1));
+                            // FIXME, 对了, 尽量更优雅;
                             exercisesInfo.setCorrectAnswer(
-                                    EnumExerciseResource.valueOf(1));
+                                    EnumExerciseResource.valueOf(Integer.parseInt(answer) - 1)
+                            );
                             break;
                         default:
                         {
