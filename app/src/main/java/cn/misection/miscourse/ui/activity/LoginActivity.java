@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.text_view_back:
+            case R.id.back_text_view:
                 LoginActivity.this.finish();
                 break;
             case R.id.btn_login:
@@ -98,9 +98,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void init() {
-        tvMainTitle = findViewById(R.id.tv_main_title);
+        tvMainTitle = findViewById(R.id.main_title_text_view);
         tvMainTitle.setText("登陆");
-        tvBack = findViewById(R.id.text_view_back);
+        tvBack = findViewById(R.id.back_text_view);
         tvBack.setOnClickListener(this);
 
         ivHead = findViewById(R.id.iv_head);

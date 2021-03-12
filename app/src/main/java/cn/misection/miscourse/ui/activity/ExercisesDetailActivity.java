@@ -64,8 +64,8 @@ public class ExercisesDetailActivity extends AppCompatActivity
 
     private void init()
     {
-        mainTitleTextView = findViewById(R.id.tv_main_title);
-        backTextView = findViewById(R.id.text_view_back);
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
+        backTextView = findViewById(R.id.back_text_view);
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30B4FF"));
         listView = findViewById(R.id.lv_list);

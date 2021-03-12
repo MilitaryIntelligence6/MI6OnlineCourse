@@ -120,8 +120,8 @@ public class FindPwdActivity extends AppCompatActivity
 
     private void init()
     {
-        mainTitleTextView = findViewById(R.id.tv_main_title);
-        backTextView = findViewById(R.id.text_view_back);
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
+        backTextView = findViewById(R.id.back_text_view);
         usernameTextView = findViewById(R.id.tv_username);
         resetPasswordTextView = findViewById(R.id.tv_reset_password);
         etUsername = findViewById(R.id.et_username);

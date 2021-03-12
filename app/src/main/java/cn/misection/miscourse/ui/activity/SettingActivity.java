@@ -30,9 +30,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
         rlTitleBar = findViewById(R.id.title_bar);
         rlTitleBar.setBackgroundColor(Color.parseColor("#30B4FF"));
-        tvMainTittle = findViewById(R.id.tv_main_title);
+        tvMainTittle = findViewById(R.id.main_title_text_view);
         tvMainTittle.setText("设置");
-        tvBack = findViewById(R.id.text_view_back);
+        tvBack = findViewById(R.id.back_text_view);
         tvBack.setOnClickListener(this);
 
         rlUpdatePassword = findViewById(R.id.rl_update_password);
@@ -46,7 +46,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.text_view_back:
+            case R.id.back_text_view:
                 SettingActivity.this.finish();
                 break;
             case R.id.rl_update_password:

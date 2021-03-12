@@ -104,9 +104,9 @@ public class UpdatePwdActivity extends AppCompatActivity
 
     private void init()
     {
-        mainTitleTextView = findViewById(R.id.tv_main_title);
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
         mainTitleTextView.setText("修改密码");
-        backTextView = findViewById(R.id.text_view_back);
+        backTextView = findViewById(R.id.back_text_view);
         backTextView.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -116,9 +116,9 @@ public class UpdatePwdActivity extends AppCompatActivity
             }
         });
 
-        oldPasswordEditText = findViewById(R.id.et_old_password);
-        newPasswordEditText = findViewById(R.id.et_new_password);
-        newPasswordAgainEditText = findViewById(R.id.et_new_password_again);
+        oldPasswordEditText = findViewById(R.id.old_password_edit_text);
+        newPasswordEditText = findViewById(R.id.new_password_edit_text);
+        newPasswordAgainEditText = findViewById(R.id.new_password_again_edit_text);
         saveButton = findViewById(R.id.btn_save);
 
         sharedPreferLoginInfo = new SharedPreferLoginInfo(UpdatePwdActivity.this);

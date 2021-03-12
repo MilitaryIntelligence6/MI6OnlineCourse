@@ -61,11 +61,11 @@ public class PlayHistoryActivity extends AppCompatActivity
 
     private void init()
     {
-        mainTitleTextView = findViewById(R.id.tv_main_title);
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
         mainTitleTextView.setText("播放记录");
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
-        backTextView = findViewById(R.id.text_view_back);
+        backTextView = findViewById(R.id.back_text_view);
         listView = findViewById(R.id.lv_list);
         nullTextView = findViewById(R.id.tv_none);
         if (videoList.size() == 0)

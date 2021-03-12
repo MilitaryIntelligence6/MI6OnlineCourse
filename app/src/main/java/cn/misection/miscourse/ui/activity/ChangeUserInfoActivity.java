@@ -42,12 +42,12 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
 
         rlTitleBar = findViewById(R.id.title_bar);
         rlTitleBar.setBackgroundColor(Color.parseColor("#30b4ff"));
-        tvMainTitle = findViewById(R.id.tv_main_title);
+        tvMainTitle = findViewById(R.id.main_title_text_view);
         tvMainTitle.setText(title);
         tvSave = findViewById(R.id.tv_save);
         tvSave.setVisibility(View.VISIBLE);
         tvSave.setOnClickListener(this);
-        tvBack = findViewById(R.id.text_view_back);
+        tvBack = findViewById(R.id.back_text_view);
         tvBack.setOnClickListener(this);
 
         etContent = findViewById(R.id.et_content);
@@ -138,7 +138,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
     {
         switch (v.getId())
         {
-            case R.id.text_view_back:
+            case R.id.back_text_view:
                 ChangeUserInfoActivity.this.finish();
                 break;
             case R.id.iv_delete:

@@ -11,7 +11,7 @@
     <include layout="@layout/main_title_bar"></include>
 
     <EditText
-        android:id="@+id/et_old_password"
+        android:id="@+id/old_password_edit_text"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
@@ -30,7 +30,7 @@
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/et_new_password"
+        android:id="@+id/new_password_edit_text"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
@@ -48,7 +48,7 @@
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/et_new_password_again"
+        android:id="@+id/new_password_again_edit_text"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"

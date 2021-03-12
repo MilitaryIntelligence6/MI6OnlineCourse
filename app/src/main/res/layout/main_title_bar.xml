@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/text_view_back"
+        android:id="@+id/back_text_view"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
@@ -16,7 +16,7 @@
         android:background="@drawable/go_back_selector" />
 
     <TextView
-        android:id="@+id/tv_main_title"
+        android:id="@+id/main_title_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

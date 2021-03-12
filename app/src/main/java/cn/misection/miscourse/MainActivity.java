@@ -102,9 +102,9 @@ public class MainActivity
 
     private void initIndex()
     {
-        mainTitleTextView = findViewById(R.id.tv_main_title);
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
         mainTitleTextView.setText(R.string.course_name);
-        backTextView = findViewById(R.id.text_view_back);
+        backTextView = findViewById(R.id.back_text_view);
         backTextView.setVisibility(View.GONE);
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30B4FF"));
