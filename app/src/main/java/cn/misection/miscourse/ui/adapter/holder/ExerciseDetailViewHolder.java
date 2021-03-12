@@ -1,4 +1,4 @@
-package cn.misection.miscourse.entity;
+package cn.misection.miscourse.ui.adapter.holder;
 
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -6,7 +6,7 @@ import android.widget.TextView;
 /**
  * @author Administrator
  */
-public class ViewHolder
+public class ExerciseDetailViewHolder
 {
     private TextView subject;
 

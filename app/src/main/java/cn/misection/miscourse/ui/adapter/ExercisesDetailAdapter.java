@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.entity.ExerciseBean;
-import cn.misection.miscourse.entity.ViewHolder;
+import cn.misection.miscourse.ui.adapter.holder.ExerciseDetailViewHolder;
 import cn.misection.miscourse.constant.EnumExercise;
 import cn.misection.miscourse.util.AnalysisUtil;
 
@@ -67,10 +67,10 @@ public class ExercisesDetailAdapter extends BaseAdapter
     @Override
     public View getView(final int position, View convertView, ViewGroup parent)
     {
-        final ViewHolder viewHolder;
+        final ExerciseDetailViewHolder viewHolder;
         if (convertView == null)
         {
-            viewHolder = new ViewHolder();
+            viewHolder = new ExerciseDetailViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.exercises_detail_list_item, null);
             viewHolder.setSubject((TextView) convertView.findViewById(R.id.tv_subject));
 
@@ -99,7 +99,7 @@ public class ExercisesDetailAdapter extends BaseAdapter
         }
         else
         {
-            viewHolder = ((ViewHolder) convertView.getTag());
+            viewHolder = ((ExerciseDetailViewHolder) convertView.getTag());
         }
 
         final ExerciseBean exercise = getItem(position);

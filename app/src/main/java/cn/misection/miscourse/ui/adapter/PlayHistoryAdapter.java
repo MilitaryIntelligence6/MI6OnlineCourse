@@ -12,94 +12,110 @@ import android.widget.TextView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.ui.activity.VideoPlayActivity;
 import cn.misection.miscourse.entity.VideoBean;
+import cn.misection.miscourse.ui.adapter.holder.PlayHistoryViewHolder;
 
 import java.util.List;
 
-public class PlayHistoryAdapter extends BaseAdapter {
+public class PlayHistoryAdapter extends BaseAdapter
+{
     private Context context;
     private List<VideoBean> vb1;
 
-    public PlayHistoryAdapter(Context context){
+    public PlayHistoryAdapter(Context context)
+    {
         this.context = context;
     }
 
-    public void setData(List<VideoBean> vb1){
+    public void setData(List<VideoBean> vb1)
+    {
         this.vb1 = vb1;
         notifyDataSetChanged();
     }
 
     @Override
-    public int getCount() {
+    public int getCount()
+    {
         return vb1 == null ? 0 : vb1.size();
     }
 
     @Override
-    public VideoBean getItem(int position) {
+    public VideoBean getItem(int position)
+    {
         return vb1 == null ? null : vb1.get(position);
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int position)
+    {
         return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        final ViewHolder vh;
-        if (convertView == null) {
-            vh = new ViewHolder();
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        final PlayHistoryViewHolder viewHolder;
+        if (convertView == null)
+        {
+            viewHolder = new PlayHistoryViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.play_history_list_item, null);
-            vh.tvTitle = convertView.findViewById(R.id.tv_adapter_title);
-            vh.tvVideoTitle = convertView.findViewById(R.id.tv_video_title);
-            vh.ivIcon = convertView.findViewById(R.id.iv_video_icon);
-            convertView.setTag(vh);
-        }else{
-            vh = ((ViewHolder) convertView.getTag());
+            viewHolder.setTvTitle((TextView) convertView.findViewById(R.id.tv_adapter_title));
+            viewHolder.setTvVideoTitle((TextView) convertView.findViewById(R.id.tv_video_title));
+            viewHolder.setIvIcon((ImageView) convertView.findViewById(R.id.iv_video_icon));
+            convertView.setTag(viewHolder);
+        }
+        else
+        {
+            viewHolder = ((PlayHistoryViewHolder) convertView.getTag());
         }
         final VideoBean bean = getItem(position);
-        if (bean != null) {
-            vh.tvTitle.setText(bean.getTitle());
-            vh.tvVideoTitle.setText(bean.getSecondTitle());
-            switch (bean.getChapterId()){
+        if (bean != null)
+        {
+            viewHolder.getTvTitle().setText(bean.getTitle());
+            viewHolder.getTvVideoTitle().setText(bean.getSecondTitle());
+            switch (bean.getChapterId())
+            {
                 case 1:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon1);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon1);
                     break;
                 case 2:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon2);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon2);
                     break;
                 case 3:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon3);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon3);
                     break;
                 case 4:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon4);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon4);
                     break;
                 case 5:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon10);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon10);
                     break;
                 case 6:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon6);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon6);
                     break;
                 case 7:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon7);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon7);
                     break;
                 case 8:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon8);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon8);
                     break;
                 case 9:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon9);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon9);
                     break;
                 case 10:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon10);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon10);
                     break;
                 default:
-                    vh.ivIcon.setImageResource(R.drawable.video_play_icon1);
+                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon1);
                     break;
             }
         }
-        convertView.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                if (bean == null){
+            public void onClick(View v)
+            {
+                if (bean == null)
+                {
                     return;
                 }
                 // 跳转到播放视频界面
@@ -109,10 +125,5 @@ public class PlayHistoryAdapter extends BaseAdapter {
             }
         });
         return convertView;
-    }
-
-    class ViewHolder{
-        public TextView tvTitle, tvVideoTitle;
-        public ImageView ivIcon;
     }
 }

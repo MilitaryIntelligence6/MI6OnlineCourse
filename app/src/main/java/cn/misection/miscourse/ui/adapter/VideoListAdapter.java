@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.entity.VideoBean;
+import cn.misection.miscourse.ui.adapter.holder.VideoViewHolder;
 
 import java.util.List;
 
@@ -72,10 +73,10 @@ public class VideoListAdapter extends BaseAdapter
     @Override
     public View getView(final int position, View convertView, ViewGroup parent)
     {
-        final ViewHolder viewHolder;
+        final VideoViewHolder viewHolder;
         if (convertView == null)
         {
-            viewHolder = new ViewHolder();
+            viewHolder = new VideoViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.video_list_item, null);
             viewHolder.setTitleTextView((TextView) convertView.findViewById(R.id.tv_video_title));
             viewHolder.setIconImageView((ImageView) convertView.findViewById(R.id.iv_left_icon));
@@ -83,7 +84,7 @@ public class VideoListAdapter extends BaseAdapter
         }
         else
         {
-            viewHolder = ((ViewHolder) convertView.getTag());
+            viewHolder = ((VideoViewHolder) convertView.getTag());
         }
         final VideoBean bean = getItem(position);
         viewHolder.getIconImageView().setImageResource(R.drawable.course_bar_icon);
@@ -119,31 +120,7 @@ public class VideoListAdapter extends BaseAdapter
         return convertView;
     }
 
-    class ViewHolder
-    {
-        private TextView titleTextView;
-        private ImageView iconImageView;
 
-        public TextView getTitleTextView()
-        {
-            return titleTextView;
-        }
-
-        public void setTitleTextView(TextView titleTextView)
-        {
-            this.titleTextView = titleTextView;
-        }
-
-        public ImageView getIconImageView()
-        {
-            return iconImageView;
-        }
-
-        public void setIconImageView(ImageView iconImageView)
-        {
-            this.iconImageView = iconImageView;
-        }
-    }
 
     public interface OnSelectListener
     {

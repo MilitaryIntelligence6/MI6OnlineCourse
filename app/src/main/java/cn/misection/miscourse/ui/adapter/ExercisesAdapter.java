@@ -11,6 +11,7 @@ import android.widget.TextView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.ui.activity.ExercisesDetailActivity;
 import cn.misection.miscourse.entity.ExerciseBean;
+import cn.misection.miscourse.ui.adapter.holder.ExerciseViewHolder;
 
 import java.util.List;
 
@@ -82,11 +83,11 @@ public class ExercisesAdapter extends BaseAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        final ViewHolder viewHolder;
+        final ExerciseViewHolder viewHolder;
         // 复用 convertView
         if (convertView == null)
         {
-            viewHolder = new ViewHolder();
+            viewHolder = new ExerciseViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.exercises_list_item, null);
             viewHolder.setTitle((TextView) convertView.findViewById(R.id.tv_title));
             viewHolder.setContent((TextView) convertView.findViewById(R.id.tv_content));
@@ -95,7 +96,7 @@ public class ExercisesAdapter extends BaseAdapter
         }
         else
         {
-            viewHolder = ((ViewHolder) convertView.getTag());
+            viewHolder = ((ExerciseViewHolder) convertView.getTag());
         }
         // 获取 position 对应的 Item 的数据对象
         final ExerciseBean exercise = getItem(position);
@@ -126,42 +127,5 @@ public class ExercisesAdapter extends BaseAdapter
             }
         });
         return convertView;
-    }
-
-    class ViewHolder
-    {
-        private TextView title;
-        private TextView content;
-        private TextView order;
-
-        public TextView getTitle()
-        {
-            return title;
-        }
-
-        public void setTitle(TextView title)
-        {
-            this.title = title;
-        }
-
-        public TextView getContent()
-        {
-            return content;
-        }
-
-        public void setContent(TextView content)
-        {
-            this.content = content;
-        }
-
-        public TextView getOrder()
-        {
-            return order;
-        }
-
-        public void setOrder(TextView order)
-        {
-            this.order = order;
-        }
     }
 }
