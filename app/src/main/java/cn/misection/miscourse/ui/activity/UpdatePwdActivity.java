@@ -13,6 +13,9 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.MD5Util;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
+/**
+ * @author Administrator
+ */
 public class UpdatePwdActivity extends AppCompatActivity
 {
     private TextView backTextView;

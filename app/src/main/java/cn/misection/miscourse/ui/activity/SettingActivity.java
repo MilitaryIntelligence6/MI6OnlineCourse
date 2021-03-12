@@ -13,39 +13,58 @@ import android.widget.Toast;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
-public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
-    private RelativeLayout rlUpdatePassword, rlSecuritySetting, rlLogout, rlTitleBar;
-    private TextView tvBack, tvMainTittle;
+/**
+ * @author Administrator
+ */
+public class SettingActivity extends AppCompatActivity
+        implements View.OnClickListener
+{
+    private RelativeLayout updatePasswordRelaLayout;
+
+    private RelativeLayout securitySettingRelaLayout;
+
+    private RelativeLayout logoutRelaLayout;
+
+    private RelativeLayout titleBarRelaLayout;
+
+    private TextView backTextView;
+
+    private TextView mainTittleTextView;
+
     public static SettingActivity instance;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         init();
     }
 
-    private void init() {
+    private void init()
+    {
         instance = this;
 
-        rlTitleBar = findViewById(R.id.title_bar);
-        rlTitleBar.setBackgroundColor(Color.parseColor("#30B4FF"));
-        tvMainTittle = findViewById(R.id.main_title_text_view);
-        tvMainTittle.setText("设置");
-        tvBack = findViewById(R.id.back_text_view);
-        tvBack.setOnClickListener(this);
+        titleBarRelaLayout = findViewById(R.id.title_bar);
+        titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30B4FF"));
+        mainTittleTextView = findViewById(R.id.main_title_text_view);
+        mainTittleTextView.setText("设置");
+        backTextView = findViewById(R.id.back_text_view);
+        backTextView.setOnClickListener(this);
 
-        rlUpdatePassword = findViewById(R.id.rl_update_password);
-        rlUpdatePassword.setOnClickListener(this);
-        rlSecuritySetting = findViewById(R.id.rl_security_setting);
-        rlSecuritySetting.setOnClickListener(this);
-        rlLogout = findViewById(R.id.rl_logout);
-        rlLogout.setOnClickListener(this);
+        updatePasswordRelaLayout = findViewById(R.id.rl_update_password);
+        updatePasswordRelaLayout.setOnClickListener(this);
+        securitySettingRelaLayout = findViewById(R.id.rl_security_setting);
+        securitySettingRelaLayout.setOnClickListener(this);
+        logoutRelaLayout = findViewById(R.id.rl_logout);
+        logoutRelaLayout.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
             case R.id.back_text_view:
                 SettingActivity.this.finish();
                 break;
@@ -71,7 +90,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void toastShow(String message) {
+    private void toastShow(String message)
+    {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
