@@ -1,7 +1,7 @@
 package cn.misection.miscourse.entity;
 
 import cn.misection.miscourse.constant.EnumExerciseChoice;
-import cn.misection.miscourse.constant.EnumExerciseResource;
+import cn.misection.miscourse.constant.EnumExercise;
 
 public class ExerciseBean
 {
@@ -63,7 +63,7 @@ public class ExerciseBean
     /**
      * 每道题的正确答案
      */
-    private EnumExerciseResource correctAnswer;
+    private EnumExercise correctAnswer;
 
     /**
      * select 为 0 表示所选是对的，
@@ -184,12 +184,12 @@ public class ExerciseBean
 //        this.optionTextD = optionTextD;
 //    }
 
-    public EnumExerciseResource getCorrectAnswer()
+    public EnumExercise getCorrectAnswer()
     {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(EnumExerciseResource correctAnswer)
+    public void setCorrectAnswer(EnumExercise correctAnswer)
     {
         this.correctAnswer = correctAnswer;
     }

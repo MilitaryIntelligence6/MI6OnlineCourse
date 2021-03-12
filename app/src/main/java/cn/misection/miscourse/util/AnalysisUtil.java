@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import cn.misection.miscourse.entity.CourseBean;
 import cn.misection.miscourse.entity.ExerciseBean;
-import cn.misection.miscourse.constant.EnumExerciseResource;
+import cn.misection.miscourse.constant.EnumExercise;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -51,22 +51,22 @@ public class AnalysisUtil
                         case "a":
                             String a = parser.nextText();
                             exercisesInfo.getOptionTextArray()[
-                                    EnumExerciseResource.A.ordinal()] = a;
+                                    EnumExercise.A.ordinal()] = a;
                             break;
                         case "b":
                             String b = parser.nextText();
                             exercisesInfo.getOptionTextArray()[
-                                    EnumExerciseResource.B.ordinal()] = b;
+                                    EnumExercise.B.ordinal()] = b;
                             break;
                         case "c":
                             String c = parser.nextText();
                             exercisesInfo.getOptionTextArray()[
-                                    EnumExerciseResource.C.ordinal()] = c;
+                                    EnumExercise.C.ordinal()] = c;
                             break;
                         case "d":
                             String d = parser.nextText();
                             exercisesInfo.getOptionTextArray()[
-                                    EnumExerciseResource.D.ordinal()] = d;
+                                    EnumExercise.D.ordinal()] = d;
                             break;
                         case "answer":
                             String answer = parser.nextText();
@@ -74,7 +74,7 @@ public class AnalysisUtil
 //                                    EnumExerciseResource.valueOf(Integer.parseInt(answer) - 1));
                             // FIXME, 对了, 尽量更优雅;
                             exercisesInfo.setCorrectAnswer(
-                                    EnumExerciseResource.valueOf(Integer.parseInt(answer) - 1)
+                                    EnumExercise.valueOf(Integer.parseInt(answer) - 1)
                             );
                             break;
                         default:

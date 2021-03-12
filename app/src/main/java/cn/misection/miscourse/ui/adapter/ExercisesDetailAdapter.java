@@ -11,7 +11,7 @@ import android.widget.TextView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.entity.ViewHolder;
-import cn.misection.miscourse.constant.EnumExerciseResource;
+import cn.misection.miscourse.constant.EnumExercise;
 import cn.misection.miscourse.util.AnalysisUtil;
 
 import java.util.ArrayList;
@@ -75,13 +75,13 @@ public class ExercisesDetailAdapter extends BaseAdapter
             viewHolder.setSubject((TextView) convertView.findViewById(R.id.tv_subject));
 
             TextView[] choiceTextArray =
-                    new TextView[EnumExerciseResource.count()];
+                    new TextView[EnumExercise.count()];
             ImageView[] choiceImageArray =
-                    new ImageView[EnumExerciseResource.count()];
+                    new ImageView[EnumExercise.count()];
 
             for (int i = 0; i < choiceTextArray.length; i++)
             {
-                EnumExerciseResource enumExercise = EnumExerciseResource.valueOf(i);
+                EnumExercise enumExercise = EnumExercise.valueOf(i);
 
                 choiceTextArray[i] = convertView.findViewById(
                         enumExercise.getTextView());
@@ -95,7 +95,6 @@ public class ExercisesDetailAdapter extends BaseAdapter
             viewHolder.setChoiceImageArray(choiceImageArray);
             viewHolder.setChoiceTextArray(choiceTextArray);
             // 这里原来有一坨;
-
             convertView.setTag(viewHolder);
         }
         else
@@ -107,7 +106,7 @@ public class ExercisesDetailAdapter extends BaseAdapter
         if (exercise != null)
         {
             viewHolder.getSubject().setText(exercise.getSubject());
-            for (int i = 0; i < EnumExerciseResource.count(); i++)
+            for (int i = 0; i < EnumExercise.count(); i++)
             {
                 viewHolder.getChoiceTextArray()[i].setText(exercise.getOptionTextArray()[i]);
             }

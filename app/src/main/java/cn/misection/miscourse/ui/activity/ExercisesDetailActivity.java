@@ -16,7 +16,7 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.ui.adapter.ExercisesDetailAdapter;
 import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.constant.EnumExerciseChoice;
-import cn.misection.miscourse.constant.EnumExerciseResource;
+import cn.misection.miscourse.constant.EnumExercise;
 import cn.misection.miscourse.util.AnalysisUtil;
 
 import java.io.IOException;
@@ -90,7 +90,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
             public void onSelectA(int position, ImageView... imageViewArray)
             {
                 // 判断如果答案不是 1 即 A 选项
-                if (exerciseList.get(position).getCorrectAnswer() != EnumExerciseResource.A)
+                if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.A)
                 {
                     exerciseList.get(position).setUserSelect(EnumExerciseChoice.A_WRONG);
                 }
@@ -128,7 +128,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
             public void onSelectB(int position, ImageView... imageViewArray)
             {
                 // 判断如果答案不是 2 即 B 选项
-                if (exerciseList.get(position).getCorrectAnswer() != EnumExerciseResource.B)
+                if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.B)
                 {
                     exerciseList.get(position).setUserSelect(EnumExerciseChoice.B_WRONG);
                 }
@@ -165,7 +165,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
             public void onSelectC(int position, ImageView... imageViewArray)
             {
                 // 判断如果答案不是 3 即 C 选项
-                if (exerciseList.get(position).getCorrectAnswer() != EnumExerciseResource.C)
+                if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.C)
                 {
                     exerciseList.get(position).setUserSelect(EnumExerciseChoice.C_WRONG);
                 }
@@ -203,7 +203,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
                                   ImageView... imageViewArray)
             {
                 // 判断如果答案不是 4 即 D 选项
-                if (exerciseList.get(position).getCorrectAnswer() != EnumExerciseResource.D)
+                if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.D)
                 {
                     exerciseList.get(position).setUserSelect(EnumExerciseChoice.D_WRONG);
                 }

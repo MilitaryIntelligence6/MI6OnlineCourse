@@ -9,7 +9,7 @@ import cn.misection.miscourse.R;
  * @Description TODO
  * @CreateTime 2021年03月12日 09:52:00
  */
-public enum EnumExerciseResource
+public enum EnumExercise
 {
     /**
      * 选项;
@@ -29,7 +29,7 @@ public enum EnumExerciseResource
 
     private int imageResource;
 
-    EnumExerciseResource(int imageView, int textView, int imageResource)
+    EnumExercise(int imageView, int textView, int imageResource)
     {
         this.imageView = imageView;
         this.textView = textView;
@@ -66,13 +66,13 @@ public enum EnumExerciseResource
         this.imageResource = imageResource;
     }
 
-    public static EnumExerciseResource valueOf(int ordinal)
+    public static EnumExercise valueOf(int ordinal)
     {
         if (ordinal < 0 || ordinal > values().length - 1)
         {
             throw new IndexOutOfBoundsException("Invalid ordinal");
         }
-        return EnumExerciseResource.values()[ordinal];
+        return EnumExercise.values()[ordinal];
     }
 
     public static int count()
