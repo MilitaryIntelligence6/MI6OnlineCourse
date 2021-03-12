@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import cn.misection.miscourse.entity.CourseBean;
 import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.constant.EnumExercise;
+import cn.misection.miscourse.util.constant.ParserConstant;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -37,26 +38,34 @@ public class AnalysisUtil
                     String name = parser.getName();
                     switch (name)
                     {
-                        case "infos":
+                        case ParserConstant.EXERCISE_INFO:
+                        {
                             exercisesInfoList = new ArrayList<>();
                             break;
-                        case "exercises":
+                        }
+                        case ParserConstant.EXERCISE_BEAN:
+                        {
                             exercisesInfo = new ExerciseBean();
                             exercisesInfo.setOptionTextArray(new String[4]);
                             String ids = parser.getAttributeValue(0);
                             exercisesInfo.setSubjectId(Integer.parseInt(ids));
                             break;
-                        case "subject":
+                        }
+                        case ParserConstant.EXERCISE_SUBJECT:
+                        {
                             String subject = parser.nextText();
                             exercisesInfo.setSubject(subject);
                             break;
-                        case "answer":
+                        }
+                        case ParserConstant.EXERCISE_CORRECT_ANSWER:
+                        {
                             String answer = parser.nextText();
                             // FIXME, 对了, 尽量更优雅;
                             exercisesInfo.setCorrectAnswer(
                                     EnumExercise.valueOf(Integer.parseInt(answer) - 1)
                             );
                             break;
+                        }
                         default:
                         {
                             if (EnumExercise.containsChoice(name))
@@ -72,7 +81,7 @@ public class AnalysisUtil
                 }
                 case XmlPullParser.END_TAG:
                 {
-                    if ("exercises".equals(parser.getName()))
+                    if (parser.getName().equals(ParserConstant.EXERCISE_BEAN))
                     {
                         exercisesInfoList.add(exercisesInfo);
                         exercisesInfo = null;
@@ -115,27 +124,37 @@ public class AnalysisUtil
                 case XmlPullParser.START_TAG:
                     switch (parser.getName())
                     {
-                        case "infos":
+                        case ParserConstant.EXERCISE_INFO:
+                        {
                             courseInfos = new ArrayList<List<CourseBean>>();
                             courseList = new ArrayList<>();
                             break;
-                        case "course":
+                        }
+                        case ParserConstant.EXERCISE_COURSE:
+                        {
                             courseInfo = new CourseBean();
                             String ids = parser.getAttributeValue(0);
                             courseInfo.setId(Integer.parseInt(ids));
                             break;
-                        case "imgtitle":
+                        }
+                        case ParserConstant.EXERCISE_IMAGE_TITLE:
+                        {
                             String imgtitle = parser.nextText();
                             courseInfo.setImgTitle(imgtitle);
                             break;
-                        case "title":
+                        }
+                        case ParserConstant.EXERCISE_TITLE:
+                        {
                             String title = parser.nextText();
                             courseInfo.setTitle(title);
                             break;
-                        case "intro":
+                        }
+                        case ParserConstant.EXERCISE_INTRO:
+                        {
                             String intro = parser.nextText();
                             courseInfo.setIntro(intro);
                             break;
+                        }
                         default:
                         {
                             break;
@@ -145,7 +164,8 @@ public class AnalysisUtil
                 case XmlPullParser.END_TAG:
                     switch (parser.getName())
                     {
-                        case "course":
+                        case ParserConstant.EXERCISE_COURSE:
+                        {
                             count++;
                             courseList.add(courseInfo);
                             if (count % 2 == 0)
@@ -157,7 +177,7 @@ public class AnalysisUtil
                             }
                             courseInfo = null;
                             break;
-
+                        }
                         default:
                         {
                             break;
