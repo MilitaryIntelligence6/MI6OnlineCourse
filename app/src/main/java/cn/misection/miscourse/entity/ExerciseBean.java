@@ -3,6 +3,9 @@ package cn.misection.miscourse.entity;
 import cn.misection.miscourse.constant.EnumExerciseChoice;
 import cn.misection.miscourse.constant.EnumExercise;
 
+/**
+ * @author Administrator
+ */
 public class ExerciseBean
 {
     /**
@@ -72,7 +75,7 @@ public class ExerciseBean
      * 3 表示选中的 C 选项是错的，
      * 4 表示选中的 D 选项是错的
      */
-    private EnumExerciseChoice userSelect;
+    private EnumExercise userSelect;
 
     public int getId()
     {
@@ -144,46 +147,6 @@ public class ExerciseBean
         this.optionTextArray = optionTextArray;
     }
 
-//    public String getOptionTextA()
-//    {
-//        return optionTextA;
-//    }
-//
-//    public void setOptionTextA(String optionTextA)
-//    {
-//        this.optionTextA = optionTextA;
-//    }
-//
-//    public String getOptionTextB()
-//    {
-//        return optionTextB;
-//    }
-//
-//    public void setOptionTextB(String optionTextB)
-//    {
-//        this.optionTextB = optionTextB;
-//    }
-//
-//    public String getOptionTextC()
-//    {
-//        return optionTextC;
-//    }
-//
-//    public void setOptionTextC(String optionTextC)
-//    {
-//        this.optionTextC = optionTextC;
-//    }
-
-//    public String getOptionTextD()
-//    {
-//        return optionTextD;
-//    }
-//
-//    public void setOptionTextD(String optionTextD)
-//    {
-//        this.optionTextD = optionTextD;
-//    }
-
     public EnumExercise getCorrectAnswer()
     {
         return correctAnswer;
@@ -194,12 +157,12 @@ public class ExerciseBean
         this.correctAnswer = correctAnswer;
     }
 
-    public EnumExerciseChoice getUserSelect()
+    public EnumExercise getUserSelect()
     {
         return userSelect;
     }
 
-    public void setUserSelect(EnumExerciseChoice userSelect)
+    public void setUserSelect(EnumExercise userSelect)
     {
         this.userSelect = userSelect;
     }

@@ -74,7 +74,6 @@ public class ExercisesAdapter extends BaseAdapter
     /**
      * 得到相应 position 对应的 Item 视图，position 是当前 Item 的位置，
      * convertView 参数就是滑出屏幕的 Item 的 View
-     *
      * @param position
      * @param convertView
      * @param parent

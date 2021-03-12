@@ -20,6 +20,6 @@ public enum  EnumExerciseChoice
 
     D_WRONG,
 
-    CORRECT,
+//    CORRECT,
     ;
 }

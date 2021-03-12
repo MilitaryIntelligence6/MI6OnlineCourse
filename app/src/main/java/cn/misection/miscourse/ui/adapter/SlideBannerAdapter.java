@@ -41,7 +41,6 @@ public class SlideBannerAdapter extends FragmentStatePagerAdapter
 
     /**
      * 设置数据更新界面;
-     *
      * @param courseList courses;
      */
     public void setDatas(List<CourseBean> courseList)

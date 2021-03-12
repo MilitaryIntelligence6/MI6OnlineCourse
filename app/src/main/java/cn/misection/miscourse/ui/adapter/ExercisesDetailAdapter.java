@@ -49,6 +49,7 @@ public class ExercisesDetailAdapter extends BaseAdapter
     @Override
     public ExerciseBean getItem(int position)
     {
+        // FIXME null obj;
         return exerciseList == null ? null
                 : exerciseList.get(position);
     }
@@ -116,96 +117,45 @@ public class ExercisesDetailAdapter extends BaseAdapter
         {
             AnalysisUtil.setChoiceEnable(false, viewHolder.getChoiceImageArray());
             // 先把用户选择置为错, 这么快用户发现不了;
-            viewHolder.getChoiceImageArray()[exercise.getUserSelect().ordinal()]
-                    .setImageResource(R.drawable.exercises_error_icon);
+            // FIXME 空对象消灭他们;
+            if (exercise != null)
+            {
+                if (exercise.getUserSelect() != null)
+                {
+                    viewHolder.getChoiceImageArray()[exercise.getUserSelect().ordinal()]
+                            .setImageResource(R.drawable.exercise_error_icon);
 
-            viewHolder.getChoiceImageArray()[exercise.getCorrectAnswer().ordinal()]
-                    .setImageResource(R.drawable.exercises_right_icon);
+                    viewHolder.getChoiceImageArray()[exercise.getCorrectAnswer().ordinal()]
+                            .setImageResource(R.drawable.exercise_right_icon);
+
+                }
+            }
 
         }
         // 当用户点击 A 选项的点击事件
-        viewHolder.getChoiceImageArray()[0].setOnClickListener(new View.OnClickListener()
+        ImageView[] choiceImageArray = viewHolder.getChoiceImageArray();
+        for (int i = 0; i < choiceImageArray.length; i++)
         {
-            @Override
-            public void onClick(View v)
-            {
-                // 判断 selectedPosition 中是否包含此时点击的 position
-                if (selectedPosition.contains(String.valueOf(position)))
-                {
-                    selectedPosition.remove(String.valueOf(position));
-                }
-                else
-                {
-                    selectedPosition.add(String.valueOf(position));
-                }
-                onSelectListener.onSelect(position, viewHolder.getChoiceImageArray());
-            }
-        });
-        // 当用户点击 B 选项的点击事件
-        viewHolder.getChoiceImageArray()[1].setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                // 判断 selectedPosition 中是否包含此时点击的 position
-                if (selectedPosition.contains(String.valueOf(position)))
-                {
-                    selectedPosition.remove(String.valueOf(position));
-                }
-                else
-                {
-                    selectedPosition.add(String.valueOf(position));
-                }
-                onSelectListener.onSelectB(position, viewHolder.getChoiceImageArray());
-            }
-        });
-        // 当用户点击 C 选项的点击事件
-        viewHolder.getChoiceImageArray()[2].setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                // 判断 selectedPosition 中是否包含此时点击的 position
-                if (selectedPosition.contains(String.valueOf(position)))
-                {
-                    selectedPosition.remove(String.valueOf(position));
-                }
-                else
-                {
-                    selectedPosition.add(String.valueOf(position));
-                }
-                onSelectListener.onSelectC(position, viewHolder.getChoiceImageArray());
-            }
-        });
-        // 当用户点击 D 选项的点击事件
-        viewHolder.getChoiceImageArray()[3].setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                // 判断 selectedPosition 中是否包含此时点击的 position
-                if (selectedPosition.contains(String.valueOf(position)))
-                {
-                    selectedPosition.remove(String.valueOf(position));
-                }
-                else
-                {
-                    selectedPosition.add(String.valueOf(position));
-                }
-                onSelectListener.onSelectD(position, viewHolder.getChoiceImageArray());
-            }
-        });
+            // 用lambda 不创建;
+            int finalI = i;
+            choiceImageArray[i].setOnClickListener(
+                    v ->
+                    {
+                        // 判断 selectedPosition 中是否包含此时点击的 position
+                        if (selectedPosition.contains(String.valueOf(position)))
+                        {
+                            selectedPosition.remove(String.valueOf(position));
+                        }
+                        else
+                        {
+                            selectedPosition.add(String.valueOf(position));
+                        }
+                        onSelectListener.onSelect(position,
+                                EnumExercise.valueOf(finalI),
+                                viewHolder.getChoiceImageArray());
+                    }
+            );
+        }
         return convertView;
-    }
-
-    public interface OnSelectListener
-    {
-        void onSelect(int position, ImageView... imageViewArray);
-
-        void onSelectB(int position, ImageView... imageViewArray);
-
-        void onSelectC(int position, ImageView... imageViewArray);
-
-        void onSelectD(int position, ImageView... imageViewArray);
     }
 }
