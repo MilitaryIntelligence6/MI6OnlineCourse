@@ -138,7 +138,7 @@ public class ExercisesDetailAdapter extends BaseAdapter
                 {
                     selectedPosition.add(String.valueOf(position));
                 }
-                onSelectListener.onSelectA(position, viewHolder.getChoiceImageArray());
+                onSelectListener.onSelect(position, viewHolder.getChoiceImageArray());
             }
         });
         // 当用户点击 B 选项的点击事件
@@ -200,7 +200,7 @@ public class ExercisesDetailAdapter extends BaseAdapter
 
     public interface OnSelectListener
     {
-        void onSelectA(int position, ImageView... imageViewArray);
+        void onSelect(int position, ImageView... imageViewArray);
 
         void onSelectB(int position, ImageView... imageViewArray);
 

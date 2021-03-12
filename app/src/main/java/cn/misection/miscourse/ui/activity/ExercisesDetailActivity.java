@@ -84,160 +84,167 @@ public class ExercisesDetailActivity extends AppCompatActivity
                 ExercisesDetailActivity.this.finish();
             }
         });
-        adapter = new ExercisesDetailAdapter(ExercisesDetailActivity.this, new ExercisesDetailAdapter.OnSelectListener()
-        {
-            @Override
-            public void onSelectA(int position, ImageView... imageViewArray)
-            {
-                // 判断如果答案不是 1 即 A 选项
-                if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.A)
-                {
-                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.A_WRONG);
-                }
-                else
-                {
-                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
-                }
-                // hash 表;
-                switch (exerciseList.get(position).getCorrectAnswer())
-                {
-                    case A:
-                        imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
-                        break;
-                    case B:
-                        imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[0].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    case C:
-                        imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[0].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    case D:
-                        imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[0].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    default:
-                    {
-                        break;
-                    }
-                }
-                AnalysisUtil.setChoiceEnable(false, imageViewArray);
-            }
-
-            @Override
-            public void onSelectB(int position, ImageView... imageViewArray)
-            {
-                // 判断如果答案不是 2 即 B 选项
-                if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.B)
-                {
-                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.B_WRONG);
-                }
-                else
-                {
-                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
-                }
-                switch (exerciseList.get(position).getCorrectAnswer())
-                {
-                    case A:
-                        imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[1].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    case B:
-                        imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
-                        break;
-                    case C:
-                        imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[1].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    case D:
-                        imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[1].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    default:
-                    {
-
-                    }
-                }
-                AnalysisUtil.setChoiceEnable(false, imageViewArray);
-            }
-
-            @Override
-            public void onSelectC(int position, ImageView... imageViewArray)
-            {
-                // 判断如果答案不是 3 即 C 选项
-                if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.C)
-                {
-                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.C_WRONG);
-                }
-                else
-                {
-                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
-                }
-                switch (exerciseList.get(position).getCorrectAnswer())
-                {
-                    case A:
-                        imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[2].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    case B:
-                        imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[2].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    case C:
-                        imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
-                        break;
-                    case D:
-                        imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[2].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    default:
-                    {
-                        break;
-                    }
-                }
-                AnalysisUtil.setChoiceEnable(false, imageViewArray);
-            }
-
-            @Override
-            public void onSelectD(int position,
-                                  ImageView... imageViewArray)
-            {
-                // 判断如果答案不是 4 即 D 选项
-                if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.D)
-                {
-                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.D_WRONG);
-                }
-                else
-                {
-                    exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
-                }
-                switch (exerciseList.get(position).getCorrectAnswer())
-                {
-                    case A:
-                        imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[3].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    case B:
-                        imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[3].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    case C:
-                        imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
-                        imageViewArray[3].setImageResource(R.drawable.exercises_error_icon);
-                        break;
-                    case D:
-                        imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
-                        break;
-                    default:
-                    {
-                        break;
-                    }
-                }
-                AnalysisUtil.setChoiceEnable(false, imageViewArray);
-            }
-        });
+        initAdapter();
         adapter.putExerciseList(exerciseList);
         listView.setAdapter(adapter);
+    }
+
+    private void initAdapter()
+    {
+        adapter = new ExercisesDetailAdapter(
+                ExercisesDetailActivity.this,
+                new ExercisesDetailAdapter.OnSelectListener()
+                {
+                    @Override
+                    public void onSelect(int position, ImageView... imageViewArray)
+                    {
+                        // 判断如果答案不是 1 即 A 选项
+                        if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.A)
+                        {
+                            exerciseList.get(position).setUserSelect(EnumExerciseChoice.A_WRONG);
+                        }
+                        else
+                        {
+                            exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
+                        }
+                        // hash 表;
+                        switch (exerciseList.get(position).getCorrectAnswer())
+                        {
+                            case A:
+                                imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case B:
+                                imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[0].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case C:
+                                imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[0].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case D:
+                                imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[0].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            default:
+                            {
+                                break;
+                            }
+                        }
+                        AnalysisUtil.setChoiceEnable(false, imageViewArray);
+                    }
+
+                    @Override
+                    public void onSelectB(int position, ImageView... imageViewArray)
+                    {
+                        // 判断如果答案不是 2 即 B 选项
+                        if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.B)
+                        {
+                            exerciseList.get(position).setUserSelect(EnumExerciseChoice.B_WRONG);
+                        }
+                        else
+                        {
+                            exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
+                        }
+                        switch (exerciseList.get(position).getCorrectAnswer())
+                        {
+                            case A:
+                                imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[1].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case B:
+                                imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case C:
+                                imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[1].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case D:
+                                imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[1].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            default:
+                            {
+
+                            }
+                        }
+                        AnalysisUtil.setChoiceEnable(false, imageViewArray);
+                    }
+
+                    @Override
+                    public void onSelectC(int position, ImageView... imageViewArray)
+                    {
+                        // 判断如果答案不是 3 即 C 选项
+                        if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.C)
+                        {
+                            exerciseList.get(position).setUserSelect(EnumExerciseChoice.C_WRONG);
+                        }
+                        else
+                        {
+                            exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
+                        }
+                        switch (exerciseList.get(position).getCorrectAnswer())
+                        {
+                            case A:
+                                imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[2].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case B:
+                                imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[2].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case C:
+                                imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case D:
+                                imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[2].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            default:
+                            {
+                                break;
+                            }
+                        }
+                        AnalysisUtil.setChoiceEnable(false, imageViewArray);
+                    }
+
+                    @Override
+                    public void onSelectD(int position,
+                                          ImageView... imageViewArray)
+                    {
+                        // 判断如果答案不是 4 即 D 选项
+                        if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.D)
+                        {
+                            exerciseList.get(position).setUserSelect(EnumExerciseChoice.D_WRONG);
+                        }
+                        else
+                        {
+                            exerciseList.get(position).setUserSelect(EnumExerciseChoice.CORRECT);
+                        }
+                        switch (exerciseList.get(position).getCorrectAnswer())
+                        {
+                            case A:
+                                imageViewArray[0].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[3].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case B:
+                                imageViewArray[1].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[3].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case C:
+                                imageViewArray[2].setImageResource(R.drawable.exercises_right_icon);
+                                imageViewArray[3].setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case D:
+                                imageViewArray[3].setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            default:
+                            {
+                                break;
+                            }
+                        }
+                        AnalysisUtil.setChoiceEnable(false, imageViewArray);
+                    }
+                });
     }
 
     private void initData()

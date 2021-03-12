@@ -18,11 +18,23 @@ import cn.misection.miscourse.util.SharedPreferLoginInfo;
  */
 public class FindPwdActivity extends AppCompatActivity
 {
-    private TextView tvBack, tvMainTitle, tvUsername, tvResetPassword;
+    private TextView mainTitleTextView;
+
+    private TextView backTextView;
+
+    private TextView usernameTextView;
+
+    private TextView resetPasswordTextView;
+
     private EditText etUsername, etValidateName;
+
     private Button btnValidate;
-    private String from, validateName;
-    SharedPreferLoginInfo sharedPreferLoginInfo;
+
+    private String from;
+
+    private String validateName;
+
+    private SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,7 +44,7 @@ public class FindPwdActivity extends AppCompatActivity
         from = getIntent().getStringExtra("from");
         init();
 
-        tvBack.setOnClickListener(new View.OnClickListener()
+        backTextView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -82,8 +94,8 @@ public class FindPwdActivity extends AppCompatActivity
                     }
                     else
                     {
-                        tvResetPassword.setVisibility(View.VISIBLE);
-                        tvResetPassword.setText("初始密码：123456");
+                        resetPasswordTextView.setVisibility(View.VISIBLE);
+                        resetPasswordTextView.setText("初始密码：123456");
                         // 重置密码
                         sharedPreferLoginInfo.saveInfo(username, "123456");
                     }
@@ -108,21 +120,21 @@ public class FindPwdActivity extends AppCompatActivity
 
     private void init()
     {
-        tvMainTitle = findViewById(R.id.tv_main_title);
-        tvBack = findViewById(R.id.text_view_back);
-        tvUsername = findViewById(R.id.tv_username);
-        tvResetPassword = findViewById(R.id.tv_reset_password);
+        mainTitleTextView = findViewById(R.id.tv_main_title);
+        backTextView = findViewById(R.id.text_view_back);
+        usernameTextView = findViewById(R.id.tv_username);
+        resetPasswordTextView = findViewById(R.id.tv_reset_password);
         etUsername = findViewById(R.id.et_username);
         etValidateName = findViewById(R.id.et_validate_name);
         btnValidate = findViewById(R.id.btn_validate);
         if ("security".equals(from))
         {
-            tvMainTitle.setText("设置密保");
+            mainTitleTextView.setText("设置密保");
         }
         else
         {
-            tvMainTitle.setText("找回密码");
-            tvUsername.setVisibility(View.VISIBLE);
+            mainTitleTextView.setText("找回密码");
+            usernameTextView.setVisibility(View.VISIBLE);
             etUsername.setVisibility(View.VISIBLE);
         }
 
