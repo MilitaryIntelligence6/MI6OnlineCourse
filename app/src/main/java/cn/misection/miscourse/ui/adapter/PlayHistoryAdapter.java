@@ -1,4 +1,4 @@
-package cn.misection.miscourse.adapter;
+package cn.misection.miscourse.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.activity.VideoPlayActivity;
-import cn.misection.miscourse.bean.VideoBean;
+import cn.misection.miscourse.ui.activity.VideoPlayActivity;
+import cn.misection.miscourse.entity.VideoBean;
 
 import java.util.List;
 

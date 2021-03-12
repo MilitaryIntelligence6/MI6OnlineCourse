@@ -14,23 +14,26 @@ public enum EnumExerciseResource
     /**
      * 选项;
      */
-    A(R.id.iv_a, R.id.tv_a),
+    A(R.id.iv_a, R.id.tv_a, R.drawable.exercises_a),
 
-    B(R.id.iv_b, R.id.tv_b),
+    B(R.id.iv_b, R.id.tv_b, R.drawable.exercises_b),
 
-    C(R.id.iv_c, R.id.tv_c),
+    C(R.id.iv_c, R.id.tv_c, R.drawable.exercises_c),
 
-    D(R.id.iv_d, R.id.tv_d),
+    D(R.id.iv_d, R.id.tv_d, R.drawable.exercises_d),
     ;
 
     private int imageView;
 
     private int textView;
 
-    EnumExerciseResource(int imageView, int textView)
+    private int imageResource;
+
+    EnumExerciseResource(int imageView, int textView, int imageResource)
     {
         this.imageView = imageView;
         this.textView = textView;
+        this.imageResource = imageResource;
     }
 
     public int getImageView()
@@ -51,6 +54,16 @@ public enum EnumExerciseResource
     public void setTextView(int textView)
     {
         this.textView = textView;
+    }
+
+    public int getImageResource()
+    {
+        return imageResource;
+    }
+
+    public void setImageResource(int imageResource)
+    {
+        this.imageResource = imageResource;
     }
 
     public static EnumExerciseResource valueOf(int ordinal)

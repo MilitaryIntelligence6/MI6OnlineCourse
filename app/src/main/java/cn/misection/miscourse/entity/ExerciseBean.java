@@ -1,4 +1,4 @@
-package cn.misection.miscourse.bean;
+package cn.misection.miscourse.entity;
 
 import cn.misection.miscourse.constant.EnumExerciseChoice;
 import cn.misection.miscourse.constant.EnumExerciseResource;

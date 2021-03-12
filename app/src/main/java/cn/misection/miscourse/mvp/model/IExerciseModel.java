@@ -2,7 +2,7 @@ package cn.misection.miscourse.mvp.model;
 
 import java.util.List;
 
-import cn.misection.miscourse.bean.ExerciseBean;
+import cn.misection.miscourse.entity.ExerciseBean;
 
 /**
  * @author Military Intelligence 6 root

@@ -1,4 +1,4 @@
-package cn.misection.miscourse.adapter;
+package cn.misection.miscourse.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.bean.VideoBean;
+import cn.misection.miscourse.entity.VideoBean;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class VideoListAdapter extends BaseAdapter
     /**
      * 视频列表数据;
      */
-    private List<VideoBean> videoBeanList;
+    private List<VideoBean> videoList;
 
     /**
      * 点击时选中的位置;
@@ -43,24 +43,24 @@ public class VideoListAdapter extends BaseAdapter
 
     /**
      * 设置数据更新界面;
-     * @param videoBeanList list;
+     * @param videoList list;
      */
-    public void setData(List<VideoBean> videoBeanList)
+    public void setData(List<VideoBean> videoList)
     {
-        this.videoBeanList = videoBeanList;
+        this.videoList = videoList;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount()
     {
-        return videoBeanList == null ? 0 : videoBeanList.size();
+        return videoList == null ? 0 : videoList.size();
     }
 
     @Override
     public VideoBean getItem(int position)
     {
-        return videoBeanList == null ? null : videoBeanList.get(position);
+        return videoList == null ? null : videoList.get(position);
     }
 
     @Override

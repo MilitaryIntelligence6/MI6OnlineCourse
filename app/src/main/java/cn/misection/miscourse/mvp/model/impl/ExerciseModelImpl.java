@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.bean.ExerciseBean;
+import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.mvp.constant.EnumExerciseProp;
 import cn.misection.miscourse.mvp.model.IExerciseModel;
 import cn.misection.miscourse.mvp.presenter.impl.ExercisesPresenterImpl;

@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.misection.miscourse.bean.CourseBean;
+import cn.misection.miscourse.entity.CourseBean;
 import cn.misection.miscourse.mvp.model.ICourseModel;
 import cn.misection.miscourse.mvp.presenter.impl.CoursePresenterImpl;
 import cn.misection.miscourse.util.AnalysisUtil;

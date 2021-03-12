@@ -1,4 +1,4 @@
-package cn.misection.miscourse.activity;
+package cn.misection.miscourse.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.adapter.ExercisesDetailAdapter;
-import cn.misection.miscourse.bean.ExerciseBean;
+import cn.misection.miscourse.ui.adapter.ExercisesDetailAdapter;
+import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.constant.EnumExerciseChoice;
 import cn.misection.miscourse.constant.EnumExerciseResource;
 import cn.misection.miscourse.util.AnalysisUtil;

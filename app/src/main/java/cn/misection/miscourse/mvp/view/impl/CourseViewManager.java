@@ -11,9 +11,9 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.adapter.SlideBannerAdapter;
-import cn.misection.miscourse.adapter.CourseAdapter;
-import cn.misection.miscourse.bean.CourseBean;
+import cn.misection.miscourse.ui.adapter.SlideBannerAdapter;
+import cn.misection.miscourse.ui.adapter.CourseAdapter;
+import cn.misection.miscourse.entity.CourseBean;
 import cn.misection.miscourse.util.ScreenUtil;
 import cn.misection.miscourse.mvp.view.ICourseView;
 import cn.misection.miscourse.mvp.view.ViewPagerIndicator;

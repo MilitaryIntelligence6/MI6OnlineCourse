@@ -10,10 +10,10 @@ import android.widget.Toast;
 
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.activity.LoginActivity;
-import cn.misection.miscourse.activity.PlayHistoryActivity;
-import cn.misection.miscourse.activity.SettingActivity;
-import cn.misection.miscourse.activity.UserInfoActivity;
+import cn.misection.miscourse.ui.activity.LoginActivity;
+import cn.misection.miscourse.ui.activity.PlayHistoryActivity;
+import cn.misection.miscourse.ui.activity.SettingActivity;
+import cn.misection.miscourse.ui.activity.UserInfoActivity;
 import cn.misection.miscourse.mvp.presenter.IMinePresenter;
 import cn.misection.miscourse.mvp.presenter.impl.MinePresenterImpl;
 import cn.misection.miscourse.mvp.view.IMineView;

@@ -5,8 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import cn.misection.miscourse.bean.UserBean;
-import cn.misection.miscourse.bean.VideoBean;
+import cn.misection.miscourse.entity.UserBean;
+import cn.misection.miscourse.entity.VideoBean;
 import cn.misection.miscourse.sqlite.SQLiteHelper;
 
 import java.util.ArrayList;
@@ -67,11 +67,11 @@ public class DataBaseHelper
         db.update(SQLiteHelper.TB_USERINFO, cv, "username = ?", new String[]{username});
     }
 
-    public void saveVideoPlayList(VideoBean videoBean, String username) {
+    public void saveVideoPlayList(VideoBean video, String username) {
         // 判断如果里面有此播放记录则需删除重新存放
-        if (hasVideoPlay(videoBean.getChapterId(), videoBean.getVideoId(), username)) {
+        if (hasVideoPlay(video.getChapterId(), video.getVideoId(), username)) {
             // 删除之前存入的播放记录
-            boolean isDelete = delVideoPlay(videoBean.getChapterId(), videoBean.getVideoId(), username);
+            boolean isDelete = delVideoPlay(video.getChapterId(), video.getVideoId(), username);
             if (!isDelete) {
                 // 没有删除成功时，则需跳出此方法不再执行下面的语句
                 return;
@@ -79,11 +79,11 @@ public class DataBaseHelper
         }
         ContentValues cv = new ContentValues();
         cv.put("username", username);
-        cv.put("chapterId", videoBean.getChapterId());
-        cv.put("videoId", videoBean.getVideoId());
-        cv.put("videoPath", videoBean.getVideoPath());
-        cv.put("title", videoBean.getTitle());
-        cv.put("secondTitle", videoBean.getSecondTitle());
+        cv.put("chapterId", video.getChapterId());
+        cv.put("videoId", video.getVideoId());
+        cv.put("videoPath", video.getVideoPath());
+        cv.put("title", video.getTitle());
+        cv.put("secondTitle", video.getSecondTitle());
         db.insert(SQLiteHelper.U_VIDEO_PLAY_LIST, null, cv);
     }
 

@@ -1,4 +1,4 @@
-package cn.misection.miscourse.activity;
+package cn.misection.miscourse.ui.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.bean.UserBean;
+import cn.misection.miscourse.entity.UserBean;
 import cn.misection.miscourse.util.DataBaseHelper;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 

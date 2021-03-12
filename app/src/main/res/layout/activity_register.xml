@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/register_bg"
     android:orientation="vertical"
-    tools:context="cn.misection.miscourse.activity.RegisterActivity">
+    tools:context=".ui.activity.RegisterActivity">
 
     <include layout="@layout/main_title_bar"></include>
 

@@ -1,4 +1,4 @@
-package cn.misection.miscourse.activity;
+package cn.misection.miscourse.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,4 +1,4 @@
-package cn.misection.miscourse.bean;
+package cn.misection.miscourse.entity;
 
 public class UserBean
 {

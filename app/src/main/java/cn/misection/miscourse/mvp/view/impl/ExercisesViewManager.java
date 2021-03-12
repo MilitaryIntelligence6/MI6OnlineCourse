@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.ListView;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.adapter.ExercisesAdapter;
-import cn.misection.miscourse.bean.ExerciseBean;
+import cn.misection.miscourse.ui.adapter.ExercisesAdapter;
+import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.mvp.view.IExerciseView;
 
 import java.util.List;

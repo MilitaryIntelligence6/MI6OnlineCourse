@@ -1,4 +1,4 @@
-package cn.misection.miscourse.activity;
+package cn.misection.miscourse.ui.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.adapter.VideoListAdapter;
-import cn.misection.miscourse.bean.VideoBean;
+import cn.misection.miscourse.ui.adapter.VideoListAdapter;
+import cn.misection.miscourse.entity.VideoBean;
 import cn.misection.miscourse.util.DataBaseHelper;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 

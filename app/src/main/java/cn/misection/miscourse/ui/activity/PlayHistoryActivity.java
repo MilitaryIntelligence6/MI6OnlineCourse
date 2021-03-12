@@ -1,4 +1,4 @@
-package cn.misection.miscourse.activity;
+package cn.misection.miscourse.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.adapter.PlayHistoryAdapter;
-import cn.misection.miscourse.bean.VideoBean;
+import cn.misection.miscourse.ui.adapter.PlayHistoryAdapter;
+import cn.misection.miscourse.entity.VideoBean;
 import cn.misection.miscourse.util.DataBaseHelper;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 

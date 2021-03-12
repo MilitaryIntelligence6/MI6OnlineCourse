@@ -9,18 +9,18 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name="cn.misection.miscourse.activity.PlayHistoryActivity"></activity>
-        <activity android:name="cn.misection.miscourse.activity.VideoPlayActivity" />
-        <activity android:name="cn.misection.miscourse.activity.VideoListActivity" />
-        <activity android:name="cn.misection.miscourse.activity.ExercisesDetailActivity" />
-        <activity android:name="cn.misection.miscourse.activity.ChangeUserInfoActivity" />
-        <activity android:name="cn.misection.miscourse.activity.UserInfoActivity" />
-        <activity android:name="cn.misection.miscourse.activity.FindPwdActivity" />
-        <activity android:name="cn.misection.miscourse.activity.UpdatePwdActivity" />
-        <activity android:name="cn.misection.miscourse.activity.SettingActivity" />
-        <activity android:name="cn.misection.miscourse.activity.LoginActivity" />
-        <activity android:name="cn.misection.miscourse.activity.RegisterActivity" />
-        <activity android:name="cn.misection.miscourse.activity.SplashActivity">
+        <activity android:name=".ui.activity.PlayHistoryActivity"></activity>
+        <activity android:name=".ui.activity.VideoPlayActivity" />
+        <activity android:name=".ui.activity.VideoListActivity" />
+        <activity android:name=".ui.activity.ExercisesDetailActivity" />
+        <activity android:name=".ui.activity.ChangeUserInfoActivity" />
+        <activity android:name=".ui.activity.UserInfoActivity" />
+        <activity android:name=".ui.activity.FindPwdActivity" />
+        <activity android:name=".ui.activity.UpdatePwdActivity" />
+        <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.RegisterActivity" />
+        <activity android:name=".ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

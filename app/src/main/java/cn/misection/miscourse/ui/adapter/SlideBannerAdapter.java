@@ -1,4 +1,4 @@
-package cn.misection.miscourse.adapter;
+package cn.misection.miscourse.ui.adapter;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import cn.misection.miscourse.bean.CourseBean;
-import cn.misection.miscourse.fragment.SlideBannerFragment;
+import cn.misection.miscourse.entity.CourseBean;
+import cn.misection.miscourse.ui.fragment.SlideBannerFragment;
 import cn.misection.miscourse.mvp.view.impl.CourseViewManager;
 
 import java.util.ArrayList;
@@ -24,29 +24,29 @@ public class SlideBannerAdapter extends FragmentStatePagerAdapter
         implements View.OnTouchListener
 {
     private Handler handler;
-    private List<CourseBean> courseBeanList;
+    private List<CourseBean> courseList;
 
     public SlideBannerAdapter(@NonNull FragmentManager fragmentManager)
     {
         super(fragmentManager);
-        courseBeanList = new ArrayList<>();
+        courseList = new ArrayList<>();
     }
 
     public SlideBannerAdapter(@NonNull FragmentManager fragmentManager, Handler handler)
     {
         super(fragmentManager);
         this.handler = handler;
-        courseBeanList = new ArrayList<>();
+        courseList = new ArrayList<>();
     }
 
     /**
      * 设置数据更新界面;
      *
-     * @param courseBeanList courses;
+     * @param courseList courses;
      */
-    public void setDatas(List<CourseBean> courseBeanList)
+    public void setDatas(List<CourseBean> courseList)
     {
-        this.courseBeanList = courseBeanList;
+        this.courseList = courseList;
         notifyDataSetChanged();
     }
 
@@ -62,9 +62,9 @@ public class SlideBannerAdapter extends FragmentStatePagerAdapter
     public Fragment getItem(int position)
     {
         Bundle args = new Bundle();
-        if (courseBeanList.size() > 0)
+        if (courseList.size() > 0)
         {
-            args.putString("ad", courseBeanList.get(position % courseBeanList.size()).getIcon());
+            args.putString("ad", courseList.get(position % courseList.size()).getIcon());
         }
         return SlideBannerFragment.newInstance(args);
     }
@@ -81,7 +81,7 @@ public class SlideBannerAdapter extends FragmentStatePagerAdapter
      */
     public int getSize()
     {
-        return courseBeanList == null ? 0 : courseBeanList.size();
+        return courseList == null ? 0 : courseList.size();
     }
 
     @Override

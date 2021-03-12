@@ -3,8 +3,8 @@ package cn.misection.miscourse.util;
 import android.util.Xml;
 import android.widget.ImageView;
 
-import cn.misection.miscourse.bean.CourseBean;
-import cn.misection.miscourse.bean.ExerciseBean;
+import cn.misection.miscourse.entity.CourseBean;
+import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.constant.EnumExerciseResource;
 
 import org.xmlpull.v1.XmlPullParser;
