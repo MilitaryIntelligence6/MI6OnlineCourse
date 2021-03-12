@@ -55,14 +55,14 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
         mainTitleTextView = findViewById(R.id.main_title_text_view);
         mainTitleTextView.setText(title);
-        saveTextView = findViewById(R.id.tv_save);
+        saveTextView = findViewById(R.id.save_text_view);
         saveTextView.setVisibility(View.VISIBLE);
         saveTextView.setOnClickListener(this);
         backTextView = findViewById(R.id.back_text_view);
         backTextView.setOnClickListener(this);
 
-        contentEditText = findViewById(R.id.et_content);
-        delImageView = findViewById(R.id.iv_delete);
+        contentEditText = findViewById(R.id.content_edit_text);
+        delImageView = findViewById(R.id.delete_image_view);
         delImageView.setOnClickListener(this);
 
         if (!content.isEmpty())
@@ -152,10 +152,10 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
             case R.id.back_text_view:
                 ChangeUserInfoActivity.this.finish();
                 break;
-            case R.id.iv_delete:
+            case R.id.delete_image_view:
                 contentEditText.setText("");
                 break;
-            case R.id.tv_save:
+            case R.id.save_text_view:
                 saveUserInfo();
                 break;
         }

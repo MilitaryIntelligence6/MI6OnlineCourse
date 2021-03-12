@@ -17,7 +17,7 @@
         android:gravity="center_vertical">
 
         <EditText
-            android:id="@+id/et_content"
+            android:id="@+id/content_edit_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
@@ -29,7 +29,7 @@
             android:textSize="14sp" />
 
         <ImageView
-            android:id="@+id/iv_delete"
+            android:id="@+id/delete_image_view"
             android:layout_width="27dp"
             android:layout_height="27dp"
             android:layout_marginLeft="-40dp"

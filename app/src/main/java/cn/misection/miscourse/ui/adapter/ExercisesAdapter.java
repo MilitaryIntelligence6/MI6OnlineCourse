@@ -89,9 +89,9 @@ public class ExercisesAdapter extends BaseAdapter
         {
             viewHolder = new ExerciseViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.exercises_list_item, null);
-            viewHolder.setTitle((TextView) convertView.findViewById(R.id.tv_title));
-            viewHolder.setContent((TextView) convertView.findViewById(R.id.tv_content));
-            viewHolder.setOrder((TextView) convertView.findViewById(R.id.tv_order));
+            viewHolder.setTitle((TextView) convertView.findViewById(R.id.title_text_view));
+            viewHolder.setContent((TextView) convertView.findViewById(R.id.content_text_view));
+            viewHolder.setOrder((TextView) convertView.findViewById(R.id.order_text_view));
             convertView.setTag(viewHolder);
         }
         else
