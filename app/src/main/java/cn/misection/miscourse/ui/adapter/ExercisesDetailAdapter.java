@@ -12,6 +12,7 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.ui.adapter.holder.ExerciseDetailViewHolder;
 import cn.misection.miscourse.constant.EnumExercise;
+import cn.misection.miscourse.ui.adapter.listener.OnSelectListener;
 import cn.misection.miscourse.util.AnalysisUtil;
 
 import java.util.ArrayList;

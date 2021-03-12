@@ -15,9 +15,8 @@ import android.widget.TextView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.ui.adapter.ExercisesDetailAdapter;
 import cn.misection.miscourse.entity.ExerciseBean;
-import cn.misection.miscourse.constant.EnumExerciseChoice;
 import cn.misection.miscourse.constant.EnumExercise;
-import cn.misection.miscourse.ui.adapter.OnSelectListener;
+import cn.misection.miscourse.ui.adapter.listener.OnSelectListener;
 import cn.misection.miscourse.util.AnalysisUtil;
 
 import java.io.IOException;
@@ -98,12 +97,12 @@ public class ExercisesDetailActivity extends AppCompatActivity
                 {
                     @Override
                     public void onSelect(int position,
-                                         EnumExercise userSelect,
+                                         EnumExercise userSelected,
                                          ImageView... imageViewArray)
                     {
                         // 判断如果答案不是 1 即 A 选项
 //                        if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.A)
-                        imageViewArray[userSelect.ordinal()].setImageResource(R.drawable.exercise_error_icon);
+                        imageViewArray[userSelected.ordinal()].setImageResource(R.drawable.exercise_error_icon);
                         imageViewArray[exerciseList.get(position).getCorrectAnswer().ordinal()]
                                 .setImageResource(R.drawable.exercise_right_icon);
 
