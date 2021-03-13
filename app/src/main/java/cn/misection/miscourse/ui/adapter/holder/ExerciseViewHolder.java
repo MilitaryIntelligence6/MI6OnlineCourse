@@ -7,39 +7,39 @@ import android.widget.TextView;
  */
 public class ExerciseViewHolder
 {
-    private TextView title;
+    private TextView titleTextView;
 
-    private TextView content;
+    private TextView contentTextView;
 
-    private TextView order;
+    private TextView orderTextView;
 
-    public TextView getTitle()
+    public TextView getTitleTextView()
     {
-        return title;
+        return titleTextView;
     }
 
-    public void setTitle(TextView title)
+    public void setTitleTextView(TextView titleTextView)
     {
-        this.title = title;
+        this.titleTextView = titleTextView;
     }
 
-    public TextView getContent()
+    public TextView getContentTextView()
     {
-        return content;
+        return contentTextView;
     }
 
-    public void setContent(TextView content)
+    public void setContentTextView(TextView contentTextView)
     {
-        this.content = content;
+        this.contentTextView = contentTextView;
     }
 
-    public TextView getOrder()
+    public TextView getOrderTextView()
     {
-        return order;
+        return orderTextView;
     }
 
-    public void setOrder(TextView order)
+    public void setOrderTextView(TextView orderTextView)
     {
-        this.order = order;
+        this.orderTextView = orderTextView;
     }
 }

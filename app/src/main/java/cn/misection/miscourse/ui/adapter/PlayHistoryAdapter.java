@@ -58,9 +58,9 @@ public class PlayHistoryAdapter extends BaseAdapter
         {
             viewHolder = new PlayHistoryViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.play_history_list_item, null);
-            viewHolder.setTvTitle((TextView) convertView.findViewById(R.id.adapter_title_text_view));
-            viewHolder.setTvVideoTitle((TextView) convertView.findViewById(R.id.video_title_text_view));
-            viewHolder.setIvIcon((ImageView) convertView.findViewById(R.id.video_icon_image_view));
+            viewHolder.setTitleTextView((TextView) convertView.findViewById(R.id.adapter_title_text_view));
+            viewHolder.setVideoTitleTextView((TextView) convertView.findViewById(R.id.video_title_text_view));
+            viewHolder.setIconImageView((ImageView) convertView.findViewById(R.id.video_icon_image_view));
             convertView.setTag(viewHolder);
         }
         else
@@ -70,42 +70,42 @@ public class PlayHistoryAdapter extends BaseAdapter
         final VideoBean bean = getItem(position);
         if (bean != null)
         {
-            viewHolder.getTvTitle().setText(bean.getTitle());
-            viewHolder.getTvVideoTitle().setText(bean.getSecondTitle());
+            viewHolder.getTitleTextView().setText(bean.getTitle());
+            viewHolder.getVideoTitleTextView().setText(bean.getSecondTitle());
             switch (bean.getChapterId())
             {
                 case 1:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon1);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon1);
                     break;
                 case 2:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon2);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon2);
                     break;
                 case 3:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon3);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon3);
                     break;
                 case 4:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon4);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon4);
                     break;
                 case 5:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon10);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon10);
                     break;
                 case 6:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon6);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon6);
                     break;
                 case 7:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon7);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon7);
                     break;
                 case 8:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon8);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon8);
                     break;
                 case 9:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon9);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon9);
                     break;
                 case 10:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon10);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon10);
                     break;
                 default:
-                    viewHolder.getIvIcon().setImageResource(R.drawable.video_play_icon1);
+                    viewHolder.getIconImageView().setImageResource(R.drawable.video_play_icon1);
                     break;
             }
         }

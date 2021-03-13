@@ -88,9 +88,9 @@ public class ExercisesAdapter extends BaseAdapter
         {
             viewHolder = new ExerciseViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.exercises_list_item, null);
-            viewHolder.setTitle((TextView) convertView.findViewById(R.id.title_text_view));
-            viewHolder.setContent((TextView) convertView.findViewById(R.id.content_text_view));
-            viewHolder.setOrder((TextView) convertView.findViewById(R.id.order_text_view));
+            viewHolder.setTitleTextView((TextView) convertView.findViewById(R.id.title_text_view));
+            viewHolder.setContentTextView((TextView) convertView.findViewById(R.id.content_text_view));
+            viewHolder.setOrderTextView((TextView) convertView.findViewById(R.id.order_text_view));
             convertView.setTag(viewHolder);
         }
         else
@@ -101,10 +101,10 @@ public class ExercisesAdapter extends BaseAdapter
         final ExerciseBean exercise = getItem(position);
         if (exercise != null)
         {
-            viewHolder.getOrder().setText(String.valueOf(position + 1));
-            viewHolder.getTitle().setText(exercise.getTitle());
-            viewHolder.getContent().setText(exercise.getContent());
-            viewHolder.getOrder().setBackgroundResource(exercise.getBackground());
+            viewHolder.getOrderTextView().setText(String.valueOf(position + 1));
+            viewHolder.getTitleTextView().setText(exercise.getTitle());
+            viewHolder.getContentTextView().setText(exercise.getContent());
+            viewHolder.getOrderTextView().setBackgroundResource(exercise.getBackground());
         }
         // 每个 Item 的点击事件
         convertView.setOnClickListener(new View.OnClickListener()

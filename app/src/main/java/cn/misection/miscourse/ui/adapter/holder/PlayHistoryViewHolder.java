@@ -8,39 +8,39 @@ import android.widget.TextView;
  */
 public class PlayHistoryViewHolder
 {
-    private TextView tvTitle;
+    private TextView titleTextView;
 
-    private TextView tvVideoTitle;
+    private TextView VideoTitleTextView;
 
-    private ImageView ivIcon;
+    private ImageView iconImageView;
 
-    public TextView getTvTitle()
+    public TextView getTitleTextView()
     {
-        return tvTitle;
+        return titleTextView;
     }
 
-    public void setTvTitle(TextView tvTitle)
+    public void setTitleTextView(TextView titleTextView)
     {
-        this.tvTitle = tvTitle;
+        this.titleTextView = titleTextView;
     }
 
-    public TextView getTvVideoTitle()
+    public TextView getVideoTitleTextView()
     {
-        return tvVideoTitle;
+        return VideoTitleTextView;
     }
 
-    public void setTvVideoTitle(TextView tvVideoTitle)
+    public void setVideoTitleTextView(TextView videoTitleTextView)
     {
-        this.tvVideoTitle = tvVideoTitle;
+        this.VideoTitleTextView = videoTitleTextView;
     }
 
-    public ImageView getIvIcon()
+    public ImageView getIconImageView()
     {
-        return ivIcon;
+        return iconImageView;
     }
 
-    public void setIvIcon(ImageView ivIcon)
+    public void setIconImageView(ImageView iconImageView)
     {
-        this.ivIcon = ivIcon;
+        this.iconImageView = iconImageView;
     }
 }
