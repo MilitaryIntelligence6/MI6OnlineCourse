@@ -10,7 +10,7 @@ public class PlayHistoryViewHolder
 {
     private TextView titleTextView;
 
-    private TextView VideoTitleTextView;
+    private TextView videoTitleTextView;
 
     private ImageView iconImageView;
 
@@ -26,12 +26,12 @@ public class PlayHistoryViewHolder
 
     public TextView getVideoTitleTextView()
     {
-        return VideoTitleTextView;
+        return videoTitleTextView;
     }
 
     public void setVideoTitleTextView(TextView videoTitleTextView)
     {
-        this.VideoTitleTextView = videoTitleTextView;
+        this.videoTitleTextView = videoTitleTextView;
     }
 
     public ImageView getIconImageView()
