@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.misection.miscourse.mvp.constant.EnumViewCode;
+import cn.misection.miscourse.mvp.mvpconst.EnumViewCode;
 import cn.misection.miscourse.mvp.presenter.ICoursePresenter;
 import cn.misection.miscourse.mvp.presenter.IExercisesPresenter;
 import cn.misection.miscourse.mvp.presenter.IMinePresenter;

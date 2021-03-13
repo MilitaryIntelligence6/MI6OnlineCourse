@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
+import cn.misection.miscourse.ui.uiconst.UiConst;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 /**
@@ -26,9 +27,11 @@ public class FindPwdActivity extends AppCompatActivity
 
     private TextView resetPasswordTextView;
 
-    private EditText etUsername, etValidateName;
+    private EditText usernameEditText;
 
-    private Button btnValidate;
+    private EditText validateNameEditText;
+
+    private Button validateButton;
 
     private String from;
 
@@ -41,7 +44,7 @@ public class FindPwdActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_pwd);
-        from = getIntent().getStringExtra("from");
+        from = getIntent().getStringExtra(UiConst.FROM_INTENT_NAME);
         init();
 
         backTextView.setOnClickListener(new View.OnClickListener()
@@ -53,14 +56,12 @@ public class FindPwdActivity extends AppCompatActivity
             }
         });
 
-        btnValidate.setOnClickListener(new View.OnClickListener()
+        validateButton.setOnClickListener(v ->
         {
-            @Override
-            public void onClick(View v)
+            validateName = validateNameEditText.getText().toString().trim();
+            switch (from)
             {
-                validateName = etValidateName.getText().toString().trim();
-                if ("security".equals(from))
-                {
+                case UiConst.SECURITY:
                     if (validateName.isEmpty())
                     {
                         Toast.makeText(FindPwdActivity.this, "请输入要验证的姓名", Toast.LENGTH_SHORT).show();
@@ -71,10 +72,9 @@ public class FindPwdActivity extends AppCompatActivity
                         saveSecurity(validateName);
                         finish();
                     }
-                }
-                else
-                {
-                    String username = etUsername.getText().toString().trim();
+                    break;
+                default:
+                    String username = usernameEditText.getText().toString().trim();
                     String resultSecurity = readSecurity(username);
                     if (username.isEmpty())
                     {
@@ -99,22 +99,22 @@ public class FindPwdActivity extends AppCompatActivity
                         // 重置密码
                         sharedPreferLoginInfo.saveInfo(username, "123456");
                     }
-                }
+                    break;
             }
         });
     }
 
     private String readSecurity(String username)
     {
-        SharedPreferences sp = getSharedPreferences("loginInfo", MODE_PRIVATE);
-        return sp.getString(username + "_security", "");
+        SharedPreferences sharedPref = this.getSharedPreferences("loginInfo", MODE_PRIVATE);
+        return sharedPref.getString(String.format("%s_security", username), "");
     }
 
     private void saveSecurity(String validateName)
     {
         SharedPreferences sp = getSharedPreferences("loginInfo", MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(sharedPreferLoginInfo.getLoginUsername() + "_security", validateName);
+        editor.putString(String.format("%s_security", sharedPreferLoginInfo.getLoginUsername()), validateName);
         editor.commit();
     }
 
@@ -124,10 +124,10 @@ public class FindPwdActivity extends AppCompatActivity
         backTextView = findViewById(R.id.back_text_view);
         usernameTextView = findViewById(R.id.username_text_view);
         resetPasswordTextView = findViewById(R.id.reset_password_text_view);
-        etUsername = findViewById(R.id.username_edit_text);
-        etValidateName = findViewById(R.id.validate_name_edit_text);
-        btnValidate = findViewById(R.id.validate_button);
-        if ("security".equals(from))
+        usernameEditText = findViewById(R.id.username_edit_text);
+        validateNameEditText = findViewById(R.id.validate_name_edit_text);
+        validateButton = findViewById(R.id.validate_button);
+        if (from.equals(UiConst.SECURITY))
         {
             mainTitleTextView.setText("设置密保");
         }
@@ -135,7 +135,7 @@ public class FindPwdActivity extends AppCompatActivity
         {
             mainTitleTextView.setText("找回密码");
             usernameTextView.setVisibility(View.VISIBLE);
-            etUsername.setVisibility(View.VISIBLE);
+            usernameEditText.setVisibility(View.VISIBLE);
         }
 
         sharedPreferLoginInfo = new SharedPreferLoginInfo(FindPwdActivity.this);

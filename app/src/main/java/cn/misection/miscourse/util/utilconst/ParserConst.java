@@ -1,4 +1,4 @@
-package cn.misection.miscourse.util.constant;
+package cn.misection.miscourse.util.utilconst;
 
 /**
  * @author Military Intelligence 6 root
@@ -7,7 +7,7 @@ package cn.misection.miscourse.util.constant;
  * @Description TODO
  * @CreateTime 2021年03月12日 21:32:00
  */
-public final class ParserConstant
+public final class ParserConst
 {
     public static final String EXERCISE_INFO = "infos";
 
@@ -25,5 +25,5 @@ public final class ParserConstant
 
 
 
-    private ParserConstant() {}
+    private ParserConst() {}
 }

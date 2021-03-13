@@ -17,9 +17,13 @@ import cn.misection.miscourse.ui.adapter.holder.CourseViewHolder;
 
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class CourseAdapter extends BaseAdapter
 {
     private Context context;
+
     private List<List<CourseBean>> courseListList;
 
     public CourseAdapter(Context context)
@@ -85,7 +89,9 @@ public class CourseAdapter extends BaseAdapter
                 final CourseBean bean = list.get(i);
                 switch (i)
                 {
-                    case 0: // 设置左边图片与标题信息
+                    // 设置左边图片与标题信息;
+                    case 0:
+                    {
                         viewHolder.getLeftImgTitleTextView().setText(bean.getImgTitle());
                         viewHolder.getLeftTitleTextView().setText(bean.getTitle());
                         setLeftImg(bean.getId(), viewHolder.getLeftImageView());
@@ -102,7 +108,10 @@ public class CourseAdapter extends BaseAdapter
                             }
                         });
                         break;
-                    case 1: // 设置右边图片与标题信息
+                    }
+                    // 设置右边图片与标题信息;
+                    case 1:
+                    {
                         viewHolder.getRightImgTitleTextView().setText(bean.getImgTitle());
                         viewHolder.getRightTitleTextView().setText(bean.getTitle());
                         setRightImg(bean.getId(), viewHolder.getRightImageView());
@@ -119,33 +128,40 @@ public class CourseAdapter extends BaseAdapter
                             }
                         });
                         break;
+                    }
                     default:
+                    {
                         break;
+                    }
                 }
             }
         }
         return convertView;
     }
 
-    // 设置右边图片
-    private void setRightImg(int id, ImageView iv_right_img)
+    /**
+     * 设置右边图片;
+     * @param id
+     * @param rightImageView
+     */
+    private void setRightImg(int id, ImageView rightImageView)
     {
         switch (id)
         {
             case 2:
-                iv_right_img.setImageResource(R.drawable.chapter_2_icon);
+                rightImageView.setImageResource(R.drawable.chapter_2_icon);
                 break;
             case 4:
-                iv_right_img.setImageResource(R.drawable.chapter_4_icon);
+                rightImageView.setImageResource(R.drawable.chapter_4_icon);
                 break;
             case 6:
-                iv_right_img.setImageResource(R.drawable.chapter_6_icon);
+                rightImageView.setImageResource(R.drawable.chapter_6_icon);
                 break;
             case 8:
-                iv_right_img.setImageResource(R.drawable.chapter_8_icon);
+                rightImageView.setImageResource(R.drawable.chapter_8_icon);
                 break;
             case 10:
-                iv_right_img.setImageResource(R.drawable.chapter_10_icon);
+                rightImageView.setImageResource(R.drawable.chapter_10_icon);
                 break;
             default:
             {
@@ -155,24 +171,24 @@ public class CourseAdapter extends BaseAdapter
     }
 
     // 设置左边图片
-    private void setLeftImg(int id, ImageView iv_left_img)
+    private void setLeftImg(int id, ImageView leftImageView)
     {
         switch (id)
         {
             case 1:
-                iv_left_img.setImageResource(R.drawable.chapter_1_icon);
+                leftImageView.setImageResource(R.drawable.chapter_1_icon);
                 break;
             case 3:
-                iv_left_img.setImageResource(R.drawable.chapter_3_icon);
+                leftImageView.setImageResource(R.drawable.chapter_3_icon);
                 break;
             case 5:
-                iv_left_img.setImageResource(R.drawable.chapter_5_icon);
+                leftImageView.setImageResource(R.drawable.chapter_5_icon);
                 break;
             case 7:
-                iv_left_img.setImageResource(R.drawable.chapter_7_icon);
+                leftImageView.setImageResource(R.drawable.chapter_7_icon);
                 break;
             case 9:
-                iv_left_img.setImageResource(R.drawable.chapter_9_icon);
+                leftImageView.setImageResource(R.drawable.chapter_9_icon);
                 break;
             default:
             {
