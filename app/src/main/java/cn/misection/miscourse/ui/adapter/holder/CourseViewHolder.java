@@ -8,75 +8,80 @@ import android.widget.TextView;
  */
 public class CourseViewHolder
 {
-    private TextView leftImgTitleTextView;
+    private TextView[] imgTitleTextViewArray;
 
-    private TextView leftTitleTextView;
+    private TextView[] titleTextViewArray;
 
-    private TextView rightImgTitleTextView;
+    private ImageView[] imgViewArray;
 
-    private TextView rightTitleTextView;
-
-    private ImageView leftImageView;
-
-    private ImageView rightImageView;
-
-    public TextView getLeftImgTitleTextView()
+    private CourseViewHolder(Builder builder)
     {
-        return leftImgTitleTextView;
+        this.imgTitleTextViewArray = builder.imgTitleTextViewArray;
+        this.imgViewArray = builder.imgViewArray;
+        this.titleTextViewArray = builder.titleTextViewArray;
     }
 
-    public void setLeftImgTitleTextView(TextView leftImgTitleTextView)
+    public static class Builder
     {
-        this.leftImgTitleTextView = leftImgTitleTextView;
+        private TextView[] imgTitleTextViewArray;
+
+        private TextView[] titleTextViewArray;
+
+        private ImageView[] imgViewArray;
+        
+        public Builder() {}
+
+        public CourseViewHolder build()
+        {
+            return new CourseViewHolder(this);
+        }
+        
+        public Builder putImgTitleTextViewArray(TextView[] imgTitleTextViewArray)
+        {
+            this.imgTitleTextViewArray = imgTitleTextViewArray;
+            return this;
+        }
+
+        public Builder putTitleTextViewArray(TextView[] titleTextViewArray)
+        {
+            this.titleTextViewArray = titleTextViewArray;
+            return this;
+        }
+
+        public Builder putImgViewArray(ImageView[] imgViewArray)
+        {
+            this.imgViewArray = imgViewArray;
+            return this;
+        }
     }
 
-    public TextView getLeftTitleTextView()
+    public TextView[] getImgTitleTextViewArray()
     {
-        return leftTitleTextView;
+        return imgTitleTextViewArray;
     }
 
-    public void setLeftTitleTextView(TextView leftTitleTextView)
+    public void setImgTitleTextViewArray(TextView[] imgTitleTextViewArray)
     {
-        this.leftTitleTextView = leftTitleTextView;
+        this.imgTitleTextViewArray = imgTitleTextViewArray;
     }
 
-    public TextView getRightImgTitleTextView()
+    public TextView[] getTitleTextViewArray()
     {
-        return rightImgTitleTextView;
+        return titleTextViewArray;
     }
 
-    public void setRightImgTitleTextView(TextView rightImgTitleTextView)
+    public void setTitleTextViewArray(TextView[] titleTextViewArray)
     {
-        this.rightImgTitleTextView = rightImgTitleTextView;
+        this.titleTextViewArray = titleTextViewArray;
     }
 
-    public TextView getRightTitleTextView()
+    public ImageView[] getImgViewArray()
     {
-        return rightTitleTextView;
+        return imgViewArray;
     }
 
-    public void setRightTitleTextView(TextView rightTitleTextView)
+    public void setImgViewArray(ImageView[] imgViewArray)
     {
-        this.rightTitleTextView = rightTitleTextView;
-    }
-
-    public ImageView getLeftImageView()
-    {
-        return leftImageView;
-    }
-
-    public void setLeftImageView(ImageView leftImageView)
-    {
-        this.leftImageView = leftImageView;
-    }
-
-    public ImageView getRightImageView()
-    {
-        return rightImageView;
-    }
-
-    public void setRightImageView(ImageView rightImageView)
-    {
-        this.rightImageView = rightImageView;
+        this.imgViewArray = imgViewArray;
     }
 }

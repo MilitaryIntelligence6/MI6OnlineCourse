@@ -47,18 +47,27 @@ public class MainActivity
      * 页面元素;
      */
     private TextView backTextView;
+
     private TextView mainTitleTextView;
+
     private TextView bottomCourseTextView;
+
     private TextView bottomExercisesTextView;
+
     private TextView bottomMineTextView;
 
     private RelativeLayout titleBarRelaLayout;
+
     private RelativeLayout bottomCourseRelaLayout;
-    private RelativeLayout bottomExercisesRelaLayout;
+
+    private RelativeLayout bottomExerciseRelaLayout;
+
     private RelativeLayout bottomMineRelaLayout;
 
     private ImageView bottomCourseImageView;
+
     private ImageView bottomExercisesImageView;
+
     private ImageView bottomMineImageView;
 
     private FrameLayout bodyFrameLayout;
@@ -69,7 +78,9 @@ public class MainActivity
      * 三个子view;
      */
     private IMinePresenter minePresenter;
+
     private IExercisesPresenter exercisesPresenter;
+
     private ICoursePresenter coursePresenter;
 
     private SharedPreferLoginInfo sharedPrefLoginInfo;
@@ -87,7 +98,6 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
         init();
-        selectDisplayView(EnumViewCode.COURSE);
     }
 
     private void init()
@@ -97,7 +107,8 @@ public class MainActivity
         initBottomExercises();
         initBottomMine();
         initPresenter();
-        sharedPrefLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
+        initSharePref();
+        selectDisplayView(EnumViewCode.COURSE);
     }
 
     private void initIndex()
@@ -134,8 +145,8 @@ public class MainActivity
 
     private void initBottomExercises()
     {
-        bottomExercisesRelaLayout = findViewById(R.id.bottom_bar_exercises);
-        bottomExercisesRelaLayout.setOnClickListener(this);
+        bottomExerciseRelaLayout = findViewById(R.id.bottom_bar_exercises);
+        bottomExerciseRelaLayout.setOnClickListener(this);
         bottomExercisesImageView = findViewById(R.id.bottom_bar_image_exercises);
         bottomExercisesTextView = findViewById(R.id.bottom_bar_text_exercises);
     }
@@ -148,10 +159,15 @@ public class MainActivity
         bottomMineTextView = findViewById(R.id.bottom_bar_text_mine);
     }
 
-    @Override
-    public void onClick(View view)
+    private void initSharePref()
     {
-        switch (view.getId())
+        sharedPrefLoginInfo = new SharedPreferLoginInfo(MainActivity.this);
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        switch (v.getId())
         {
             case R.id.bottom_bar_course:
             {
@@ -200,7 +216,7 @@ public class MainActivity
             }
             case EXERCISES:
             {
-                bottomExercisesRelaLayout.setSelected(true);
+                bottomExerciseRelaLayout.setSelected(true);
                 bottomExercisesImageView.setImageResource(R.drawable.main_exercises_icon_selected);
                 bottomExercisesTextView.setTextColor(Color.parseColor("#0097f7"));
                 titleBarRelaLayout.setVisibility(View.VISIBLE);

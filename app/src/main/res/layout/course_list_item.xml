@@ -16,7 +16,7 @@
             android:layout_height="115dp">
 
             <ImageView
-                android:id="@+id/left_img_image_view"
+                android:id="@+id/left_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="115dp"
                 android:paddingStart="8dp"
@@ -67,7 +67,7 @@
             android:layout_height="115dp">
 
             <ImageView
-                android:id="@+id/right_img_image_view"
+                android:id="@+id/right_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="115dp"
                 android:paddingLeft="4dp"

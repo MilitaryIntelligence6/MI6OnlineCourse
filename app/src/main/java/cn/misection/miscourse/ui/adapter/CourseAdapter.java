@@ -2,7 +2,6 @@ package cn.misection.miscourse.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,6 +12,7 @@ import cn.misection.miscourse.R;
 
 import cn.misection.miscourse.ui.activity.VideoListActivity;
 import cn.misection.miscourse.entity.CourseBean;
+import cn.misection.miscourse.ui.adapter.adapterconst.EnumCourseViewEle;
 import cn.misection.miscourse.ui.adapter.adapterconst.EnumImageResMapper;
 import cn.misection.miscourse.ui.adapter.holder.CourseViewHolder;
 
@@ -66,14 +66,8 @@ public class CourseAdapter extends BaseAdapter
         final CourseViewHolder viewHolder;
         if (convertView == null)
         {
-            viewHolder = new CourseViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.course_list_item, null);
-            viewHolder.setLeftImageView(convertView.findViewById(R.id.left_img_image_view));
-            viewHolder.setRightImageView(convertView.findViewById(R.id.right_img_image_view));
-            viewHolder.setLeftImgTitleTextView(convertView.findViewById(R.id.left_img_title_text_view));
-            viewHolder.setRightImgTitleTextView(convertView.findViewById(R.id.right_img_title_text_view));
-            viewHolder.setLeftTitleTextView(convertView.findViewById(R.id.left_title_text_view));
-            viewHolder.setRightTitleTextView(convertView.findViewById(R.id.right_title_text_view));
+            convertView = View.inflate(context, R.layout.course_list_item, null);
+            viewHolder = buildViewHolder(convertView);
             convertView.setTag(viewHolder);
         }
         else
@@ -88,77 +82,52 @@ public class CourseAdapter extends BaseAdapter
             for (int i = 0; i < list.size(); i++)
             {
                 final CourseBean bean = list.get(i);
-                switch (i)
+                viewHolder.getImgTitleTextViewArray()[i].setText(bean.getImgTitle());
+                viewHolder.getTitleTextViewArray()[i].setText(bean.getTitle());
+                putImage(bean.getId(), viewHolder.getImgViewArray()[i]);
+                viewHolder.getImgViewArray()[i].setOnClickListener(v ->
                 {
-                    // 设置左边图片与标题信息;
-                    case 0:
-                    {
-                        viewHolder.getLeftImgTitleTextView().setText(bean.getImgTitle());
-                        viewHolder.getLeftTitleTextView().setText(bean.getTitle());
-                        putLeftImg(bean.getId(), viewHolder.getLeftImageView());
-                        viewHolder.getLeftImageView().setOnClickListener(new View.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(View v)
-                            {
-                                // 跳转到课程详情界面
-                                Intent intent = new Intent(context, VideoListActivity.class);
-                                intent.putExtra("id", bean.getId());
-                                intent.putExtra("intro", bean.getIntro());
-                                context.startActivity(intent);
-                            }
-                        });
-                        break;
-                    }
-                    // 设置右边图片与标题信息;
-                    case 1:
-                    {
-                        viewHolder.getRightImgTitleTextView().setText(bean.getImgTitle());
-                        viewHolder.getRightTitleTextView().setText(bean.getTitle());
-                        putRightImg(bean.getId(), viewHolder.getRightImageView());
-                        viewHolder.getRightImageView().setOnClickListener(new View.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(View v)
-                            {
-                                // 跳转到课程详情界面
-                                Intent intent = new Intent(context, VideoListActivity.class);
-                                intent.putExtra("id", bean.getId());
-                                intent.putExtra("intro", bean.getIntro());
-                                context.startActivity(intent);
-                            }
-                        });
-                        break;
-                    }
-                    default:
-                    {
-                        break;
-                    }
-                }
+                    // 跳转到课程详情界面
+                    Intent intent = new Intent(context, VideoListActivity.class);
+                    intent.putExtra("id", bean.getId());
+                    intent.putExtra("intro", bean.getIntro());
+                    context.startActivity(intent);
+                });
             }
         }
         return convertView;
     }
 
     /**
-     * 设置右边图片;
-     * @param id
-     * @param rightImageView
+     * 设置左边图片;
+     * @param id 
+     * @param imageView
      */
-    private void putRightImg(int id, ImageView rightImageView)
+    private void putImage(int id, ImageView imageView)
     {
-        rightImageView.setImageResource(
+        imageView.setImageResource(
                 EnumImageResMapper.valueOf(id).getImgRes());
     }
 
-    /**
-     * 设置左边图片;
-     * @param id
-     * @param leftImageView
-     */
-    private void putLeftImg(int id, ImageView leftImageView)
+    private CourseViewHolder buildViewHolder(View convertView)
     {
-        leftImageView.setImageResource(
-                EnumImageResMapper.valueOf(id).getImgRes());
+        int size = EnumCourseViewEle.count();
+        ImageView[] imageViewArray = new ImageView[size];
+        TextView[] titleTextViewArray = new TextView[size];
+        TextView[] imgTitleTextViewArray = new TextView[size];
+
+        for (int i = 0; i < size; i++)
+        {
+            EnumCourseViewEle layoutPos = EnumCourseViewEle.valueOf(i);
+            imageViewArray[i] = convertView.findViewById(layoutPos.getImageViewRes());
+            titleTextViewArray[i] = convertView.findViewById(layoutPos.getTitleTextViewRes());
+            imgTitleTextViewArray[i] = convertView.findViewById(layoutPos.getImgTitleTextViewRes());
+        }
+
+        return new CourseViewHolder.Builder()
+                .putImgViewArray(imageViewArray)
+                .putTitleTextViewArray(titleTextViewArray)
+                .putImgTitleTextViewArray(imgTitleTextViewArray)
+                .build();
     }
 }
