@@ -142,9 +142,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         backTextView = findViewById(R.id.back_text_view);
         backTextView.setOnClickListener(this);
 
-        headImageView = findViewById(R.id.iv_head);
-        usernameEditText = findViewById(R.id.et_login_username);
-        passwordEditText = findViewById(R.id.et_login_password);
+        headImageView = findViewById(R.id.head_image_view);
+        usernameEditText = findViewById(R.id.login_username_edit_text);
+        passwordEditText = findViewById(R.id.login_password_edit_text);
         loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(this);
         registerTextView = findViewById(R.id.register_text_view);
@@ -155,7 +155,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         sharedPreferLoginInfo = new SharedPreferLoginInfo(LoginActivity.this);
     }
 
-    // 接受注册返回参数
+    /**
+     * 接受注册返回参数;
+     * @param requestCode request;
+     * @param resultCode result
+     * @param data data;
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
