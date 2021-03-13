@@ -78,8 +78,8 @@ public class VideoListAdapter extends BaseAdapter
         {
             viewHolder = new VideoViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.video_list_item, null);
-            viewHolder.setTitleTextView((TextView) convertView.findViewById(R.id.video_title_text_view));
-            viewHolder.setIconImageView((ImageView) convertView.findViewById(R.id.left_icon_image_view));
+            viewHolder.setTitleTextView(convertView.findViewById(R.id.video_title_text_view));
+            viewHolder.setIconImageView(convertView.findViewById(R.id.left_icon_image_view));
             convertView.setTag(viewHolder);
         }
         else

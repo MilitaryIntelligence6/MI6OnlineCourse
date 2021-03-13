@@ -80,7 +80,7 @@ public class ExercisesDetailAdapter extends BaseAdapter
         {
             viewHolder = new ExerciseDetailViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.exercises_detail_list_item, null);
-            viewHolder.setSubject((TextView) convertView.findViewById(R.id.subject_text_view));
+            viewHolder.setSubject(convertView.findViewById(R.id.subject_text_view));
 
             TextView[] choiceTextArray =
                     new TextView[EnumExercise.count()];

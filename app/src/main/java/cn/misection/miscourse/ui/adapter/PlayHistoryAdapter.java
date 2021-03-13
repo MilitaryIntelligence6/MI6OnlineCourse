@@ -58,9 +58,9 @@ public class PlayHistoryAdapter extends BaseAdapter
         {
             viewHolder = new PlayHistoryViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.play_history_list_item, null);
-            viewHolder.setTitleTextView((TextView) convertView.findViewById(R.id.adapter_title_text_view));
-            viewHolder.setVideoTitleTextView((TextView) convertView.findViewById(R.id.video_title_text_view));
-            viewHolder.setIconImageView((ImageView) convertView.findViewById(R.id.video_icon_image_view));
+            viewHolder.setTitleTextView(convertView.findViewById(R.id.adapter_title_text_view));
+            viewHolder.setVideoTitleTextView(convertView.findViewById(R.id.video_title_text_view));
+            viewHolder.setIconImageView(convertView.findViewById(R.id.video_icon_image_view));
             convertView.setTag(viewHolder);
         }
         else
