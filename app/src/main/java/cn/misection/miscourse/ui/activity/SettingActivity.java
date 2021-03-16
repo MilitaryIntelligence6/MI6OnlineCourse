@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
@@ -38,18 +37,27 @@ public class SettingActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
         init();
     }
 
     private void init()
     {
-        instance = this;
+        initContent();
+        initView();
+    }
 
+    private void initContent()
+    {
+        this.setContentView(R.layout.activity_setting);
+    }
+
+    private void initView()
+    {
+        instance = this;
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30B4FF"));
         mainTittleTextView = findViewById(R.id.main_title_text_view);
-        mainTittleTextView.setText("设置");
+        mainTittleTextView.setText(R.string.setting);
         backTextView = findViewById(R.id.back_text_view);
         backTextView.setOnClickListener(this);
 

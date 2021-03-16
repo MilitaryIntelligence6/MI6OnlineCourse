@@ -16,8 +16,13 @@ import cn.misection.miscourse.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SplashActivity extends AppCompatActivity
+/**
+ * @author Administrator
+ */
+public class LoadActivity extends AppCompatActivity
 {
+    private static final long LOADING_TIME = 3000;
+
     private TextView versionTextView;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -25,13 +30,13 @@ public class SplashActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        this.setContentView(R.layout.activity_splash);
         // 设置界面为竖屏
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        init();
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        initView();
     }
 
-    private void init()
+    private void initView()
     {
         // 显示应用版本号
         versionTextView = findViewById(R.id.version_text_view);
@@ -43,7 +48,7 @@ public class SplashActivity extends AppCompatActivity
         catch (PackageManager.NameNotFoundException e)
         {
             e.printStackTrace();
-            versionTextView.setText("v");
+            versionTextView.setText(R.string.version);
         }
 
         // FIXME;
@@ -54,11 +59,11 @@ public class SplashActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoadActivity.this, MainActivity.class);
                 startActivity(intent);
-                SplashActivity.this.finish();
+                LoadActivity.this.finish();
             }
         };
-        timer.schedule(timerTask, 3000);
+        timer.schedule(timerTask, LOADING_TIME);
     }
 }
