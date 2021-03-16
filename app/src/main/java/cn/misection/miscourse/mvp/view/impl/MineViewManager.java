@@ -42,8 +42,6 @@ public class MineViewManager implements IMineView, View.OnClickListener
 
     private LinearLayout loginLinearLayout;
 
-    private volatile static MineViewManager instance = null;
-
     public MineViewManager(MinePresenterImpl presenter)
     {
         this.presenter = presenter;
