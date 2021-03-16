@@ -1,4 +1,4 @@
-package cn.misection.miscourse.ui.uiconst;
+package cn.misection.miscourse.constant.ui;
 
 /**
  * @author Military Intelligence 6 root
@@ -7,7 +7,7 @@ package cn.misection.miscourse.ui.uiconst;
  * @Description TODO
  * @CreateTime 2021年03月13日 13:46:00
  */
-public class UiConst
+public final class UiConst
 {
     public static final String SECURITY = "security";
 

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.ui.uiconst.UiConst;
+import cn.misection.miscourse.constant.ui.UiConst;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
 /**

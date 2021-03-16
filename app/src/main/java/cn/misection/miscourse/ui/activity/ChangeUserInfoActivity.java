@@ -51,38 +51,46 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
     {
         initContentView();
 
-        title = this.getIntent().getStringExtra("title");
-        content = this.getIntent().getStringExtra("content");
-        flag = this.getIntent().getIntExtra("flag", 0);
-
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
-        mainTitleTextView = findViewById(R.id.main_title_text_view);
-        mainTitleTextView.setText(title);
-        saveTextView = findViewById(R.id.save_text_view);
-        saveTextView.setVisibility(View.VISIBLE);
-        saveTextView.setOnClickListener(this);
-        backTextView = findViewById(R.id.back_text_view);
-        backTextView.setOnClickListener(this);
 
-        contentEditText = findViewById(R.id.content_edit_text);
-        delImageView = findViewById(R.id.delete_image_view);
-        delImageView.setOnClickListener(this);
+        initTextView();
 
         if (!content.isEmpty())
         {
             contentEditText.setText(content);
             contentEditText.setSelection(content.length());
         }
-        contentListener();
+        startContentListener();
     }
 
     private void initContentView()
     {
         this.setContentView(R.layout.activity_change_user_info);
+
+        title = this.getIntent().getStringExtra("title");
+        content = this.getIntent().getStringExtra("content");
+        flag = this.getIntent().getIntExtra("flag", 0);
     }
 
-    private void contentListener()
+    private void initTextView()
+    {
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
+        mainTitleTextView.setText(title);
+
+        saveTextView = findViewById(R.id.save_text_view);
+        saveTextView.setVisibility(View.VISIBLE);
+        saveTextView.setOnClickListener(this);
+
+        backTextView = findViewById(R.id.back_text_view);
+        backTextView.setOnClickListener(this);
+
+        contentEditText = findViewById(R.id.content_edit_text);
+        delImageView = findViewById(R.id.delete_image_view);
+        delImageView.setOnClickListener(this);
+    }
+
+    private void startContentListener()
     {
         contentEditText.addTextChangedListener(new TextWatcher()
         {
@@ -95,7 +103,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                updateText();
+                updateContent();
             }
 
             @Override
@@ -155,7 +163,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         }
     }
 
-    private void updateText()
+    private void updateContent()
     {
         Editable editable = contentEditText.getText();
         int len = editable.length();
