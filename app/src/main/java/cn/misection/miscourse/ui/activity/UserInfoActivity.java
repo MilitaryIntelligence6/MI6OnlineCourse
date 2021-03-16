@@ -160,20 +160,16 @@ public class UserInfoActivity extends AppCompatActivity
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(UserInfoActivity.this);
         dialog.setTitle("性别");
-        dialog.setSingleChoiceItems(items, sexFlag, new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-                dialog.dismiss();
-//                Toast.makeText(UserInfoActivity.this, items[which], Toast.LENGTH_SHORT).show();
-                ToastUtil.show(UserInfoActivity.this,
-                        items[which]);
-                // 修改数据库
-                sexTextView.setText(items[which]);
-                DataBaseHelper.getInstance(UserInfoActivity.this).updateUserInfo("sex", items[which], spUsername);
-            }
-        });
+        dialog.setSingleChoiceItems(items, sexFlag,
+                (DialogInterface dialog1, int which) ->
+                {
+                    dialog1.dismiss();
+                    ToastUtil.show(UserInfoActivity.this,
+                            items[which]);
+                    // 修改数据库
+                    sexTextView.setText(items[which]);
+                    DataBaseHelper.getInstance(UserInfoActivity.this).updateUserInfo("sex", items[which], spUsername);
+                });
         dialog.show();
     }
 

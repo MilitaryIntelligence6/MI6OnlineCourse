@@ -111,41 +111,44 @@ public class RetrievePasswordActivity extends AppCompatActivity
             switch (from)
             {
                 case UiConst.SECURITY:
+                {
                     if (validateName.isEmpty())
                     {
-//                        Toast.makeText(RetrievePasswordActivity.this, "请输入要验证的姓名", Toast.LENGTH_SHORT).show();
-                        ToastUtil.show(this, "请输入要验证的姓名");
+                        ToastUtil.show(RetrievePasswordActivity.this,
+                                "请输入要验证的姓名");
                     }
                     else
                     {
-//                        Toast.makeText(RetrievePasswordActivity.this, "密保设置成功", Toast.LENGTH_SHORT).show();
-                        ToastUtil.show(this, "密保设置成功");
+                        ToastUtil.show(RetrievePasswordActivity.this,
+                                "密保设置成功");
                         saveSecurity(validateName);
                         finish();
                     }
                     break;
+                }
                 default:
+                {
                     String username = usernameEditText.getText().toString().trim();
                     String resultSecurity = readSecurity(username);
                     if (username.isEmpty())
                     {
-//                        Toast.makeText(RetrievePasswordActivity.this, "请输入你的用户名", Toast.LENGTH_SHORT).show();
-                        ToastUtil.show(this, "请输入你的用户名");
+                        ToastUtil.show(RetrievePasswordActivity.this,
+                                "请输入你的用户名");
                     }
                     else if (sharedPreferLoginInfo.getPwd(username).isEmpty())
                     {
-//                        Toast.makeText(RetrievePasswordActivity.this, "你输入的用户名不存在", Toast.LENGTH_SHORT).show();
-                        ToastUtil.show(this, "你输入的用户名不存在");
+                        ToastUtil.show(RetrievePasswordActivity.this,
+                                "你输入的用户名不存在");
                     }
                     else if (validateName.isEmpty())
                     {
-//                        Toast.makeText(RetrievePasswordActivity.this, "请输入要验证的姓名", Toast.LENGTH_SHORT).show();
-                        ToastUtil.show(this, "请输入要验证的姓名");
+                        ToastUtil.show(RetrievePasswordActivity.this,
+                                "请输入要验证的姓名");
                     }
                     else if (!validateName.equals(resultSecurity))
                     {
-//                        Toast.makeText(RetrievePasswordActivity.this, "输入的密保不正确", Toast.LENGTH_SHORT).show();
-                        ToastUtil.show(this, "输入的密保不正确");
+                        ToastUtil.show(RetrievePasswordActivity.this,
+                                "输入的密保不正确");
                     }
                     else
                     {
@@ -155,6 +158,7 @@ public class RetrievePasswordActivity extends AppCompatActivity
                         sharedPreferLoginInfo.saveInfo(username, "123456");
                     }
                     break;
+                }
             }
         });
     }

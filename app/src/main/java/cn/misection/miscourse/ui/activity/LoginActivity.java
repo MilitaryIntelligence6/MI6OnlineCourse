@@ -55,6 +55,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         init();
     }
 
+    private void init()
+    {
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
+        mainTitleTextView.setText("登陆");
+        backTextView = findViewById(R.id.back_text_view);
+        backTextView.setOnClickListener(this);
+
+        headImageView = findViewById(R.id.head_image_view);
+        usernameEditText = findViewById(R.id.login_username_edit_text);
+        passwordEditText = findViewById(R.id.login_password_edit_text);
+        loginButton = findViewById(R.id.login_button);
+        loginButton.setOnClickListener(this);
+        registerTextView = findViewById(R.id.register_text_view);
+        registerTextView.setOnClickListener(this);
+        findPasswordTextView = findViewById(R.id.find_password_text_view);
+        findPasswordTextView.setOnClickListener(this);
+
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(LoginActivity.this);
+    }
+
     @Override
     public void onClick(View v)
     {
@@ -82,39 +102,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    // 逻辑判断
+    /**
+     * 逻辑判断;
+     */
     private void logicalJudgement()
     {
         if (username.isEmpty())
         {
-//            toastShow("请输入用户名");
             ToastUtil.show(this, "请输入用户名");
         }
         else if (password.isEmpty())
         {
-//            toastShow("请输入密码");
             ToastUtil.show(this, "请输入密码");
         }
         else if (sharedPreferLoginInfo.getPwd(username).isEmpty())
         {
-//            toastShow("用户名不存在");
             ToastUtil.show(this, "用户名不存在");
         }
         else if (!loginCheck(username, password))
         {
-//            toastShow("用户名或密码错误");
             ToastUtil.show(this, "用户名或密码错误");
         }
         else
         {
-//            toastShow("用户登陆成功！");
             ToastUtil.show(this, "用户登陆成功!");
             sharedPreferLoginInfo.saveLoginStatus(true, username);
             gotoActivity();
         }
     }
 
-    // 带参数返回
+    /**
+     * 带参数返回;
+     */
     private void gotoActivity()
     {
         intent = new Intent();
@@ -123,42 +142,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         LoginActivity.this.finish();
     }
 
-    // 登录账号密码验证
+    /**
+     * 登录账号密码验证;
+     * @param username
+     * @param password
+     * @return
+     */
     private boolean loginCheck(String username, String password)
     {
         String md5Pwd = MD5Util.md5(password);
         return sharedPreferLoginInfo.getPwd(username).equals(md5Pwd);
     }
 
-//    private void toastShow(String message)
-//    {
-//        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
-//    }
-
     private void getEditString()
     {
         username = usernameEditText.getText().toString().trim();
         password = passwordEditText.getText().toString().trim();
-    }
-
-    private void init()
-    {
-        mainTitleTextView = findViewById(R.id.main_title_text_view);
-        mainTitleTextView.setText("登陆");
-        backTextView = findViewById(R.id.back_text_view);
-        backTextView.setOnClickListener(this);
-
-        headImageView = findViewById(R.id.head_image_view);
-        usernameEditText = findViewById(R.id.login_username_edit_text);
-        passwordEditText = findViewById(R.id.login_password_edit_text);
-        loginButton = findViewById(R.id.login_button);
-        loginButton.setOnClickListener(this);
-        registerTextView = findViewById(R.id.register_text_view);
-        registerTextView.setOnClickListener(this);
-        findPasswordTextView = findViewById(R.id.find_password_text_view);
-        findPasswordTextView.setOnClickListener(this);
-
-        sharedPreferLoginInfo = new SharedPreferLoginInfo(LoginActivity.this);
     }
 
     /**

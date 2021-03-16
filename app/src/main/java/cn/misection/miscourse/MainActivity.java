@@ -300,8 +300,6 @@ public class MainActivity
             long timeMillis = System.currentTimeMillis();
             if (timeMillis - lastRecentlyPressExitTime > EXIT_AGAIN_DELAY)
             {
-//                Toast.makeText(
-//                this, R.string.exit_again, Toast.LENGTH_SHORT).show();
                 ToastUtil.show(this, R.string.exit_again);
                 lastRecentlyPressExitTime = timeMillis;
             }

@@ -58,56 +58,6 @@ public class UpdatePwdActivity extends AppCompatActivity
         });
     }
 
-    private void logicalJudgement()
-    {
-        if (oldPassword.isEmpty())
-        {
-//            toastShow("请输入原始密码");
-            ToastUtil.show(this, "请输入原始密码");
-        }
-        else if (!MD5Util.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username)))
-        {
-//            toastShow("原始密码错误");
-            ToastUtil.show(this, "原始密码错误");
-        }
-        else if (newPassword.isEmpty())
-        {
-//            toastShow("请输入新密码");
-            ToastUtil.show(this, "请输入新密码");
-        }
-        else if (newPasswordAgain.isEmpty())
-        {
-//            toastShow("请再次输入新密码");
-            ToastUtil.show(this, "请再次输入新密码");
-        }
-        else if (!newPassword.equals(newPasswordAgain))
-        {
-//            toastShow("两次输入的密码不一致");
-            ToastUtil.show(this, "两次输入的密码不一致");
-        }
-        else if (MD5Util.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username)))
-        {
-//            toastShow("新密码不能与原始密码一致");
-            ToastUtil.show(this, "新密码不能与原始密码一致");
-        }
-        else
-        {
-//            toastShow("新密码设置成功");
-            ToastUtil.show(this, "新密码设置成功");
-            // 更新密码
-            sharedPreferLoginInfo.saveInfo(username, newPassword);
-            SettingActivity.instance.finish();
-            UpdatePwdActivity.this.finish();
-        }
-    }
-
-    private void getEditString()
-    {
-        oldPassword = oldPasswordEditText.getText().toString().trim();
-        newPassword = newPasswordEditText.getText().toString().trim();
-        newPasswordAgain = newPasswordAgainEditText.getText().toString().trim();
-    }
-
     private void init()
     {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
@@ -123,5 +73,48 @@ public class UpdatePwdActivity extends AppCompatActivity
 
         sharedPreferLoginInfo = new SharedPreferLoginInfo(UpdatePwdActivity.this);
         username = sharedPreferLoginInfo.getLoginUsername();
+    }
+
+    private void logicalJudgement()
+    {
+        if (oldPassword.isEmpty())
+        {
+            ToastUtil.show(this, "请输入原始密码");
+        }
+        else if (!MD5Util.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username)))
+        {
+            ToastUtil.show(this, "原始密码错误");
+        }
+        else if (newPassword.isEmpty())
+        {
+            ToastUtil.show(this, "请输入新密码");
+        }
+        else if (newPasswordAgain.isEmpty())
+        {
+            ToastUtil.show(this, "请再次输入新密码");
+        }
+        else if (!newPassword.equals(newPasswordAgain))
+        {
+            ToastUtil.show(this, "两次输入的密码不一致");
+        }
+        else if (MD5Util.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username)))
+        {
+            ToastUtil.show(this, "新密码不能与原始密码一致");
+        }
+        else
+        {
+            ToastUtil.show(this, "新密码设置成功");
+            // 更新密码
+            sharedPreferLoginInfo.saveInfo(username, newPassword);
+            SettingActivity.instance.finish();
+            UpdatePwdActivity.this.finish();
+        }
+    }
+
+    private void getEditString()
+    {
+        oldPassword = oldPasswordEditText.getText().toString().trim();
+        newPassword = newPasswordEditText.getText().toString().trim();
+        newPasswordAgain = newPasswordAgainEditText.getText().toString().trim();
     }
 }

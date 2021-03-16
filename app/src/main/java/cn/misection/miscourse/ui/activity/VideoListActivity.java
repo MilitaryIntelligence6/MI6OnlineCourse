@@ -92,8 +92,8 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
             adapter.notifyDataSetChanged();  // 更新列表框
             if (TextUtils.isEmpty(videoPath))
             {
-//                Toast.makeText(VideoListActivity.this, "本地没有此视频，暂无法播放", Toast.LENGTH_SHORT).show();
-                ToastUtil.show(VideoListActivity.this, "本地没有此视频");
+                ToastUtil.show(VideoListActivity.this,
+                        "本地没有此视频");
                 return;
             }
             else

@@ -159,12 +159,6 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         EnumUserInfo option = EnumUserInfo.selectEnumByFlag(flag);
         if (value.isEmpty())
         {
-//            Toast.makeText(
-//                    this,
-//                    String.format(EnumSaveState.CAN_NOT_BE_EMPTY_WARNING.text(),
-//                            option.chineseText()),
-//                    Toast.LENGTH_SHORT)
-//                    .show();
             ToastUtil.show(this,
                     String.format(EnumSaveState.CAN_NOT_BE_EMPTY_WARNING.text(),
                             option.chineseText()));
@@ -173,12 +167,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         {
             data.putExtra(option.englishText(), value);
             setResult(RESULT_OK, data);
-//            Toast.makeText(
-//                    this,
-//                    EnumSaveState.SUCCESSFULLY_SAVE.text(),
-//                    Toast.LENGTH_SHORT)
-//                    .show();
-            // 改成R;
+            // TODO 改成Res;
             ToastUtil.show(this, EnumSaveState.SUCCESSFULLY_SAVE.text());
             ChangeUserInfoActivity.this.finish();
         }

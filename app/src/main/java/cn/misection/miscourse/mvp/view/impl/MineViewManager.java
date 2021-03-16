@@ -110,7 +110,6 @@ public class MineViewManager implements IMineView, View.OnClickListener
                 }
                 else
                 {
-//                    Toast.makeText(context, "你还未登陆，请先登陆", Toast.LENGTH_SHORT).show();
                     ToastUtil.show(context, "你还未登陆，请先登陆");
                 }
                 break;
@@ -126,7 +125,6 @@ public class MineViewManager implements IMineView, View.OnClickListener
                 }
                 else
                 {
-//                    Toast.makeText(context, "你还未登陆，请先登陆", Toast.LENGTH_SHORT).show();
                     ToastUtil.show(context, "你还未登陆，请先登陆");
                 }
                 break;

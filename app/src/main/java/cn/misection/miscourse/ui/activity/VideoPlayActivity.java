@@ -54,7 +54,6 @@ public class VideoPlayActivity extends AppCompatActivity
     {
         if (TextUtils.isEmpty(videoPath))
         {
-//            Toast.makeText(this, "本地没有此视频，暂无法播放", Toast.LENGTH_SHORT).show();
             ToastUtil.show(this, "本地没有此视频，暂无法播放");
             return;
         }

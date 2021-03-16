@@ -56,72 +56,6 @@ public class RegisterActivity extends AppCompatActivity
         });
     }
 
-    private void logicalJudgement()
-    {
-        if (username.isEmpty())
-        {
-//            toastShow("请输入用户名");
-            ToastUtil.show(this, "请输入用户名");
-        }
-        else if (password.isEmpty())
-        {
-//            toastShow("请输入密码");
-            ToastUtil.show(this, "请输入密码");
-        }
-        else if (passwordAgain.isEmpty())
-        {
-//            toastShow("请再次输入密码");
-            ToastUtil.show(this, "请再次输入密码");
-        }
-        else if (!sharedPrefLoginInfo.getPwd(username).isEmpty())
-        {
-//            toastShow("用户名已存在");
-            ToastUtil.show(this, "用户名已存在");
-        }
-        else if (!password.equals(passwordAgain))
-        {
-//            toastShow("两次输入的密码不一致");
-            ToastUtil.show(this, "两次输入的密码不一致");
-        }
-        else
-        {
-//            toastShow("用户注册成功!");
-            ToastUtil.show(this, "用户注册成功!");
-            sharedPrefLoginInfo.saveInfo(username, password);
-            gotoActivity();
-        }
-    }
-
-    /**
-     * 带参数返回;
-     */
-    private void gotoActivity()
-    {
-        intent = new Intent();
-        intent.putExtra("username", username);
-        setResult(RESULT_OK, intent);
-        RegisterActivity.this.finish();
-    }
-
-//    private void toastShow(String message)
-//    {
-//        Toast.makeText(
-//                RegisterActivity.this,
-//                message,
-//                Toast.LENGTH_SHORT).
-//                show();
-//    }
-
-    /**
-     * 获取文本输入;
-     */
-    private void getEditString()
-    {
-        username = usernameEditText.getText().toString().trim();
-        password = passwordEditText.getText().toString().trim();
-        passwordAgain = passwordAgainEditText.getText().toString().trim();
-    }
-
     private void init()
     {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
@@ -140,5 +74,56 @@ public class RegisterActivity extends AppCompatActivity
         passwordEditText = findViewById(R.id.et_register_password);
         passwordAgainEditText = findViewById(R.id.et_register_password_again);
         registerButton = findViewById(R.id.btn_register);
+    }
+
+    private void logicalJudgement()
+    {
+        if (username.isEmpty())
+        {
+            ToastUtil.show(this, "请输入用户名");
+        }
+        else if (password.isEmpty())
+        {
+            ToastUtil.show(this, "请输入密码");
+        }
+        else if (passwordAgain.isEmpty())
+        {
+            ToastUtil.show(this, "请再次输入密码");
+        }
+        else if (!sharedPrefLoginInfo.getPwd(username).isEmpty())
+        {
+            ToastUtil.show(this, "用户名已存在");
+        }
+        else if (!password.equals(passwordAgain))
+        {
+            ToastUtil.show(this, "两次输入的密码不一致");
+        }
+        else
+        {
+            ToastUtil.show(this, "用户注册成功!");
+            sharedPrefLoginInfo.saveInfo(username, password);
+            gotoActivity();
+        }
+    }
+
+    /**
+     * 带参数返回;
+     */
+    private void gotoActivity()
+    {
+        intent = new Intent();
+        intent.putExtra("username", username);
+        setResult(RESULT_OK, intent);
+        RegisterActivity.this.finish();
+    }
+
+    /**
+     * 获取文本输入;
+     */
+    private void getEditString()
+    {
+        username = usernameEditText.getText().toString().trim();
+        password = passwordEditText.getText().toString().trim();
+        passwordAgain = passwordAgainEditText.getText().toString().trim();
     }
 }
