@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="has_not_login">"你还未登陆，请先登陆"</string>
+</resources>

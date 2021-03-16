@@ -110,7 +110,7 @@ public class MineViewManager implements IMineView, View.OnClickListener
                 }
                 else
                 {
-                    ToastUtil.show(context, "你还未登陆，请先登陆");
+                    ToastUtil.show(context, R.string.has_not_login);
                 }
                 break;
             }
@@ -125,7 +125,7 @@ public class MineViewManager implements IMineView, View.OnClickListener
                 }
                 else
                 {
-                    ToastUtil.show(context, "你还未登陆，请先登陆");
+                    ToastUtil.show(context, R.string.has_not_login);
                 }
                 break;
             }
