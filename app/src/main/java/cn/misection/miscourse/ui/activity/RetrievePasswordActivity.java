@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.constant.global.EnumCommonString;
@@ -46,22 +45,30 @@ public class RetrievePasswordActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        init();
+    }
+
+    private void init()
+    {
+        initContent();
+        initFrom();
+        initView();
+        initSharePref();
+        initListener();
+    }
+
+    private void initContent()
+    {
         this.setContentView(R.layout.activity_find_pwd);
+    }
+
+    private void initFrom()
+    {
         from = this.getIntent().getStringExtra(UiConst.FROM_INTENT_NAME);
         if (from == null)
         {
             from = EnumCommonString.EMPTY.value();
         }
-        init();
-    }
-
-
-    private void init()
-    {
-        initView();
-        initFrom();
-        initSharePref();
-        startListener();
     }
 
     private void initView()
@@ -74,9 +81,10 @@ public class RetrievePasswordActivity extends AppCompatActivity
         usernameEditText = findViewById(R.id.username_edit_text);
         validateNameEditText = findViewById(R.id.validate_name_edit_text);
         validateButton = findViewById(R.id.validate_button);
+        initFromView();
     }
 
-    private void initFrom()
+    private void initFromView()
     {
         switch (from)
         {
@@ -100,7 +108,7 @@ public class RetrievePasswordActivity extends AppCompatActivity
         sharedPreferLoginInfo = new SharedPreferLoginInfo(RetrievePasswordActivity.this);
     }
 
-    private void startListener()
+    private void initListener()
     {
         backTextView.setOnClickListener((View v) ->
                 RetrievePasswordActivity.this.finish());

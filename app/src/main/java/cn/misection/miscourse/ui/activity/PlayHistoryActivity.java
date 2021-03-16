@@ -57,7 +57,7 @@ public class PlayHistoryActivity extends AppCompatActivity
         initData();
         initView();
         initAdapter();
-        startListener();
+        initListener();
     }
 
     private void initContent()
@@ -98,7 +98,7 @@ public class PlayHistoryActivity extends AppCompatActivity
         listView.setAdapter(adapter);
     }
 
-    private void startListener()
+    private void initListener()
     {
         // 后退按钮的点击事件
         backTextView.setOnClickListener((View v) ->
