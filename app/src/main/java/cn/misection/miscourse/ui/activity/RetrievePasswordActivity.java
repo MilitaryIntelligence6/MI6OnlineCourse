@@ -45,8 +45,8 @@ public class RetrievePasswordActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_pwd);
-        from = getIntent().getStringExtra(UiConst.FROM_INTENT_NAME);
+        this.setContentView(R.layout.activity_find_pwd);
+        from = this.getIntent().getStringExtra(UiConst.FROM_INTENT_NAME);
         if (from == null)
         {
             from = EnumCommonString.EMPTY.value();
