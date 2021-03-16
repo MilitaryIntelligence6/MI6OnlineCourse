@@ -15,6 +15,7 @@ import android.widget.TextView;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.constant.ui.EnumDefaultValue;
 import cn.misection.miscourse.constant.ui.EnumParamName;
+import cn.misection.miscourse.constant.ui.EnumViewParam;
 import cn.misection.miscourse.ui.adapter.ExercisesDetailAdapter;
 import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.constant.global.EnumExercise;
@@ -85,18 +86,29 @@ public class ExercisesDetailActivity extends AppCompatActivity
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30B4FF"));
         listView = findViewById(R.id.list_view);
 
-        TextView textView = new TextView(this);
-        textView.setTextColor(Color.parseColor("#000000"));
-        textView.setTextSize(16.0f);
-        textView.setText("一、选择题");
-        textView.setPadding(10, 15, 0, 0);
-        listView.addHeaderView(textView);
+        initTextView();
+
         mainTitleTextView.setText(title);
         backTextView.setOnClickListener((View v) ->
                 ExercisesDetailActivity.this.finish());
         initAdapter();
         adapter.putExerciseList(exerciseList);
         listView.setAdapter(adapter);
+    }
+
+    private void initTextView()
+    {
+        TextView textView = new TextView(this);
+        EnumViewParam viewParam = EnumViewParam.EXERCISE_DETAIL_TEXT_VIEW;
+        textView.setTextColor(Color.parseColor("#000000"));
+        textView.setTextSize(viewParam.getTextSize());
+        textView.setText(viewParam.getText());
+        textView.setPadding(
+                viewParam.left(),
+                viewParam.top(),
+                viewParam.right(),
+                viewParam.bottom());
+        listView.addHeaderView(textView);
     }
 
     private void initAdapter()
@@ -110,14 +122,16 @@ public class ExercisesDetailActivity extends AppCompatActivity
                     // 先把所有的设置为错误;
                     imageViewArray
                             [userSelected.ordinal()]
-                            .setImageResource(R.drawable.exercise_error_icon);
+                            .setImageResource(
+                                    R.drawable.exercise_error_icon);
                     // 正确答案的设为正确img;
                     imageViewArray
                             [exerciseList
                             .get(position)
                             .getCorrectAnswer()
                             .ordinal()]
-                            .setImageResource(R.drawable.exercise_right_icon);
+                            .setImageResource(
+                                    R.drawable.exercise_right_icon);
 
                 });
     }
