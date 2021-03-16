@@ -7,7 +7,7 @@ package cn.misection.miscourse.constant.ui;
  * @Description TODO
  * @CreateTime 2021年03月16日 18:26:00
  */
-public enum EnumParamName
+public enum EnumExtraParam
 {
     /**
      * activity 间传参;
@@ -15,11 +15,15 @@ public enum EnumParamName
     ID("id"),
 
     TITLE("title"),
+
+    CONTENT("content"),
+
+    FLAG("flag"),
     ;
 
     private final String literal;
 
-    EnumParamName(String literal)
+    EnumExtraParam(String literal)
     {
         this.literal = literal;
     }

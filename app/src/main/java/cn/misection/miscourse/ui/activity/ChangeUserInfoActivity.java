@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.constant.global.EnumCommonString;
+import cn.misection.miscourse.constant.ui.EnumDefaultValue;
+import cn.misection.miscourse.constant.ui.EnumExtraParam;
 import cn.misection.miscourse.constant.ui.EnumSaveState;
 import cn.misection.miscourse.constant.ui.EnumUserInfo;
 
@@ -60,9 +62,10 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
     {
         this.setContentView(R.layout.activity_change_user_info);
 
-        title = this.getIntent().getStringExtra("title");
-        content = this.getIntent().getStringExtra("content");
-        flag = this.getIntent().getIntExtra("flag", 0);
+        title = this.getIntent().getStringExtra(EnumExtraParam.TITLE.literal());
+        content = this.getIntent().getStringExtra(EnumExtraParam.CONTENT.literal());
+        flag = this.getIntent().getIntExtra(EnumExtraParam.FLAG.literal(),
+                EnumDefaultValue.INT_EXTRA.value());
     }
 
     private void initTextView()

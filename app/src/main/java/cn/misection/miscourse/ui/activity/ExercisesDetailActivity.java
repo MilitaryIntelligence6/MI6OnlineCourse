@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.constant.ui.EnumDefaultValue;
-import cn.misection.miscourse.constant.ui.EnumParamName;
+import cn.misection.miscourse.constant.ui.EnumExtraParam;
 import cn.misection.miscourse.constant.ui.EnumViewParam;
 import cn.misection.miscourse.ui.adapter.ExercisesDetailAdapter;
 import cn.misection.miscourse.entity.ExerciseBean;
@@ -71,10 +71,10 @@ public class ExercisesDetailActivity extends AppCompatActivity
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // 获取从习题界面传递过来的章节 id
         id = this.getIntent().getIntExtra(
-                EnumParamName.ID.literal(),
+                EnumExtraParam.ID.literal(),
                 EnumDefaultValue.INT_EXTRA.value());
         // 获取从习题界面传递过来的章节标题
-        title = this.getIntent().getStringExtra(EnumParamName.TITLE.literal());
+        title = this.getIntent().getStringExtra(EnumExtraParam.TITLE.literal());
         exerciseList = new ArrayList<>();
     }
 
