@@ -42,15 +42,16 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_user_info);
         init();
     }
 
     private void init()
     {
-        title = getIntent().getStringExtra("title");
-        content = getIntent().getStringExtra("content");
-        flag = getIntent().getIntExtra("flag", 0);
+        initContentView();
+
+        title = this.getIntent().getStringExtra("title");
+        content = this.getIntent().getStringExtra("content");
+        flag = this.getIntent().getIntExtra("flag", 0);
 
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
@@ -72,6 +73,11 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
             contentEditText.setSelection(content.length());
         }
         contentListener();
+    }
+
+    private void initContentView()
+    {
+        this.setContentView(R.layout.activity_change_user_info);
     }
 
     private void contentListener()

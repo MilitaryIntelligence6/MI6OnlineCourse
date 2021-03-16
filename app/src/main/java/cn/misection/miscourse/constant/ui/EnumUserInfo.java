@@ -17,19 +17,28 @@ public enum EnumUserInfo
      * 限制包内属性长度;
      * 如最长昵称;
      */
-    NICE_NAME(1, 8),
+    NICE_NAME(1, 8, "nickname", "昵称"),
 
-    SIGNATURE(2, 16),
+    SIGNATURE(2, 16, "signature", "签名"),
     ;
 
     private final int flag;
 
     private final int lengthLimit;
 
-    EnumUserInfo(int flag, int lengthLimit)
+    private final String englishLiteral;
+
+    private final String chineseLiteral;
+
+    EnumUserInfo(int flag,
+                 int lengthLimit,
+                 String englishLiteral,
+                 String chineseLiteral)
     {
         this.flag = flag;
         this.lengthLimit = lengthLimit;
+        this.englishLiteral = englishLiteral;
+        this.chineseLiteral = chineseLiteral;
     }
 
     public int flag()
@@ -40,6 +49,16 @@ public enum EnumUserInfo
     public int lengthLimit()
     {
         return lengthLimit;
+    }
+
+    public String englishLiteral()
+    {
+        return englishLiteral;
+    }
+
+    public String chineseLiteral()
+    {
+        return chineseLiteral;
     }
 
     private static final Map<Integer, EnumUserInfo> flagLookup
