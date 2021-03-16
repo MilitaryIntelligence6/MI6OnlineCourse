@@ -85,7 +85,7 @@ public class CourseAdapter extends BaseAdapter
                 viewHolder.getImgTitleTextViewArray()[i].setText(bean.getImgTitle());
                 viewHolder.getTitleTextViewArray()[i].setText(bean.getTitle());
                 putImage(bean.getId(), viewHolder.getImgViewArray()[i]);
-                viewHolder.getImgViewArray()[i].setOnClickListener(v ->
+                viewHolder.getImgViewArray()[i].setOnClickListener((View v) ->
                 {
                     // 跳转到课程详情界面
                     Intent intent = new Intent(context, VideoListActivity.class);

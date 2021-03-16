@@ -56,7 +56,7 @@ public class FindPwdActivity extends AppCompatActivity
             }
         });
 
-        validateButton.setOnClickListener(v ->
+        validateButton.setOnClickListener((View v) ->
         {
             validateName = validateNameEditText.getText().toString().trim();
             switch (from)

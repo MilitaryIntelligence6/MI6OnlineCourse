@@ -76,14 +76,8 @@ public class ExercisesDetailActivity extends AppCompatActivity
         textView.setPadding(10, 15, 0, 0);
         listView.addHeaderView(textView);
         mainTitleTextView.setText(title);
-        backTextView.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                ExercisesDetailActivity.this.finish();
-            }
-        });
+        backTextView.setOnClickListener((View v) ->
+                ExercisesDetailActivity.this.finish());
         initAdapter();
         adapter.putExerciseList(exerciseList);
         listView.setAdapter(adapter);
@@ -93,20 +87,22 @@ public class ExercisesDetailActivity extends AppCompatActivity
     {
         adapter = new ExercisesDetailAdapter(
                 ExercisesDetailActivity.this,
-                new OnSelectListener()
+                (int position,
+                 EnumExercise userSelected,
+                 ImageView[] imageViewArray) ->
                 {
-                    @Override
-                    public void onSelect(int position,
-                                         EnumExercise userSelected,
-                                         ImageView... imageViewArray)
-                    {
-                        // 判断如果答案不是 1 即 A 选项
-//                        if (exerciseList.get(position).getCorrectAnswer() != EnumExercise.A)
-                        imageViewArray[userSelected.ordinal()].setImageResource(R.drawable.exercise_error_icon);
-                        imageViewArray[exerciseList.get(position).getCorrectAnswer().ordinal()]
-                                .setImageResource(R.drawable.exercise_right_icon);
+                    // 先把所有的设置为错误;
+                    imageViewArray
+                            [userSelected.ordinal()]
+                            .setImageResource(R.drawable.exercise_error_icon);
+                    // 正确答案的设为正确img;
+                    imageViewArray
+                            [exerciseList
+                            .get(position)
+                            .getCorrectAnswer()
+                            .ordinal()]
+                            .setImageResource(R.drawable.exercise_right_icon);
 
-                    }
                 });
     }
 
@@ -117,10 +113,6 @@ public class ExercisesDetailActivity extends AppCompatActivity
         {
             InputStream is = getResources().getAssets().open(String.format("chapter%d.xml", id));
             exerciseList = AnalysisUtil.requireExerciseListInfo(is);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
         }
         catch (Exception e)
         {

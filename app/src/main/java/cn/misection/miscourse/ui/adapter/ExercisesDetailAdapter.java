@@ -142,7 +142,7 @@ public class ExercisesDetailAdapter extends BaseAdapter
         for (int i = 0; i < choiceImageArray.length; i++)
         {
             int finalI = i;
-            choiceImageArray[i].setOnClickListener(v ->
+            choiceImageArray[i].setOnClickListener((View v) ->
                     {
                         // 判断 selectedPosition 中是否包含此时点击的 position
                         if (selectedPosition.contains(String.valueOf(position)))
