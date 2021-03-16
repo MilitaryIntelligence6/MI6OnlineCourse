@@ -50,17 +50,9 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
     private void init()
     {
         initContentView();
-
-        titleBarRelaLayout = findViewById(R.id.title_bar);
-        titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
-
+        initRelaLayout();
         initTextView();
-
-        if (!content.isEmpty())
-        {
-            contentEditText.setText(content);
-            contentEditText.setSelection(content.length());
-        }
+        initEditText();
         startContentListener();
     }
 
@@ -88,6 +80,21 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         contentEditText = findViewById(R.id.content_edit_text);
         delImageView = findViewById(R.id.delete_image_view);
         delImageView.setOnClickListener(this);
+    }
+
+    private void initRelaLayout()
+    {
+        titleBarRelaLayout = findViewById(R.id.title_bar);
+        titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
+    }
+
+    private void initEditText()
+    {
+        if (!content.isEmpty())
+        {
+            contentEditText.setText(content);
+            contentEditText.setSelection(content.length());
+        }
     }
 
     private void startContentListener()
