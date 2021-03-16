@@ -13,16 +13,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.constant.global.EnumCommonString;
 import cn.misection.miscourse.constant.ui.EnumDefaultValue;
 import cn.misection.miscourse.constant.ui.EnumExtraParam;
-import cn.misection.miscourse.constant.ui.EnumSaveState;
 import cn.misection.miscourse.constant.ui.EnumUserInfo;
 import cn.misection.miscourse.util.ToastUtil;
 
+/**
+ * @author Administrator
+ */
 public class ChangeUserInfoActivity extends AppCompatActivity implements View.OnClickListener
 {
     private RelativeLayout titleBarRelaLayout;
@@ -111,22 +112,16 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         contentEditText.addTextChangedListener(new TextWatcher()
         {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after)
-            {
-
-            }
-
-            @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
                 updateContent();
             }
 
             @Override
-            public void afterTextChanged(Editable s)
-            {
+            public void afterTextChanged(Editable s) {}
 
-            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
         });
     }
 
@@ -136,14 +131,20 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         switch (v.getId())
         {
             case R.id.back_text_view:
+            {
                 ChangeUserInfoActivity.this.finish();
                 break;
+            }
             case R.id.delete_image_view:
+            {
                 contentEditText.setText(EnumCommonString.EMPTY.value());
                 break;
+            }
             case R.id.save_text_view:
+            {
                 saveUserInfo();
                 break;
+            }
             default:
             {
                 break;
@@ -160,7 +161,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         if (value.isEmpty())
         {
             ToastUtil.show(this,
-                    String.format(EnumSaveState.CAN_NOT_BE_EMPTY_WARNING.text(),
+                    String.format(this.getString(R.string.can_not_be_empty),
                             option.chineseText()));
         }
         else
@@ -168,7 +169,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
             data.putExtra(option.englishText(), value);
             setResult(RESULT_OK, data);
             // TODO 改成Res;
-            ToastUtil.show(this, EnumSaveState.SUCCESSFULLY_SAVE.text());
+            ToastUtil.show(this, R.string.successfully_save);
             ChangeUserInfoActivity.this.finish();
         }
     }
