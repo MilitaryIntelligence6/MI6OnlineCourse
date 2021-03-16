@@ -19,6 +19,10 @@ public enum EnumExtraParam
     CONTENT("content"),
 
     FLAG("flag"),
+
+    IS_LOGIN("isLogin"),
+
+    USERNAME("username"),
     ;
 
     private final String literal;

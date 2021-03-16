@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="video_not_found_in_local">本地没有此视频，暂无法播放</string>
+</resources>

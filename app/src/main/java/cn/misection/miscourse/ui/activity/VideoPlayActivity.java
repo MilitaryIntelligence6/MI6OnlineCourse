@@ -54,7 +54,7 @@ public class VideoPlayActivity extends AppCompatActivity
     {
         if (TextUtils.isEmpty(videoPath))
         {
-            ToastUtil.show(this, "本地没有此视频，暂无法播放");
+            ToastUtil.show(this, R.string.video_not_found_in_local);
             return;
         }
         String url = String.format("android.resource://%s/%d", getPackageName(), R.raw.video11);

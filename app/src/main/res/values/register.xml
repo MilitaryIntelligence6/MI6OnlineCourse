@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="register">注册</string>
+    <string name="type_password_again">请再次输入密码</string>
+    <string name="username_already_exist">用户名已存在</string>
+    <string name="unanimous_password">两次输入的密码不一致</string>
+    <string name="register_successfully">用户注册成功!</string>
+</resources>

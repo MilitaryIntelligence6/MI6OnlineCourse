@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.misection.miscourse.R;
+import cn.misection.miscourse.constant.ui.EnumExtraParam;
 import cn.misection.miscourse.util.MD5Util;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import cn.misection.miscourse.util.ToastUtil;
@@ -50,15 +50,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         init();
     }
 
     private void init()
     {
+        initContent();
+        initView();
+        initSharedPref();
+    }
+
+    private void initContent()
+    {
+        this.setContentView(R.layout.activity_login);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    private void initView()
+    {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
-        mainTitleTextView.setText("登陆");
+        mainTitleTextView.setText(R.string.login);
         backTextView = findViewById(R.id.back_text_view);
         backTextView.setOnClickListener(this);
 
@@ -71,7 +82,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         registerTextView.setOnClickListener(this);
         findPasswordTextView = findViewById(R.id.find_password_text_view);
         findPasswordTextView.setOnClickListener(this);
+    }
 
+    private void initSharedPref()
+    {
         sharedPreferLoginInfo = new SharedPreferLoginInfo(LoginActivity.this);
     }
 
@@ -81,12 +95,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId())
         {
             case R.id.back_text_view:
+            {
                 LoginActivity.this.finish();
                 break;
+            }
             case R.id.login_button:
-                getEditString();
+            {
+                fetchEditString();
                 logicalJudgement();
                 break;
+            }
             case R.id.register_text_view:
                 intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivityForResult(intent, 1);
@@ -109,23 +127,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     {
         if (username.isEmpty())
         {
-            ToastUtil.show(this, "请输入用户名");
+            ToastUtil.show(this, R.string.empty_username);
         }
         else if (password.isEmpty())
         {
-            ToastUtil.show(this, "请输入密码");
+            ToastUtil.show(this, R.string.empty_password);
         }
         else if (sharedPreferLoginInfo.getPwd(username).isEmpty())
         {
-            ToastUtil.show(this, "用户名不存在");
+            ToastUtil.show(this, R.string.username_not_found);
         }
         else if (!loginCheck(username, password))
         {
-            ToastUtil.show(this, "用户名或密码错误");
+            ToastUtil.show(this, R.string.wrong_username_or_password);
         }
         else
         {
-            ToastUtil.show(this, "用户登陆成功!");
+            ToastUtil.show(this, R.string.login_successfully);
             sharedPreferLoginInfo.saveLoginStatus(true, username);
             gotoActivity();
         }
@@ -137,7 +155,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void gotoActivity()
     {
         intent = new Intent();
-        intent.putExtra("isLogin", true);
+        intent.putExtra(EnumExtraParam.IS_LOGIN.literal(), true);
         setResult(RESULT_OK, intent);
         LoginActivity.this.finish();
     }
@@ -154,7 +172,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return sharedPreferLoginInfo.getPwd(username).equals(md5Pwd);
     }
 
-    private void getEditString()
+    private void fetchEditString()
     {
         username = usernameEditText.getText().toString().trim();
         password = passwordEditText.getText().toString().trim();
@@ -163,8 +181,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     /**
      * 接受注册返回参数;
      * @param requestCode request;
-     * @param resultCode result
-     * @param data data;
+     * @param resultCode  result
+     * @param data        data;
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
@@ -172,11 +190,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null)
         {
-            String username = data.getStringExtra("username");
+            String username = data.getStringExtra(EnumExtraParam.USERNAME.literal());
             if (!username.isEmpty())
             {
                 usernameEditText.setText(username);
-                usernameEditText.setSelection(username.length());  // 设置光标位置
+                // 设置光标位置;
+                usernameEditText.setSelection(username.length());
             }
         }
     }

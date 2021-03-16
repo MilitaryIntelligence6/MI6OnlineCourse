@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.misection.miscourse.R;
+import cn.misection.miscourse.constant.ui.EnumExtraParam;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import cn.misection.miscourse.util.ToastUtil;
 
@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        init();
+        initView();
         // 注册按钮点击事件
         registerButton.setOnClickListener((View v) ->
         {
@@ -56,10 +56,10 @@ public class RegisterActivity extends AppCompatActivity
         });
     }
 
-    private void init()
+    private void initView()
     {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
-        mainTitleTextView.setText("注册");
+        mainTitleTextView.setText(R.string.register);
         backTextView = findViewById(R.id.back_text_view);
         backTextView.setOnClickListener(new View.OnClickListener()
         {
@@ -80,27 +80,27 @@ public class RegisterActivity extends AppCompatActivity
     {
         if (username.isEmpty())
         {
-            ToastUtil.show(this, "请输入用户名");
+            ToastUtil.show(this, R.string.empty_username);
         }
         else if (password.isEmpty())
         {
-            ToastUtil.show(this, "请输入密码");
+            ToastUtil.show(this, R.string.empty_password);
         }
         else if (passwordAgain.isEmpty())
         {
-            ToastUtil.show(this, "请再次输入密码");
+            ToastUtil.show(this, R.string.type_password_again);
         }
         else if (!sharedPrefLoginInfo.getPwd(username).isEmpty())
         {
-            ToastUtil.show(this, "用户名已存在");
+            ToastUtil.show(this, R.string.username_already_exist);
         }
         else if (!password.equals(passwordAgain))
         {
-            ToastUtil.show(this, "两次输入的密码不一致");
+            ToastUtil.show(this, R.string.unanimous_password);
         }
         else
         {
-            ToastUtil.show(this, "用户注册成功!");
+            ToastUtil.show(this, R.string.register_successfully);
             sharedPrefLoginInfo.saveInfo(username, password);
             gotoActivity();
         }
@@ -112,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity
     private void gotoActivity()
     {
         intent = new Intent();
-        intent.putExtra("username", username);
+        intent.putExtra(EnumExtraParam.USERNAME.literal(), username);
         setResult(RESULT_OK, intent);
         RegisterActivity.this.finish();
     }

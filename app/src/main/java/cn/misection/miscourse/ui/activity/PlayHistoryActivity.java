@@ -48,21 +48,38 @@ public class PlayHistoryActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_play_history);
-        // 设置此界面为竖屏
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        dataBaseHelper = DataBaseHelper.getInstance(this);
-        videoList = new ArrayList<>();
-        // 从数据库中获取播放记录信息
-        sharedPreferLoginInfo = new SharedPreferLoginInfo(this);
-        videoList = dataBaseHelper.getVideoHistory(sharedPreferLoginInfo.getLoginUsername());
         init();
     }
 
     private void init()
     {
+        initContent();
+        initData();
+        initView();
+        initAdapter();
+        startListener();
+    }
+
+    private void initContent()
+    {
+        this.setContentView(R.layout.activity_play_history);
+        // 设置此界面为竖屏
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    private void initData()
+    {
+        dataBaseHelper = DataBaseHelper.getInstance(this);
+        videoList = new ArrayList<>();
+        // 从数据库中获取播放记录信息
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(this);
+        videoList = dataBaseHelper.getVideoHistory(sharedPreferLoginInfo.getLoginUsername());
+    }
+
+    private void initView()
+    {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
-        mainTitleTextView.setText("播放记录");
+        mainTitleTextView.setText(R.string.play_history);
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
         backTextView = findViewById(R.id.back_text_view);
@@ -72,17 +89,19 @@ public class PlayHistoryActivity extends AppCompatActivity
         {
             nullTextView.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void initAdapter()
+    {
         adapter = new PlayHistoryAdapter(this);
         adapter.putVideoList(videoList);
         listView.setAdapter(adapter);
+    }
+
+    private void startListener()
+    {
         // 后退按钮的点击事件
-        backTextView.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                PlayHistoryActivity.this.finish();
-            }
-        });
+        backTextView.setOnClickListener((View v) ->
+                PlayHistoryActivity.this.finish());
     }
 }
