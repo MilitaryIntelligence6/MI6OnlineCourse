@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
+import cn.misection.miscourse.constant.global.EnumCommonString;
+import cn.misection.miscourse.constant.ui.EnumSaveState;
 import cn.misection.miscourse.constant.ui.EnumUserInfo;
 
 public class ChangeUserInfoActivity extends AppCompatActivity implements View.OnClickListener
@@ -93,25 +95,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                Editable editable = contentEditText.getText();
-                int len = editable.length();
-                delImageView.setVisibility(len > 0 ? View.VISIBLE : View.GONE);
-
-                EnumUserInfo option = EnumUserInfo.selectEnumByFlag(flag);
-                if (len > option.lengthLimit())
-                {
-                    int selEndIndex = Selection.getSelectionEnd(editable);
-                    String string = editable.toString();
-                    String newStr = string.substring(0, option.lengthLimit());
-                    contentEditText.setText(newStr);
-                    editable = contentEditText.getText();
-                    int newLen = editable.length();
-                    if (selEndIndex > newLen)
-                    {
-                        selEndIndex = editable.length();
-                    }
-                    Selection.setSelection(editable, selEndIndex);
-                }
+                updateText();
             }
 
             @Override
@@ -131,7 +115,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
                 ChangeUserInfoActivity.this.finish();
                 break;
             case R.id.delete_image_view:
-                contentEditText.setText("");
+                contentEditText.setText(EnumCommonString.EMPTY.value());
                 break;
             case R.id.save_text_view:
                 saveUserInfo();
@@ -147,38 +131,50 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
     {
         Intent data = new Intent();
         String value = contentEditText.getText().toString().trim();
-        switch (flag)
+        // 获得是签名还是昵称更改;
+        EnumUserInfo option = EnumUserInfo.selectEnumByFlag(flag);
+        if (value.isEmpty())
         {
-            case 1:
-                if (!value.isEmpty())
-                {
-                    data.putExtra("nickname", value);
-                    setResult(RESULT_OK, data);
-                    Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
-                    ChangeUserInfoActivity.this.finish();
-                }
-                else
-                {
-                    Toast.makeText(this, "昵称不能为空", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 2:
-                if (!value.isEmpty())
-                {
-                    data.putExtra("signature", value);
-                    setResult(RESULT_OK, data);
-                    Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
-                    ChangeUserInfoActivity.this.finish();
-                }
-                else
-                {
-                    Toast.makeText(this, "签名不能为空", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
+            Toast.makeText(
+                    this,
+                    String.format(EnumSaveState.CAN_NOT_BE_EMPTY_WARNING.literal(),
+                            option.chineseLiteral()),
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }
+        else
+        {
+            data.putExtra(option.englishLiteral(), value);
+            setResult(RESULT_OK, data);
+            Toast.makeText(
+                    this,
+                    EnumSaveState.SUCCESSFULLY_SAVE.literal(),
+                    Toast.LENGTH_SHORT)
+                    .show();
+            ChangeUserInfoActivity.this.finish();
+        }
+    }
+
+    private void updateText()
+    {
+        Editable editable = contentEditText.getText();
+        int len = editable.length();
+        delImageView.setVisibility(len > 0 ? View.VISIBLE : View.GONE);
+        // 获得是签名还是昵称更改;
+        EnumUserInfo option = EnumUserInfo.selectEnumByFlag(flag);
+        if (len > option.lengthLimit())
+        {
+            int selEndIndex = Selection.getSelectionEnd(editable);
+            String string = editable.toString();
+            String newStr = string.substring(0, option.lengthLimit());
+            contentEditText.setText(newStr);
+            editable = contentEditText.getText();
+            int newLen = editable.length();
+            if (selEndIndex > newLen)
             {
-                break;
+                selEndIndex = editable.length();
             }
+            Selection.setSelection(editable, selEndIndex);
         }
     }
 }
