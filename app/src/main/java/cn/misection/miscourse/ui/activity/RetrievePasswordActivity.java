@@ -52,15 +52,57 @@ public class RetrievePasswordActivity extends AppCompatActivity
             from = EnumCommonString.EMPTY.value();
         }
         init();
+    }
 
-        backTextView.setOnClickListener(new View.OnClickListener()
+
+    private void init()
+    {
+        initView();
+        initFrom();
+        initSharePref();
+        startListener();
+    }
+
+    private void initView()
+    {
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
+        backTextView = findViewById(R.id.back_text_view);
+
+        usernameTextView = findViewById(R.id.username_text_view);
+        resetPasswordTextView = findViewById(R.id.reset_password_text_view);
+        usernameEditText = findViewById(R.id.username_edit_text);
+        validateNameEditText = findViewById(R.id.validate_name_edit_text);
+        validateButton = findViewById(R.id.validate_button);
+    }
+
+    private void initFrom()
+    {
+        switch (from)
         {
-            @Override
-            public void onClick(View v)
+            case UiConst.SECURITY:
             {
-                RetrievePasswordActivity.this.finish();
+                mainTitleTextView.setText(EnumSecurity.SECURITY_QUESTION.text());
+                break;
             }
-        });
+            default:
+            {
+                mainTitleTextView.setText(EnumSecurity.FIND_PASSWORD.text());
+                usernameTextView.setVisibility(View.VISIBLE);
+                usernameEditText.setVisibility(View.VISIBLE);
+                break;
+            }
+        }
+    }
+
+    private void initSharePref()
+    {
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(RetrievePasswordActivity.this);
+    }
+
+    private void startListener()
+    {
+        backTextView.setOnClickListener((View v) ->
+                RetrievePasswordActivity.this.finish());
 
         validateButton.setOnClickListener((View v) ->
         {
@@ -122,33 +164,5 @@ public class RetrievePasswordActivity extends AppCompatActivity
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(String.format("%s_security", sharedPreferLoginInfo.getLoginUsername()), validateName);
         editor.commit();
-    }
-
-    private void init()
-    {
-        mainTitleTextView = findViewById(R.id.main_title_text_view);
-        backTextView = findViewById(R.id.back_text_view);
-        usernameTextView = findViewById(R.id.username_text_view);
-        resetPasswordTextView = findViewById(R.id.reset_password_text_view);
-        usernameEditText = findViewById(R.id.username_edit_text);
-        validateNameEditText = findViewById(R.id.validate_name_edit_text);
-        validateButton = findViewById(R.id.validate_button);
-
-        switch (from)
-        {
-            case UiConst.SECURITY:
-            {
-                mainTitleTextView.setText(EnumSecurity.SECURITY_QUESTION.text());
-                break;
-            }
-            default:
-            {
-                mainTitleTextView.setText(EnumSecurity.FIND_PASSWORD.text());
-                usernameTextView.setVisibility(View.VISIBLE);
-                usernameEditText.setVisibility(View.VISIBLE);
-                break;
-            }
-        }
-        sharedPreferLoginInfo = new SharedPreferLoginInfo(RetrievePasswordActivity.this);
     }
 }

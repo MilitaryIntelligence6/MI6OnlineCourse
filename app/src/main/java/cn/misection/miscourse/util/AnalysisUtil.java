@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import cn.misection.miscourse.entity.CourseBean;
 import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.constant.global.EnumExercise;
-import cn.misection.miscourse.util.utilconst.ParserConst;
+import cn.misection.miscourse.constant.util.ParserConst;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

@@ -13,6 +13,9 @@ import android.widget.Toast;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 
+/**
+ * @author Administrator
+ */
 public class RegisterActivity extends AppCompatActivity
 {
     private TextView mainTitleTextView;
@@ -44,15 +47,11 @@ public class RegisterActivity extends AppCompatActivity
         setContentView(R.layout.activity_register);
         init();
         // 注册按钮点击事件
-        registerButton.setOnClickListener(new View.OnClickListener()
+        registerButton.setOnClickListener((View v) ->
         {
-            @Override
-            public void onClick(View v)
-            {
-                sharedPrefLoginInfo = new SharedPreferLoginInfo(RegisterActivity.this);
-                getEditString();
-                logicalJudgement();
-            }
+            sharedPrefLoginInfo = new SharedPreferLoginInfo(RegisterActivity.this);
+            getEditString();
+            logicalJudgement();
         });
     }
 
@@ -86,7 +85,9 @@ public class RegisterActivity extends AppCompatActivity
         }
     }
 
-    // 带参数返回
+    /**
+     * 带参数返回;
+     */
     private void jumpActivity()
     {
         intent = new Intent();
@@ -97,10 +98,16 @@ public class RegisterActivity extends AppCompatActivity
 
     private void toastShow(String message)
     {
-        Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(
+                RegisterActivity.this,
+                message,
+                Toast.LENGTH_SHORT).
+                show();
     }
 
-    // 获取文本输入
+    /**
+     * 获取文本输入;
+     */
     private void getEditString()
     {
         username = usernameEditText.getText().toString().trim();

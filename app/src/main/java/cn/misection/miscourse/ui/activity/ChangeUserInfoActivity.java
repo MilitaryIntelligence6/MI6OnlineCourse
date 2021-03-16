@@ -55,7 +55,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         initRelaLayout();
         initTextView();
         initEditText();
-        startContentListener();
+        startListener();
     }
 
     private void initContentView()
@@ -98,6 +98,11 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
             contentEditText.setText(content);
             contentEditText.setSelection(content.length());
         }
+    }
+
+    private void startListener()
+    {
+        startContentListener();
     }
 
     private void startContentListener()
