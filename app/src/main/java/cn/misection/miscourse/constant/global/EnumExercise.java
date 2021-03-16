@@ -83,7 +83,8 @@ public enum EnumExercise
         this.imageResource = imageResource;
     }
 
-    private static final Map<String, EnumExercise> lowerCaseLookup = new HashMap<>();
+    private static final Map<String, EnumExercise> lowerCaseLookup
+            = new HashMap<>(count());
 
     static
     {

@@ -2,7 +2,6 @@ package cn.misection.miscourse.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.misection.miscourse.R;
+import cn.misection.miscourse.constant.ui.EnumUserInfo;
 
 public class ChangeUserInfoActivity extends AppCompatActivity implements View.OnClickListener
 {
@@ -90,52 +90,21 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
                 Editable editable = contentEditText.getText();
                 int len = editable.length();
                 delImageView.setVisibility(len > 0 ? View.VISIBLE : View.GONE);
-                switch (flag)
+
+                EnumUserInfo option = EnumUserInfo.selectEnumByFlag(flag);
+                if (len > option.lengthLimit())
                 {
-                    // 昵称;
-                    case 1:
-                        if (len > 8)
-                        {
-                            int selEndIndex = Selection.getSelectionEnd(editable);
-                            String string = editable.toString();
-
-                            String newStr = string.substring(0, 8);
-                            contentEditText.setText(newStr);
-                            editable = contentEditText.getText();
-
-                            int newLen = editable.length();
-
-                            if (selEndIndex > newLen)
-                            {
-                                selEndIndex = editable.length();
-                            }
-                            Selection.setSelection(editable, selEndIndex);
-                        }
-                        break;
-                    // 签名;
-                    case 2:
-                        if (len > 16)
-                        {
-                            int selEndIndex = Selection.getSelectionEnd(editable);
-                            String string = editable.toString();
-
-                            String newStr = string.substring(0, 16);
-                            contentEditText.setText(newStr);
-                            editable = contentEditText.getText();
-
-                            int newLen = editable.length();
-
-                            if (selEndIndex > newLen)
-                            {
-                                selEndIndex = editable.length();
-                            }
-                            Selection.setSelection(editable, selEndIndex);
-                        }
-                        break;
-                    default:
+                    int selEndIndex = Selection.getSelectionEnd(editable);
+                    String string = editable.toString();
+                    String newStr = string.substring(0, option.lengthLimit());
+                    contentEditText.setText(newStr);
+                    editable = contentEditText.getText();
+                    int newLen = editable.length();
+                    if (selEndIndex > newLen)
                     {
-                        break;
+                        selEndIndex = editable.length();
                     }
+                    Selection.setSelection(editable, selEndIndex);
                 }
             }
 
