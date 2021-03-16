@@ -13,13 +13,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import cn.misection.miscourse.R;
+import cn.misection.miscourse.constant.ui.EnumDefaultValue;
+import cn.misection.miscourse.constant.ui.EnumParamName;
 import cn.misection.miscourse.ui.adapter.ExercisesDetailAdapter;
 import cn.misection.miscourse.entity.ExerciseBean;
 import cn.misection.miscourse.constant.global.EnumExercise;
-import cn.misection.miscourse.ui.adapter.listener.OnSelectListener;
 import cn.misection.miscourse.util.AnalysisUtil;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,25 +50,41 @@ public class ExercisesDetailActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercises_detail);
-        // 设置此界面为竖屏
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        // 获取从习题界面传递过来的章节 id
-        id = getIntent().getIntExtra("id", 0);
-        // 获取从习题界面传递过来的章节标题
-        title = getIntent().getStringExtra("title");
-        exerciseList = new ArrayList<>();
-        initData();
         init();
     }
 
     private void init()
+    {
+        initParam();
+        initData();
+        initView();
+    }
+
+    /**
+     * 获取另一个activity传参;
+     */
+    private void initParam()
+    {
+        this.setContentView(R.layout.activity_exercises_detail);
+        // 设置此界面为竖屏
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // 获取从习题界面传递过来的章节 id
+        id = this.getIntent().getIntExtra(
+                EnumParamName.ID.literal(),
+                EnumDefaultValue.INT_EXTRA.value());
+        // 获取从习题界面传递过来的章节标题
+        title = this.getIntent().getStringExtra(EnumParamName.TITLE.literal());
+        exerciseList = new ArrayList<>();
+    }
+
+    private void initView()
     {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
         backTextView = findViewById(R.id.back_text_view);
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30B4FF"));
         listView = findViewById(R.id.list_view);
+
         TextView textView = new TextView(this);
         textView.setTextColor(Color.parseColor("#000000"));
         textView.setTextSize(16.0f);
