@@ -12,6 +12,7 @@ import android.widget.Toast;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.MD5Util;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
+import cn.misection.miscourse.util.ToastUtil;
 
 /**
  * @author Administrator
@@ -61,41 +62,43 @@ public class UpdatePwdActivity extends AppCompatActivity
     {
         if (oldPassword.isEmpty())
         {
-            toastShow("请输入原始密码");
+//            toastShow("请输入原始密码");
+            ToastUtil.show(this, "请输入原始密码");
         }
         else if (!MD5Util.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username)))
         {
-            toastShow("原始密码错误");
+//            toastShow("原始密码错误");
+            ToastUtil.show(this, "原始密码错误");
         }
         else if (newPassword.isEmpty())
         {
-            toastShow("请输入新密码");
+//            toastShow("请输入新密码");
+            ToastUtil.show(this, "请输入新密码");
         }
         else if (newPasswordAgain.isEmpty())
         {
-            toastShow("请再次输入新密码");
+//            toastShow("请再次输入新密码");
+            ToastUtil.show(this, "请再次输入新密码");
         }
         else if (!newPassword.equals(newPasswordAgain))
         {
-            toastShow("两次输入的密码不一致");
+//            toastShow("两次输入的密码不一致");
+            ToastUtil.show(this, "两次输入的密码不一致");
         }
         else if (MD5Util.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username)))
         {
-            toastShow("新密码不能与原始密码一直");
+//            toastShow("新密码不能与原始密码一致");
+            ToastUtil.show(this, "新密码不能与原始密码一致");
         }
         else
         {
-            toastShow("新密码设置成功");
+//            toastShow("新密码设置成功");
+            ToastUtil.show(this, "新密码设置成功");
             // 更新密码
             sharedPreferLoginInfo.saveInfo(username, newPassword);
             SettingActivity.instance.finish();
             UpdatePwdActivity.this.finish();
         }
-    }
-
-    private void toastShow(String message)
-    {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void getEditString()
@@ -110,14 +113,8 @@ public class UpdatePwdActivity extends AppCompatActivity
         mainTitleTextView = findViewById(R.id.main_title_text_view);
         mainTitleTextView.setText("修改密码");
         backTextView = findViewById(R.id.back_text_view);
-        backTextView.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                UpdatePwdActivity.this.finish();
-            }
-        });
+        backTextView.setOnClickListener((View v) ->
+                UpdatePwdActivity.this.finish());
 
         oldPasswordEditText = findViewById(R.id.old_password_edit_text);
         newPasswordEditText = findViewById(R.id.new_password_edit_text);

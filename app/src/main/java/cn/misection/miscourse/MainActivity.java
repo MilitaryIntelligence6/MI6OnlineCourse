@@ -23,6 +23,7 @@ import cn.misection.miscourse.mvp.presenter.impl.CoursePresenterImpl;
 import cn.misection.miscourse.mvp.presenter.impl.ExercisesPresenterImpl;
 import cn.misection.miscourse.mvp.presenter.impl.MinePresenterImpl;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
+import cn.misection.miscourse.util.ToastUtil;
 
 /**
  * 目前为了代码整洁, 去除了 == null 判断, 都是饿加载,
@@ -299,7 +300,9 @@ public class MainActivity
             long timeMillis = System.currentTimeMillis();
             if (timeMillis - lastRecentlyPressExitTime > EXIT_AGAIN_DELAY)
             {
-                Toast.makeText(this, R.string.exit_again, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(
+//                this, R.string.exit_again, Toast.LENGTH_SHORT).show();
+                ToastUtil.show(this, R.string.exit_again);
                 lastRecentlyPressExitTime = timeMillis;
             }
             else

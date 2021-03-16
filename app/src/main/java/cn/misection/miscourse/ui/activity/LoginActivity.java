@@ -17,6 +17,7 @@ import android.widget.Toast;
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.MD5Util;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
+import cn.misection.miscourse.util.ToastUtil;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener
 {
@@ -86,30 +87,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     {
         if (username.isEmpty())
         {
-            toastShow("请输入用户名");
+//            toastShow("请输入用户名");
+            ToastUtil.show(this, "请输入用户名");
         }
         else if (password.isEmpty())
         {
-            toastShow("请输入密码");
+//            toastShow("请输入密码");
+            ToastUtil.show(this, "请输入密码");
         }
         else if (sharedPreferLoginInfo.getPwd(username).isEmpty())
         {
-            toastShow("用户名不存在");
+//            toastShow("用户名不存在");
+            ToastUtil.show(this, "用户名不存在");
         }
         else if (!loginCheck(username, password))
         {
-            toastShow("用户名或密码错误");
+//            toastShow("用户名或密码错误");
+            ToastUtil.show(this, "用户名或密码错误");
         }
         else
         {
-            toastShow("用户登陆成功！");
+//            toastShow("用户登陆成功！");
+            ToastUtil.show(this, "用户登陆成功!");
             sharedPreferLoginInfo.saveLoginStatus(true, username);
-            jumpActivity();
+            gotoActivity();
         }
     }
 
     // 带参数返回
-    private void jumpActivity()
+    private void gotoActivity()
     {
         intent = new Intent();
         intent.putExtra("isLogin", true);
@@ -124,10 +130,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return sharedPreferLoginInfo.getPwd(username).equals(md5Pwd);
     }
 
-    private void toastShow(String message)
-    {
-        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
-    }
+//    private void toastShow(String message)
+//    {
+//        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+//    }
 
     private void getEditString()
     {

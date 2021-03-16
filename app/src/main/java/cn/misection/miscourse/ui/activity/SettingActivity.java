@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
+import cn.misection.miscourse.util.ToastUtil;
 
 /**
  * @author Administrator
@@ -79,7 +80,8 @@ public class SettingActivity extends AppCompatActivity
                 startActivity(intent1);
                 break;
             case R.id.rl_logout:
-                toastShow("已退出登录");
+//                toastShow("已退出登录");
+                ToastUtil.show(this, "已退出登录");
                 // 清空用户登录状态
                 new SharedPreferLoginInfo(SettingActivity.this).saveLoginStatus(false, "");
                 Intent data = new Intent();
@@ -87,11 +89,10 @@ public class SettingActivity extends AppCompatActivity
                 setResult(RESULT_OK, data);
                 SettingActivity.this.finish();
                 break;
+            default:
+            {
+                break;
+            }
         }
-    }
-
-    private void toastShow(String message)
-    {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

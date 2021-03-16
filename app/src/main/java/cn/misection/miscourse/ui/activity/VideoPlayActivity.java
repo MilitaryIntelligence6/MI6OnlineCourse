@@ -14,8 +14,10 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import cn.misection.miscourse.R;
+import cn.misection.miscourse.util.ToastUtil;
 
-public class VideoPlayActivity extends AppCompatActivity {
+public class VideoPlayActivity extends AppCompatActivity
+{
     private VideoView videoView;
     private MediaController controller;
     private String videoPath;  // 本地视频地址
@@ -23,7 +25,8 @@ public class VideoPlayActivity extends AppCompatActivity {
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_play);
         // 设置界面全屏显示
@@ -36,27 +39,40 @@ public class VideoPlayActivity extends AppCompatActivity {
         init();
     }
 
-    private void init() {
+    private void init()
+    {
         videoView = findViewById(R.id.video_view);
         controller = new MediaController(this);
         videoView.setMediaController(controller);
         play();
     }
 
-    // 播放视频
-    private void play() {
-        if (TextUtils.isEmpty(videoPath)){
-            Toast.makeText(this, "本地没有此视频，暂无法播放", Toast.LENGTH_SHORT).show();
+    /**
+     * 播放视频;
+     */
+    private void play()
+    {
+        if (TextUtils.isEmpty(videoPath))
+        {
+//            Toast.makeText(this, "本地没有此视频，暂无法播放", Toast.LENGTH_SHORT).show();
+            ToastUtil.show(this, "本地没有此视频，暂无法播放");
             return;
         }
-        String url = "android.resource://" + getPackageName() + "/" + R.raw.video11;
+        String url = String.format("android.resource://%s/%d", getPackageName(), R.raw.video11);
         videoView.setVideoPath(url);
         videoView.start();
     }
 
-    // 点击后退按钮
+    /**
+     * 点击后退按钮;
+     *
+     * @param keyCode keyCode;
+     * @param event   event;
+     * @return succ ?;
+     */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
         // 把视频详情界面传递过来的被点击视频的位置传递回去
         Intent data = new Intent();
         data.putExtra("position", position);

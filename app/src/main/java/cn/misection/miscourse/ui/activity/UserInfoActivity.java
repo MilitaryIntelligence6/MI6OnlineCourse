@@ -17,6 +17,7 @@ import cn.misection.miscourse.R;
 import cn.misection.miscourse.entity.UserBean;
 import cn.misection.miscourse.util.DataBaseHelper;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
+import cn.misection.miscourse.util.ToastUtil;
 
 /**
  * @author Administrator
@@ -165,7 +166,9 @@ public class UserInfoActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which)
             {
                 dialog.dismiss();
-                Toast.makeText(UserInfoActivity.this, items[which], Toast.LENGTH_SHORT).show();
+//                Toast.makeText(UserInfoActivity.this, items[which], Toast.LENGTH_SHORT).show();
+                ToastUtil.show(UserInfoActivity.this,
+                        items[which]);
                 // 修改数据库
                 sexTextView.setText(items[which]);
                 DataBaseHelper.getInstance(UserInfoActivity.this).updateUserInfo("sex", items[which], spUsername);

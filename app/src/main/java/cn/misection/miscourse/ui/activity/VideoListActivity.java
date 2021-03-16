@@ -21,6 +21,7 @@ import cn.misection.miscourse.ui.adapter.VideoListAdapter;
 import cn.misection.miscourse.entity.VideoBean;
 import cn.misection.miscourse.util.DataBaseHelper;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
+import cn.misection.miscourse.util.ToastUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,34 +83,32 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         VideoListView = findViewById(R.id.video_list_view);
         chapterIntroTextView = findViewById(R.id.chapter_intro_text_view);
         chapterIntroScrollView = findViewById(R.id.chapter_intro_scroll_view);
-        adapter = new VideoListAdapter(this, new VideoListAdapter.OnSelectListener()
+        adapter = new VideoListAdapter(this,
+                (int position, ImageView imageView) ->
         {
-            @Override
-            public void onSelect(int position, ImageView imageView)
+            adapter.setSelectedPosition(position);
+            VideoBean bean = videoList.get(position);
+            String videoPath = bean.getVideoPath();
+            adapter.notifyDataSetChanged();  // 更新列表框
+            if (TextUtils.isEmpty(videoPath))
             {
-                adapter.setSelectedPosition(position);
-                VideoBean bean = videoList.get(position);
-                String videoPath = bean.getVideoPath();
-                adapter.notifyDataSetChanged();  // 更新列表框
-                if (TextUtils.isEmpty(videoPath))
+//                Toast.makeText(VideoListActivity.this, "本地没有此视频，暂无法播放", Toast.LENGTH_SHORT).show();
+                ToastUtil.show(VideoListActivity.this, "本地没有此视频");
+                return;
+            }
+            else
+            {
+                // 判断用户是否登录，若登录则把此视频添加到数据库
+                if (sharedPreferLoginInfo.hasLogin())
                 {
-                    Toast.makeText(VideoListActivity.this, "本地没有此视频，暂无法播放", Toast.LENGTH_SHORT).show();
-                    return;
+                    String username = sharedPreferLoginInfo.getLoginUsername();
+                    dataBaseHelper.saveVideoPlayList(videoList.get(position), username);
                 }
-                else
-                {
-                    // 判断用户是否登录，若登录则把此视频添加到数据库
-                    if (sharedPreferLoginInfo.hasLogin())
-                    {
-                        String username = sharedPreferLoginInfo.getLoginUsername();
-                        dataBaseHelper.saveVideoPlayList(videoList.get(position), username);
-                    }
-                    // 跳转到视频播放界面
-                    Intent intent = new Intent(VideoListActivity.this, VideoPlayActivity.class);
-                    intent.putExtra("videoPath", videoPath);
-                    intent.putExtra("position", position);
-                    startActivityForResult(intent, 1);
-                }
+                // 跳转到视频播放界面
+                Intent intent = new Intent(VideoListActivity.this, VideoPlayActivity.class);
+                intent.putExtra("videoPath", videoPath);
+                intent.putExtra("position", position);
+                startActivityForResult(intent, 1);
             }
         });
         VideoListView.setAdapter(adapter);
@@ -157,17 +156,17 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
     private String read(InputStream is)
     {
         BufferedReader reader = null;
-        StringBuilder sb = null;
+        StringBuilder builder = null;
         String line = null;
         try
         {
-            sb = new StringBuilder();  // 实例化一个StringBuilder对象
+            builder = new StringBuilder();  // 实例化一个StringBuilder对象
             // 用InputStreamReader把is这个字节流转成字符流BufferedReader
             reader = new BufferedReader(new InputStreamReader(is));
             while ((line = reader.readLine()) != null)
             {
-                sb.append(line);
-                sb.append("\n");
+                builder.append(line);
+                builder.append("\n");
             }
         }
         catch (IOException e)
@@ -193,7 +192,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
                 e.printStackTrace();
             }
         }
-        return sb.toString();
+        return builder.toString();
     }
 
     @Override

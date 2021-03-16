@@ -17,6 +17,7 @@ import cn.misection.miscourse.ui.activity.UserInfoActivity;
 import cn.misection.miscourse.mvp.presenter.IMinePresenter;
 import cn.misection.miscourse.mvp.presenter.impl.MinePresenterImpl;
 import cn.misection.miscourse.mvp.view.IMineView;
+import cn.misection.miscourse.util.ToastUtil;
 
 /**
  * @author Military Intelligence 6 root
@@ -109,7 +110,8 @@ public class MineViewManager implements IMineView, View.OnClickListener
                 }
                 else
                 {
-                    Toast.makeText(context, "你还未登陆，请先登陆", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "你还未登陆，请先登陆", Toast.LENGTH_SHORT).show();
+                    ToastUtil.show(context, "你还未登陆，请先登陆");
                 }
                 break;
             }
@@ -124,7 +126,8 @@ public class MineViewManager implements IMineView, View.OnClickListener
                 }
                 else
                 {
-                    Toast.makeText(context, "你还未登陆，请先登陆", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "你还未登陆，请先登陆", Toast.LENGTH_SHORT).show();
+                    ToastUtil.show(context, "你还未登陆，请先登陆");
                 }
                 break;
             }

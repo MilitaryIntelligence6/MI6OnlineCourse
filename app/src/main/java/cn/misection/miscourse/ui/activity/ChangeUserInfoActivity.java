@@ -21,6 +21,7 @@ import cn.misection.miscourse.constant.ui.EnumDefaultValue;
 import cn.misection.miscourse.constant.ui.EnumExtraParam;
 import cn.misection.miscourse.constant.ui.EnumSaveState;
 import cn.misection.miscourse.constant.ui.EnumUserInfo;
+import cn.misection.miscourse.util.ToastUtil;
 
 public class ChangeUserInfoActivity extends AppCompatActivity implements View.OnClickListener
 {
@@ -158,22 +159,27 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         EnumUserInfo option = EnumUserInfo.selectEnumByFlag(flag);
         if (value.isEmpty())
         {
-            Toast.makeText(
-                    this,
+//            Toast.makeText(
+//                    this,
+//                    String.format(EnumSaveState.CAN_NOT_BE_EMPTY_WARNING.text(),
+//                            option.chineseText()),
+//                    Toast.LENGTH_SHORT)
+//                    .show();
+            ToastUtil.show(this,
                     String.format(EnumSaveState.CAN_NOT_BE_EMPTY_WARNING.text(),
-                            option.chineseText()),
-                    Toast.LENGTH_SHORT)
-                    .show();
+                            option.chineseText()));
         }
         else
         {
             data.putExtra(option.englishText(), value);
             setResult(RESULT_OK, data);
-            Toast.makeText(
-                    this,
-                    EnumSaveState.SUCCESSFULLY_SAVE.text(),
-                    Toast.LENGTH_SHORT)
-                    .show();
+//            Toast.makeText(
+//                    this,
+//                    EnumSaveState.SUCCESSFULLY_SAVE.text(),
+//                    Toast.LENGTH_SHORT)
+//                    .show();
+            // 改成R;
+            ToastUtil.show(this, EnumSaveState.SUCCESSFULLY_SAVE.text());
             ChangeUserInfoActivity.this.finish();
         }
     }
