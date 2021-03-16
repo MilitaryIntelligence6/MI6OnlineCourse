@@ -73,7 +73,7 @@ public class SettingActivity extends AppCompatActivity
                 startActivity(intent);
                 break;
             case R.id.rl_security_setting:
-                Intent intent1 = new Intent(SettingActivity.this, FindPwdActivity.class);
+                Intent intent1 = new Intent(SettingActivity.this, RetrievePasswordActivity.class);
                 // 设置场景值，从设置密保入口进
                 intent1.putExtra("from", "security");
                 startActivity(intent1);

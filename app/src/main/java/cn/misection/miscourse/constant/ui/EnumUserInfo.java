@@ -26,19 +26,19 @@ public enum EnumUserInfo
 
     private final int lengthLimit;
 
-    private final String englishLiteral;
+    private final String englishText;
 
-    private final String chineseLiteral;
+    private final String chineseText;
 
     EnumUserInfo(int flag,
                  int lengthLimit,
-                 String englishLiteral,
-                 String chineseLiteral)
+                 String englishText,
+                 String chineseText)
     {
         this.flag = flag;
         this.lengthLimit = lengthLimit;
-        this.englishLiteral = englishLiteral;
-        this.chineseLiteral = chineseLiteral;
+        this.englishText = englishText;
+        this.chineseText = chineseText;
     }
 
     public int flag()
@@ -51,14 +51,14 @@ public enum EnumUserInfo
         return lengthLimit;
     }
 
-    public String englishLiteral()
+    public String englishText()
     {
-        return englishLiteral;
+        return englishText;
     }
 
-    public String chineseLiteral()
+    public String chineseText()
     {
-        return chineseLiteral;
+        return chineseText;
     }
 
     private static final Map<Integer, EnumUserInfo> flagLookup

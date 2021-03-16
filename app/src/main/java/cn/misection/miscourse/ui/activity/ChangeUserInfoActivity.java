@@ -155,18 +155,18 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         {
             Toast.makeText(
                     this,
-                    String.format(EnumSaveState.CAN_NOT_BE_EMPTY_WARNING.literal(),
-                            option.chineseLiteral()),
+                    String.format(EnumSaveState.CAN_NOT_BE_EMPTY_WARNING.text(),
+                            option.chineseText()),
                     Toast.LENGTH_SHORT)
                     .show();
         }
         else
         {
-            data.putExtra(option.englishLiteral(), value);
+            data.putExtra(option.englishText(), value);
             setResult(RESULT_OK, data);
             Toast.makeText(
                     this,
-                    EnumSaveState.SUCCESSFULLY_SAVE.literal(),
+                    EnumSaveState.SUCCESSFULLY_SAVE.text(),
                     Toast.LENGTH_SHORT)
                     .show();
             ChangeUserInfoActivity.this.finish();

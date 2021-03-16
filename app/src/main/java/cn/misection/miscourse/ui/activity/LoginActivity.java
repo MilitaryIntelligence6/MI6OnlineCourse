@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivityForResult(intent, 1);
                 break;
             case R.id.find_password_text_view:
-                intent = new Intent(LoginActivity.this, FindPwdActivity.class);
+                intent = new Intent(LoginActivity.this, RetrievePasswordActivity.class);
                 startActivity(intent);
                 break;
             default:

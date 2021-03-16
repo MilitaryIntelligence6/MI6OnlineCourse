@@ -3,23 +3,23 @@ package cn.misection.miscourse.constant.ui;
 /**
  * @author Military Intelligence 6 root
  * @version 1.0.0
- * @ClassName EnumSaveState
+ * @ClassName EnumFindPassword
  * @Description TODO
- * @CreateTime 2021年03月16日 19:02:00
+ * @CreateTime 2021年03月16日 19:47:00
  */
-public enum EnumSaveState
+public enum EnumSecurity
 {
     /**
-     * 保存成功之类的状态;
+     *
      */
-    SUCCESSFULLY_SAVE("保存成功"),
+    SECURITY_QUESTION("密保问题"),
 
-    CAN_NOT_BE_EMPTY_WARNING("%s不能为空"),
+    FIND_PASSWORD("找回密码"),
     ;
 
     private final String text;
 
-    EnumSaveState(String text)
+    EnumSecurity(String text)
     {
         this.text = text;
     }
