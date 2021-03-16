@@ -1,4 +1,4 @@
-package cn.misection.miscourse.constant;
+package cn.misection.miscourse.constant.config;
 
 /**
  * @author Military Intelligence 6 root

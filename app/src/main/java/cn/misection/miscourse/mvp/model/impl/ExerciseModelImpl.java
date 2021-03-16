@@ -5,7 +5,7 @@ import java.util.List;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.entity.ExerciseBean;
-import cn.misection.miscourse.mvp.mvpconst.EnumExerciseProp;
+import cn.misection.miscourse.constant.mvp.EnumExerciseProp;
 import cn.misection.miscourse.mvp.model.IExerciseModel;
 import cn.misection.miscourse.mvp.presenter.impl.ExercisesPresenterImpl;
 

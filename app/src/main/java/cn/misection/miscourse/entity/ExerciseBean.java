@@ -1,6 +1,6 @@
 package cn.misection.miscourse.entity;
 
-import cn.misection.miscourse.constant.EnumExercise;
+import cn.misection.miscourse.constant.global.EnumExercise;
 
 /**
  * @author Administrator

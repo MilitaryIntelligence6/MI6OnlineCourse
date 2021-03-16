@@ -2,7 +2,7 @@ package cn.misection.miscourse.ui.adapter.listener;
 
 import android.widget.ImageView;
 
-import cn.misection.miscourse.constant.EnumExercise;
+import cn.misection.miscourse.constant.global.EnumExercise;
 
 /**
  * @author Administrator

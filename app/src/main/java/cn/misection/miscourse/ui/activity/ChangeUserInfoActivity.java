@@ -92,7 +92,8 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
                 delImageView.setVisibility(len > 0 ? View.VISIBLE : View.GONE);
                 switch (flag)
                 {
-                    case 1:  // 昵称
+                    // 昵称;
+                    case 1:
                         if (len > 8)
                         {
                             int selEndIndex = Selection.getSelectionEnd(editable);
@@ -111,7 +112,8 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
                             Selection.setSelection(editable, selEndIndex);
                         }
                         break;
-                    case 2:  // 签名
+                    // 签名;
+                    case 2:
                         if (len > 16)
                         {
                             int selEndIndex = Selection.getSelectionEnd(editable);

@@ -1,4 +1,4 @@
-package cn.misection.miscourse.constant;
+package cn.misection.miscourse.constant.global;
 
 import java.util.EnumSet;
 import java.util.HashMap;
