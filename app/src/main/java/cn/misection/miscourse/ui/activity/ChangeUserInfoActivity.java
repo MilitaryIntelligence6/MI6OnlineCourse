@@ -2,6 +2,7 @@ package cn.misection.miscourse.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -158,6 +159,10 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
             case R.id.save_text_view:
                 saveUserInfo();
                 break;
+            default:
+            {
+                break;
+            }
         }
     }
 
@@ -193,6 +198,10 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
                     Toast.makeText(this, "签名不能为空", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            default:
+            {
+                break;
+            }
         }
     }
 }
