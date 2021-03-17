@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.constant.ui.EnumExtraParam;
+import cn.misection.miscourse.constant.ui.EnumUpdateUserInfo;
 import cn.misection.miscourse.constant.ui.EnumUserSex;
 import cn.misection.miscourse.constant.ui.EnumUserInfo;
 import cn.misection.miscourse.entity.UserBean;
@@ -41,17 +42,19 @@ public class UserInfoActivity extends AppCompatActivity
 
     private TextView usernameTextView;
 
-    private TextView nicknameTextView;
+    /**
+     * nickname;
+     * signatureTextView
+     */
+    private TextView[] canBeUpdateTextView;
 
     private TextView sexTextView;
 
-    private TextView signatureTextView;
-
     private String spUsername;
 
-    private static final int CHANGE_NICKNAME = 1;
+    private static final int CHANGE_NICKNAME = 0;
 
-    private static final int CHANGE_SIGNATURE = 2;
+    private static final int CHANGE_SIGNATURE = 1;
 
     private String newInfo;
 
@@ -94,13 +97,20 @@ public class UserInfoActivity extends AppCompatActivity
         usernameTextView = findViewById(R.id.username_text_view);
         nicknameRelaLayout = findViewById(R.id.rela_layout_nickname);
         nicknameRelaLayout.setOnClickListener(this);
-        nicknameTextView = findViewById(R.id.nickname_text_view);
-        sexRelaLayout = findViewById(R.id.rela_layout_sex);
+
+        canBeUpdateTextView = new TextView[EnumUpdateUserInfo.count()];
+        for (int i = 0; i < EnumUpdateUserInfo.count(); i++)
+        {
+            canBeUpdateTextView[i] = findViewById(
+                    EnumUpdateUserInfo.valueOf(i).getResId()
+            );
+        }
+        sexRelaLayout = findViewById(R.id.sex_rela_layout);
         sexRelaLayout.setOnClickListener(this);
         sexTextView = findViewById(R.id.sex_text_view);
         signatureRelaLayout = findViewById(R.id.signature_rela_layout);
         signatureRelaLayout.setOnClickListener(this);
-        signatureTextView = findViewById(R.id.signature_text_view);
+
     }
 
     public void enterForActivityResult(Class<?> to, int requestCode, Bundle b)
@@ -129,11 +139,18 @@ public class UserInfoActivity extends AppCompatActivity
     private void setValue(UserBean bean)
     {
         usernameTextView.setText(bean.getUsername());
-        nicknameTextView.setText(bean.getNickname());
         sexTextView.setText(bean.getSex());
-        signatureTextView.setText(bean.getSignature());
+        // TODO, 重构pojo;
+        canBeUpdateTextView[EnumUpdateUserInfo.NICKNAME.ordinal()]
+                .setText(bean.getNickname());
+        canBeUpdateTextView[EnumUpdateUserInfo.SIGNATURE.ordinal()]
+                .setText(bean.getSignature());
     }
 
+    /**
+     * TODO重构;
+     * @param v
+     */
     @Override
     public void onClick(View v)
     {
@@ -141,7 +158,9 @@ public class UserInfoActivity extends AppCompatActivity
         {
             case R.id.rela_layout_nickname:
             {
-                String nickname = nicknameTextView.getText().toString();
+                String nickname = canBeUpdateTextView
+                        [EnumUpdateUserInfo.NICKNAME.ordinal()]
+                        .getText().toString();
                 Bundle bdName = new Bundle();
                 bdName.putString(
                         EnumExtraParam.CONTENT.literal(),
@@ -152,10 +171,12 @@ public class UserInfoActivity extends AppCompatActivity
                 bdName.putInt(
                         EnumExtraParam.FLAG.literal(),
                         EnumUserInfo.NICE_NAME.flag());
-                enterForActivityResult(ChangeUserInfoActivity.class, CHANGE_NICKNAME, bdName);
+                enterForActivityResult(ChangeUserInfoActivity.class,
+                        EnumUpdateUserInfo.NICKNAME.ordinal(),
+                        bdName);
                 break;
             }
-            case R.id.rela_layout_sex:
+            case R.id.sex_rela_layout:
             {
                 String sex = sexTextView.getText().toString();
                 sexDialog(sex);
@@ -163,7 +184,9 @@ public class UserInfoActivity extends AppCompatActivity
             }
             case R.id.signature_rela_layout:
             {
-                String signature = signatureTextView.getText().toString();
+                String signature = canBeUpdateTextView
+                        [EnumUpdateUserInfo.SIGNATURE.ordinal()]
+                        .getText().toString();
                 Bundle bdSignature = new Bundle();
                 bdSignature.putString(
                         EnumExtraParam.CONTENT.literal(),
@@ -175,7 +198,9 @@ public class UserInfoActivity extends AppCompatActivity
                 bdSignature.putInt(
                         EnumExtraParam.FLAG.literal(),
                         EnumUserInfo.SIGNATURE.flag());
-                enterForActivityResult(ChangeUserInfoActivity.class, CHANGE_SIGNATURE, bdSignature);
+                enterForActivityResult(ChangeUserInfoActivity.class,
+                        EnumUpdateUserInfo.SIGNATURE.ordinal(),
+                        bdSignature);
                 break;
             }
             default:
@@ -219,50 +244,24 @@ public class UserInfoActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode)
+        EnumUpdateUserInfo updateOption = EnumUpdateUserInfo.valueOf(requestCode);
+        if (data != null)
         {
-            case CHANGE_NICKNAME:
+            newInfo = data.getStringExtra(
+                    updateOption.getExtraParam().literal());
+            if (newInfo.isEmpty())
             {
-                if (data != null)
-                {
-                    newInfo = data.getStringExtra(EnumExtraParam.NICKNAME.literal());
-                    if (newInfo.isEmpty())
-                    {
-                        return;
-                    }
-                    nicknameTextView.setText(newInfo);
-                    DataBaseHelper
-                            .requireInstance(UserInfoActivity.this)
-                            .updateUserInfo(
-                                    EnumExtraParam.NICKNAME.literal(),
-                                    newInfo,
-                                    spUsername);
-                }
-                break;
+                return;
             }
-            case CHANGE_SIGNATURE:
-            {
-                if (data != null)
-                {
-                    newInfo = data.getStringExtra(EnumExtraParam.SIGNATURE.literal());
-                    if (newInfo.isEmpty())
-                    {
-                        return;
-                    }
-                    signatureTextView.setText(newInfo);
-                    DataBaseHelper
-                            .requireInstance(UserInfoActivity.this)
-                            .updateUserInfo(
-                                    EnumExtraParam.SIGNATURE.literal(),
-                                    newInfo,
-                                    spUsername);
-                }
-                break;
-            }
-            default:
-            {
-                break;
-            }
+            canBeUpdateTextView
+                    [updateOption.ordinal()]
+                    .setText(newInfo);
+            DataBaseHelper
+                    .requireInstance(UserInfoActivity.this)
+                    .updateUserInfo(
+                            updateOption.getExtraParam().literal(),
+                            newInfo,
+                            spUsername);
         }
     }
 }

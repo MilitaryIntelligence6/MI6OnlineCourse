@@ -100,7 +100,7 @@
         android:background="#E4E4E4" />
 
     <RelativeLayout
-        android:id="@+id/rela_layout_sex"
+        android:id="@+id/sex_rela_layout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="15dp">
