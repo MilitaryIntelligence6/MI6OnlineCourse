@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import cn.misection.miscourse.R;
-import cn.misection.miscourse.util.MD5Util;
+import cn.misection.miscourse.util.MdFiveUtil;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import cn.misection.miscourse.util.ToastUtil;
 
@@ -86,7 +86,7 @@ public class UpdatePasswordActivity extends AppCompatActivity
         {
             ToastUtil.show(this, R.string.empty_old_password);
         }
-        else if (!MD5Util.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username)))
+        else if (!MdFiveUtil.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username)))
         {
             ToastUtil.show(this, R.string.wrong_old_password);
         }
@@ -102,7 +102,7 @@ public class UpdatePasswordActivity extends AppCompatActivity
         {
             ToastUtil.show(this, R.string.not_unanimous_password);
         }
-        else if (MD5Util.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username)))
+        else if (MdFiveUtil.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username)))
         {
             ToastUtil.show(this, R.string.same_old_and_new_password);
         }

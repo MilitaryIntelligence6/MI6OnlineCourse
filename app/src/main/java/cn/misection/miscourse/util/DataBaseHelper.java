@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import cn.misection.miscourse.entity.UserBean;
 import cn.misection.miscourse.entity.VideoBean;
-import cn.misection.miscourse.sqlite.SQLiteHelper;
+import cn.misection.miscourse.sqlite.SqLiteHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class DataBaseHelper
 {
     private Context context;
 
-    private static SQLiteHelper helper;
+    private static SqLiteHelper helper;
 
     private static SQLiteDatabase database;
 
@@ -48,7 +48,7 @@ public class DataBaseHelper
 
     private void init()
     {
-        helper = new SQLiteHelper(context);
+        helper = new SqLiteHelper(context);
         database = helper.getWritableDatabase();
     }
 
@@ -63,7 +63,7 @@ public class DataBaseHelper
         cv.put("nickname", user.getNickname());
         cv.put("sex", user.getSex());
         cv.put("signature", user.getSignature());
-        database.insert(SQLiteHelper.TB_USERINFO, null, cv);
+        database.insert(SqLiteHelper.TB_USER_INFO, null, cv);
     }
 
     /**
@@ -73,7 +73,7 @@ public class DataBaseHelper
      */
     public UserBean getUserInfo(String username)
     {
-        String sql = "select * from " + SQLiteHelper.TB_USERINFO + " where username = ?";
+        String sql = "select * from " + SqLiteHelper.TB_USER_INFO + " where username = ?";
         Cursor cursor = database.rawQuery(sql, new String[]{username});
         UserBean user = null;
         while (cursor.moveToNext())
@@ -98,7 +98,7 @@ public class DataBaseHelper
     {
         ContentValues contentValues = new ContentValues();
         contentValues.put(key, value);
-        database.update(SQLiteHelper.TB_USERINFO, contentValues, "username = ?", new String[]{username});
+        database.update(SqLiteHelper.TB_USER_INFO, contentValues, "username = ?", new String[]{username});
     }
 
     public void saveVideoPlayList(VideoBean video, String username)
@@ -121,14 +121,14 @@ public class DataBaseHelper
         contentValues.put("videoPath", video.getVideoPath());
         contentValues.put("title", video.getTitle());
         contentValues.put("secondTitle", video.getSecondTitle());
-        database.insert(SQLiteHelper.U_VIDEO_PLAY_LIST, null, contentValues);
+        database.insert(SqLiteHelper.U_VIDEO_PLAY_LIST, null, contentValues);
     }
 
     // 删除视频
     private boolean delVideoPlay(int chapterId, int videoId, String username)
     {
         boolean delSuccess = false;
-        int row = database.delete(SQLiteHelper.U_VIDEO_PLAY_LIST, " chapterId=? and videoId=? and username=?", new String[]{chapterId + "", videoId + "", username});
+        int row = database.delete(SqLiteHelper.U_VIDEO_PLAY_LIST, " chapterId=? and videoId=? and username=?", new String[]{chapterId + "", videoId + "", username});
         if (row > 0)
         {
             delSuccess = true;
@@ -140,7 +140,7 @@ public class DataBaseHelper
     private boolean hasVideoPlay(int chapterId, int videoId, String username)
     {
         boolean hasVideo = false;
-        String sql = "select * from " + SQLiteHelper.U_VIDEO_PLAY_LIST + " where chapterId=? and videoId=? and username=?";
+        String sql = "select * from " + SqLiteHelper.U_VIDEO_PLAY_LIST + " where chapterId=? and videoId=? and username=?";
         Cursor cursor = database.rawQuery(sql, new String[]{chapterId + "", videoId + "", username});
         if (cursor.moveToFirst())
         {
@@ -152,7 +152,7 @@ public class DataBaseHelper
 
     public List<VideoBean> getVideoHistory(String loginUsername)
     {
-        String sql = String.format("select * from %s where username=?", SQLiteHelper.U_VIDEO_PLAY_LIST);
+        String sql = String.format("select * from %s where username=?", SqLiteHelper.U_VIDEO_PLAY_LIST);
         Cursor cursor = database.rawQuery(sql, new String[]{loginUsername});
         List<VideoBean> videoList = new ArrayList<>();
         VideoBean video = null;

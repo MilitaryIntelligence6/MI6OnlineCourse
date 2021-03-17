@@ -3,10 +3,12 @@ package cn.misection.miscourse.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import cn.misection.miscourse.constant.global.EnumCommonString;
+
 /**
  * @author Administrator
  */
-public class MD5Util
+public class MdFiveUtil
 {
     /**
      * md5 加密方法;
@@ -39,7 +41,7 @@ public class MD5Util
         catch (NoSuchAlgorithmException e)
         {
             e.printStackTrace();
-            return "";
+            return EnumCommonString.EMPTY.value();
         }
     }
 }

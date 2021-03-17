@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.constant.ui.EnumExtraParam;
-import cn.misection.miscourse.util.MD5Util;
+import cn.misection.miscourse.util.MdFiveUtil;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
 import cn.misection.miscourse.util.ToastUtil;
 
@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     private boolean loginCheck(String username, String password)
     {
-        String md5Pwd = MD5Util.md5(password);
+        String md5Pwd = MdFiveUtil.md5(password);
         return sharedPreferLoginInfo.getPwd(username).equals(md5Pwd);
     }
 

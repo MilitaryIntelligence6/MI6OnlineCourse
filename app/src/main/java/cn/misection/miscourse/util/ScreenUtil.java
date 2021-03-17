@@ -11,7 +11,7 @@ import android.view.Display;
  * @Description TODO
  * @CreateTime 2021年03月10日 23:48:00
  */
-public class ScreenUtil
+public final class ScreenUtil
 {
     /**
      * 读取屏幕宽;
