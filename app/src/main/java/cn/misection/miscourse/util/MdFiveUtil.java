@@ -12,7 +12,6 @@ public class MdFiveUtil
 {
     /**
      * md5 加密方法;
-     *
      * @param text
      * @return
      */
@@ -22,21 +21,26 @@ public class MdFiveUtil
         {
             MessageDigest digest = MessageDigest.getInstance("md5");
             byte[] result = digest.digest(text.getBytes());
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder builder = new StringBuilder();
             for (byte b : result)
             {
                 int number = b & 0xff;
                 String hex = Integer.toHexString(number);
-                if (hex.length() == 1)
+                switch (hex.length())
                 {
-                    buffer.append(String.format("0%s", hex));
-                }
-                else
-                {
-                    buffer.append(hex);
+                    case 1:
+                    {
+                        builder.append(String.format("0%s", hex));
+                        break;
+                    }
+                    default:
+                    {
+                        builder.append(hex);
+                        break;
+                    }
                 }
             }
-            return buffer.toString();
+            return builder.toString();
         }
         catch (NoSuchAlgorithmException e)
         {
