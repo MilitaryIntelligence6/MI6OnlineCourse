@@ -63,9 +63,9 @@ public class VideoPlayActivity extends AppCompatActivity
     private void initData()
     {
         // 获取从播放记录界面传递过来的视频地址
-        videoPath = getIntent().getStringExtra(
+        videoPath = this.getIntent().getStringExtra(
                 EnumExtraParam.VIDEO_PATH.literal());
-        position = getIntent().getIntExtra(
+        position = this.getIntent().getIntExtra(
                 EnumExtraParam.POSITION.literal(),
                 EnumDefaultValue.INT_EXTRA.value());
     }
