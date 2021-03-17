@@ -52,10 +52,6 @@ public class UserInfoActivity extends AppCompatActivity
 
     private String spUsername;
 
-    private static final int CHANGE_NICKNAME = 0;
-
-    private static final int CHANGE_SIGNATURE = 1;
-
     private String newInfo;
 
     @Override
@@ -253,8 +249,7 @@ public class UserInfoActivity extends AppCompatActivity
             {
                 return;
             }
-            canBeUpdateTextView
-                    [updateOption.ordinal()]
+            canBeUpdateTextView[updateOption.ordinal()]
                     .setText(newInfo);
             DataBaseHelper
                     .requireInstance(UserInfoActivity.this)
