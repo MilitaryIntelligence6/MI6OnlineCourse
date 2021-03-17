@@ -16,9 +16,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import cn.misection.miscourse.R;
+import cn.misection.miscourse.constant.global.EnumAssets;
 import cn.misection.miscourse.constant.global.EnumCommonString;
 import cn.misection.miscourse.constant.ui.EnumDefaultValue;
 import cn.misection.miscourse.constant.ui.EnumExtraParam;
+import cn.misection.miscourse.constant.ui.EnumJsonObj;
 import cn.misection.miscourse.ui.adapter.VideoListAdapter;
 import cn.misection.miscourse.entity.VideoBean;
 import cn.misection.miscourse.util.DataBaseHelper;
@@ -123,8 +125,9 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
                     adapter.notifyDataSetChanged();  // 更新列表框
                     if (TextUtils.isEmpty(videoPath))
                     {
-                        ToastUtil.show(VideoListActivity.this,
-                                "本地没有此视频");
+                        ToastUtil.show(
+                                VideoListActivity.this,
+                                R.string.local_video_not_found);
                         return;
                     }
                     else
@@ -158,20 +161,27 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         InputStream is = null;
         try
         {
-            is = getResources().getAssets().open("data.json");
+            is = getResources().getAssets().open(EnumAssets.VIDEO_DATA.getPath());
             jsonArray = new JSONArray(read(is));
             videoList = new ArrayList<>();
             for (int i = 0; i < jsonArray.length(); i++)
             {
                 VideoBean bean = new VideoBean();
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                if (jsonObject.getInt("chapterId") == chapterId)
+                if (jsonObject.getInt(
+                        EnumJsonObj.CHAPTER_ID.getJsonName())
+                        == chapterId)
                 {
-                    bean.setChapterId(jsonObject.getInt("chapterId"));
-                    bean.setVideoId(Integer.parseInt(jsonObject.getString("videoId")));
-                    bean.setTitle(jsonObject.getString("title"));
-                    bean.setSecondTitle(jsonObject.getString("secondTitle"));
-                    bean.setVideoPath(jsonObject.getString("videoPath"));
+                    bean.setChapterId(jsonObject.getInt(
+                            EnumJsonObj.CHAPTER_ID.getJsonName()));
+                    bean.setVideoId(Integer.parseInt(jsonObject.getString(
+                            EnumJsonObj.VIDEO_ID.getJsonName())));
+                    bean.setTitle(jsonObject.getString(
+                            EnumJsonObj.TITLE.getJsonName()));
+                    bean.setSecondTitle(jsonObject.getString(
+                            EnumJsonObj.SECOND_TITLE.getJsonName()));
+                    bean.setVideoPath(jsonObject.getString(
+                            EnumJsonObj.VIDEO_ID.getJsonName()));
                     videoList.add(bean);
                 }
                 bean = null;
