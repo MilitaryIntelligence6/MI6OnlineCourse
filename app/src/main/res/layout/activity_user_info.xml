@@ -70,7 +70,7 @@
         android:background="#E4E4E4" />
 
     <RelativeLayout
-        android:id="@+id/rl_nickname"
+        android:id="@+id/rela_layout_nickname"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="15dp">
@@ -100,7 +100,7 @@
         android:background="#E4E4E4" />
 
     <RelativeLayout
-        android:id="@+id/rl_sex"
+        android:id="@+id/rela_layout_sex"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="15dp">

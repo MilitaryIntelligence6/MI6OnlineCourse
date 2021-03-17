@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.ui.adapter.VideoListAdapter;
@@ -63,14 +62,14 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_list);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        this.setContentView(R.layout.activity_video_list);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // 从课程界面传递过来的章节Id
         chapterId = getIntent().getIntExtra("id", 0);
         // 从课程界面传递过来的章简介
         intro = getIntent().getStringExtra("intro");
         // 创建数据库工具类的对象
-        dataBaseHelper = DataBaseHelper.getInstance(VideoListActivity.this);
+        dataBaseHelper = DataBaseHelper.requireInstance(VideoListActivity.this);
         sharedPreferLoginInfo = new SharedPreferLoginInfo(this);
         initData();
         init();

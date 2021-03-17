@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="user_info">个人资料</string>
+    <string name="default_nickname">问答精灵</string>
+    <string name="default_signature">问答精灵</string>
+    <string name="nickname_literal">昵称</string>
+    <string name="signature_literal">签名</string>
+
+    <string name="sex_literal">性别</string>
+</resources>

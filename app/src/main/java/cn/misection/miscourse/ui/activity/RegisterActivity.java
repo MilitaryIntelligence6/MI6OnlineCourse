@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity
         }
         else if (!password.equals(passwordAgain))
         {
-            ToastUtil.show(this, R.string.unanimous_password);
+            ToastUtil.show(this, R.string.not_unanimous_password);
         }
         else
         {

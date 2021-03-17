@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.util.MD5Util;
@@ -17,7 +16,7 @@ import cn.misection.miscourse.util.ToastUtil;
 /**
  * @author Administrator
  */
-public class UpdatePwdActivity extends AppCompatActivity
+public class UpdatePasswordActivity extends AppCompatActivity
 {
     private TextView backTextView;
 
@@ -45,33 +44,39 @@ public class UpdatePwdActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_pwd);
         init();
-        saveButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                getEditString();
-                logicalJudgement();
-            }
-        });
     }
 
     private void init()
     {
+        initContent();
+        initView();
+        initSharedPref();
+        initListener();
+    }
+
+    private void initContent()
+    {
+        this.setContentView(R.layout.activity_update_pwd);
+    }
+
+    private void initView()
+    {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
-        mainTitleTextView.setText("修改密码");
+        mainTitleTextView.setText(R.string.mod_password);
         backTextView = findViewById(R.id.back_text_view);
         backTextView.setOnClickListener((View v) ->
-                UpdatePwdActivity.this.finish());
+                UpdatePasswordActivity.this.finish());
 
         oldPasswordEditText = findViewById(R.id.old_password_edit_text);
         newPasswordEditText = findViewById(R.id.new_password_edit_text);
         newPasswordAgainEditText = findViewById(R.id.new_password_again_edit_text);
         saveButton = findViewById(R.id.btn_save);
+    }
 
-        sharedPreferLoginInfo = new SharedPreferLoginInfo(UpdatePwdActivity.this);
+    private void initSharedPref()
+    {
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(UpdatePasswordActivity.this);
         username = sharedPreferLoginInfo.getLoginUsername();
     }
 
@@ -79,39 +84,48 @@ public class UpdatePwdActivity extends AppCompatActivity
     {
         if (oldPassword.isEmpty())
         {
-            ToastUtil.show(this, "请输入原始密码");
+            ToastUtil.show(this, R.string.empty_old_password);
         }
         else if (!MD5Util.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username)))
         {
-            ToastUtil.show(this, "原始密码错误");
+            ToastUtil.show(this, R.string.wrong_old_password);
         }
         else if (newPassword.isEmpty())
         {
-            ToastUtil.show(this, "请输入新密码");
+            ToastUtil.show(this, R.string.empty_new_password);
         }
         else if (newPasswordAgain.isEmpty())
         {
-            ToastUtil.show(this, "请再次输入新密码");
+            ToastUtil.show(this, R.string.empty_new_password_confirm);
         }
         else if (!newPassword.equals(newPasswordAgain))
         {
-            ToastUtil.show(this, "两次输入的密码不一致");
+            ToastUtil.show(this, R.string.not_unanimous_password);
         }
         else if (MD5Util.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username)))
         {
-            ToastUtil.show(this, "新密码不能与原始密码一致");
+            ToastUtil.show(this, R.string.same_old_and_new_password);
         }
         else
         {
-            ToastUtil.show(this, "新密码设置成功");
+            ToastUtil.show(this, R.string.update_password_successfully);
             // 更新密码
             sharedPreferLoginInfo.saveInfo(username, newPassword);
             SettingActivity.instance.finish();
-            UpdatePwdActivity.this.finish();
+            UpdatePasswordActivity.this.finish();
         }
     }
 
-    private void getEditString()
+    private void initListener()
+    {
+        saveButton.setOnClickListener((View v) ->
+        {
+            fetchEditString();
+            logicalJudgement();
+        });
+    }
+
+    private void fetchEditString()
     {
         oldPassword = oldPasswordEditText.getText().toString().trim();
         newPassword = newPasswordEditText.getText().toString().trim();

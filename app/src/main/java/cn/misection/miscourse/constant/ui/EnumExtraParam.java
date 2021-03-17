@@ -23,6 +23,12 @@ public enum EnumExtraParam
     IS_LOGIN("isLogin"),
 
     USERNAME("username"),
+
+    NICKNAME("nickname"),
+
+    SIGNATURE("signature"),
+
+    SEX("sex"),
     ;
 
     private final String literal;

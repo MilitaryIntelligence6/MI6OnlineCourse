@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.misection.miscourse.R;
+import cn.misection.miscourse.constant.ui.EnumExtraParam;
+import cn.misection.miscourse.constant.ui.EnumUserSex;
+import cn.misection.miscourse.constant.ui.EnumUserInfo;
 import cn.misection.miscourse.entity.UserBean;
 import cn.misection.miscourse.util.DataBaseHelper;
 import cn.misection.miscourse.util.SharedPreferLoginInfo;
@@ -57,13 +59,48 @@ public class UserInfoActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_info);
+        init();
+    }
 
+    private void init()
+    {
+        initContent();
+        initSharedPref();
+        initView();
+        initData();
+    }
+
+    private void initContent()
+    {
+        setContentView(R.layout.activity_user_info);
+    }
+
+    private void initSharedPref()
+    {
         SharedPreferLoginInfo sharedPreferLoginInfo = new SharedPreferLoginInfo(UserInfoActivity.this);
         spUsername = sharedPreferLoginInfo.getLoginUsername();
+    }
 
-        init();
-        initData();
+    private void initView()
+    {
+        titleBarRelaLayout = findViewById(R.id.title_bar);
+        titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
+        mainTitleTextView = findViewById(R.id.main_title_text_view);
+        mainTitleTextView.setText(R.string.user_info);
+        backTextView = findViewById(R.id.back_text_view);
+        backTextView.setOnClickListener((View v) ->
+                UserInfoActivity.this.finish());
+
+        usernameTextView = findViewById(R.id.username_text_view);
+        nicknameRelaLayout = findViewById(R.id.rela_layout_nickname);
+        nicknameRelaLayout.setOnClickListener(this);
+        nicknameTextView = findViewById(R.id.nickname_text_view);
+        sexRelaLayout = findViewById(R.id.rela_layout_sex);
+        sexRelaLayout.setOnClickListener(this);
+        sexTextView = findViewById(R.id.sex_text_view);
+        signatureRelaLayout = findViewById(R.id.signature_rela_layout);
+        signatureRelaLayout.setOnClickListener(this);
+        signatureTextView = findViewById(R.id.signature_text_view);
     }
 
     public void enterForActivityResult(Class<?> to, int requestCode, Bundle b)
@@ -76,15 +113,15 @@ public class UserInfoActivity extends AppCompatActivity
     private void initData()
     {
         UserBean bean = null;
-        bean = DataBaseHelper.getInstance(UserInfoActivity.this).getUserInfo(spUsername);
+        bean = DataBaseHelper.requireInstance(UserInfoActivity.this).getUserInfo(spUsername);
         if (bean == null)
         {
             bean = new UserBean();
             bean.setUsername(spUsername);
-            bean.setNickname("问答精灵");
-            bean.setSex("男");
-            bean.setSignature("问答精灵");
-            DataBaseHelper.getInstance(UserInfoActivity.this).saveUserInfo(bean);
+            bean.setNickname(this.getString(R.string.default_nickname));
+            bean.setSex(EnumUserSex.MALE.text());
+            bean.setSignature(this.getString(R.string.default_signature));
+            DataBaseHelper.requireInstance(UserInfoActivity.this).saveUserInfo(bean);
         }
         setValue(bean);
     }
@@ -97,69 +134,69 @@ public class UserInfoActivity extends AppCompatActivity
         signatureTextView.setText(bean.getSignature());
     }
 
-    private void init()
-    {
-        titleBarRelaLayout = findViewById(R.id.title_bar);
-        titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
-        mainTitleTextView = findViewById(R.id.main_title_text_view);
-        mainTitleTextView.setText("个人资料");
-        backTextView = findViewById(R.id.back_text_view);
-        backTextView.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                UserInfoActivity.this.finish();
-            }
-        });
-
-        usernameTextView = findViewById(R.id.username_text_view);
-        nicknameRelaLayout = findViewById(R.id.rl_nickname);
-        nicknameRelaLayout.setOnClickListener(this);
-        nicknameTextView = findViewById(R.id.nickname_text_view);
-        sexRelaLayout = findViewById(R.id.rl_sex);
-        sexRelaLayout.setOnClickListener(this);
-        sexTextView = findViewById(R.id.sex_text_view);
-        signatureRelaLayout = findViewById(R.id.signature_rela_layout);
-        signatureRelaLayout.setOnClickListener(this);
-        signatureTextView = findViewById(R.id.signature_text_view);
-    }
-
     @Override
     public void onClick(View v)
     {
         switch (v.getId())
         {
-            case R.id.rl_nickname:
+            case R.id.rela_layout_nickname:
+            {
                 String nickname = nicknameTextView.getText().toString();
                 Bundle bdName = new Bundle();
-                bdName.putString("content", nickname);
-                bdName.putString("title", "昵称");
-                bdName.putInt("flag", 1);
+                bdName.putString(
+                        EnumExtraParam.CONTENT.literal(),
+                        nickname);
+                bdName.putString(
+                        EnumExtraParam.TITLE.literal(),
+                        this.getString(R.string.nickname_literal));
+                bdName.putInt(
+                        EnumExtraParam.FLAG.literal(),
+                        EnumUserInfo.NICE_NAME.flag());
                 enterForActivityResult(ChangeUserInfoActivity.class, CHANGE_NICKNAME, bdName);
                 break;
-            case R.id.rl_sex:
+            }
+            case R.id.rela_layout_sex:
+            {
                 String sex = sexTextView.getText().toString();
                 sexDialog(sex);
                 break;
+            }
             case R.id.signature_rela_layout:
+            {
                 String signature = signatureTextView.getText().toString();
                 Bundle bdSignature = new Bundle();
-                bdSignature.putString("content", signature);
-                bdSignature.putString("title", "签名");
-                bdSignature.putInt("flag", 2);
+                bdSignature.putString(
+                        EnumExtraParam.CONTENT.literal(),
+                        signature);
+                bdSignature.putString(
+                        EnumExtraParam.TITLE.literal(),
+                        this.getString(R.string.signature_literal));
+                // FIXME, 直接传ordinal;
+                bdSignature.putInt(
+                        EnumExtraParam.FLAG.literal(),
+                        EnumUserInfo.SIGNATURE.flag());
                 enterForActivityResult(ChangeUserInfoActivity.class, CHANGE_SIGNATURE, bdSignature);
                 break;
+            }
+            default:
+            {
+                break;
+            }
         }
     }
 
     private void sexDialog(String sex)
     {
-        int sexFlag = ("男".equals(sex)) ? 0 : 1;
-        final String[] items = {"男", "女"};
+        final String[] items = new String[EnumUserSex.count()];
+        for (int i = 0; i < EnumUserSex.count(); i++)
+        {
+            items[i] = EnumUserSex.valueOf(i).text();
+        }
+        int sexFlag = EnumUserSex.selectByText(sex).ordinal();
 
-        AlertDialog.Builder dialog = new AlertDialog.Builder(UserInfoActivity.this);
-        dialog.setTitle("性别");
+        AlertDialog.Builder dialog = new AlertDialog.Builder(
+                UserInfoActivity.this);
+        dialog.setTitle(R.string.sex_literal);
         dialog.setSingleChoiceItems(items, sexFlag,
                 (DialogInterface dialog1, int which) ->
                 {
@@ -168,7 +205,12 @@ public class UserInfoActivity extends AppCompatActivity
                             items[which]);
                     // 修改数据库
                     sexTextView.setText(items[which]);
-                    DataBaseHelper.getInstance(UserInfoActivity.this).updateUserInfo("sex", items[which], spUsername);
+                    DataBaseHelper
+                            .requireInstance(UserInfoActivity.this)
+                            .updateUserInfo(
+                                    EnumExtraParam.SEX.literal(),
+                                    items[which],
+                                    spUsername);
                 });
         dialog.show();
     }
@@ -180,30 +222,47 @@ public class UserInfoActivity extends AppCompatActivity
         switch (requestCode)
         {
             case CHANGE_NICKNAME:
+            {
                 if (data != null)
                 {
-                    newInfo = data.getStringExtra("nickname");
+                    newInfo = data.getStringExtra(EnumExtraParam.NICKNAME.literal());
                     if (newInfo.isEmpty())
                     {
                         return;
                     }
                     nicknameTextView.setText(newInfo);
-                    DataBaseHelper.getInstance(UserInfoActivity.this).updateUserInfo("nickname", newInfo, spUsername);
+                    DataBaseHelper
+                            .requireInstance(UserInfoActivity.this)
+                            .updateUserInfo(
+                                    EnumExtraParam.NICKNAME.literal(),
+                                    newInfo,
+                                    spUsername);
                 }
                 break;
+            }
             case CHANGE_SIGNATURE:
+            {
                 if (data != null)
                 {
-                    newInfo = data.getStringExtra("signature");
+                    newInfo = data.getStringExtra(EnumExtraParam.SIGNATURE.literal());
                     if (newInfo.isEmpty())
                     {
                         return;
                     }
                     signatureTextView.setText(newInfo);
-                    DataBaseHelper.getInstance(UserInfoActivity.this).updateUserInfo("signature", newInfo, spUsername);
+                    DataBaseHelper
+                            .requireInstance(UserInfoActivity.this)
+                            .updateUserInfo(
+                                    EnumExtraParam.SIGNATURE.literal(),
+                                    newInfo,
+                                    spUsername);
                 }
                 break;
+            }
+            default:
+            {
+                break;
+            }
         }
-
     }
 }

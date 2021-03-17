@@ -2,5 +2,5 @@
 <resources>
     <string name="version">v</string>
     // 不行加载出来是资源号;
-<!--    <integer name="loading_time">3000</integer>-->
+    <!--    <integer name="loading_time">3000</integer>-->
 </resources>

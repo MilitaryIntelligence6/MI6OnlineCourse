@@ -16,7 +16,7 @@
         <activity android:name=".ui.activity.ChangeUserInfoActivity" />
         <activity android:name=".ui.activity.UserInfoActivity" />
         <activity android:name=".ui.activity.RetrievePasswordActivity" />
-        <activity android:name=".ui.activity.UpdatePwdActivity" />
+        <activity android:name=".ui.activity.UpdatePasswordActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />

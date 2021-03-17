@@ -69,7 +69,7 @@ public class PlayHistoryActivity extends AppCompatActivity
 
     private void initData()
     {
-        dataBaseHelper = DataBaseHelper.getInstance(this);
+        dataBaseHelper = DataBaseHelper.requireInstance(this);
         videoList = new ArrayList<>();
         // 从数据库中获取播放记录信息
         sharedPreferLoginInfo = new SharedPreferLoginInfo(this);

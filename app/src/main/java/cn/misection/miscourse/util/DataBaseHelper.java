@@ -31,7 +31,7 @@ public class DataBaseHelper
         init();
     }
 
-    public static DataBaseHelper getInstance(Context context)
+    public static DataBaseHelper requireInstance(Context context)
     {
         if (instance == null)
         {

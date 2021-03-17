@@ -81,7 +81,7 @@ public class SettingActivity extends AppCompatActivity
             }
             case R.id.rl_update_password:
             {
-                Intent intent = new Intent(SettingActivity.this, UpdatePwdActivity.class);
+                Intent intent = new Intent(SettingActivity.this, UpdatePasswordActivity.class);
                 startActivity(intent);
                 break;
             }
