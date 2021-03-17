@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import cn.misection.miscourse.R;
 import cn.misection.miscourse.constant.ui.EnumExtraParam;
-import cn.misection.miscourse.constant.ui.EnumUpdateUserInfo;
+import cn.misection.miscourse.constant.ui.EnumUpdateInfoChoice;
 import cn.misection.miscourse.constant.ui.EnumUserSex;
 import cn.misection.miscourse.constant.ui.EnumUserInfo;
 import cn.misection.miscourse.entity.UserBean;
@@ -71,7 +71,7 @@ public class UserInfoActivity extends AppCompatActivity
 
     private void initContent()
     {
-        setContentView(R.layout.activity_user_info);
+        this.setContentView(R.layout.activity_user_info);
     }
 
     private void initSharedPref()
@@ -94,11 +94,11 @@ public class UserInfoActivity extends AppCompatActivity
         nicknameRelaLayout = findViewById(R.id.rela_layout_nickname);
         nicknameRelaLayout.setOnClickListener(this);
 
-        canBeUpdateTextView = new TextView[EnumUpdateUserInfo.count()];
-        for (int i = 0; i < EnumUpdateUserInfo.count(); i++)
+        canBeUpdateTextView = new TextView[EnumUpdateInfoChoice.count()];
+        for (int i = 0; i < EnumUpdateInfoChoice.count(); i++)
         {
             canBeUpdateTextView[i] = findViewById(
-                    EnumUpdateUserInfo.valueOf(i).getResId()
+                    EnumUpdateInfoChoice.valueOf(i).getResId()
             );
         }
         sexRelaLayout = findViewById(R.id.sex_rela_layout);
@@ -137,9 +137,9 @@ public class UserInfoActivity extends AppCompatActivity
         usernameTextView.setText(bean.getUsername());
         sexTextView.setText(bean.getSex());
         // TODO, 重构pojo;
-        canBeUpdateTextView[EnumUpdateUserInfo.NICKNAME.ordinal()]
+        canBeUpdateTextView[EnumUpdateInfoChoice.NICKNAME.ordinal()]
                 .setText(bean.getNickname());
-        canBeUpdateTextView[EnumUpdateUserInfo.SIGNATURE.ordinal()]
+        canBeUpdateTextView[EnumUpdateInfoChoice.SIGNATURE.ordinal()]
                 .setText(bean.getSignature());
     }
 
@@ -155,7 +155,7 @@ public class UserInfoActivity extends AppCompatActivity
             case R.id.rela_layout_nickname:
             {
                 String nickname = canBeUpdateTextView
-                        [EnumUpdateUserInfo.NICKNAME.ordinal()]
+                        [EnumUpdateInfoChoice.NICKNAME.ordinal()]
                         .getText().toString();
                 Bundle bdName = new Bundle();
                 bdName.putString(
@@ -168,7 +168,7 @@ public class UserInfoActivity extends AppCompatActivity
                         EnumExtraParam.FLAG.literal(),
                         EnumUserInfo.NICE_NAME.flag());
                 enterForActivityResult(ChangeUserInfoActivity.class,
-                        EnumUpdateUserInfo.NICKNAME.ordinal(),
+                        EnumUpdateInfoChoice.NICKNAME.ordinal(),
                         bdName);
                 break;
             }
@@ -181,7 +181,7 @@ public class UserInfoActivity extends AppCompatActivity
             case R.id.signature_rela_layout:
             {
                 String signature = canBeUpdateTextView
-                        [EnumUpdateUserInfo.SIGNATURE.ordinal()]
+                        [EnumUpdateInfoChoice.SIGNATURE.ordinal()]
                         .getText().toString();
                 Bundle bdSignature = new Bundle();
                 bdSignature.putString(
@@ -195,7 +195,7 @@ public class UserInfoActivity extends AppCompatActivity
                         EnumExtraParam.FLAG.literal(),
                         EnumUserInfo.SIGNATURE.flag());
                 enterForActivityResult(ChangeUserInfoActivity.class,
-                        EnumUpdateUserInfo.SIGNATURE.ordinal(),
+                        EnumUpdateInfoChoice.SIGNATURE.ordinal(),
                         bdSignature);
                 break;
             }
@@ -240,7 +240,7 @@ public class UserInfoActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        EnumUpdateUserInfo updateOption = EnumUpdateUserInfo.valueOf(requestCode);
+        EnumUpdateInfoChoice updateOption = EnumUpdateInfoChoice.valueOf(requestCode);
         if (data != null)
         {
             newInfo = data.getStringExtra(

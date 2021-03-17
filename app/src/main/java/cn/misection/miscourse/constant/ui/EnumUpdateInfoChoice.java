@@ -9,7 +9,7 @@ import cn.misection.miscourse.R;
  * @Description TODO
  * @CreateTime 2021年03月17日 16:26:00
  */
-public enum EnumUpdateUserInfo
+public enum EnumUpdateInfoChoice
 {
     /**
      * 改昵称改签名;
@@ -24,7 +24,7 @@ public enum EnumUpdateUserInfo
 
     private final EnumExtraParam extraParam;
 
-    EnumUpdateUserInfo(int resId, EnumExtraParam extraParam)
+    EnumUpdateInfoChoice(int resId, EnumExtraParam extraParam)
     {
         this.resId = resId;
         this.extraParam = extraParam;
@@ -45,7 +45,7 @@ public enum EnumUpdateUserInfo
         return values().length;
     }
 
-    public static EnumUpdateUserInfo valueOf(int ordinal)
+    public static EnumUpdateInfoChoice valueOf(int ordinal)
     {
         return values()[ordinal];
     }
