@@ -16,6 +16,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import cn.misection.miscourse.R;
+import cn.misection.miscourse.constant.global.EnumCommonString;
+import cn.misection.miscourse.constant.ui.EnumDefaultValue;
+import cn.misection.miscourse.constant.ui.EnumExtraParam;
 import cn.misection.miscourse.ui.adapter.VideoListAdapter;
 import cn.misection.miscourse.entity.VideoBean;
 import cn.misection.miscourse.util.DataBaseHelper;
@@ -41,9 +44,9 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
 
     private TextView chapterIntroTextView;
 
-    private ListView VideoListView;
+    private ListView videoListView;
 
-    private ScrollView chapterIntroScrollView;
+    private ScrollView chapIntroScrollView;
 
     private VideoListAdapter adapter;
 
@@ -62,63 +65,91 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_video_list);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        // 从课程界面传递过来的章节Id
-        chapterId = getIntent().getIntExtra("id", 0);
-        // 从课程界面传递过来的章简介
-        intro = getIntent().getStringExtra("intro");
-        // 创建数据库工具类的对象
-        dataBaseHelper = DataBaseHelper.requireInstance(VideoListActivity.this);
-        sharedPreferLoginInfo = new SharedPreferLoginInfo(this);
-        initData();
         init();
     }
 
     private void init()
     {
+        initContent();
+        initDataBase();
+        initData();
+        initView();
+    }
+
+    private void initContent()
+    {
+        this.setContentView(R.layout.activity_video_list);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // 从课程界面传递过来的章节Id
+        chapterId = getIntent().getIntExtra(
+                EnumExtraParam.ID.literal(),
+                EnumDefaultValue.INT_EXTRA.value());
+        // 从课程界面传递过来的章简介
+        intro = getIntent().getStringExtra(
+                EnumExtraParam.INTRO.literal());
+    }
+
+    private void initDataBase()
+    {
+        // 创建数据库工具类的对象
+        dataBaseHelper = DataBaseHelper.requireInstance(
+                VideoListActivity.this);
+        sharedPreferLoginInfo = new SharedPreferLoginInfo(this);
+    }
+
+    private void initView()
+    {
         introTextView = findViewById(R.id.intro_text_view);
         videoTextView = findViewById(R.id.video_text_view);
-        VideoListView = findViewById(R.id.video_list_view);
+        videoListView = findViewById(R.id.video_list_view);
         chapterIntroTextView = findViewById(R.id.chapter_intro_text_view);
-        chapterIntroScrollView = findViewById(R.id.chapter_intro_scroll_view);
-        adapter = new VideoListAdapter(this,
-                (int position, ImageView imageView) ->
-        {
-            adapter.setSelectedPosition(position);
-            VideoBean bean = videoList.get(position);
-            String videoPath = bean.getVideoPath();
-            adapter.notifyDataSetChanged();  // 更新列表框
-            if (TextUtils.isEmpty(videoPath))
-            {
-                ToastUtil.show(VideoListActivity.this,
-                        "本地没有此视频");
-                return;
-            }
-            else
-            {
-                // 判断用户是否登录，若登录则把此视频添加到数据库
-                if (sharedPreferLoginInfo.hasLogin())
-                {
-                    String username = sharedPreferLoginInfo.getLoginUsername();
-                    dataBaseHelper.saveVideoPlayList(videoList.get(position), username);
-                }
-                // 跳转到视频播放界面
-                Intent intent = new Intent(VideoListActivity.this, VideoPlayActivity.class);
-                intent.putExtra("videoPath", videoPath);
-                intent.putExtra("position", position);
-                startActivityForResult(intent, 1);
-            }
-        });
-        VideoListView.setAdapter(adapter);
-        introTextView.setOnClickListener(this);
-        videoTextView.setOnClickListener(this);
-        adapter.setData(videoList);
+        chapIntroScrollView = findViewById(R.id.chapter_intro_scroll_view);
+        initAdapter();
         chapterIntroTextView.setText(intro);
         introTextView.setBackgroundColor(Color.parseColor("#30B4FF"));
         videoTextView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         introTextView.setTextColor(Color.parseColor("#FFFFFF"));
         videoTextView.setTextColor(Color.parseColor("#000000"));
+    }
+
+    private void initAdapter()
+    {
+        adapter = new VideoListAdapter(this,
+                (int position, ImageView imageView) ->
+                {
+                    adapter.setSelectedPosition(position);
+                    VideoBean bean = videoList.get(position);
+                    String videoPath = bean.getVideoPath();
+                    adapter.notifyDataSetChanged();  // 更新列表框
+                    if (TextUtils.isEmpty(videoPath))
+                    {
+                        ToastUtil.show(VideoListActivity.this,
+                                "本地没有此视频");
+                        return;
+                    }
+                    else
+                    {
+                        // 判断用户是否登录，若登录则把此视频添加到数据库
+                        if (sharedPreferLoginInfo.hasLogin())
+                        {
+                            String username = sharedPreferLoginInfo.getLoginUsername();
+                            dataBaseHelper.saveVideoPlayList(videoList.get(position), username);
+                        }
+                        // 跳转到视频播放界面
+                        Intent intent = new Intent(VideoListActivity.this, VideoPlayActivity.class);
+                        intent.putExtra(
+                                EnumExtraParam.VIDEO_PATH.literal(),
+                                videoPath);
+                        intent.putExtra(
+                                EnumExtraParam.POSITION.literal(),
+                                position);
+                        startActivityForResult(intent, 1);
+                    }
+                });
+        videoListView.setAdapter(adapter);
+        introTextView.setOnClickListener(this);
+        videoTextView.setOnClickListener(this);
+        adapter.setData(videoList);
     }
 
     private void initData()
@@ -159,19 +190,19 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         String line = null;
         try
         {
-            builder = new StringBuilder();  // 实例化一个StringBuilder对象
+            builder = new StringBuilder();
             // 用InputStreamReader把is这个字节流转成字符流BufferedReader
             reader = new BufferedReader(new InputStreamReader(is));
             while ((line = reader.readLine()) != null)
             {
                 builder.append(line);
-                builder.append("\n");
+                builder.append(EnumCommonString.NEW_LINE.value());
             }
         }
         catch (IOException e)
         {
             e.printStackTrace();
-            return "";
+            return EnumCommonString.EMPTY.value();
         }
         finally
         {
@@ -191,7 +222,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
                 e.printStackTrace();
             }
         }
-        return builder.toString();
+        return String.valueOf(builder);
     }
 
     @Override
@@ -199,22 +230,32 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
     {
         switch (v.getId())
         {
-            case R.id.intro_text_view:  // 简介
-                VideoListView.setVisibility(View.GONE);
-                chapterIntroScrollView.setVisibility(View.VISIBLE);
+            // 简介;
+            case R.id.intro_text_view:
+            {
+                videoListView.setVisibility(View.GONE);
+                chapIntroScrollView.setVisibility(View.VISIBLE);
                 introTextView.setBackgroundColor(Color.parseColor("#30B4FF"));
                 videoTextView.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 introTextView.setTextColor(Color.parseColor("#FFFFFF"));
                 videoTextView.setTextColor(Color.parseColor("#000000"));
                 break;
-            case R.id.video_text_view:  // 视频
-                VideoListView.setVisibility(View.VISIBLE);
-                chapterIntroScrollView.setVisibility(View.GONE);
+            }
+            // 视频;
+            case R.id.video_text_view:
+            {
+                videoListView.setVisibility(View.VISIBLE);
+                chapIntroScrollView.setVisibility(View.GONE);
                 introTextView.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 videoTextView.setBackgroundColor(Color.parseColor("#30B4FF"));
                 introTextView.setTextColor(Color.parseColor("#000000"));
                 videoTextView.setTextColor(Color.parseColor("#FFFFFF"));
                 break;
+            }
+            default:
+            {
+                break;
+            }
         }
     }
 
@@ -225,12 +266,14 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         if (data != null)
         {
             // 接收播放界面回传过来的被选中的视频的位置
-            int position = data.getIntExtra("position", 0);
+            int position = data.getIntExtra(
+                    EnumExtraParam.POSITION.literal(),
+                    EnumDefaultValue.INT_EXTRA.value());
             // 设置被选中的位置
             adapter.setSelectedPosition(position);
             // 视频选项卡被选中时所有图标的颜色值
-            VideoListView.setVisibility(View.VISIBLE);
-            chapterIntroScrollView.setVisibility(View.GONE);
+            videoListView.setVisibility(View.VISIBLE);
+            chapIntroScrollView.setVisibility(View.GONE);
             introTextView.setBackgroundColor(Color.parseColor("#FFFFFF"));
             videoTextView.setBackgroundColor(Color.parseColor("#30B4FF"));
             introTextView.setTextColor(Color.parseColor("#000000"));

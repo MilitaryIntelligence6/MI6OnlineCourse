@@ -13,6 +13,8 @@ public enum EnumCommonString
      * 常用字符串;
      */
     EMPTY(""),
+
+    NEW_LINE("\n");
     ;
 
     private final String value;

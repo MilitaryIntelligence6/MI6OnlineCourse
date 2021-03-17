@@ -29,6 +29,12 @@ public enum EnumExtraParam
     SIGNATURE("signature"),
 
     SEX("sex"),
+
+    INTRO("intro"),
+
+    VIDEO_PATH("videoPath"),
+
+    POSITION("position"),
     ;
 
     private final String literal;
