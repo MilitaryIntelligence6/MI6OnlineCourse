@@ -67,7 +67,7 @@ public class VideoPlayActivity extends AppCompatActivity
                 EnumExtraParam.VIDEO_PATH.literal());
         position = this.getIntent().getIntExtra(
                 EnumExtraParam.POSITION.literal(),
-                EnumDefaultValue.INT_EXTRA.value());
+                EnumDefaultValue.INSTANCE.intVal());
     }
 
     private void initView()

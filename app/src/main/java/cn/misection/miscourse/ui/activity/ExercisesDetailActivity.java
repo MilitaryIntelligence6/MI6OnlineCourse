@@ -72,7 +72,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
         // 获取从习题界面传递过来的章节 id
         id = this.getIntent().getIntExtra(
                 EnumExtraParam.ID.literal(),
-                EnumDefaultValue.INT_EXTRA.value());
+                EnumDefaultValue.INSTANCE.intVal());
         // 获取从习题界面传递过来的章节标题
         title = this.getIntent().getStringExtra(EnumExtraParam.TITLE.literal());
         exerciseList = new ArrayList<>();

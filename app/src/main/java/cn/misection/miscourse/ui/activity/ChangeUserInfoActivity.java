@@ -67,7 +67,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         title = this.getIntent().getStringExtra(EnumExtraParam.TITLE.literal());
         content = this.getIntent().getStringExtra(EnumExtraParam.CONTENT.literal());
         flag = this.getIntent().getIntExtra(EnumExtraParam.FLAG.literal(),
-                EnumDefaultValue.INT_EXTRA.value());
+                EnumDefaultValue.INSTANCE.intVal());
     }
 
     private void initTextView()

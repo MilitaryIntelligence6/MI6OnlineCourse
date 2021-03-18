@@ -12,18 +12,29 @@ public enum EnumDefaultValue
     /**
      * intent 传参;
      */
-    INT_EXTRA(0),
+    INSTANCE(0, false),
     ;
 
-    private final int value;
+    private final int intVal;
 
-    EnumDefaultValue(int value)
+    /**
+     * boolean 其实也是 int;
+     */
+    private final boolean boolVal;
+
+    EnumDefaultValue(int intVal, boolean boolVal)
     {
-        this.value = value;
+        this.intVal = intVal;
+        this.boolVal = boolVal;
     }
 
-    public int value()
+    public int intVal()
     {
-        return value;
+        return intVal;
+    }
+
+    public boolean boolVal()
+    {
+        return boolVal;
     }
 }

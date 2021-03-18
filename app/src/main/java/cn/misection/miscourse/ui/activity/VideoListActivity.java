@@ -85,7 +85,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         // 从课程界面传递过来的章节Id
         chapterId = getIntent().getIntExtra(
                 EnumExtraParam.ID.literal(),
-                EnumDefaultValue.INT_EXTRA.value());
+                EnumDefaultValue.INSTANCE.intVal());
         // 从课程界面传递过来的章简介
         intro = getIntent().getStringExtra(
                 EnumExtraParam.INTRO.literal());
@@ -278,7 +278,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
             // 接收播放界面回传过来的被选中的视频的位置
             int position = data.getIntExtra(
                     EnumExtraParam.POSITION.literal(),
-                    EnumDefaultValue.INT_EXTRA.value());
+                    EnumDefaultValue.INSTANCE.intVal());
             // 设置被选中的位置
             adapter.setSelectedPosition(position);
             // 视频选项卡被选中时所有图标的颜色值
