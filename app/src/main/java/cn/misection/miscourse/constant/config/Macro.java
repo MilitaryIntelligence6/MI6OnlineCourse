@@ -13,5 +13,7 @@ public final class Macro
 
     public static final boolean RELEASE = false;
 
+    public static final int DB_VERSION = 1;
+
     private Macro() {}
 }

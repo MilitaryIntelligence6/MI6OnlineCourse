@@ -6,28 +6,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import cn.misection.miscourse.constant.config.Macro;
+import cn.misection.miscourse.constant.util.db.EnumDbInfo;
+
 /**
  * @author Administrator
  */
 public class SqLiteHelper extends SQLiteOpenHelper
 {
-    private static final String DB_NAME = "bxg.db";
-
-    private static final int DB_VERSION = 1;
-
-    /**
-     * 用户表;
-     */
-    public static final String TB_USER_INFO = "userinfo";
-
-    /**
-     * 视频播放表;
-     */
-    public static final String U_VIDEO_PLAY_LIST = "videoplaylist";
-
     public SqLiteHelper(@Nullable Context context)
     {
-        super(context, DB_NAME, null, DB_VERSION);
+        super(context, EnumDbInfo.DB_NAME.value(), null, Macro.DB_VERSION);
     }
 
     @Override
@@ -36,21 +25,21 @@ public class SqLiteHelper extends SQLiteOpenHelper
         db.execSQL(String.format("create table if not exists " +
                         "%s( _id Integer primary key autoincrement," +
                         "username varchar,nickname varchar,sex varchar,signature varchar )",
-                TB_USER_INFO)
+                EnumDbInfo.TB_USER_INFO.value())
         );
         db.execSQL(String.format("create table if not exists " +
                         "%s(_id Integer primary key autoincrement," +
                         "username varchar,chapterId int,videoId int," +
                         "videoPath varchar,title varchar,secondTitle varchar )",
-                U_VIDEO_PLAY_LIST)
+                EnumDbInfo.U_VIDEO_PLAY_LIST.value())
         );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
-        db.execSQL(String.format("drop table if exists %s", TB_USER_INFO));
-        db.execSQL(String.format("drop table if exists %s", U_VIDEO_PLAY_LIST));
+        db.execSQL(String.format("drop table if exists %s", EnumDbInfo.TB_USER_INFO.value()));
+        db.execSQL(String.format("drop table if exists %s", EnumDbInfo.U_VIDEO_PLAY_LIST.value()));
         onCreate(db);
     }
 }

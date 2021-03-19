@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import cn.misection.miscourse.constant.util.db.EnumColumn;
 import cn.misection.miscourse.constant.util.db.EnumContentKey;
+import cn.misection.miscourse.constant.util.db.EnumDbInfo;
 import cn.misection.miscourse.entity.UserBean;
 import cn.misection.miscourse.entity.VideoBean;
 import cn.misection.miscourse.sqlite.SqLiteHelper;
@@ -65,7 +66,7 @@ public class DataBaseHelper
         contentValues.put(EnumContentKey.NICKNAME.literal(), user.getNickname());
         contentValues.put(EnumContentKey.SEX.literal(), user.getSex());
         contentValues.put(EnumContentKey.SIGNATURE.literal(), user.getSignature());
-        database.insert(SqLiteHelper.TB_USER_INFO, null, contentValues);
+        database.insert(EnumDbInfo.TB_USER_INFO.value(), null, contentValues);
     }
 
     /**
@@ -75,7 +76,8 @@ public class DataBaseHelper
      */
     public UserBean getUserInfo(String username)
     {
-        String sql = String.format("select * from %s where username = ?", SqLiteHelper.TB_USER_INFO);
+        String sql = String.format("select * from %s where username = ?",
+                EnumDbInfo.TB_USER_INFO.value());
         Cursor cursor = database.rawQuery(sql, new String[]{username});
         UserBean user = null;
         while (cursor.moveToNext())
@@ -100,7 +102,7 @@ public class DataBaseHelper
     {
         ContentValues contentValues = new ContentValues();
         contentValues.put(key, value);
-        database.update(SqLiteHelper.TB_USER_INFO, contentValues, "username = ?", new String[]{username});
+        database.update(EnumDbInfo.TB_USER_INFO.value(), contentValues, "username = ?", new String[]{username});
     }
 
     public void saveVideoPlayList(VideoBean video, String username)
@@ -123,14 +125,17 @@ public class DataBaseHelper
         contentValues.put(EnumContentKey.VIDEO_PATH.literal(), video.getVideoPath());
         contentValues.put(EnumContentKey.TITLE.literal(), video.getTitle());
         contentValues.put(EnumContentKey.SECOND_TITLE.literal(), video.getSecondTitle());
-        database.insert(SqLiteHelper.U_VIDEO_PLAY_LIST, null, contentValues);
+        database.insert(EnumDbInfo.U_VIDEO_PLAY_LIST.value(), null, contentValues);
     }
 
     // 删除视频
     private boolean delVideoPlay(int chapterId, int videoId, String username)
     {
         boolean delSuccess = false;
-        int row = database.delete(SqLiteHelper.U_VIDEO_PLAY_LIST, " chapterId=? and videoId=? and username=?", new String[]{chapterId + "", videoId + "", username});
+        int row = database.delete(EnumDbInfo.U_VIDEO_PLAY_LIST.value(),
+                " chapterId=? and videoId=? and username=?",
+                new String[]{String.format("%d", chapterId), String.format("%d", videoId),
+                        username});
         if (row > 0)
         {
             delSuccess = true;
@@ -148,7 +153,8 @@ public class DataBaseHelper
     private boolean hasVideoPlay(int chapterId, int videoId, String username)
     {
         boolean hasVideo = false;
-        String sql = String.format("select * from %s where chapterId=? and videoId=? and username=?", SqLiteHelper.U_VIDEO_PLAY_LIST);
+        String sql = String.format("select * from %s where chapterId=? and videoId=? and username=?",
+                EnumDbInfo.U_VIDEO_PLAY_LIST.value());
         Cursor cursor = database.rawQuery(sql, new String[]{chapterId + "", videoId + "", username});
         if (cursor.moveToFirst())
         {
@@ -160,7 +166,8 @@ public class DataBaseHelper
 
     public List<VideoBean> getVideoHistory(String loginUsername)
     {
-        String sql = String.format("select * from %s where username=?", SqLiteHelper.U_VIDEO_PLAY_LIST);
+        String sql = String.format("select * from %s where username=?",
+                EnumDbInfo.U_VIDEO_PLAY_LIST.value());
         Cursor cursor = database.rawQuery(sql, new String[]{loginUsername});
         List<VideoBean> videoList = new ArrayList<>();
         VideoBean video = null;
