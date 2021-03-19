@@ -12,8 +12,8 @@ import cn.misection.miscourse.R;
 
 import cn.misection.miscourse.ui.activity.VideoListActivity;
 import cn.misection.miscourse.entity.CourseBean;
-import cn.misection.miscourse.ui.adapter.adapterconst.EnumCourseViewEle;
-import cn.misection.miscourse.ui.adapter.adapterconst.EnumImageResMapper;
+import cn.misection.miscourse.constant.ui.adapter.EnumCourseViewEle;
+import cn.misection.miscourse.constant.ui.adapter.EnumImageResMapper;
 import cn.misection.miscourse.ui.adapter.holder.CourseViewHolder;
 
 import java.util.List;

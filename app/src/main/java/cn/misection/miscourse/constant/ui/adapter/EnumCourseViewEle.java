@@ -1,4 +1,4 @@
-package cn.misection.miscourse.ui.adapter.adapterconst;
+package cn.misection.miscourse.constant.ui.adapter;
 
 import cn.misection.miscourse.R;
 

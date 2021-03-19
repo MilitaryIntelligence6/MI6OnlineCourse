@@ -15,6 +15,9 @@ import cn.misection.miscourse.ui.adapter.holder.ExerciseViewHolder;
 
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class ExercisesAdapter extends BaseAdapter
 {
     private Context context;
@@ -27,7 +30,6 @@ public class ExercisesAdapter extends BaseAdapter
 
     /**
      * 设置数据更新界面;
-     *
      * @param exerciseList
      */
     public void setData(List<ExerciseBean> exerciseList)
@@ -38,7 +40,6 @@ public class ExercisesAdapter extends BaseAdapter
 
     /**
      * 获取 Item 的总数;
-     *
      * @return
      */
     @Override
@@ -49,7 +50,6 @@ public class ExercisesAdapter extends BaseAdapter
 
     /**
      * 根据 position 的到对应 Item 的对象;
-     *
      * @param position
      * @return
      */
@@ -61,7 +61,6 @@ public class ExercisesAdapter extends BaseAdapter
 
     /**
      * 根据 position 得到对应 Item 的 id;
-     *
      * @param position
      * @return
      */

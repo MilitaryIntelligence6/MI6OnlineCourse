@@ -120,8 +120,6 @@ public class VideoListAdapter extends BaseAdapter
         return convertView;
     }
 
-
-
     public interface OnSelectListener
     {
         /**
