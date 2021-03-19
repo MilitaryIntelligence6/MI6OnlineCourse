@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import cn.misection.miscourse.constant.util.db.EnumColumn;
+import cn.misection.miscourse.constant.util.db.EnumContentKey;
 import cn.misection.miscourse.entity.UserBean;
 import cn.misection.miscourse.entity.VideoBean;
 import cn.misection.miscourse.sqlite.SqLiteHelper;
@@ -58,12 +60,12 @@ public class DataBaseHelper
      */
     public void saveUserInfo(UserBean user)
     {
-        ContentValues cv = new ContentValues();
-        cv.put("username", user.getUsername());
-        cv.put("nickname", user.getNickname());
-        cv.put("sex", user.getSex());
-        cv.put("signature", user.getSignature());
-        database.insert(SqLiteHelper.TB_USER_INFO, null, cv);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(EnumContentKey.USERNAME.literal(), user.getUsername());
+        contentValues.put(EnumContentKey.NICKNAME.literal(), user.getNickname());
+        contentValues.put(EnumContentKey.SEX.literal(), user.getSex());
+        contentValues.put(EnumContentKey.SIGNATURE.literal(), user.getSignature());
+        database.insert(SqLiteHelper.TB_USER_INFO, null, contentValues);
     }
 
     /**
@@ -73,7 +75,7 @@ public class DataBaseHelper
      */
     public UserBean getUserInfo(String username)
     {
-        String sql = "select * from " + SqLiteHelper.TB_USER_INFO + " where username = ?";
+        String sql = String.format("select * from %s where username = ?", SqLiteHelper.TB_USER_INFO);
         Cursor cursor = database.rawQuery(sql, new String[]{username});
         UserBean user = null;
         while (cursor.moveToNext())
@@ -115,12 +117,12 @@ public class DataBaseHelper
             }
         }
         ContentValues contentValues = new ContentValues();
-        contentValues.put("username", username);
-        contentValues.put("chapterId", video.getChapterId());
-        contentValues.put("videoId", video.getVideoId());
-        contentValues.put("videoPath", video.getVideoPath());
-        contentValues.put("title", video.getTitle());
-        contentValues.put("secondTitle", video.getSecondTitle());
+        contentValues.put(EnumContentKey.USERNAME.literal(), username);
+        contentValues.put(EnumContentKey.CHAPTER_ID.literal(), video.getChapterId());
+        contentValues.put(EnumContentKey.VIDEO_ID.literal(), video.getVideoId());
+        contentValues.put(EnumContentKey.VIDEO_PATH.literal(), video.getVideoPath());
+        contentValues.put(EnumContentKey.TITLE.literal(), video.getTitle());
+        contentValues.put(EnumContentKey.SECOND_TITLE.literal(), video.getSecondTitle());
         database.insert(SqLiteHelper.U_VIDEO_PLAY_LIST, null, contentValues);
     }
 
@@ -136,11 +138,17 @@ public class DataBaseHelper
         return delSuccess;
     }
 
-    // 判断视频记录是否存在
+    /**
+     * 判断视频记录是否存在;
+     * @param chapterId
+     * @param videoId
+     * @param username
+     * @return
+     */
     private boolean hasVideoPlay(int chapterId, int videoId, String username)
     {
         boolean hasVideo = false;
-        String sql = "select * from " + SqLiteHelper.U_VIDEO_PLAY_LIST + " where chapterId=? and videoId=? and username=?";
+        String sql = String.format("select * from %s where chapterId=? and videoId=? and username=?", SqLiteHelper.U_VIDEO_PLAY_LIST);
         Cursor cursor = database.rawQuery(sql, new String[]{chapterId + "", videoId + "", username});
         if (cursor.moveToFirst())
         {
@@ -159,11 +167,11 @@ public class DataBaseHelper
         while (cursor.moveToNext())
         {
             video = new VideoBean();
-            video.setChapterId(cursor.getInt(cursor.getColumnIndex("chapterId")));
-            video.setVideoId(cursor.getInt(cursor.getColumnIndex("videoId")));
-            video.setVideoPath(cursor.getString(cursor.getColumnIndex("videoPath")));
-            video.setTitle(cursor.getString(cursor.getColumnIndex("title")));
-            video.setSecondTitle(cursor.getString(cursor.getColumnIndex("secondTitle")));
+            video.setChapterId(cursor.getInt(cursor.getColumnIndex(EnumColumn.CHAPTER_ID.literal())));
+            video.setVideoId(cursor.getInt(cursor.getColumnIndex(EnumColumn.VIDEO_ID.literal())));
+            video.setVideoPath(cursor.getString(cursor.getColumnIndex(EnumColumn.VIDEO_PATH.literal())));
+            video.setTitle(cursor.getString(cursor.getColumnIndex(EnumColumn.TITLE.literal())));
+            video.setSecondTitle(cursor.getString(cursor.getColumnIndex(EnumColumn.SECOND_TITLE.literal())));
             videoList.add(video);
             video = null;
         }

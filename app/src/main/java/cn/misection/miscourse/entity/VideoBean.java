@@ -1,5 +1,8 @@
 package cn.misection.miscourse.entity;
 
+/**
+ * @author Administrator
+ */
 public class VideoBean
 {
     /**
