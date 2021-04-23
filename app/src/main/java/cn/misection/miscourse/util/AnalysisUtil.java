@@ -20,45 +20,35 @@ import java.util.List;
  * @author Administrator
  * @FIXME
  */
-public class AnalysisUtil
-{
-    public static List<ExerciseBean> requireExerciseListInfo(InputStream is) throws Exception
-    {
+public class AnalysisUtil {
+    public static List<ExerciseBean> requireExerciseListInfo(InputStream is) throws Exception {
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(is, "utf-8");
         List<ExerciseBean> exercisesInfoList = null;
         ExerciseBean exercisesInfo = null;
         int type = parser.getEventType();
-        while (type != XmlPullParser.END_DOCUMENT)
-        {
-            switch (type)
-            {
-                case XmlPullParser.START_TAG:
-                {
+        while (type != XmlPullParser.END_DOCUMENT) {
+            switch (type) {
+                case XmlPullParser.START_TAG: {
                     String name = parser.getName();
-                    switch (name)
-                    {
-                        case ParserConst.EXERCISE_INFO:
-                        {
+                    switch (name) {
+                        case ParserConst.EXERCISE_INFO: {
                             exercisesInfoList = new ArrayList<>();
                             break;
                         }
-                        case ParserConst.EXERCISE_BEAN:
-                        {
+                        case ParserConst.EXERCISE_BEAN: {
                             exercisesInfo = new ExerciseBean();
                             exercisesInfo.setOptionTextArray(new String[4]);
                             String ids = parser.getAttributeValue(0);
                             exercisesInfo.setSubjectId(Integer.parseInt(ids));
                             break;
                         }
-                        case ParserConst.EXERCISE_SUBJECT:
-                        {
+                        case ParserConst.EXERCISE_SUBJECT: {
                             String subject = parser.nextText();
                             exercisesInfo.setSubject(subject);
                             break;
                         }
-                        case ParserConst.EXERCISE_CORRECT_ANSWER:
-                        {
+                        case ParserConst.EXERCISE_CORRECT_ANSWER: {
                             String answer = parser.nextText();
                             // FIXME, 对了, 尽量更优雅;
                             exercisesInfo.setCorrectAnswer(
@@ -66,10 +56,8 @@ public class AnalysisUtil
                             );
                             break;
                         }
-                        default:
-                        {
-                            if (EnumExercise.containsChoice(name))
-                            {
+                        default: {
+                            if (EnumExercise.containsChoice(name)) {
                                 exercisesInfo.getOptionTextArray()[
                                         EnumExercise.selectEnumByLowerCase(name).ordinal()]
                                         = parser.nextText();
@@ -79,17 +67,14 @@ public class AnalysisUtil
                     }
                     break;
                 }
-                case XmlPullParser.END_TAG:
-                {
-                    if (parser.getName().equals(ParserConst.EXERCISE_BEAN))
-                    {
+                case XmlPullParser.END_TAG: {
+                    if (parser.getName().equals(ParserConst.EXERCISE_BEAN)) {
                         exercisesInfoList.add(exercisesInfo);
                         exercisesInfo = null;
                     }
                     break;
                 }
-                default:
-                {
+                default: {
                     break;
                 }
             }
@@ -99,17 +84,14 @@ public class AnalysisUtil
     }
 
     public static void setChoiceEnable(boolean value,
-                                       ImageView... imageViewArray)
-    {
-        for (ImageView imageView : imageViewArray)
-        {
+                                       ImageView... imageViewArray) {
+        for (ImageView imageView : imageViewArray) {
             imageView.setEnabled(value);
         }
     }
 
     public static List<List<CourseBean>> requireCourseInfo(InputStream is)
-            throws XmlPullParserException, IOException
-    {
+            throws XmlPullParserException, IOException {
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(is, "utf-8");
         List<List<CourseBean>> courseInfos = null;
@@ -117,59 +99,47 @@ public class AnalysisUtil
         CourseBean courseInfo = null;
         int count = 0;
         int type = parser.getEventType();
-        while (type != XmlPullParser.END_DOCUMENT)
-        {
-            switch (type)
-            {
+        while (type != XmlPullParser.END_DOCUMENT) {
+            switch (type) {
                 case XmlPullParser.START_TAG:
-                    switch (parser.getName())
-                    {
-                        case ParserConst.EXERCISE_INFO:
-                        {
+                    switch (parser.getName()) {
+                        case ParserConst.EXERCISE_INFO: {
                             courseInfos = new ArrayList<List<CourseBean>>();
                             courseList = new ArrayList<>();
                             break;
                         }
-                        case ParserConst.EXERCISE_COURSE:
-                        {
+                        case ParserConst.EXERCISE_COURSE: {
                             courseInfo = new CourseBean();
                             String ids = parser.getAttributeValue(0);
                             courseInfo.setId(Integer.parseInt(ids));
                             break;
                         }
-                        case ParserConst.EXERCISE_IMAGE_TITLE:
-                        {
+                        case ParserConst.EXERCISE_IMAGE_TITLE: {
                             String imgtitle = parser.nextText();
                             courseInfo.setImgTitle(imgtitle);
                             break;
                         }
-                        case ParserConst.EXERCISE_TITLE:
-                        {
+                        case ParserConst.EXERCISE_TITLE: {
                             String title = parser.nextText();
                             courseInfo.setTitle(title);
                             break;
                         }
-                        case ParserConst.EXERCISE_INTRO:
-                        {
+                        case ParserConst.EXERCISE_INTRO: {
                             String intro = parser.nextText();
                             courseInfo.setIntro(intro);
                             break;
                         }
-                        default:
-                        {
+                        default: {
                             break;
                         }
                     }
                     break;
                 case XmlPullParser.END_TAG:
-                    switch (parser.getName())
-                    {
-                        case ParserConst.EXERCISE_COURSE:
-                        {
+                    switch (parser.getName()) {
+                        case ParserConst.EXERCISE_COURSE: {
                             count++;
                             courseList.add(courseInfo);
-                            if (count % 2 == 0)
-                            {
+                            if (count % 2 == 0) {
                                 // 课程界面每两个数据是一组放在 List 集合中
                                 courseInfos.add(courseList);
                                 courseList = null;
@@ -178,15 +148,13 @@ public class AnalysisUtil
                             courseInfo = null;
                             break;
                         }
-                        default:
-                        {
+                        default: {
                             break;
                         }
                     }
                     break;
 
-                default:
-                {
+                default: {
                     break;
                 }
 

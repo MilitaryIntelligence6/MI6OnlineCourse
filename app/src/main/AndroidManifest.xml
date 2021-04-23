@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ui.activity.PlayHistoryActivity"></activity>
+        <activity android:name=".ui.activity.PlayHistoryActivity" />
         <activity android:name=".ui.activity.VideoPlayActivity" />
         <activity android:name=".ui.activity.VideoListActivity" />
         <activity android:name=".ui.activity.ExercisesDetailActivity" />

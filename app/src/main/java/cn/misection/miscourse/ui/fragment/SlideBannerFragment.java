@@ -16,10 +16,10 @@ import cn.misection.miscourse.R;
  * A simple {@link Fragment} subclass.
  * Use the {@link SlideBannerFragment#newInstance} factory method to
  * create an instance of this fragment.
+ *
  * @author Administrator
  */
-public class SlideBannerFragment extends Fragment
-{
+public class SlideBannerFragment extends Fragment {
     /**
      * 广告;
      */
@@ -30,21 +30,18 @@ public class SlideBannerFragment extends Fragment
      */
     private ImageView imageView;
 
-    public SlideBannerFragment()
-    {
+    public SlideBannerFragment() {
         // Required empty public constructor
     }
 
-    public static SlideBannerFragment newInstance(Bundle args)
-    {
+    public static SlideBannerFragment newInstance(Bundle args) {
         SlideBannerFragment fragment = new SlideBannerFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arg = getArguments();
         // 获取广告图片名称
@@ -52,30 +49,28 @@ public class SlideBannerFragment extends Fragment
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState)
-    {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
-        if (banner != null)
-        {
-            switch (banner)
-            {
-                case "banner_1":
+        if (banner != null) {
+            switch (banner) {
+                case "banner_1": {
                     imageView.setImageResource(R.drawable.banner_1);
                     break;
-                case "banner_2":
+                }
+                case "banner_2": {
                     imageView.setImageResource(R.drawable.banner_2);
                     break;
-                case "banner_3":
+                }
+                case "banner_3": {
                     imageView.setImageResource(R.drawable.banner_3);
                     break;
-                default:
-                {
+                }
+                default: {
                     break;
                 }
             }
@@ -83,19 +78,16 @@ public class SlideBannerFragment extends Fragment
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
-        if (imageView != null)
-        {
+        if (imageView != null) {
             imageView.setImageDrawable(null);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         // 创建广告图片控件
         imageView = new ImageView(getActivity());
         ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);

@@ -7,8 +7,8 @@ package cn.misection.miscourse.constant.util;
  * @Description TODO
  * @CreateTime 2021年03月12日 21:32:00
  */
-public final class ParserConst
-{
+public final class ParserConst {
+
     public static final String EXERCISE_INFO = "infos";
 
     public static final String EXERCISE_SUBJECT = "subject";
@@ -25,5 +25,6 @@ public final class ParserConst
 
     public static final String EXERCISE_COURSE = "course";
 
-    private ParserConst() {}
+    private ParserConst() {
+    }
 }

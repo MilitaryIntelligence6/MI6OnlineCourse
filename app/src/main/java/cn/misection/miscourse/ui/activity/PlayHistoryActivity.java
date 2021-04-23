@@ -23,8 +23,8 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public class PlayHistoryActivity extends AppCompatActivity
-{
+public class PlayHistoryActivity extends AppCompatActivity {
+
     private TextView mainTitleTextView;
 
     private TextView backTextView;
@@ -41,18 +41,16 @@ public class PlayHistoryActivity extends AppCompatActivity
 
     private DataBaseHelper dataBaseHelper;
 
-    SharedPreferLoginInfo sharedPreferLoginInfo;
+    private SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
     }
 
-    private void init()
-    {
+    private void init() {
         initContent();
         initData();
         initView();
@@ -60,15 +58,13 @@ public class PlayHistoryActivity extends AppCompatActivity
         initListener();
     }
 
-    private void initContent()
-    {
+    private void initContent() {
         this.setContentView(R.layout.activity_play_history);
         // 设置此界面为竖屏
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
-    private void initData()
-    {
+    private void initData() {
         dataBaseHelper = DataBaseHelper.requireInstance(this);
         videoList = new ArrayList<>();
         // 从数据库中获取播放记录信息
@@ -76,8 +72,7 @@ public class PlayHistoryActivity extends AppCompatActivity
         videoList = dataBaseHelper.getVideoHistory(sharedPreferLoginInfo.getLoginUsername());
     }
 
-    private void initView()
-    {
+    private void initView() {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
         mainTitleTextView.setText(R.string.play_history);
         titleBarRelaLayout = findViewById(R.id.title_bar);
@@ -85,21 +80,18 @@ public class PlayHistoryActivity extends AppCompatActivity
         backTextView = findViewById(R.id.back_text_view);
         listView = findViewById(R.id.list_view);
         nullTextView = findViewById(R.id.null_text_view);
-        if (videoList.size() == 0)
-        {
+        if (videoList.size() == 0) {
             nullTextView.setVisibility(View.VISIBLE);
         }
     }
 
-    private void initAdapter()
-    {
+    private void initAdapter() {
         adapter = new PlayHistoryAdapter(this);
         adapter.putVideoList(videoList);
         listView.setAdapter(adapter);
     }
 
-    private void initListener()
-    {
+    private void initListener() {
         // 后退按钮的点击事件
         backTextView.setOnClickListener((View v) ->
                 PlayHistoryActivity.this.finish());

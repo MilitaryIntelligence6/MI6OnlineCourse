@@ -15,12 +15,12 @@ import cn.misection.miscourse.ui.activity.RegisterActivity;
  * @Description TODO
  * @CreateTime 2021年03月16日 20:28:00
  */
-public final class ToastUtil
-{
-    private ToastUtil() {}
+public final class ToastUtil {
 
-    public static void show(Context parent, String message)
-    {
+    private ToastUtil() {
+    }
+
+    public static void show(Context parent, String message) {
         Toast.makeText(
                 parent,
                 message,
@@ -28,8 +28,7 @@ public final class ToastUtil
                 .show();
     }
 
-    public static void show(Context parent, @StringRes int resId)
-    {
+    public static void show(Context parent, @StringRes int resId) {
         Toast.makeText(
                 parent,
                 resId,

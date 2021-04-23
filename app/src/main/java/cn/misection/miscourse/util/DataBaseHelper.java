@@ -18,8 +18,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public class DataBaseHelper
-{
+public class DataBaseHelper {
     private Context context;
 
     private static SqLiteHelper helper;
@@ -28,20 +27,15 @@ public class DataBaseHelper
 
     private volatile static DataBaseHelper instance = null;
 
-    private DataBaseHelper(Context context)
-    {
+    private DataBaseHelper(Context context) {
         this.context = context;
         init();
     }
 
-    public static DataBaseHelper requireInstance(Context context)
-    {
-        if (instance == null)
-        {
-            synchronized (DataBaseHelper.class)
-            {
-                if (instance == null)
-                {
+    public static DataBaseHelper requireInstance(Context context) {
+        if (instance == null) {
+            synchronized (DataBaseHelper.class) {
+                if (instance == null) {
                     instance = new DataBaseHelper(context);
                 }
             }
@@ -49,18 +43,17 @@ public class DataBaseHelper
         return instance;
     }
 
-    private void init()
-    {
+    private void init() {
         helper = new SqLiteHelper(context);
         database = helper.getWritableDatabase();
     }
 
     /**
      * 保存个人资料;
+     *
      * @param user
      */
-    public void saveUserInfo(UserBean user)
-    {
+    public void saveUserInfo(UserBean user) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(EnumContentKey.USERNAME.literal(), user.getUsername());
         contentValues.put(EnumContentKey.NICKNAME.literal(), user.getNickname());
@@ -71,17 +64,16 @@ public class DataBaseHelper
 
     /**
      * 获取个人资料;
+     *
      * @param username
      * @return
      */
-    public UserBean getUserInfo(String username)
-    {
+    public UserBean getUserInfo(String username) {
         String sql = String.format("select * from %s where username = ?",
                 EnumDbInfo.TB_USER_INFO.value());
         Cursor cursor = database.rawQuery(sql, new String[]{username});
         UserBean user = null;
-        while (cursor.moveToNext())
-        {
+        while (cursor.moveToNext()) {
             user = new UserBean();
             user.setUsername(cursor.getString(cursor.getColumnIndex("username")));
             user.setNickname(cursor.getString(cursor.getColumnIndex("nickname")));
@@ -94,26 +86,23 @@ public class DataBaseHelper
 
     /**
      * 更新个人资料;
+     *
      * @param key
      * @param value
      * @param username
      */
-    public void updateUserInfo(String key, String value, String username)
-    {
+    public void updateUserInfo(String key, String value, String username) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(key, value);
         database.update(EnumDbInfo.TB_USER_INFO.value(), contentValues, "username = ?", new String[]{username});
     }
 
-    public void saveVideoPlayList(VideoBean video, String username)
-    {
+    public void saveVideoPlayList(VideoBean video, String username) {
         // 判断如果里面有此播放记录则需删除重新存放
-        if (hasVideoPlay(video.getChapterId(), video.getVideoId(), username))
-        {
+        if (hasVideoPlay(video.getChapterId(), video.getVideoId(), username)) {
             // 删除之前存入的播放记录
             boolean isDelete = delVideoPlay(video.getChapterId(), video.getVideoId(), username);
-            if (!isDelete)
-            {
+            if (!isDelete) {
                 // 没有删除成功时，则需跳出此方法不再执行下面的语句
                 return;
             }
@@ -129,15 +118,13 @@ public class DataBaseHelper
     }
 
     // 删除视频
-    private boolean delVideoPlay(int chapterId, int videoId, String username)
-    {
+    private boolean delVideoPlay(int chapterId, int videoId, String username) {
         boolean delSuccess = false;
         int row = database.delete(EnumDbInfo.U_VIDEO_PLAY_LIST.value(),
                 " chapterId=? and videoId=? and username=?",
                 new String[]{String.format("%d", chapterId), String.format("%d", videoId),
                         username});
-        if (row > 0)
-        {
+        if (row > 0) {
             delSuccess = true;
         }
         return delSuccess;
@@ -145,34 +132,31 @@ public class DataBaseHelper
 
     /**
      * 判断视频记录是否存在;
+     *
      * @param chapterId
      * @param videoId
      * @param username
      * @return
      */
-    private boolean hasVideoPlay(int chapterId, int videoId, String username)
-    {
+    private boolean hasVideoPlay(int chapterId, int videoId, String username) {
         boolean hasVideo = false;
         String sql = String.format("select * from %s where chapterId=? and videoId=? and username=?",
                 EnumDbInfo.U_VIDEO_PLAY_LIST.value());
         Cursor cursor = database.rawQuery(sql, new String[]{chapterId + "", videoId + "", username});
-        if (cursor.moveToFirst())
-        {
+        if (cursor.moveToFirst()) {
             hasVideo = true;
         }
         cursor.close();
         return hasVideo;
     }
 
-    public List<VideoBean> getVideoHistory(String loginUsername)
-    {
+    public List<VideoBean> getVideoHistory(String loginUsername) {
         String sql = String.format("select * from %s where username=?",
                 EnumDbInfo.U_VIDEO_PLAY_LIST.value());
         Cursor cursor = database.rawQuery(sql, new String[]{loginUsername});
         List<VideoBean> videoList = new ArrayList<>();
         VideoBean video = null;
-        while (cursor.moveToNext())
-        {
+        while (cursor.moveToNext()) {
             video = new VideoBean();
             video.setChapterId(cursor.getInt(cursor.getColumnIndex(EnumColumn.CHAPTER_ID.literal())));
             video.setVideoId(cursor.getInt(cursor.getColumnIndex(EnumColumn.VIDEO_ID.literal())));

@@ -17,6 +17,9 @@ import cn.misection.miscourse.constant.ui.EnumDefaultValue;
 import cn.misection.miscourse.constant.ui.EnumExtraParam;
 import cn.misection.miscourse.util.ToastUtil;
 
+/**
+ * @author Administrator
+ */
 public class VideoPlayActivity extends AppCompatActivity
 {
     private VideoView videoView;

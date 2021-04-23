@@ -11,15 +11,14 @@ import android.view.Display;
  * @Description TODO
  * @CreateTime 2021年03月10日 23:48:00
  */
-public final class ScreenUtil
-{
+public final class ScreenUtil {
     /**
      * 读取屏幕宽;
+     *
      * @param context
      * @return
      */
-    public static int screenWidth(Activity context)
-    {
+    public static int screenWidth(Activity context) {
         DisplayMetrics metrics = new DisplayMetrics();
         Display display = context.getWindowManager().getDefaultDisplay();
         display.getMetrics(metrics);
