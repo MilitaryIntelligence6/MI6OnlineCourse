@@ -28,8 +28,8 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public class ExercisesDetailActivity extends AppCompatActivity
-{
+public class ExercisesDetailActivity extends AppCompatActivity {
+
     private TextView mainTitleTextView;
 
     private TextView backTextView;
@@ -48,14 +48,12 @@ public class ExercisesDetailActivity extends AppCompatActivity
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
     }
 
-    private void init()
-    {
+    private void init() {
         initParam();
         initData();
         initView();
@@ -64,8 +62,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
     /**
      * 获取另一个activity传参;
      */
-    private void initParam()
-    {
+    private void initParam() {
         this.setContentView(R.layout.activity_exercises_detail);
         // 设置此界面为竖屏
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -78,8 +75,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
         exerciseList = new ArrayList<>();
     }
 
-    private void initView()
-    {
+    private void initView() {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
         backTextView = findViewById(R.id.back_text_view);
         titleBarRelaLayout = findViewById(R.id.title_bar);
@@ -96,8 +92,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
         listView.setAdapter(adapter);
     }
 
-    private void initTextView()
-    {
+    private void initTextView() {
         TextView textView = new TextView(this);
         EnumViewParam viewParam = EnumViewParam.EXERCISE_DETAIL_TEXT_VIEW;
         textView.setTextColor(Color.parseColor("#000000"));
@@ -111,8 +106,7 @@ public class ExercisesDetailActivity extends AppCompatActivity
         listView.addHeaderView(textView);
     }
 
-    private void initAdapter()
-    {
+    private void initAdapter() {
         adapter = new ExercisesDetailAdapter(
                 ExercisesDetailActivity.this,
                 (int position,
@@ -137,15 +131,11 @@ public class ExercisesDetailActivity extends AppCompatActivity
     }
 
 
-    private void initData()
-    {
-        try
-        {
+    private void initData() {
+        try {
             InputStream is = getResources().getAssets().open(String.format("chapter%d.xml", id));
             exerciseList = AnalysisUtil.requireExerciseListInfo(is);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

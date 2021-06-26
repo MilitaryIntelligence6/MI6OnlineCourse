@@ -16,8 +16,8 @@ import cn.misection.miscourse.util.ToastUtil;
 /**
  * @author Administrator
  */
-public class UpdatePasswordActivity extends AppCompatActivity
-{
+public class UpdatePasswordActivity extends AppCompatActivity {
+
     private TextView backTextView;
 
     private TextView mainTitleTextView;
@@ -41,27 +41,23 @@ public class UpdatePasswordActivity extends AppCompatActivity
     private SharedPreferLoginInfo sharedPreferLoginInfo;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
     }
 
-    private void init()
-    {
+    private void init() {
         initContent();
         initView();
         initSharedPref();
         initListener();
     }
 
-    private void initContent()
-    {
+    private void initContent() {
         this.setContentView(R.layout.activity_update_pwd);
     }
 
-    private void initView()
-    {
+    private void initView() {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
         mainTitleTextView.setText(R.string.mod_password);
         backTextView = findViewById(R.id.back_text_view);
@@ -74,40 +70,25 @@ public class UpdatePasswordActivity extends AppCompatActivity
         saveButton = findViewById(R.id.btn_save);
     }
 
-    private void initSharedPref()
-    {
+    private void initSharedPref() {
         sharedPreferLoginInfo = new SharedPreferLoginInfo(UpdatePasswordActivity.this);
         username = sharedPreferLoginInfo.getLoginUsername();
     }
 
-    private void logicalJudgement()
-    {
-        if (oldPassword.isEmpty())
-        {
+    private void logicalJudgement() {
+        if (oldPassword.isEmpty()) {
             ToastUtil.show(this, R.string.empty_old_password);
-        }
-        else if (!MdFiveUtil.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username)))
-        {
+        } else if (!MdFiveUtil.md5(oldPassword).equals(sharedPreferLoginInfo.getPwd(username))) {
             ToastUtil.show(this, R.string.wrong_old_password);
-        }
-        else if (newPassword.isEmpty())
-        {
+        } else if (newPassword.isEmpty()) {
             ToastUtil.show(this, R.string.empty_new_password);
-        }
-        else if (newPasswordAgain.isEmpty())
-        {
+        } else if (newPasswordAgain.isEmpty()) {
             ToastUtil.show(this, R.string.empty_new_password_confirm);
-        }
-        else if (!newPassword.equals(newPasswordAgain))
-        {
+        } else if (!newPassword.equals(newPasswordAgain)) {
             ToastUtil.show(this, R.string.not_unanimous_password);
-        }
-        else if (MdFiveUtil.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username)))
-        {
+        } else if (MdFiveUtil.md5(newPassword).equals(sharedPreferLoginInfo.getPwd(username))) {
             ToastUtil.show(this, R.string.same_old_and_new_password);
-        }
-        else
-        {
+        } else {
             ToastUtil.show(this, R.string.update_password_successfully);
             // 更新密码
             sharedPreferLoginInfo.saveInfo(username, newPassword);
@@ -116,8 +97,7 @@ public class UpdatePasswordActivity extends AppCompatActivity
         }
     }
 
-    private void initListener()
-    {
+    private void initListener() {
         saveButton.setOnClickListener((View v) ->
         {
             fetchEditString();
@@ -125,8 +105,7 @@ public class UpdatePasswordActivity extends AppCompatActivity
         });
     }
 
-    private void fetchEditString()
-    {
+    private void fetchEditString() {
         oldPassword = oldPasswordEditText.getText().toString().trim();
         newPassword = newPasswordEditText.getText().toString().trim();
         newPasswordAgain = newPasswordAgainEditText.getText().toString().trim();

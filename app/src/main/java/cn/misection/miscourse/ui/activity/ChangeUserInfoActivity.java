@@ -24,8 +24,7 @@ import cn.misection.miscourse.util.ToastUtil;
 /**
  * @author Administrator
  */
-public class ChangeUserInfoActivity extends AppCompatActivity implements View.OnClickListener
-{
+public class ChangeUserInfoActivity extends AppCompatActivity implements View.OnClickListener {
     private RelativeLayout titleBarRelaLayout;
 
     private TextView backTextView;
@@ -45,14 +44,12 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
     private int flag;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
     }
 
-    private void init()
-    {
+    private void init() {
         initContentView();
         initRelaLayout();
         initTextView();
@@ -60,8 +57,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         initListener();
     }
 
-    private void initContentView()
-    {
+    private void initContentView() {
         this.setContentView(R.layout.activity_change_user_info);
 
         title = this.getIntent().getStringExtra(EnumExtraParam.TITLE.literal());
@@ -70,8 +66,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
                 EnumDefaultValue.INSTANCE.intVal());
     }
 
-    private void initTextView()
-    {
+    private void initTextView() {
         mainTitleTextView = findViewById(R.id.main_title_text_view);
         mainTitleTextView.setText(title);
 
@@ -87,85 +82,70 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         delImageView.setOnClickListener(this);
     }
 
-    private void initRelaLayout()
-    {
+    private void initRelaLayout() {
         titleBarRelaLayout = findViewById(R.id.title_bar);
         titleBarRelaLayout.setBackgroundColor(Color.parseColor("#30b4ff"));
     }
 
-    private void initEditText()
-    {
-        if (!content.isEmpty())
-        {
+    private void initEditText() {
+        if (!content.isEmpty()) {
             contentEditText.setText(content);
             contentEditText.setSelection(content.length());
         }
     }
 
-    private void initListener()
-    {
+    private void initListener() {
         initContentListener();
     }
 
-    private void initContentListener()
-    {
-        contentEditText.addTextChangedListener(new TextWatcher()
-        {
+    private void initContentListener() {
+        contentEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count)
-            {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 updateContent();
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
         });
     }
 
     @Override
-    public void onClick(View v)
-    {
-        switch (v.getId())
-        {
-            case R.id.back_text_view:
-            {
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.back_text_view: {
                 ChangeUserInfoActivity.this.finish();
                 break;
             }
-            case R.id.delete_image_view:
-            {
+            case R.id.delete_image_view: {
                 contentEditText.setText(EnumCommonString.EMPTY.value());
                 break;
             }
-            case R.id.save_text_view:
-            {
+            case R.id.save_text_view: {
                 saveUserInfo();
                 break;
             }
-            default:
-            {
+            default: {
                 break;
             }
         }
     }
 
-    private void saveUserInfo()
-    {
+    private void saveUserInfo() {
         Intent data = new Intent();
         String value = contentEditText.getText().toString().trim();
         // 获得是签名还是昵称更改;
         EnumUserInfo option = EnumUserInfo.selectEnumByFlag(flag);
-        if (value.isEmpty())
-        {
+        if (value.isEmpty()) {
             ToastUtil.show(this,
                     String.format(this.getString(R.string.can_not_be_empty),
                             option.chineseText()));
-        }
-        else
-        {
+        } else {
             data.putExtra(option.englishText(), value);
             setResult(RESULT_OK, data);
             // TODO 改成Res;
@@ -174,23 +154,20 @@ public class ChangeUserInfoActivity extends AppCompatActivity implements View.On
         }
     }
 
-    private void updateContent()
-    {
+    private void updateContent() {
         Editable editable = contentEditText.getText();
         int len = editable.length();
         delImageView.setVisibility(len > 0 ? View.VISIBLE : View.GONE);
         // 获得是签名还是昵称更改;
         EnumUserInfo option = EnumUserInfo.selectEnumByFlag(flag);
-        if (len > option.lengthLimit())
-        {
+        if (len > option.lengthLimit()) {
             int selEndIndex = Selection.getSelectionEnd(editable);
             String string = editable.toString();
             String newStr = string.substring(0, option.lengthLimit());
             contentEditText.setText(newStr);
             editable = contentEditText.getText();
             int newLen = editable.length();
-            if (selEndIndex > newLen)
-            {
+            if (selEndIndex > newLen) {
                 selEndIndex = editable.length();
             }
             Selection.setSelection(editable, selEndIndex);
